@@ -1,0 +1,104 @@
+<record><header><identifier>froac:264</identifier><datestamp>2013-04-26T05:33:19Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Contenido Diseño del Dialogo GUI</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En este PDF se describe el contenido que posee un diseño de dialogo GUI (Interfaz Gráfica de Usuario</lom:description>
+	<lom:keyword>Interfaz Gráfica de Usuario (GUI)</lom:keyword>
+	<lom:keyword>Contenido Diseño del Dialogo GUI</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-04-26</lom:date>
+		<lom:entity>Leonardo Bermón Angarita</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-04-26</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>198831</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=293</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>PT10M</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Visor PDF</lom:name>
+		<lom:minimumversion>No aplica</lom:minimumversion>
+		<lom:maximumversion>No aplica</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>15-55</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT10M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:0%; Auditivo:0%; Lector:100%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>No aplica</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Análisis y Diseño de Sistemas de Información</lom:description>
+		<lom:catalog>Análisis y Diseño de Sistemas de Información</lom:catalog>
+		<lom:entry>Análisis y Diseño de Sistemas de Información</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>2013-04-26</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Describir el contenido que posee un diseño de dialogo GUI (Interfaz Gráfica de Usuario</lom:description>
+	<lom:keyword>Contenido Diseño del Dialogo GUI</lom:keyword>
+	<lom:keyword>Interfaz Gráfica de Usuario (GUI)</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No aplica</lom:entry>
+			<lom:id>No aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

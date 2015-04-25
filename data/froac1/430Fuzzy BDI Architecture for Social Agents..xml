@@ -1,0 +1,67 @@
+<record><header><identifier>froac:467</identifier><datestamp>2012-08-17T23:22:40Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>Ingeniería </lom:catalog>
+		<lom:entry> </lom:entry>
+	</lom:identifier>
+	<lom:title>Fuzzy BDI Architecture for Social Agents.</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>En el artículo se muestra la arquitectura BDI como una herramienta útil para modelar sociedades cooperativas de agentes artificiales.  </lom:description>
+	<lom:keyword>Lógica difusa</lom:keyword>
+	<lom:coverage>SigloXXI</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>technical implementer</lom:role>
+		<lom:date>2012-08-18</lom:date>
+		<lom:entity>ROAC</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>504314</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=20</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>none</lom:interactivitytype>
+	<lom:interactivitylevel> </lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

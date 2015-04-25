@@ -1,0 +1,75 @@
+<record><header><identifier>froac:454</identifier><datestamp>2012-07-04T04:22:37Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>ISB</lom:catalog>
+		<lom:entry>01.06.00</lom:entry>
+	</lom:identifier>
+	<lom:title>Qué son los Diagramas de flujo</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Definición y elaboración de los Diagramas de flujo </lom:description>
+	<lom:keyword>Diagramas de Flujo</lom:keyword>
+	<lom:keyword>Lógica computacional</lom:keyword>
+	<lom:coverage>Colombia</lom:coverage>
+	<lom:structure> </lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2012-06-22</lom:date>
+		<lom:entity>Universidad Nacional</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>Presentación pptx</lom:format>
+	<lom:size>282</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=3</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>16</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:description>VARK{Visual:90%; Auditivo:0%; Lector:80%; Kinestético:69%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Universidad Nacional</lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

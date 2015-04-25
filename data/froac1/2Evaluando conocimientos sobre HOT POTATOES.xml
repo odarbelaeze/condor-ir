@@ -1,0 +1,76 @@
+<record><header><identifier>froac:569</identifier><datestamp>2013-12-05T00:33:30Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Evaluando conocimientos sobre HOT POTATOES</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En este material se presentan ejercicios para evaluar teoricamente conocimientos sobre la herramienta HotPotatoes</lom:description>
+	<lom:keyword>HotPotatoes</lom:keyword>
+	<lom:coverage>Academico</lom:coverage>
+	<lom:structure> </lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>draft</lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URL</lom:catalog>
+		<lom:entry>https://www.dropbox.com/s/1puh3d0xf4frzm1/Trabajo%20Hot%20Potatoes.rar</lom:entry>
+	</lom:identifier>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>RAR</lom:format>
+	<lom:size>9437184</lom:size>
+	<lom:location>https://www.dropbox.com/s/1puh3d0xf4frzm1/Trabajo%20Hot%20Potatoes.rar</lom:location>
+	<lom:installationremarks>Descomprima el .zip y abra el index.html en su navegador web</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>exam</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>very low</lom:semanticdensity>
+	<lom:typicalagerange>10-20</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:description>Este objeto puede usarse para conocer una herramienta en la cual los lectores se pueden apropiar de un metodo de evaluación de sus temas.</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>El uso de este objeto, es libre; y destinado a todo aquel que genere interes por aprender sobre las herramientas que presenta la vanguadia social</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>references</lom:kind>
+	<lom:resource>
+		<lom:description>El presente objeto hace referencia a una Herramienta de trabajo</lom:description>
+		<lom:description>El presente objeto hace referencia a una Herramienta de trabajo</lom:description>
+		<lom:catalog>El presente objeto hace referencia a una Herramienta de trabajo</lom:catalog>
+		<lom:entry>El presente objeto hace referencia a una Herramienta de trabajo</lom:entry>
+		<lom:catalog>El presente objeto hace referencia a una Herramienta de trabajo</lom:catalog>
+		<lom:entry>El presente objeto hace referencia a una Herramienta de trabajo</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Lina María Sánchez</lom:entity>
+	<lom:date>2013-09-22</lom:date>
+	<lom:description>El objeto fue usado por la persona en mención quien es Gestora Cultural; manifestando interes por la herramienta a la que referencia; deseando apropiar mas el tema para aplicarlo en su ambito laboral</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Enseñar una Herramienta de interes para un contexto academico</lom:description>
+	<lom:keyword>Evaluación</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

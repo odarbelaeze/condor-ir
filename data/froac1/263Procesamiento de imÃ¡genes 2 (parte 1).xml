@@ -1,0 +1,72 @@
+<record><header><identifier>froac:506</identifier><datestamp>2012-09-29T22:22:50Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Procesamiento de imágenes 2 (parte 1)</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Se explica el suavizado de imágenes, y las operaciones sobre el histograma.</lom:description>
+	<lom:keyword>visión artificial</lom:keyword>
+	<lom:keyword>suavizado</lom:keyword>
+	<lom:keyword>procesamiento de imágenes</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>rar</lom:format>
+	<lom:size> </lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=76</lom:location>
+	<lom:installationremarks>Descomprima y ejecute el .exe</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>5 Minutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>5 Min</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>isversionof</lom:kind>
+	<lom:resource>
+		<lom:description>Se explica el suavizado de imágenes, y las operaciones sobre el histograma</lom:description>
+	<lom:description>Se explica el suavizado de imágenes, y las operaciones sobre el histograma</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Se explica el suavizado de imágenes, y las operaciones sobre el histograma</lom:description>
+	<lom:keyword>visión artificial</lom:keyword>
+	<lom:keyword>suavizado</lom:keyword>
+	<lom:keyword>procesamiento de imágenes</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

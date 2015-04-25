@@ -1,0 +1,89 @@
+<record><header><identifier>froac:45</identifier><datestamp>2013-03-09T06:33:57Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>03.01.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Partes de la Planta</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En esta presentación se explica brevemente las partes de la planta.</lom:description>
+	<lom:keyword>Planta</lom:keyword>
+	<lom:keyword>Partes de la Planta</lom:keyword>
+	<lom:keyword>Raiz</lom:keyword>
+	<lom:keyword>Tallo</lom:keyword>
+	<lom:keyword>Rama</lom:keyword>
+	<lom:keyword>Fruto</lom:keyword>
+	<lom:keyword>Flor</lom:keyword>
+	<lom:coverage>Primaria</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-02</lom:date>
+		<lom:entity>GAIA - Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>ppsx</lom:format>
+	<lom:size>394872</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=56</lom:location>
+	<lom:installationremarks>Descargue y abra la presentación.</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Win XP</lom:minimumversion>
+		<lom:maximumversion>Win 7</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>8-10 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT15M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:35%; Auditivo:0%; Lector:65%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Dar una idea de lo que son y que hacen las partes de la planta.</lom:description>
+	<lom:keyword>Planta</lom:keyword>
+	<lom:keyword>Partes de la planta</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

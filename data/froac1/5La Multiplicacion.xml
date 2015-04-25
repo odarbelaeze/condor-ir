@@ -1,0 +1,87 @@
+<record><header><identifier>froac:106</identifier><datestamp>2013-03-24T23:33:34Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>03.01.01</lom:entry>
+	</lom:identifier>
+	<lom:title>La Multiplicacion</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En está animación se da una explicación breve de la multiplicación, citando varios ejemplos que ayudan a llegar a el objetivo y a el aprendizaje. </lom:description>
+	<lom:keyword>Multiplicación </lom:keyword>
+	<lom:coverage>Primaria</lom:coverage>
+	<lom:structure>linear</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-25</lom:date>
+		<lom:entity>GAIA- Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-03-25</lom:date>
+		<lom:entity>GAIA- Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>rar</lom:format>
+	<lom:size>703051</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=119</lom:location>
+	<lom:installationremarks>Descomprima el archivo .zip y abra (lamultiplicacion.html) en su navegador web</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>10 a 15 minutos</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Google Chrome, Mozilla Firefox</lom:name>
+		<lom:minimumversion>Todas las versiones</lom:minimumversion>
+		<lom:maximumversion>Todas las versiones</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>simulation</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>very low</lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>7-9 años</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>15 a 30 minutos </lom:typicallearningtime>
+	<lom:description>VARK{Visual:70%; Auditivo:0%; Lector:15%; Kinestético:15%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Profundiza en la multiplicacion y en algunos ejemplos de ella. </lom:description>
+	<lom:keyword>Multiplicacion </lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

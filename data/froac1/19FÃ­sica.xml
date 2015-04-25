@@ -1,0 +1,72 @@
+<record><header><identifier>froac:422</identifier><datestamp>2013-05-05T00:33:35Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Física</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Este ejercicio presenta una introducción a la física, su historia y sus aplicaciones</lom:description>
+	<lom:keyword>Física</lom:keyword>
+	<lom:keyword>Historia de la física</lom:keyword>
+	<lom:keyword>Aplicaciones de la física</lom:keyword>
+	<lom:keyword>Ondas</lom:keyword>
+	<lom:keyword>Mecánica</lom:keyword>
+	<lom:keyword>Leyes de Newton</lom:keyword>
+	<lom:structure>1</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-04-02</lom:date>
+		<lom:entity>Hugo Andres Tangarife</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>exe</lom:format>
+	<lom:size>2521543</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/maescen/control/download.php?id=28</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>exercise</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

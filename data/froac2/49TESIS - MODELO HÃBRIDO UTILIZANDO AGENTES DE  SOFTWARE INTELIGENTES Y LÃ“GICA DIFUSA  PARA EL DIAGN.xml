@@ -1,0 +1,89 @@
+<record><header><identifier>froac:463</identifier><datestamp>2012-08-17T03:22:55Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>TESIS - MODELO HÍBRIDO UTILIZANDO AGENTES DE  SOFTWARE INTELIGENTES Y LÓGICA DIFUSA  PARA EL DIAGNÓSTICO AUTOMÁTICO DE  FALLAS EN SISTEMAS DE TRANSMISIÓN DE  ENERGÍA</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+	<lom:keyword>Diagnostico automático de fallas SMA</lom:keyword>
+	<lom:coverage>Siglo XXI en Colombia</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2010-08-02</lom:date>
+		<lom:entity>Universidad Nacional de Colombia Facultad de minas</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2010-08-02</lom:date>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size> </lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=16</lom:location>
+	<lom:installationremarks>Abrir con un visor de archivos pdf.</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT8H30M</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Adobe reader</lom:name>
+		<lom:minimumversion>5.0</lom:minimumversion>
+		<lom:maximumversion>9.0</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>high</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18-80</lom:typicalagerange>
+	<lom:difficulty>difficult</lom:difficulty>
+	<lom:typicallearningtime>PT8H30M</lom:typicallearningtime>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>yes</lom:copyrightandotherrestrictions>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>references</lom:kind>
+	<lom:resource>
+		<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Leonardo Vásquez Ruiz</lom:entity>
+	<lom:date>2010-08-02</lom:date>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational level</lom:purpose>
+	<lom:description>Con esta tesis se pueden apreciar como los sitemas distribuidos de la mano de los sistemas multi agente y las técnicas de inteligencia artificial pueden ser útiles para la resolución de problemas.</lom:description>
+	<lom:keyword>Sistemas Multi-Agente</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

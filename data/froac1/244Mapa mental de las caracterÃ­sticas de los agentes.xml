@@ -1,0 +1,90 @@
+<record><header><identifier>froac:462</identifier><datestamp>2012-08-17T03:22:20Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Mapa mental de las características de los agentes</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+	<lom:keyword>Agentes de software</lom:keyword>
+	<lom:coverage>Siglo XXI en Colombia</lom:coverage>
+	<lom:structure>4</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2012-08-17</lom:date>
+		<lom:entity>Universidad Nacional sede Medellín</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2012-08-17</lom:date>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>png</lom:format>
+	<lom:size>202232</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=15</lom:location>
+	<lom:installationremarks>Abrir con visualizador de imágenes</lom:installationremarks>
+	<lom:otherplatformrequirements>Ninguno</lom:otherplatformrequirements>
+	<lom:duration>PT0H30M</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>graph</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18-100</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>PT0H30M</lom:typicallearningtime>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Universidad Nacional Sede Medellín</lom:entity>
+	<lom:date>2012-08-17</lom:date>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational level</lom:purpose>
+	<lom:description>Mediante el siguiente mapa mental podras recordar mas facilemente las diferentes características de los agentes.</lom:description>
+	<lom:keyword>Agente de software</lom:keyword>
+	<lom:taxonPath>
+		<lom:source>Repositorio local</lom:source>
+		<lom:taxon>
+			<lom:entry>Repositorio local</lom:entry>
+			<lom:id> </lom:id>
+		</lom:taxon>
+	</lom:taxonPath>
+</lom:classification>
+</lom:lom></metadata></record>

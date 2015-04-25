@@ -1,0 +1,72 @@
+<record><header><identifier>froac:523</identifier><datestamp>2012-10-01T20:22:42Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Multiobjective heuristic search in road maps</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.</lom:description>
+	<lom:keyword>Road networks</lom:keyword>
+	<lom:keyword>Artificial intelligence</lom:keyword>
+	<lom:keyword>Heuristic search</lom:keyword>
+	<lom:keyword>Multiobjective shortest path problem</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>4</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>en</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>681335</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=94</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>30 Minutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>problem statement</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:typicalagerange>18</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>30 Minutos</lom:typicallearningtime>
+	<lom:language>en</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.
+</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.</lom:description>
+	<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.
+</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.
+</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description>En este artículo se considera la aplicación de las técnicas exactas multiobjetivo para buscar en los mapas de carreteras de gran tamaño.
+</lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

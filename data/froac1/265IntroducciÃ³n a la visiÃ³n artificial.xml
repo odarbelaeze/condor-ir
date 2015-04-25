@@ -1,0 +1,60 @@
+<record><header><identifier>froac:508</identifier><datestamp>2012-09-30T21:22:08Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Introducción a la visión artificial</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Es un artículo donde se muestran  diferentes aplicaciones de la visión artificial, algo de historia y una introducción a esta.</lom:description>
+	<lom:keyword>Visión artificial</lom:keyword>
+	<lom:keyword>Fotografia</lom:keyword>
+	<lom:keyword>Luz</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>1243064</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=83</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>none</lom:interactivitytype>
+	<lom:interactivitylevel> </lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

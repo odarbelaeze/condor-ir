@@ -1,0 +1,104 @@
+<record><header><identifier>froac:35</identifier><datestamp>2013-03-08T05:33:08Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Criterios de informacion de COBIT</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En el vídeo usted encontrara una breve explicación de cada criterio que tiene COBIT para la información.</lom:description>
+	<lom:keyword>Criterios de Informacion</lom:keyword>
+	<lom:keyword>Auditoria</lom:keyword>
+	<lom:keyword>COBIT</lom:keyword>
+	<lom:coverage>Universidad Nacional</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-08</lom:date>
+		<lom:entity>Francisco Javier Valencia</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog> URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-03-08</lom:date>
+		<lom:entity>Universidad Nacional</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>wmv</lom:format>
+	<lom:size>5925589</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=42</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>P</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Win XP</lom:minimumversion>
+		<lom:maximumversion>Win 7</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>mayores de 13 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT30M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:73%; Auditivo:0%; Lector:71%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Auditoria de Sistemas</lom:description>
+		<lom:catalog>Auditoria de Sistemas</lom:catalog>
+		<lom:entry>Auditoria de Sistemas</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>2013-03-08</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Se presenta una descripción de cada criterio de información establecido por COBIT 4.1 </lom:description>
+	<lom:keyword>Cobit</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No aplica</lom:entry>
+			<lom:id>No aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

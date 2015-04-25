@@ -1,0 +1,102 @@
+<record><header><identifier>froac:20</identifier><datestamp>2013-03-07T05:33:10Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Evolución Gobierno Electrónico en Colombia</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En este vídeo usted encontrara los decretos o sucesos que han impactado el gobierno electrónico del país desde el año 1995 hasta el año 2011</lom:description>
+	<lom:keyword>Gobierno Electronico</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-07</lom:date>
+		<lom:entity>Francisco Javier Valencia Duque</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-03-07</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>wmv</lom:format>
+	<lom:size>6813703</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=37</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>No aplica</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Win XP</lom:minimumversion>
+		<lom:maximumversion>Win 7</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>mayor de 13 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT26M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:62%; Auditivo:0%; Lector:56%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>No aplica</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Auditoria de Sistemas</lom:description>
+		<lom:catalog>Auditoria de Sistemas</lom:catalog>
+		<lom:entry>Auditoria de Sistemas</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>No aplica</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>No aplica</lom:description>
+	<lom:keyword>No aplica</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>No aplica</lom:source>
+		<lom:taxon>
+			<lom:entry>No aplica</lom:entry>
+			<lom:id>No aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

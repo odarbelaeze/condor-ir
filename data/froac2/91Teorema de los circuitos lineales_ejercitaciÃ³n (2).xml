@@ -1,0 +1,64 @@
+<record><header><identifier>froac:590</identifier><datestamp>2014-02-05T02:44:00Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.11</lom:entry>
+	</lom:identifier>
+	<lom:title>Teorema de los circuitos lineales_ejercitación (2)</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Este objeto de aprendizaje ofrece al estudiantes problemas para ejercitar la aplicación del teorema de Thévenin en circuitos resistivos, que incluyen fuentes dependientes y el de
+máxima transferencia de Potencia.</lom:description>
+	<lom:keyword>Thévenin, máxima transferencia de potencia</lom:keyword>
+	<lom:coverage>Ingeniería</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>140947</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=501</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>none</lom:interactivitytype>
+	<lom:interactivitylevel> </lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

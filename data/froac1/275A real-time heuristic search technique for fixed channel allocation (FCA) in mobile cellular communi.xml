@@ -1,0 +1,61 @@
+<record><header><identifier>froac:524</identifier><datestamp>2012-10-02T02:22:48Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>A real-time heuristic search technique for fixed channel allocation (FCA) in mobile cellular communications</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>En este artículo se formula el problema de Asignación de canal fijo (FCA) que es una dificultad importante en las comunicaciones móviles. Para  resolverlo, se utiliza una técnica de búsqueda heurística, llamada el bloque de búsqueda en profundidad (BDFS).
+</lom:description>
+	<lom:keyword>Asignación de recursos</lom:keyword>
+	<lom:keyword>Comunicación móvil</lom:keyword>
+	<lom:keyword>Meta-heurísticas</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>4</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>181766</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=96</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>none</lom:interactivitytype>
+	<lom:interactivitylevel> </lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

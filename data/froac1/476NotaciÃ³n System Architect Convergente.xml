@@ -1,0 +1,104 @@
+<record><header><identifier>froac:102</identifier><datestamp>2013-03-22T05:33:09Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Notación System Architect Convergente</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En esta animación se presenta la descripción ejemplificada de las funciones básicas de complejidad </lom:description>
+	<lom:keyword>Complejidad</lom:keyword>
+	<lom:keyword>Funciones básicas de complejidad</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-15</lom:date>
+		<lom:entity>Eduardo José Villegas Jaramillo</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-03-15</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>svg</lom:format>
+	<lom:size>1530467</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=111</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>PT10M</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Chrome, Firefox, Explorer, Zafari, etc</lom:name>
+		<lom:minimumversion>No Aplica</lom:minimumversion>
+		<lom:maximumversion>No Aplica</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>diagram</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>15-40 Años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT10M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:30%; Auditivo:0%; Lector:60%; Kinestético:10%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>No aplica</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Análisis y Diseño de Algoritmos</lom:description>
+		<lom:catalog>Análisis y Diseño de Algoritmos</lom:catalog>
+		<lom:entry>Análisis y Diseño de Algoritmos</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>2013-03-22</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Notación System Architect Convergente</lom:description>
+	<lom:keyword>Complejidad</lom:keyword>
+	<lom:keyword>Funciones de Complejidad</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No Aplica</lom:entry>
+			<lom:id>No Aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

@@ -1,0 +1,91 @@
+<record><header><identifier>froac:564</identifier><datestamp>2013-09-24T05:33:05Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Objeto de aprendizaje Hot Potatoes</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Esta aplicación permite al educador orientar sus tematicas a través de herrarmientas digitales, que harán que sus clases sean mucho mas interactivas y que sus evaluaciones sean mucho mas amenas para sus estudiantes.</lom:description>
+	<lom:keyword>Hot potatoes</lom:keyword>
+	<lom:coverage>Educación</lom:coverage>
+	<lom:structure>collection</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-24</lom:date>
+		<lom:entity>Angelica Ortiz-Sofía Murillo Sossa</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>1</lom:catalog>
+		<lom:entry>https://docs.google.com/a/unal.edu.co/file/d/0BwryUm1sAti5Y18yMDlRVk5NZlE/edit?usp=sharing</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-09-24</lom:date>
+		<lom:entity>Angelica Ortiz -Sofia Murillo Sossa</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>rar</lom:format>
+	<lom:size>283398</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=458</lom:location>
+	<lom:installationremarks>Despues de descomprimir el archivo winRar usted deberá abrir el archivo index.html y asi podrá acceder a la herramienta</lom:installationremarks>
+	<lom:otherplatformrequirements>Se recomienta contar con tarjeta gráfica</lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Windows XP</lom:minimumversion>
+		<lom:maximumversion>Windows 8</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>exercise</lom:learningresourcetype>
+	<lom:interactivitylevel>very high</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>8-14 años</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:description>Este objeto se utiliza para definir tipos de evaluaciones distintos de una forma mas interactiva</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>El uso de este objeto es totalmente gratuido</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>isbasedon</lom:kind>
+	<lom:resource>
+		<lom:description>El objeto de Aprendizaje reune  diferentes definiciones que buscan orientar al educador en como realizar una actividad de Hot Potatoes</lom:description>
+		<lom:catalog>El objeto de Aprendizaje reune  diferentes definiciones que buscan orientar al educador en como realizar una actividad de Hot Potatoes</lom:catalog>
+		<lom:entry>El objeto de Aprendizaje reune  diferentes definiciones que buscan orientar al educador en como realizar una actividad de Hot Potatoes</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>sofia Murillo Sossa-Angelica Ortiz</lom:entity>
+	<lom:date>2013-09-24</lom:date>
+	<lom:description>Hemos realizado practicas con esta herramienta y causa mucho impacto en las personas que las usan</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Mostrar diferentes tipos de aprendizaje</lom:description>
+	<lom:keyword>hot potatoes</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

@@ -1,0 +1,86 @@
+<record><header><identifier>froac:278</identifier><datestamp>2013-05-02T07:33:06Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>03.01.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Ecosistema Terrestre</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En esta animación se presenta el ecosistema terrestre, su respectiva definición, clases y ejemplos con imágenes.</lom:description>
+	<lom:keyword>Ecosistema Terrestre</lom:keyword>
+	<lom:coverage>Primaria/Secundaria</lom:coverage>
+	<lom:structure>linear</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-05-02</lom:date>
+		<lom:entity>GAIA- Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-05-02</lom:date>
+		<lom:entity>GAIA- Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>rar</lom:format>
+	<lom:size>3924999</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=308</lom:location>
+	<lom:installationremarks>Descomprima el .zip y abra el (Ecosistema Terreste.html) en su navegador web</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT50M</lom:duration>
+	<lom:requirements>
+		<lom:type> </lom:type>
+		<lom:name>Google Chrome, Mozilla Firefox</lom:name>
+		<lom:minimumversion>Todas las versiones</lom:minimumversion>
+		<lom:maximumversion>Todas las versiones</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>simulation</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>9-13 años</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>PT1H</lom:typicallearningtime>
+	<lom:description>VARK{Visual:50%; Auditivo:0%; Lector:50%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

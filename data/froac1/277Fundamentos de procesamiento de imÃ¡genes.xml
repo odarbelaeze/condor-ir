@@ -1,0 +1,69 @@
+<record><header><identifier>froac:528</identifier><datestamp>2012-10-02T07:22:53Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Fundamentos de procesamiento de imágenes</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+	<lom:keyword>Color</lom:keyword>
+	<lom:keyword>Metamerismo</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>ppsx</lom:format>
+	<lom:size>574836</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=93</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>5 Minutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:typicalagerange>18</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>5 Minutos</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+	<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description>Presentación en la que se explica de forma básica las abstracciones de los colores de las imágenes.</lom:description>
+	<lom:keyword>Color</lom:keyword>
+	<lom:keyword>Metamerismo</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

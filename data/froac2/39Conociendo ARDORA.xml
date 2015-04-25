@@ -1,0 +1,86 @@
+<record><header><identifier>froac:555</identifier><datestamp>2013-09-20T03:33:11Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Conociendo ARDORA</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Este curso posee 3 lecciones y 2 actividades sobre: la configuración inicial de ARDORA y el conocimiento del área de trabajo de esta poderosa herramienta.</lom:description>
+	<lom:keyword>ARDORA</lom:keyword>
+	<lom:keyword>configuracion inicial</lom:keyword>
+	<lom:keyword>educativo</lom:keyword>
+	<lom:keyword>tutorial</lom:keyword>
+	<lom:keyword>conociendo</lom:keyword>
+	<lom:keyword>software</lom:keyword>
+	<lom:structure>hierarchical</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>draft</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Marla Alejandra López</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>zip</lom:format>
+	<lom:size>3781475</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=446</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name> </lom:name>
+		<lom:minimumversion> </lom:minimumversion>
+		<lom:maximumversion> </lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>none</lom:interactivitytype>
+	<lom:interactivitylevel> </lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>training</lom:context>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:description>este objeto puede utilizarse y compartirse</lom:description>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>licencia creative commons 3.0</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>La herramienta para generación de elementos de aprendizaje 
+ARDORA.</lom:description>
+		<lom:catalog>La herramienta para generación de elementos de aprendizaje 
+ARDORA.</lom:catalog>
+		<lom:entry>La herramienta para generación de elementos de aprendizaje 
+ARDORA.</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Marla Alejandra López Cerón</lom:entity>
+	<lom:date>2013-09-20</lom:date>
+	<lom:description>Espero sea de su agrado y ante cualquier problema, por favor contactar a maalopezce@unal.edu.co</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Aprender a reconocer y utilizar las herramientas que posee ARDORA</lom:description>
+	<lom:keyword>ardora</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

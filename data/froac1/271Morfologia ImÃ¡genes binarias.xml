@@ -1,0 +1,69 @@
+<record><header><identifier>froac:518</identifier><datestamp>2012-10-01T02:22:26Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Morfologia: Imágenes binarias</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.</lom:description>
+	<lom:keyword>Imágenes binarias</lom:keyword>
+	<lom:keyword>Operaciones morfológicas</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>4</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>602976</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=91</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>30 Minutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:context>other</lom:context>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>20 Minutos</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.</lom:description>
+	<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.
+</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.
+</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational level</lom:purpose>
+	<lom:description>Presentación en la que se explican las operaciones morfológicas y sus aplicaciones a imágenes binarias.
+</lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

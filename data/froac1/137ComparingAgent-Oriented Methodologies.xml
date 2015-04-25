@@ -1,0 +1,81 @@
+<record><header><identifier>froac:474</identifier><datestamp>2012-08-22T00:22:17Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>Ingeniería</lom:catalog>
+		<lom:entry> </lom:entry>
+	</lom:identifier>
+	<lom:title>ComparingAgent-Oriented Methodologies</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>Este trabajo presenta una comparación entre tres metodologías  orientadas a agentes: MaSE, Prometeo y Tropos. </lom:description>
+	<lom:keyword>Diseño de sistemas multiagente</lom:keyword>
+	<lom:coverage>Siglo XXI</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>technical implementer</lom:role>
+		<lom:date>2012-08-22</lom:date>
+		<lom:entity>ROAC</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>Ingeniería</lom:catalog>
+		<lom:entry> </lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>validator</lom:role>
+		<lom:date>2012-08-22</lom:date>
+		<lom:entity>ROAC</lom:entity>
+		<lom:entity>UNAL</lom:entity>
+	</lom:contribute>
+	<lom:language>en</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>141540</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=28</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18 años en adelante</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>4 horas</lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

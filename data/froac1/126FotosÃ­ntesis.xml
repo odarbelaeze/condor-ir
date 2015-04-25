@@ -1,0 +1,88 @@
+<record><header><identifier>froac:34</identifier><datestamp>2013-03-07T23:33:21Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>03.01.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Fotosíntesis</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Esta imagen explica mediante un mapa conceptual el proceso de la fotosíntesis.</lom:description>
+	<lom:keyword>Fotosíntesis</lom:keyword>
+	<lom:keyword>Planta</lom:keyword>
+	<lom:coverage>Primaria</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-02</lom:date>
+		<lom:entity>GAIA - Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role> </lom:role>
+		<lom:date>2013-03-02</lom:date>
+		<lom:entity>GAIA - Grupo de Ambientes Inteligentes Adaptativos</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>png</lom:format>
+	<lom:size>79906</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=54</lom:location>
+	<lom:installationremarks>Descarga y abre la imagen .png</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Win XP</lom:minimumversion>
+		<lom:maximumversion>Win 7</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>figure</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>medium</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>8-10 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT30M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:10%; Auditivo:0%; Lector:90%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>idea</lom:purpose>
+	<lom:description>Dar una idea general del proceso de la fotosíntesis.</lom:description>
+	<lom:keyword>fotosíntesis</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

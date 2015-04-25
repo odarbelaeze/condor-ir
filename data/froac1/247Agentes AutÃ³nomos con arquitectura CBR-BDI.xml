@@ -1,0 +1,97 @@
+<record><header><identifier>froac:465</identifier><datestamp>2012-08-17T05:22:44Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Agentes Autónomos con arquitectura CBR-BDI</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+	<lom:keyword>CBR-BDI</lom:keyword>
+	<lom:coverage>Siglo XXI en España</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2002-08-14</lom:date>
+		<lom:entity>Manuel G. Bedia, Juan Manuel Corchado Universidad de Salamanca</lom:entity>
+		<lom:entity>Robert Demolombe, Pilar Pozos Parra</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2002-08-07</lom:date>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>364593</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=17</lom:location>
+	<lom:installationremarks>Abrir con un visor de archivos pdf.</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT1H0M</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Adobe Reader</lom:name>
+		<lom:minimumversion>5.0</lom:minimumversion>
+		<lom:maximumversion>9.0</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>high</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18-80</lom:typicalagerange>
+	<lom:difficulty>difficult</lom:difficulty>
+	<lom:typicallearningtime>PT1H0M</lom:typicallearningtime>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>yes</lom:copyrightandotherrestrictions>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>references</lom:kind>
+	<lom:resource>
+		<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Manuel G. Bedia, Juan Manuel Corchado Universidad de Salamanca</lom:entity>
+	<lom:date>2002-08-08</lom:date>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational level</lom:purpose>
+	<lom:description>El artículo presenta los comportamientos de agentes deliberativos con un motor de razonamiento basado en casos. Tambíen se aprecia como se aplica en la industria turística y como los agentes pueden ser usados para asistir a los turistas y son capaces de tomar decisiones.</lom:description>
+	<lom:keyword>CBR-BDI</lom:keyword>
+	<lom:taxonPath>
+		<lom:source>Manuel G. Bedia, Juan Manuel Corchado Universidad de Salamanca</lom:source>
+		<lom:taxon>
+			<lom:entry>Manuel G. Bedia, Juan Manuel Corchado Universidad de Salamanca</lom:entry>
+			<lom:id> </lom:id>
+		</lom:taxon>
+	</lom:taxonPath>
+</lom:classification>
+</lom:lom></metadata></record>

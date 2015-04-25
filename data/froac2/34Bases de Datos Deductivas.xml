@@ -1,0 +1,112 @@
+<record><header><identifier>froac:548</identifier><datestamp>2013-09-16T02:33:19Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Bases de Datos Deductivas</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En este objeto de aprendizaje de realidad aumentada, se presentan los componentes de una base de datos deductiva</lom:description>
+	<lom:keyword>Base de datos deductiva</lom:keyword>
+	<lom:keyword>Realidad Aumentada</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-16</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-09-16</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>Realidad Aumentada</lom:format>
+	<lom:size> </lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/gloar/apps/deductivas/</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>PT30M</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Opera 16</lom:name>
+		<lom:minimumversion>16</lom:minimumversion>
+		<lom:maximumversion>16</lom:maximumversion>
+		<lom:type> </lom:type>
+		<lom:name>Cámara web</lom:name>
+		<lom:minimumversion> </lom:minimumversion>
+		<lom:maximumversion> </lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>simulation</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>very low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>15-40</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT30M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:88%; Auditivo:12%; Lector:13%; Kinestético:88%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>No aplica</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Objetos de realidad aumentada</lom:description>
+		<lom:catalog>Objetos de realidad aumentada</lom:catalog>
+		<lom:entry>Objetos de realidad aumentada</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>2013-09-16</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Aprender sobre bases de datos deductivas por medio de un objeto de aprendizaje de realidad aumentada</lom:description>
+	<lom:keyword>Bases de datos deductivas</lom:keyword>
+	<lom:keyword>Realidad aumentada</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No aplica</lom:entry>
+			<lom:id>No aplica</lom:id>
+		</lom:taxon>
+		<lom:taxon>
+			<lom:entry>hot potatoes</lom:entry>
+			<lom:id> </lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

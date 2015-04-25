@@ -1,0 +1,83 @@
+<record><header><identifier>froac:570</identifier><datestamp>2014-01-26T02:44:29Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>CC</lom:catalog>
+		<lom:entry> </lom:entry>
+	</lom:identifier>
+	<lom:title>Bases de Datos Distribuidas</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Este objeto de aprendizaje ofrece a los estudiantes los conceptos y aspectos fundamentales de los sistemas de bases de datos distribuidas y además presenta los problemas más importantes para su funcionamiento y uso, para así desarrollar aplicaciones que den soluciones a problemas reales de manejo de datos.</lom:description>
+	<lom:keyword>Distribuidos</lom:keyword>
+	<lom:coverage>Informatica y Computacion</lom:coverage>
+	<lom:structure>linear</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2014-01-26</lom:date>
+		<lom:entity>Cesar Castillo</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2014-01-26</lom:date>
+		<lom:entity>Cesar Castillo</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>zip</lom:format>
+	<lom:size>243526</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=472</lom:location>
+	<lom:installationremarks>Descomprima el .zip y abra el index.html en su navegador web</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Internet Explorer</lom:name>
+		<lom:minimumversion>IE 7</lom:minimumversion>
+		<lom:maximumversion>IE 9</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>3</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

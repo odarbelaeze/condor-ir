@@ -1,0 +1,70 @@
+<record><header><identifier>froac:556</identifier><datestamp>2013-09-20T04:33:33Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Video objeto de aprendizaje CrazyTalk</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Este vídeo presenta una breve muestra de lo que se puede lograr con la herramienta CrazyTalk, y la invitación a utilizarla para hacer objetos de Aprendizaje.</lom:description>
+	<lom:keyword>CrazyTalk</lom:keyword>
+	<lom:coverage>Herramientas Objetos de Aprendizaje</lom:coverage>
+	<lom:structure> </lom:structure>
+	<lom:aggregationlevel> </lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>draft</lom:status>
+	<lom:contribute>
+		<lom:role>script writer</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Mauricio Poveda Vergara</lom:entity>
+		<lom:entity>Ricardo Uribe González</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>wmv</lom:format>
+	<lom:size>26635658</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=448</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>graph</lom:learningresourcetype>
+	<lom:interactivitylevel>high</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>training</lom:context>
+	<lom:typicalagerange>10- 30</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>yes</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>references</lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

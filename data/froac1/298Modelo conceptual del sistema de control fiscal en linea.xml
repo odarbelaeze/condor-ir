@@ -1,0 +1,102 @@
+<record><header><identifier>froac:113</identifier><datestamp>2013-04-01T02:33:01Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Modelo conceptual del sistema de control fiscal en linea</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>en este material usted encontrara como esta compuesto el modelo del control fiscal en linea del pais</lom:description>
+	<lom:keyword>control fiscal</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-03-22</lom:date>
+		<lom:entity>Francisco Javier Valencia</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-03-22</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>wmv</lom:format>
+	<lom:size>1173581</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=125</lom:location>
+	<lom:installationremarks>No aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No aplica</lom:otherplatformrequirements>
+	<lom:duration>No aplica</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Windows</lom:name>
+		<lom:minimumversion>Win XP</lom:minimumversion>
+		<lom:maximumversion>Win 7</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>mayor de 15 años</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>PT30M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:56%; Auditivo:0%; Lector:48%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Auditoria de Sistemas</lom:description>
+		<lom:catalog>Auditoria de Sistemas</lom:catalog>
+		<lom:entry>Auditoria de Sistemas</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No aplica</lom:entity>
+	<lom:date>No aplica</lom:date>
+	<lom:description>No aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>en este material usted encontrara como esta compuesto el modelo del control fiscal en linea del pais</lom:description>
+	<lom:keyword>control fiscal</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No aplica</lom:entry>
+			<lom:id>No aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

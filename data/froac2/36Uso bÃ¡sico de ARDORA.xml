@@ -1,0 +1,91 @@
+<record><header><identifier>froac:551</identifier><datestamp>2013-09-19T07:33:24Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Uso básico de ARDORA</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Por medio de pruebas interactivas permite comprobar el conocimiento del usuario sobre ARDORA, así como también enseñarle el solucionario</lom:description>
+	<lom:keyword>Ardora</lom:keyword>
+	<lom:coverage>Siglo XXI</lom:coverage>
+	<lom:structure>networked</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-19</lom:date>
+		<lom:entity>Moisés Chica Nieto - Andrés Felipe Ortiz Castañeda</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-09-19</lom:date>
+		<lom:entity>Moisés Chica Nieto - Andrés Felipe Ortiz Castañeda</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>zip</lom:format>
+	<lom:size>174145</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=440</lom:location>
+	<lom:installationremarks>Descomprima el .zip y ejecute el  archivo prueba_1.htm</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT10M</lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Chorme o Internet Explorer</lom:name>
+		<lom:minimumversion>Windows 98</lom:minimumversion>
+		<lom:maximumversion>Windows 8</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>3</lom:interactivitytype>
+	<lom:learningresourcetype>self assessment</lom:learningresourcetype>
+	<lom:interactivitylevel>high</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>training</lom:context>
+	<lom:typicalagerange>15-30 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>PT15M</lom:typicallearningtime>
+	<lom:description>Es un evaluador interactivo con medios de aprendizaje para cualquier tipo de persona que desee conocer el funcionamiento básico de ardora</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>isbasedon</lom:kind>
+	<lom:resource>
+		<lom:description>el funcionamiento básico del software Ardora</lom:description>
+		<lom:catalog>el funcionamiento básico del software Ardora</lom:catalog>
+		<lom:entry>el funcionamiento básico del software Ardora</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Brinda un primer encuentro con el manejo de Ardora</lom:description>
+	<lom:keyword>Ardora</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

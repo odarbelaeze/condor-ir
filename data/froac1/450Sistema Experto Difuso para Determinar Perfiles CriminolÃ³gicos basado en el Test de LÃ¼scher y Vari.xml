@@ -1,0 +1,75 @@
+<record><header><identifier>froac:533</identifier><datestamp>2012-10-03T06:22:11Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Sistema Experto Difuso para Determinar Perfiles Criminológicos basado en el Test de Lüscher y Variables Socio-Criminológicas</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.</lom:description>
+	<lom:keyword>Sistemas Inteligentes</lom:keyword>
+	<lom:keyword>Sistemas Expertos Difusos</lom:keyword>
+	<lom:keyword>Test de Lüscher</lom:keyword>
+	<lom:keyword>Diagnóstico Socio-Criminalístico</lom:keyword>
+	<lom:keyword>JESS</lom:keyword>
+	<lom:keyword>Meta-Conocimiento</lom:keyword>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>4</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>236533</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=108</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>15 Mintutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>problem statement</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>15 Minutos</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>\\\\\\\"Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.\\\\\\\"</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>\\\\\\\"Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.\\\\\\\"</lom:description>
+	<lom:description>\\\\\\\"Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.\\\\\\\"</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description>\\\\\\\"Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.\\\\\\\"</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description>\\\\\\\"Artículo en el cual se exhibe el análisis, diseño y
+construcción del sistema experto difuso “FUZZY PROFILE”, el cual se basa en el modelamiento de variables difusas y la adquisición de conocimientos de carácter psicológico y social con el fin de inferir la inclinación criminalística de un cierto individuo.\\\\\\\"</lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

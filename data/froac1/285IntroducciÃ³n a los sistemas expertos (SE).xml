@@ -1,0 +1,66 @@
+<record><header><identifier>froac:539</identifier><datestamp>2012-10-04T07:22:41Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Introducción a los sistemas expertos (SE)</lom:title>
+	<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+	<lom:keyword>Sistemas expertos</lom:keyword>
+	<lom:keyword>SE</lom:keyword>
+	<lom:structure> </lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>ppsx</lom:format>
+	<lom:size>409529</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=109</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>6 Minutos</lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>slide</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime>6 Minutos</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+	<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description>Presentación en la cual se da una breve reseña histórica de los sistemas expertos, definición y algunas de sus aplicaciones.</lom:description>
+	<lom:keyword>Sistemas expertos</lom:keyword>
+	<lom:keyword>SE</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

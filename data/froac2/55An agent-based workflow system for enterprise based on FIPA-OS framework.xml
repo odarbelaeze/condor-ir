@@ -1,0 +1,100 @@
+<record><header><identifier>froac:494</identifier><datestamp>2012-09-17T07:22:58Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>An agent-based workflow system for enterprise based on FIPA-OS framework</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+	<lom:keyword>Sistema Multi-Agente</lom:keyword>
+	<lom:keyword>FIPA</lom:keyword>
+	<lom:keyword>Flujo de trabajo de gestión</lom:keyword>
+	<lom:coverage>Siglo XXI</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2009-02-01</lom:date>
+		<lom:entity>Yao Jung Yang, Tien-Wen Sung, Chuni Wua, Hsiang-Yang Chen</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2009-02-01</lom:date>
+		<lom:entity>Yao Jung Yang, Tien-Wen Sung, Chuni Wua, Hsiang-Yang Chen</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>en</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>987854</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=51</lom:location>
+	<lom:installationremarks>Descargar y abrir con un lector de archivos .pdf</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT4H0M</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Adobe Reader</lom:name>
+		<lom:minimumversion>5.0</lom:minimumversion>
+		<lom:maximumversion>9.0</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>high</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18-80</lom:typicalagerange>
+	<lom:difficulty>difficult</lom:difficulty>
+	<lom:typicallearningtime>PT4H0M</lom:typicallearningtime>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+	<lom:language>en</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>yes</lom:cost>
+	<lom:copyrightandotherrestrictions>yes</lom:copyrightandotherrestrictions>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>hasversion</lom:kind>
+	<lom:resource>
+		<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>Yao Jung Yang, Tien-Wen Sung, Chuni Wua, Hsiang-Yang Chen</lom:entity>
+	<lom:date>2009-02-01</lom:date>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>En este trabajo vas a encontrar una descripción acerca de la implementacion de una arquitectura multiagente utilizada para apoyar ideas empresariales y principios para el diseño de sistemas inteligentes .</lom:description>
+	<lom:keyword>FIPA</lom:keyword>
+	<lom:keyword>Gestión de agentes</lom:keyword>
+	<lom:taxonPath>
+		<lom:source>Elsevier</lom:source>
+		<lom:taxon>
+			<lom:entry>Sistemas Multi-Agente</lom:entry>
+			<lom:id> </lom:id>
+		</lom:taxon>
+	</lom:taxonPath>
+</lom:classification>
+</lom:lom></metadata></record>

@@ -1,0 +1,81 @@
+<record><header><identifier>froac:567</identifier><datestamp>2013-09-25T05:33:21Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Aprende a utilizar cuadernia</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>este objeto de aprendizaje da a conocer los elementos básicos para utilizar cuadernia como método de enseñanza</lom:description>
+	<lom:keyword>aprendizaje</lom:keyword>
+	<lom:coverage>educación actual</lom:coverage>
+	<lom:structure>networked</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-25</lom:date>
+		<lom:entity>Gloria Marcela Quintero Castañeda</lom:entity>
+		<lom:entity>Christian David Aguirre</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-09-25</lom:date>
+		<lom:entity>Gloria Marcela Quintero Castañeda</lom:entity>
+		<lom:entity>Christian David Agruirre</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>cuadernia</lom:format>
+	<lom:size> </lom:size>
+	<lom:location>https://docs.google.com/a/unal.edu.co/file/d/0B5jnCG9_f7nqYjR4Zl8zYkExUVE/edit</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>graph</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:difficulty>very easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:description>este objeto explica la utilización de aplicativos como cuadernia para la enseñanza</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>references</lom:kind>
+	<lom:resource>
+		<lom:description>vídeo explicativo tomado de manual de uso</lom:description>
+		<lom:catalog>vídeo explicativo tomado de manual de uso</lom:catalog>
+		<lom:entry>vídeo explicativo tomado de manual de uso</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>competency</lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

@@ -1,0 +1,75 @@
+<record><header><identifier>froac:562</identifier><datestamp>2013-09-23T01:33:16Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Explicación básica JClic 1</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En esta actividad, desarrollada en JClic, se explica brevemente  el entorno y funcionamiento de la herramienta.</lom:description>
+	<lom:keyword>JClic entorno básico</lom:keyword>
+	<lom:coverage>Objetos de Aprendizaje</lom:coverage>
+	<lom:structure>networked</lom:structure>
+	<lom:aggregationlevel> </lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1</lom:version>
+	<lom:status>draft</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Efraín Rodríguez Soto</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>zip</lom:format>
+	<lom:size>730246</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=455</lom:location>
+	<lom:installationremarks>Abrir con JClic. Descomprimir si es necesario.</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration>PT15M</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Plataforma JAVA</lom:name>
+		<lom:minimumversion>Plataforma JAVA</lom:minimumversion>
+		<lom:maximumversion>Plataforma JAVA</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>exercise</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>16-</lom:typicalagerange>
+	<lom:difficulty>very easy</lom:difficulty>
+	<lom:typicallearningtime>PT15M</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

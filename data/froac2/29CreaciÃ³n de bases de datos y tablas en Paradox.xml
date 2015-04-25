@@ -1,0 +1,104 @@
+<record><header><identifier>froac:383</identifier><datestamp>2013-05-24T04:33:00Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Creación de bases de datos y tablas en Paradox</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>En este PDF se presenta el proceso de creación de bases de datos y tablas en Paradox</lom:description>
+	<lom:keyword>Bases de datos</lom:keyword>
+	<lom:keyword>Paradox</lom:keyword>
+	<lom:coverage>Universidad Nacional de Colombia</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>1</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>1.0</lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-05-09</lom:date>
+		<lom:entity>Nestor Darío Duque</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:identifier>
+		<lom:catalog>URI</lom:catalog>
+		<lom:entry>http://www.ieee.org/descriptions/1234</lom:entry>
+	</lom:identifier>
+	<lom:contribute>
+		<lom:role>creator</lom:role>
+		<lom:date>2013-05-09</lom:date>
+		<lom:entity>Universidad Nacional de Colombia</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>265423</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=416</lom:location>
+	<lom:installationremarks>No Aplica</lom:installationremarks>
+	<lom:otherplatformrequirements>No Aplica</lom:otherplatformrequirements>
+	<lom:duration>PT20M</lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name>Windows, Linux, Mac, etc</lom:name>
+		<lom:minimumversion>No Aplica</lom:minimumversion>
+		<lom:maximumversion>No Aplica</lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>graph</lom:learningresourcetype>
+	<lom:interactivitylevel>very low</lom:interactivitylevel>
+	<lom:semanticdensity>low</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>higher education</lom:context>
+	<lom:typicalagerange>15- 40 Años</lom:typicalagerange>
+	<lom:difficulty>medium</lom:difficulty>
+	<lom:typicallearningtime>PT20M</lom:typicallearningtime>
+	<lom:description>VARK{Visual:50%; Auditivo:0%; Lector:50%; Kinestético:0%}</lom:description>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description>No Aplica</lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind>ispartof</lom:kind>
+	<lom:resource>
+		<lom:description>Bases de Datos</lom:description>
+		<lom:catalog>Bases de Datos</lom:catalog>
+		<lom:entry>Bases de Datos</lom:entry>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>No Aplica</lom:entity>
+	<lom:date>2013-05-09</lom:date>
+	<lom:description>No Aplica</lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Conocer el proceso de creación de bases de datos y tablas en Paradox</lom:description>
+	<lom:keyword>Bases de datos</lom:keyword>
+	<lom:keyword>Paradox</lom:keyword>
+	<lom:taxonpath>
+		<lom:source>NBC</lom:source>
+		<lom:taxon>
+			<lom:entry>No Aplica</lom:entry>
+			<lom:id>No Aplica</lom:id>
+		</lom:taxon>
+	</lom:taxonpath>
+</lom:classification>
+</lom:lom></metadata></record>

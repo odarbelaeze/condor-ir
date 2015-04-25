@@ -1,0 +1,81 @@
+<record><header><identifier>froac:561</identifier><datestamp>2013-09-22T20:33:50Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Introduccion a Hot Potatoes</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Con este Objeto de Aprendizaje se presenta un test breve sobre el uso de las herramientas basicas y funciones del Programa HotPotatoes.</lom:description>
+	<lom:keyword>Objetos de Aprendizaje</lom:keyword>
+	<lom:coverage>E-Learning</lom:coverage>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version>6.0</lom:version>
+	<lom:status>draft</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Thomas Robledo</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>validator</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Thomas Robledo</lom:entity>
+		<lom:entity>Yassin Salm Vallejo</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>es</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>rar</lom:format>
+	<lom:size>175443</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=454</lom:location>
+	<lom:location>http://recursos.cnice.mec.es/lengua/publico/curso.pdf</lom:location>
+	<lom:installationremarks>Descomprimir el archivo y ejecutar \\\"index.htm\\\" para realizar el test</lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>browser</lom:type>
+		<lom:name>Mozilla Firefox, Google Chrome</lom:name>
+		<lom:minimumversion> </lom:minimumversion>
+		<lom:maximumversion> </lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>1</lom:interactivitytype>
+	<lom:learningresourcetype>questionnaire</lom:learningresourcetype>
+	<lom:interactivitylevel>medium</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:typicalagerange>7-15 años</lom:typicalagerange>
+	<lom:difficulty>easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Apoya los procesos de enseñanza didacticos aprovechando las tecnologias de informacion.</lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

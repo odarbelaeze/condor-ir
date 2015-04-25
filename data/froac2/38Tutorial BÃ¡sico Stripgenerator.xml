@@ -1,0 +1,69 @@
+<record><header><identifier>froac:553</identifier><datestamp>2013-09-20T00:33:07Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Tutorial Básico Stripgenerator</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>Por medio de este elemento se muestra la información necesaria para el uso de la herramienta Stripgenerator, como objeto de aprendizaje</lom:description>
+	<lom:keyword>tira comica</lom:keyword>
+	<lom:structure>atomic</lom:structure>
+	<lom:aggregationlevel> </lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2013-09-20</lom:date>
+		<lom:entity>Santiago Grajales - Juan David Perez</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>120440</lom:size>
+	<lom:location>http://froac.manizales.unal.edu.co/roap/control/download.php?id=444</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>graph</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>teacher</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>12 en adelante</lom:typicalagerange>
+	<lom:difficulty>very easy</lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+	<lom:language>en</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>no</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description>Mostrar como la herramienta web Stripgenerator puede ser utlizada para el aprendizaje</lom:description>
+	<lom:keyword>Tira comica</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

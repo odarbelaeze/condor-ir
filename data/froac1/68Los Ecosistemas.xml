@@ -1,0 +1,72 @@
+<record><header><identifier>froac:449</identifier><datestamp>2013-05-06T03:33:31Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Los Ecosistemas</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Los Ecosistemas. Ecosistemas Acuáticos. Ecosistemas Terrestres. Ecosistemas Marítimos. los seres vivos. Biodiversidad. Los reinos vivos de la naturaleza. Los reinos y sus especies</lom:description>
+	<lom:keyword>Ecosistemas Acuáticos</lom:keyword>
+	<lom:keyword>Ecosistemas Terrestres</lom:keyword>
+	<lom:keyword>Ecosistemas Marítimos</lom:keyword>
+	<lom:keyword>los seres vivos</lom:keyword>
+	<lom:keyword>Biodiversidad</lom:keyword>
+	<lom:keyword>Los reinos vivos de la naturaleza</lom:keyword>
+	<lom:keyword>Los reinos y sus especies</lom:keyword>
+	<lom:structure>1</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2010-10-21</lom:date>
+		<lom:entity>Edwin Durley Serna Hincapie</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>181795</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/maescen/control/download.php?id=55</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>

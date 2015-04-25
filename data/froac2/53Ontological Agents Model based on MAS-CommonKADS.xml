@@ -1,0 +1,93 @@
+<record><header><identifier>froac:483</identifier><datestamp>2012-09-16T20:22:50Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:identifier>
+		<lom:catalog>NBC</lom:catalog>
+		<lom:entry>07.10.01</lom:entry>
+	</lom:identifier>
+	<lom:title>Ontological Agents Model based on MAS-CommonKADS</lom:title>
+	<lom:language>en</lom:language>
+	<lom:description>Este trabajo propone un modelo de agentes de software para recuperación de información de una federación de bibliotecas digitales.</lom:description>
+	<lom:keyword>Ontologías</lom:keyword>
+	<lom:keyword>MAS-CommonKADS</lom:keyword>
+	<lom:keyword>Federaciónes de bibliotecas</lom:keyword>
+	<lom:coverage>Siglo XXI</lom:coverage>
+	<lom:structure>5</lom:structure>
+	<lom:aggregationlevel>3</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status>final</lom:status>
+	<lom:contribute>
+		<lom:role>technical implementer</lom:role>
+		<lom:date>2012-10-23</lom:date>
+		<lom:entity>ROAC</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:contribute>
+		<lom:role>validator</lom:role>
+		<lom:date>2012-10-23</lom:date>
+		<lom:entity>ROAC</lom:entity>
+	</lom:contribute>
+	<lom:metadataschema>LOM</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>255664</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/unalmed/control/download.php?id=57</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+	<lom:requirements>
+		<lom:type>operating system</lom:type>
+		<lom:name> </lom:name>
+		<lom:minimumversion> </lom:minimumversion>
+		<lom:maximumversion> </lom:maximumversion>
+	</lom:requirements>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity>high</lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>other</lom:context>
+	<lom:typicalagerange>18 años en adelante</lom:typicalagerange>
+	<lom:difficulty>difficult</lom:difficulty>
+	<lom:typicallearningtime>4 horas</lom:typicallearningtime>
+	<lom:language>es</lom:language>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost>no</lom:cost>
+	<lom:copyrightandotherrestrictions>yes</lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+	<lom:resource>
+		<lom:description>Este trabajo propone un modelo de agentes de software para recuperación de información de una federación de bibliotecas digitales.</lom:description>
+<lom:identifier>	<lom:catalog>ROAC</lom:catalog>
+	<lom:entry> </lom:entry>
+</lom:identifier>	<lom:description>Este trabajo propone un modelo de agentes de software para recuperación de información de una federación de bibliotecas digitales.</lom:description>
+	</lom:resource>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity>ROAC</lom:entity>
+	<lom:date>2012-10-23</lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose>educational objective</lom:purpose>
+	<lom:description> </lom:description>
+	<lom:keyword>Federación de bibliotecas digitales</lom:keyword>
+</lom:classification>
+</lom:lom></metadata></record>

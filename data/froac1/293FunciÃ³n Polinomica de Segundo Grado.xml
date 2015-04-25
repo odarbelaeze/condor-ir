@@ -1,0 +1,69 @@
+<record><header><identifier>froac:415</identifier><datestamp>2013-05-03T23:33:10Z</datestamp><setSpec>notImplemented</setSpec></header><metadata><lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM http://ltsc.ieee.org/xsd/lomv1.0/lom.xsd">
+<lom:general>
+	<lom:title>Función Polinomica de Segundo Grado</lom:title>
+	<lom:language>es</lom:language>
+	<lom:description>Función Polinómica de Segundo Grado. Funciones de la forma y=ax2. Funciones de la forma y=x2+c. Funciones de la forma y=ax2+bx+c. Aplicaciones de la funciión cuadrática</lom:description>
+	<lom:keyword>Funciones de la forma y=ax2</lom:keyword>
+	<lom:keyword>Funciones de la forma y=x2+c</lom:keyword>
+	<lom:keyword>Funciones de la forma y=ax2+bx+c</lom:keyword>
+	<lom:keyword>Aplicaciones de la funciión cuadrática</lom:keyword>
+	<lom:structure>1</lom:structure>
+	<lom:aggregationlevel>2</lom:aggregationlevel>
+</lom:general>
+
+<lom:lifecycle>
+	<lom:version> </lom:version>
+	<lom:status> </lom:status>
+	<lom:contribute>
+		<lom:role>author</lom:role>
+		<lom:date>2010-11-14</lom:date>
+		<lom:entity>Jaime Cardona</lom:entity>
+	</lom:contribute>
+</lom:lifecycle>
+
+<lom:metametadata>
+	<lom:metadataschema>LOMv1.0</lom:metadataschema>
+	<lom:language>none</lom:language>
+</lom:metametadata>
+
+<lom:technical>
+	<lom:format>pdf</lom:format>
+	<lom:size>640966</lom:size>
+	<lom:location>http://roap.medellin.unal.edu.co/maescen/control/download.php?id=21</lom:location>
+	<lom:installationremarks> </lom:installationremarks>
+	<lom:otherplatformrequirements> </lom:otherplatformrequirements>
+	<lom:duration> </lom:duration>
+</lom:technical>
+
+<lom:educational>
+	<lom:interactivitytype>2</lom:interactivitytype>
+	<lom:learningresourcetype>narrative text</lom:learningresourcetype>
+	<lom:interactivitylevel>low</lom:interactivitylevel>
+	<lom:semanticdensity> </lom:semanticdensity>
+	<lom:intendedenduserrole>learner</lom:intendedenduserrole>
+	<lom:context>school</lom:context>
+	<lom:difficulty> </lom:difficulty>
+	<lom:typicallearningtime> </lom:typicallearningtime>
+</lom:educational>
+
+<lom:rights>
+	<lom:cost> </lom:cost>
+	<lom:copyrightandotherrestrictions> </lom:copyrightandotherrestrictions>
+	<lom:description> </lom:description>
+</lom:rights>
+
+<lom:relation>
+	<lom:kind> </lom:kind>
+</lom:relation>
+
+<lom:annotation>
+	<lom:entity> </lom:entity>
+	<lom:date> </lom:date>
+	<lom:description> </lom:description>
+</lom:annotation>
+
+<lom:classification>
+	<lom:purpose> </lom:purpose>
+	<lom:description> </lom:description>
+</lom:classification>
+</lom:lom></metadata></record>
