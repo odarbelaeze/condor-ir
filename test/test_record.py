@@ -45,7 +45,6 @@ def sw_record_xml(request):
         <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
         <lom:keyword>a</lom:keyword>
         <lom:keyword>ante</lom:keyword>
-        <lom:keyword>bajo</lom:keyword>
         <lom:keyword>of</lom:keyword>
         <lom:keyword>in</lom:keyword>
         </lom:lom>
@@ -91,5 +90,7 @@ def test_record_raw_data(record, empty_record):
     assert not empty_record.raw
 
 
-def test_record_raw_data_with_no_stopwords(sw_record):
+def test_record_raw_data_with_no_stopwords(sw_record, record):
+    record.strip_stopwords = True
+    assert record.raw
     assert not sw_record.raw

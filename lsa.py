@@ -4,6 +4,7 @@ import functools
 from nltk.corpus import stopwords
 
 
+# STOPWORDS = {k: k for k in stopwords.words()}
 STOPWORDS = sorted(stopwords.words())
 
 
@@ -25,7 +26,10 @@ def gen_to_list(func):
 
 
 def is_stopword(word):
-    return bisect.bisect_left(STOPWORDS, word) < len(STOPWORDS)
+    # TODO A hsh-map is more suitable for this
+    # return word in STOPWORDS
+    index = bisect.bisect_left(STOPWORDS, word)
+    return STOPWORDS[index] == word
 
 
 class Record(object):
