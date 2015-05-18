@@ -55,11 +55,11 @@ def is_stopword(word):
     # return word in STOPWORDS
 
 
-def raw_data(meta, interest_fields=None):
+def raw_data(record, interest_fields=None):
     _interest_fields = interest_fields or ['title', 'keywords', 'description']
     tokens = []
     for key in _interest_fields:
-        tokens.extend(meta[key].split(' '))     # this will change
+        tokens.extend(record[key].split(' '))     # this will change
     return filter(is_stopword, tokens)
 
 
