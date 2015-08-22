@@ -1,9 +1,11 @@
 import bisect
+import collections
 import contextlib
 import glob
 import itertools
 
 import pymongo
+import scipy.sparse
 
 from xml.dom import minidom
 from nltk.corpus import stopwords
@@ -47,6 +49,13 @@ class Record(object):
         return description.firstChild.nodeValue
 
     @property
+    def location(self):
+        location = self.dom_element.getElementsByTagName('lom:location').item(0)
+        if location is None:
+            return ''
+        return location.firstChild.nodeValue
+
+    @property
     def xml(self):
         return self.dom_element.toxml()
 
@@ -56,6 +65,7 @@ class Record(object):
             'title': self.title,
             'keywords': self.keywords,
             'description': self.description,
+            'location': self.location,
             'xml': self.xml,
         }
 
@@ -65,13 +75,13 @@ class Record(object):
 
 def is_stopword(word):
     i = bisect.bisect_left(STOPWORDS, word.lower())
-    if i < len(STOPWORDS) and word == STOPWORDS[i]:
+    if i < len(STOPWORDS) and word.lower() == STOPWORDS[i]:
         return True
     return False
 
 
 def is_valid(word):
-    return not (is_stopword(word) or word.isspace()) and word.isalnum()
+    return not is_stopword(word) and not word.isspace() and word.isalnum()
 
 
 def normalize(word):
@@ -111,14 +121,36 @@ def word_set():
     return sorted(set(itertools.chain.from_iterable(words())))
 
 
+def matrix(words):
+
+    word_dict = {word: pos for pos, word in enumerate(words)}
+
+    with collection(delete=False) as records:
+        for ind, record in enumerate(records.find()):
+            raw = list(raw_data(record))
+            frequency = collections.Counter(raw)
+            for word, freq in frequency.items():
+                yield ind, word_dict[word], freq
+
+
 def main():
     with collection() as records:
+
         for filename in glob.glob('data/**/*.xml'):
             records.insert_many(
                 list(metadata(filename)))
 
-    for word in word_set():
-        print(word)
+    words = word_set()
+    mat = matrix(words)
+    rowid, colid, freq = zip(*mat)
+    sparse = scipy.sparse.csr_matrix((freq, (rowid, colid)))
+    nrecs, nwords = sparse.shape
+
+    print('Number of records: ', nrecs)
+    print('Number of words: ', nwords)
+
+    print('sparcity: %f' % (sparse.nnz / (nwords * nrecs) * 100))
+
 
 if __name__ == '__main__':
     main()
