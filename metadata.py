@@ -4,13 +4,17 @@ import contextlib
 import glob
 import itertools
 
+import numpy
 import pymongo
 import scipy.sparse
+import scipy.linalg
 
 from xml.dom import minidom
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer
+
+from matplotlib import pyplot as plt
 
 
 STOPWORDS = sorted(stopwords.words())
@@ -135,7 +139,6 @@ def matrix(words):
 
 def main():
     with collection() as records:
-
         for filename in glob.glob('data/**/*.xml'):
             records.insert_many(
                 list(metadata(filename)))
@@ -143,13 +146,49 @@ def main():
     words = word_set()
     mat = matrix(words)
     rowid, colid, freq = zip(*mat)
-    sparse = scipy.sparse.csr_matrix((freq, (rowid, colid)))
-    nrecs, nwords = sparse.shape
+    sparse = scipy.sparse.csr_matrix((freq, (rowid, colid)), dtype='f').T
+    nwords, nrecs = sparse.shape
 
     print('Number of records: ', nrecs)
     print('Number of words: ', nwords)
-
     print('sparcity: %f' % (sparse.nnz / (nwords * nrecs) * 100))
+
+    tf = sparse.toarray()
+    gf = numpy.sum(tf, axis=1)
+    pij = (tf.T / gf).T
+    _pij_ = pij.copy()
+    _pij_[pij == 0.0] = 1   # Log safe pij
+
+    log = numpy.log(tf + 1)
+    entropy = numpy.sum(pij * numpy.log(_pij_), axis=1) / numpy.log(nrecs) + 1
+
+    termdoc = (log.T * entropy).T
+
+    # U, S, V = scipy.sparse.linalg.svds(sparse, 562)
+    U, S, V = scipy.linalg.svd(termdoc, full_matrices=False)
+
+    ss = S / numpy.sum(S)
+    ss = numpy.cumsum(ss)
+
+    k = numpy.sum(ss < 0.8)
+
+    print(S.sum())
+
+    print('U shape: ', U.shape)
+    print('S shape: ', S.shape)
+    print('V shape: ', V.shape)
+
+    acoted = numpy.dot(numpy.diag(S[:k]), V[:k, :])
+    acoted = numpy.dot(U[:, :k], acoted)
+    print(acoted.shape)
+
+    plt.matshow(termdoc, cmap=plt.cm.gray)
+    plt.matshow(acoted, cmap=plt.cm.gray)
+
+    x = numpy.sum(termdoc, axis=1)
+    plt.figure()
+    plt.hist(x, bins=70)
+    plt.show()
 
 
 if __name__ == '__main__':
