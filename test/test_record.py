@@ -1,6 +1,6 @@
 import pytest
 from xml.dom import minidom
-from lsa import Record
+from lsa.lsa import Record
 
 
 @pytest.fixture(scope='module')

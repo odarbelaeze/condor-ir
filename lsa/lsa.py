@@ -28,8 +28,9 @@ def gen_to_list(func):
 def is_stopword(word):
     # TODO A hsh-map is more suitable for this
     # return word in STOPWORDS
-    index = bisect.bisect_left(STOPWORDS, word)
-    return STOPWORDS[index] == word
+    _word = word.lower()
+    index = bisect.bisect_left(STOPWORDS, _word)
+    return STOPWORDS[index] == _word
 
 
 class Record(object):
