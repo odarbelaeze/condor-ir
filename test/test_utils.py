@@ -1,30 +1,11 @@
 import pytest
+import random
 
-from xml.dom import minidom
-
-from lsa.record import FroacRecord as Record
-from lsa.record import IsiRecord
+from lsa.metadata import is_valid
+from lsa.util import STOPWORDS
+from lsa.util import is_stopword
 from lsa.util import isi_text_to_dic
 from lsa.util import normalize
-
-
-@pytest.fixture(scope='module')
-def xml_text(request):
-    return '''
-<record>
-<lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
-<lom:title>title</lom:title>
-<lom:description>description</lom:description>
-<lom:keyword>keyword1</lom:keyword>
-<lom:keyword>keyword2</lom:keyword>
-</lom:lom>
-</record>
-    '''
-
-
-@pytest.fixture(scope='module')
-def xml_element(request, xml_text):
-    return minidom.parseString(xml_text)
 
 
 @pytest.fixture(scope='module')
@@ -138,81 +119,34 @@ ER
 '''
 
 
-def test_record_wrapper_is_instantiable(xml_element):
-    record = Record(xml_element)
-    assert record is not None
+def test_is_stopword_works_with_upper_case_words():
+    word = random.choice(STOPWORDS)
+    assert is_stopword(word.upper())
 
 
-@pytest.fixture(scope='module')
-def record(request, xml_element):
-    return Record(xml_element)
+def test_is_stopword_works_with_lower_case_words():
+    word = random.choice(STOPWORDS)
+    assert is_stopword(word.lower())
 
 
-@pytest.fixture(scope='module')
-def empty_record(request):
-    return Record(minidom.parseString('<record></record>'))
+def test_word_normalization():
+    assert 'provoc' == normalize('provocación')
+    assert 'provoc' == normalize('provocación,')
 
 
-@pytest.fixture(scope='module')
-def sw_record_xml(request):
-    return minidom.parseString(
-        '''
-        <record>
-        <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
-        <lom:keyword>a</lom:keyword>
-        <lom:keyword>ante</lom:keyword>
-        <lom:keyword>of</lom:keyword>
-        <lom:keyword>in</lom:keyword>
-        </lom:lom>
-        </record>
-        ''')
+def test_isi_record_to_dic(isi_text):
+    dic = isi_text_to_dic(isi_text)
+    assert ['J'] == dic['PT']
+    assert 5 == len(dic['AU'])
 
 
-@pytest.fixture(scope='module')
-def sw_record(request, sw_record_xml):
-    return Record(sw_record_xml, strip_stopwords=True)
-
-
-def test_record_wrapper_yields_title(record):
-    assert 'title' == record.title
-
-
-def test_record_wraper_yields_description(record):
-    assert 'description' == record.description
-
-
-def test_record_wrapper_yields_title_in_empty_reccord(empty_record):
-    assert '' == empty_record.title
-
-
-def test_record_wrapper_yields_description_in_empty_reccord(empty_record):
-    assert '' == empty_record.description
-
-
-def test_record_wrapper_yields_list_of_keywords(record):
-    assert len(record.keywords)
-    for key in ['keyword1', 'keyword2']:
-        assert key in record.keywords
-
-
-def test_record_empty_list_of_keywords_on_empty_record(empty_record):
-    assert not len(empty_record.keywords)
-    assert [] == empty_record.keywords
-
-
-def test_record_raw_data(record, empty_record):
-    data = ['title', 'keyword1', 'keyword2', 'description']
-    assert sorted(data) == sorted(record.raw)
-    assert not empty_record.raw
-
-
-def test_record_raw_data_with_no_stopwords(sw_record, record):
-    record.strip_stopwords = True
-    assert record.raw
-    assert not sw_record.raw
-
-
-def test_isi_record_does_not_act_out(isi_text):
-    record = IsiRecord(isi_text)
-    line = 'optimal implementation strategy of rooftop photovoltaic system in'
-    assert line in ' '.join(record.raw)
+def test_is_valid_yields_good_values():
+    words = {
+        '123123': True,
+        'askdfj': True,
+        ' ': False,
+        '123asdf': True,
+        '\t': False,
+    }
+    for word, valid in words.items():
+        assert valid == is_valid(word)

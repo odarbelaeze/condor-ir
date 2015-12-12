@@ -1,6 +1,6 @@
 import pytest
 from xml.dom import minidom
-from lsa.lsa import FroacRecordSet as RecordSet
+from lsa.record import FroacRecordSet as RecordSet
 
 
 @pytest.fixture(scope='module')
