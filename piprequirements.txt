@@ -5,3 +5,5 @@ py==1.4.27
 pymongo==3.0.2
 pytest==2.7.0
 pytest-cov==1.8.1
+numpy==1.9.2
+scipy==0.16.0
