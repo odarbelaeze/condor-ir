@@ -4,8 +4,6 @@ from xml.dom import minidom
 
 from lsa.record import FroacRecord as Record
 from lsa.record import IsiRecord
-from lsa.util import isi_text_to_dic
-from lsa.util import normalize
 
 
 @pytest.fixture(scope='module')
@@ -202,17 +200,17 @@ def test_record_empty_list_of_keywords_on_empty_record(empty_record):
 
 def test_record_raw_data(record, empty_record):
     data = ['title', 'keyword1', 'keyword2', 'description']
-    assert sorted(data) == sorted(record.raw)
-    assert not empty_record.raw
+    assert sorted(data) == sorted(record.tokens())
+    assert not empty_record.tokens()
 
 
 def test_record_raw_data_with_no_stopwords(sw_record, record):
     record.strip_stopwords = True
-    assert record.raw
-    assert not sw_record.raw
+    assert record.tokens()
+    assert not sw_record.tokens()
 
 
 def test_isi_record_does_not_act_out(isi_text):
     record = IsiRecord(isi_text)
     line = 'optimal implementation strategy of rooftop photovoltaic system in'
-    assert line in ' '.join(record.raw)
+    assert line in ' '.join(record.tokens())

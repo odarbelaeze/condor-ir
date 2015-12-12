@@ -9,9 +9,8 @@ class Record(object):
     def __init__(self, strip_stopwords=False):
         self.strip_stopwords = strip_stopwords
 
-    @property
     @gen_to_list
-    def raw(self):
+    def tokens(self):
         tokens = [self.title, self.description, ] + self.keywords
         tokens = ' '.join(tokens).split(' ')
         valid = filter(lambda x: not (x == '' or x.isspace()), tokens)
