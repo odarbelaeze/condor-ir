@@ -1,25 +1,15 @@
-import contextlib
 import glob
 import sys
 
 import click
-import pymongo
 
 from pymongo.errors import DuplicateKeyError
 
 from lsa.record import FroacRecordSet
 from lsa.record import IsiRecordSet
 
-
-# That global mongo client
-MONGO_CLIENT = pymongo.MongoClient('localhost', 27017)
-
-
-def collection_name(name):
-    '''
-    Prepends 'lsa-' to the given name.
-    '''
-    return 'lsa-' + name
+from .dbutil import collection_name
+from .dbutil import collection
 
 
 def recordset_class(name):
@@ -28,19 +18,6 @@ def recordset_class(name):
     elif name == 'xml':
         return FroacRecordSet
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
-
-
-@contextlib.contextmanager
-def collection(dbname='records', delete=True):
-    '''
-    Returns a collection from the mongo database
-    '''
-    database = MONGO_CLIENT['lsa-' + dbname]
-    records = database['records']
-    if delete:
-        records.delete_many({})
-    records.create_index([('uuid', pymongo.ASCENDING)], unique=True)
-    yield records
 
 
 @click.command()
@@ -52,7 +29,7 @@ def collection(dbname='records', delete=True):
 @click.option('--wipedb/--no-wipedb', default=True,
               help='Wipe existing database.')
 @click.option('--dbname', default='program',
-              help='Name of the mongo collection to use to store the records')
+              help='Name of the mongo database to use to store the records')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 def lsapopulate(pattern, kind, wipedb, dbname, verbose):

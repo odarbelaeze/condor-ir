@@ -24,5 +24,6 @@ if __name__ == '__main__':
         entry_points='''
             [console_scripts]
             lsapopulate=lsa.scripts.populate:lsapopulate
+            lsamodel=lsa.scripts.model:lsamodel
         '''
     )

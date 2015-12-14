@@ -30,6 +30,7 @@ class Record(object):
             'title': self.title,
             'keywords': self.keywords,
             'description': self.description,
+            'tokens': list(self.tokens()),
             'raw': self.raw,
         }
 

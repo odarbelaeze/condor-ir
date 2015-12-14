@@ -60,3 +60,7 @@ target/
 # Editor files
 *.swp
 .ropeproject
+tags
+
+# Model files
+models/
