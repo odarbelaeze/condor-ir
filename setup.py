@@ -25,5 +25,6 @@ if __name__ == '__main__':
             [console_scripts]
             lsapopulate=lsa.scripts.populate:lsapopulate
             lsamodel=lsa.scripts.model:lsamodel
+            lsaquery=lsa.scripts.query:lsaquery
         '''
     )

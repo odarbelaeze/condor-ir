@@ -57,7 +57,7 @@ collection of the {} database...'.format(
         click.echo('Sadly, ' + e.message)
         sys.exit(1)
 
-    with collection(dbname=dbname, delete=wipedb) as records:
+    with collection('records', dbname=dbname, delete=wipedb) as records:
         for filename in glob.glob(pattern):
             if verbose:
                 click.echo('I\'m processing file {}...'.format(filename))
