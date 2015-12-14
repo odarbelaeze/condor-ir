@@ -25,11 +25,13 @@ def frequency(words, tokens):
 
 @click.command()
 @click.argument('parameters', nargs=-1, required=True)
+@click.option('--dbname', default='program',
+              help='Name of the mongo database to use to store the records')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsaquery(parameters, verbose):
+def lsaquery(parameters, dbname, verbose):
     click.echo('You queried: {}'.format(' '.join(parameters)))
-    with collection('models', delete=False) as models:
+    with collection('models', dbname=dbname, delete=False) as models:
         model = models.find().sort('created_at', pymongo.DESCENDING).limit(1)[0]
         if verbose:
             click.echo(model['created_at'])
@@ -46,7 +48,7 @@ def lsaquery(parameters, verbose):
 
     ordered = reversed(sorted(zip(documents, cos), key=operator.itemgetter(1)))
     ordered = list(ordered)
-    with collection('records', delete=False) as records:
+    with collection('records', dbname=dbname, delete=False) as records:
         for document, imp in ordered[:3]:
             record = records.find_one({'_id': ObjectId(document)})
             click.echo('')
