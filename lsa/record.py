@@ -21,45 +21,45 @@ class Record(object):
 
 class FroacRecord(Record):
 
-    def __init__(self, xml, **kwargs):
+    def __init__(self, raw, **kwargs):
         super().__init__(**kwargs)
-        self.xml = xml
+        self.raw = raw
 
     @property
     @xml_to_text
     def title(self):
-        return self.xml.getElementsByTagName('lom:title').item(0)
+        return self.raw.getElementsByTagName('lom:title').item(0)
 
     @property
     @xml_to_text
     def description(self):
-        return self.xml.getElementsByTagName('lom:description').item(0)
+        return self.raw.getElementsByTagName('lom:description').item(0)
 
     @property
     @gen_to_list
     def keywords(self):
-        keywords = self.xml.getElementsByTagName('lom:keyword')
+        keywords = self.raw.getElementsByTagName('lom:keyword')
         for keyword in keywords:
             yield keyword.firstChild.nodeValue
 
 
 class FroacRecordSet(object):
 
-    def __init__(self, xml):
-        self.xml = xml
+    def __init__(self, raw):
+        self.raw = raw
 
     def __iter__(self):
-        for node in self.xml.getElementsByTagName('record'):
+        for node in self.raw.getElementsByTagName('record'):
             yield FroacRecord(node)
 
 
 class IsiRecord(Record):
     """This represents an ISI web of knowledge record"""
 
-    def __init__(self, text, **kwargs):
+    def __init__(self, raw, **kwargs):
         super().__init__(**kwargs)
-        self.text = text                    # It is a plain text record anyway
-        dic = isi_text_to_dic(text)
+        self.raw = raw
+        dic = isi_text_to_dic(raw)
         self.title = ' '.join(dic.get('TI', ['']))
         self.description = ' '.join(dic.get('AB', ['']))
         self.keywords = dic.get('ID', []) + dic.get('DE', [])
