@@ -2,7 +2,7 @@
 
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., [LSA](https://en.wikipedia.org/wiki/Latent_semantic_analysis).
-the program is setted up so that it understands froac xml documents on input
+The program is setted up so that it understands froac xml documents on input
 as well as plain text reccords from isi web of knowledge.
 
 You can find more information about froac repositories at
