@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='lsa-program',
-    version='0.1.1',
+    version='0.1.2',
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -14,6 +14,7 @@ setup(
         'numpy>=1.9.2',
         'scipy>=0.16.0',
         'marshmallow>=2.4.2',
+        'click>=6.2',
     ],
     tests_require=[
         'cov-core>=1.15.0',
@@ -29,7 +30,7 @@ setup(
     lsaquery=lsa.scripts.query:lsaquery
     ''',
     url='https://github.com/odarbelaeze/lsa-program',
-    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.1.1',
+    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.1.2',
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
 )
