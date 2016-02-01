@@ -19,8 +19,8 @@ setup(
     tests_require=[
         'cov-core>=1.15.0',
         'coverage>=3.7.1',
-        'py>=1.4.27',
-        'pytest>=2.7.0',
+        'py>=1.4.29',
+        'pytest>=2.8.0',
         'pytest-cov>=1.8.1',
     ],
     entry_points='''

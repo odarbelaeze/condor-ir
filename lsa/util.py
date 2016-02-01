@@ -18,6 +18,10 @@ PUNCTUATION = str.maketrans(dict.fromkeys(string.punctuation))
 
 
 def xml_to_text(func):
+    '''
+    Transforms a function that would return an XML element into a function
+    that returns the text content of the XML element as a string.
+    '''
     @functools.wraps(func)
     def inner(*args, **kwargs):
         result = func(*args, **kwargs)
@@ -28,6 +32,11 @@ def xml_to_text(func):
 
 
 def gen_to_list(func):
+    '''
+    Transforms a function that would return a generator into a function that
+    returns a list of the generated values, ergo, do not use this decorator
+    with infinite generators.
+    '''
     @functools.wraps(func)
     def inner(*args, **kwargs):
         return list(func(*args, **kwargs))
@@ -35,6 +44,11 @@ def gen_to_list(func):
 
 
 def isi_text_to_dic(text):
+    '''
+    This function takes in any ISI WOS plain text formatted string and turns it
+    into a dictionary where the keys are the two letter leading keys and the
+    values are a list of the strings under that key.
+    '''
     fields = collections.defaultdict(list)
     curr = ""
     for line in text.split('\n'):
@@ -48,7 +62,11 @@ def isi_text_to_dic(text):
 
 
 def is_stopword(word):
-    # TODO A hsh-map is more suitable for this
+    '''
+    Checks if a word is a stopword using the bisection method over a list of
+    known stopwords stored in a global variable.
+    '''
+    # TODO A hash-map is more suitable for this
     # return word in STOPWORDS
     _word = word.lower()
     index = bisect.bisect_left(STOPWORDS, _word)
@@ -56,5 +74,11 @@ def is_stopword(word):
 
 
 def normalize(word):
+    '''
+    Filters out the punctuation from a word and then applies a steemer, and
+    yields the steemed word.
+    '''
+    # TODO This obviously may take a word normalizer class, to control the
+    #      language and other normalization parameters
     _word = word.translate(PUNCTUATION)
     return STEMER.stem(_word)
