@@ -82,3 +82,13 @@ def normalize(word):
     #      language and other normalization parameters
     _word = word.translate(PUNCTUATION)
     return STEMER.stem(_word)
+
+
+def to_list(obj):
+    '''
+    Transforms a non iterable object into a singleton list, or an iterable
+    into a list.
+    '''
+    if isinstance(obj, list) or isinstance(obj, tuple):
+        return list(obj)
+    return [obj]

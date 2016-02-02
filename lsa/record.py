@@ -1,71 +1,72 @@
 import hashlib
-import uuid
+# import uuid
+import functools
+import operator
 
 from xml.dom import minidom
 
 from .util import gen_to_list
-from .util import is_stopword
+# from .util import is_stopword
 from .util import isi_text_to_dic
 from .util import xml_to_text
+from .util import to_list
 
 
-class Record(object):
+class RecordParser(object):
 
-    def __init__(self, strip_stopwords=False):
-        self.strip_stopwords = strip_stopwords
+    def __init__(self, interest_fields=None):
+        self.interest_fields = interest_fields or [
+            'uuid', 'title', 'keywords', 'description',
+        ]
 
-    @gen_to_list
-    def tokens(self):
-        tokens = [self.title, self.description, ] + self.keywords
-        tokens = ' '.join(tokens).split(' ')
-        valid = filter(lambda x: not (x == '' or x.isspace()), tokens)
-        if self.strip_stopwords:
-            return filter(lambda x: not is_stopword(x), valid)
-        return valid
+    def clear(self, field, raw):
+        '''
+        Clears the given `field` out of a raw data record.
+        '''
+        return None
 
-    @property
-    def metadata(self):
-        return {
-            'uuid': self.uuid,
-            'title': self.title,
-            'keywords': self.keywords,
-            'description': self.description,
-            'tokens': list(self.tokens()),
-            'raw': self.raw,
+    def parse(self, raw):
+        '''
+        Returns a dictionary of the interest fields in the metadata.
+        '''
+        data = {
+            field: self.clear(field, raw)
+            for field in self.interest_fields
         }
+        data['raw'] = raw
+        return data
 
 
-class FroacRecord(Record):
+class FroacRecordParser(RecordParser):
 
-    def __init__(self, raw, **kwargs):
-        super().__init__(**kwargs)
-        self._raw = raw
+    def clear(self, field, raw):
+        if field in ['title', 'keywords', 'uuid', 'description']:
+            return getattr(self, '_clear_' + field)(raw)
+        raise NotImplementedError(
+            'The field ' + field + 'has not been implemented')
 
-    @property
+    def parse(self, raw):
+        if isinstance(raw, str):
+            return super().parse(minidom.parseString(raw))
+        return super().parse(raw)
+
     @xml_to_text
-    def title(self):
-        return self._raw.getElementsByTagName('lom:title').item(0)
+    def _clear_title(self, raw):
+        return raw.getElementsByTagName('lom:title').item(0)
 
-    @property
     @xml_to_text
-    def description(self):
-        return self._raw.getElementsByTagName('lom:description').item(0)
+    def _clear_description(self, raw):
+        return raw.getElementsByTagName('lom:description').item(0)
 
-    @property
     @gen_to_list
-    def keywords(self):
-        keywords = self._raw.getElementsByTagName('lom:keyword')
+    def _clear_keywords(self, raw):
+        keywords = raw.getElementsByTagName('lom:keyword')
         for keyword in keywords:
             yield keyword.firstChild.nodeValue
 
-    @property
-    def raw(self):
-        return self._raw.toxml()
-
-    @property
-    def uuid(self):
+    def _clear_uuid(self, raw):
         sha = hashlib.sha1()
-        sha.update(self.raw.encode('utf-8'))
+        sha.update(raw.toxml().encode('utf-8'))
         return sha.hexdigest()
 
 
@@ -77,24 +78,45 @@ class FroacRecordSet(object):
     def __iter__(self):
         dom = minidom.parse(self.filename)
         for dom_element in dom.getElementsByTagName('record'):
-            yield FroacRecord(dom_element)
+            yield FroacRecordParser(dom_element)
 
     def metadata(self):
         for record in self:
             yield record.metadata
 
 
-class IsiRecord(Record):
+class IsiRecordParser(RecordParser):
+
     """This represents an ISI web of knowledge record"""
 
-    def __init__(self, raw, **kwargs):
+    def __init__(self, keys=None, **kwargs):
         super().__init__(**kwargs)
-        self.raw = raw
-        dic = isi_text_to_dic(raw)
-        self.title = ' '.join(dic.get('TI', ['']))
-        self.description = ' '.join(dic.get('AB', ['']))
-        self.keywords = dic.get('ID', []) + dic.get('DE', [])
-        self.uuid = dic.get('UT', ['{}'.format(uuid.uuid4())])[0]
+        self._keys = keys or {
+            'title': 'TI',
+            'description': 'AB',
+            'keywords': ['ID', 'DE'],
+            'uuid': 'UT'
+        }
+
+    def parse(self, raw):
+        if isinstance(raw, str):
+            return super().parse(isi_text_to_dic(raw))
+        return super().parse(raw)
+
+    def _is_list(self, field):
+        return field in ['keywords']
+
+    def _get_list_from_key(self, field, raw):
+        keys = to_list(self._keys.get(field))
+        return functools.reduce(operator.add, [raw.get(k, []) for k in keys])
+
+    def _get_from_key(self, field, raw):
+        return ' '.join(self._get_list_from_key(field, raw))
+
+    def clear(self, field, raw):
+        if self._is_list(field):
+            return self._get_list_from_key(field, raw)
+        return self._get_from_key(field, raw)
 
 
 class IsiRecordSet(object):
@@ -107,7 +129,7 @@ class IsiRecordSet(object):
         for line in open(self.filename):
             buff.append(line)
             if line[:2] == 'ER':
-                yield IsiRecord('\n'.join(buff))
+                yield IsiRecordParser('\n'.join(buff))
                 buff = []
 
     def metadata(self):

@@ -2,12 +2,12 @@ import pytest
 
 from xml.dom import minidom
 
-from lsa.record import FroacRecord as Record
-from lsa.record import IsiRecord
+from lsa.record import FroacRecordParser
+from lsa.record import IsiRecordParser
 
 
 @pytest.fixture(scope='module')
-def xml_text(request):
+def froac_text(request):
     return '''
 <record>
 <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
@@ -18,11 +18,6 @@ def xml_text(request):
 </lom:lom>
 </record>
     '''
-
-
-@pytest.fixture(scope='module')
-def xml_element(request, xml_text):
-    return minidom.parseString(xml_text)
 
 
 @pytest.fixture(scope='module')
@@ -136,25 +131,24 @@ ER
 '''
 
 
-def test_record_wrapper_is_instantiable(xml_element):
-    record = Record(xml_element)
+def test_froac_parser_is_instantiable():
+    record = FroacRecordParser()
     assert record is not None
 
 
 @pytest.fixture(scope='module')
-def record(request, xml_element):
-    return Record(xml_element)
+def froac_parser(request):
+    return FroacRecordParser()
 
 
 @pytest.fixture(scope='module')
-def empty_record(request):
-    return Record(minidom.parseString('<record></record>'))
+def froac_empty(request):
+    return '<record></record>'
 
 
 @pytest.fixture(scope='module')
-def sw_record_xml(request):
-    return minidom.parseString(
-        '''
+def froac_stopwords(request):
+    return '''
         <record>
         <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
         <lom:keyword>a</lom:keyword>
@@ -163,54 +157,48 @@ def sw_record_xml(request):
         <lom:keyword>in</lom:keyword>
         </lom:lom>
         </record>
-        ''')
+    '''
 
 
-@pytest.fixture(scope='module')
-def sw_record(request, sw_record_xml):
-    return Record(sw_record_xml, strip_stopwords=True)
+def test_parser_wrapper_yields_title(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert 'title' == data['title']
 
 
-def test_record_wrapper_yields_title(record):
-    assert 'title' == record.title
+def test_parser_wraper_yields_description(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert 'description' == data['description']
 
 
-def test_record_wraper_yields_description(record):
-    assert 'description' == record.description
+def test_parser_yields_title_in_empty_reccord(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert '' == data['title']
 
 
-def test_record_wrapper_yields_title_in_empty_reccord(empty_record):
-    assert '' == empty_record.title
+def test_parser_yields_description_in_empty_reccord(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert '' == data['description']
 
 
-def test_record_wrapper_yields_description_in_empty_reccord(empty_record):
-    assert '' == empty_record.description
-
-
-def test_record_wrapper_yields_list_of_keywords(record):
-    assert len(record.keywords)
+def test_parser_yields_list_of_keywords(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert len(data['keywords'])
     for key in ['keyword1', 'keyword2']:
-        assert key in record.keywords
+        assert key in data['keywords']
 
 
-def test_record_empty_list_of_keywords_on_empty_record(empty_record):
-    assert not len(empty_record.keywords)
-    assert [] == empty_record.keywords
+def test_parser_list_of_keywords_on_empty_record(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert not len(data['keywords'])
+    assert [] == data['keywords']
 
 
-def test_record_raw_data(record, empty_record):
-    data = ['title', 'keyword1', 'keyword2', 'description']
-    assert sorted(data) == sorted(record.tokens())
-    assert not empty_record.tokens()
-
-
-def test_record_raw_data_with_no_stopwords(sw_record, record):
-    record.strip_stopwords = True
-    assert record.tokens()
-    assert not sw_record.tokens()
-
-
-def test_isi_record_does_not_act_out(isi_text):
-    record = IsiRecord(isi_text)
-    line = 'optimal implementation strategy of rooftop photovoltaic system in'
-    assert line in ' '.join(record.tokens())
+def test_isi_parser_yields_title(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    title = [
+        'Life cycle economic and environmental assessment for establishing the',
+        'optimal implementation strategy of rooftop photovoltaic system in',
+        'military facility',
+    ]
+    assert ' '.join(title) == data['title']
