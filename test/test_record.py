@@ -1,9 +1,12 @@
+import os
 import pytest
 
 from xml.dom import minidom
 
 from lsa.record import FroacRecordParser
 from lsa.record import IsiRecordParser
+from lsa.record import FroacRecordIterator
+from lsa.record import IsiRecordIterator
 
 
 @pytest.fixture(scope='module')
@@ -202,3 +205,20 @@ def test_isi_parser_yields_title(isi_text):
         'military facility',
     ]
     assert ' '.join(title) == data['title']
+
+
+def test_froac_record_iterator():
+    filename = os.path.join(
+        'data', 'froac', 'froac1', '1Flujo de Maquinaria.xml')
+    filename = os.path.abspath(filename)
+    iterator = FroacRecordIterator(filename)
+    assert iterator is not None
+    assert len(list(iterator))
+
+
+def test_isi_record_iterator():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = IsiRecordIterator(filename)
+    assert iterator is not None
+    assert len(list(iterator))

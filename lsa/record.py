@@ -70,21 +70,6 @@ class FroacRecordParser(RecordParser):
         return sha.hexdigest()
 
 
-class FroacRecordSet(object):
-
-    def __init__(self, filename):
-        self.filename = filename
-
-    def __iter__(self):
-        dom = minidom.parse(self.filename)
-        for dom_element in dom.getElementsByTagName('record'):
-            yield FroacRecordParser(dom_element)
-
-    def metadata(self):
-        for record in self:
-            yield record.metadata
-
-
 class IsiRecordParser(RecordParser):
 
     """This represents an ISI web of knowledge record"""
@@ -119,19 +104,43 @@ class IsiRecordParser(RecordParser):
         return self._get_from_key(field, raw)
 
 
-class IsiRecordSet(object):
+class RecordIterator(object):
+
+    '''
+    Iterates over a bunch of reccords in a file.
+    '''
 
     def __init__(self, filename):
         self.filename = filename
 
     def __iter__(self):
+        raise NotImplementedError('Use a specialized implementation')
+
+
+class FroacRecordIterator(RecordIterator):
+
+    '''
+    Iterates plain txt froac records in a file.
+    '''
+
+    def __iter__(self):
+        dom = minidom.parse(self.filename)
+        parser = FroacRecordParser()
+        for dom_element in dom.getElementsByTagName('record'):
+            yield parser.parse(dom_element)
+
+
+class IsiRecordIterator(RecordIterator):
+
+    '''
+    Iterates over a file with ISI txt reccords while yielding reccords.
+    '''
+
+    def __iter__(self):
         buff = []
+        parser = IsiRecordParser()
         for line in open(self.filename):
             buff.append(line)
             if line[:2] == 'ER':
-                yield IsiRecordParser('\n'.join(buff))
+                yield parser.parse('\n'.join(buff))
                 buff = []
-
-    def metadata(self):
-        for record in self:
-            yield record.metadata
