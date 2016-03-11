@@ -18,7 +18,7 @@ install:
   - pip install .
 
 before_script:
-  - python -m nltk.downloader all
+  - python -m nltk.downloader snowball_data stopwords
 
 script:
   - python setup.py test
