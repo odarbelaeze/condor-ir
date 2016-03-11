@@ -24,7 +24,7 @@ setup(
         'pytest-cov>=1.8.1',
     ],
     setup_requires=[
-        'pytest-runner>=2.7',
+        'pytest-runner>=2.7,<3dev',
     ],
     entry_points='''
     [console_scripts]
