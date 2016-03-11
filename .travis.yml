@@ -5,8 +5,8 @@ python:
   - "3.5"
 
 cache:
-  - pip
-  - apt
+  pip: true
+  apt: true
   directories:
     - $HOME/.nltk_data
 
