@@ -1,12 +1,10 @@
 import hashlib
-# import uuid
 import functools
 import operator
 
 from xml.dom import minidom
 
 from .util import gen_to_list
-# from .util import is_stopword
 from .util import isi_text_to_dic
 from .util import xml_to_text
 from .util import to_list
@@ -33,7 +31,6 @@ class RecordParser(object):
             field: self.clear(field, raw)
             for field in self.interest_fields
         }
-        data['raw'] = raw
         return data
 
 

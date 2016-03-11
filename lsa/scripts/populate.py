@@ -5,8 +5,8 @@ import click
 
 from pymongo.errors import DuplicateKeyError
 
-from lsa.record import FroacRecordSet
-from lsa.record import IsiRecordSet
+from lsa.record import FroacRecordIterator
+from lsa.record import IsiRecordIterator
 
 from .dbutil import collection_name
 from .dbutil import collection
@@ -14,9 +14,9 @@ from .dbutil import collection
 
 def recordset_class(name):
     if name == 'isi':
-        return IsiRecordSet
+        return IsiRecordIterator
     elif name == 'xml':
-        return FroacRecordSet
+        return FroacRecordIterator
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
 
 
@@ -58,11 +58,11 @@ collection of the {} database...'.format(
         sys.exit(1)
 
     with collection('records', dbname=dbname, delete=wipedb) as records:
-        for filename in glob.glob(pattern):
+        for filename in glob.glob(pattern, recursive=True):
             if verbose:
                 click.echo('I\'m processing file {}...'.format(filename))
             rs = rs_class(filename)
-            for record in rs.metadata():
+            for record in rs:
                 try:
                     records.insert_one(record)
                 except DuplicateKeyError:

@@ -19,8 +19,20 @@ from .dbutil import collection
 from .dbutil import collection_name
 
 
+def get_tokens(record, fields=None, list_fields=None):
+    fields = fields or ['title', 'description', ]
+    list_fields = list_fields or ['keywords', ]
+    tokens = []
+    for field in fields:
+        tokens.extend(record.get(field, '').split())
+    for field in list_fields:
+        for item in record.get(field, []):
+            tokens.extend(item.split())
+    return tokens
+
+
 def raw_data(record):
-    return map(normalize, record['tokens'])
+    return map(normalize, get_tokens(record))
 
 
 def word_set(dbname):
@@ -74,7 +86,7 @@ def lsamodel(dbname, verbose):
 
     if verbose:
         nwords, nrecs = sparse.shape
-        click.echo('I\'ve built the frequency matrix with the folowing traits:')
+        click.echo('I\'ve built the frequency matrix with the folowing traits')
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
         click.echo('sparcity: {:0.2f}%'.format(
