@@ -1,8 +1,6 @@
 import os
 import pytest
 
-from xml.dom import minidom
-
 from lsa.record import FroacRecordParser
 from lsa.record import IsiRecordParser
 from lsa.record import FroacRecordIterator

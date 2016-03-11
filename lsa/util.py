@@ -7,13 +7,10 @@ from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 
 
-# STOPWORDS = {k: k for k in stopwords.words()}
 STOPWORDS = sorted(stopwords.words())
 
-# This is a little STEMER
 STEMER = SnowballStemmer('spanish')
 
-# Translation table to get rid of punctuation
 PUNCTUATION = str.maketrans(dict.fromkeys(string.punctuation))
 
 
