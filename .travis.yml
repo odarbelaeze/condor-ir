@@ -4,6 +4,10 @@ python:
   - "3.4"
   - "3.5"
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
+
 install:
   - pip install .
 
