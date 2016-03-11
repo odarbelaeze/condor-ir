@@ -1,5 +1,7 @@
 # LSA Program
 
+[![Build Status](https://travis-ci.org/odarbelaeze/lsa-program.svg?branch=master)](https://travis-ci.org/odarbelaeze/lsa-program)
+
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., [LSA](https://en.wikipedia.org/wiki/Latent_semantic_analysis).
 The program is setted up so that it understands froac xml documents on input

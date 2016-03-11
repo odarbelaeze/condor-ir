@@ -23,6 +23,9 @@ setup(
         'pytest>=2.8.0',
         'pytest-cov>=1.8.1',
     ],
+    setup_requires=[
+        'pytest-runner',
+    ],
     entry_points='''
     [console_scripts]
     lsapopulate=lsa.scripts.populate:lsapopulate

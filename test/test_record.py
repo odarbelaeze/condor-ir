@@ -47,21 +47,21 @@ DE Photovoltaic (PV) system; Life cycle cost; Life cycle CO2; Military
    facility; Gable roof
 ID RENEWABLE ENERGY SYSTEM; EDUCATIONAL FACILITY; SOLAR; COST; ELECTRICITY;
    BUILDINGS; FRAMEWORK; MODEL; OPTIMIZATION; EMISSIONS
-AB The Ministry of National Defense (South Korea) promotes its Defense Green \
-    Growth policy to reduce greenhouse gas emissions. Based on this background,\
+AB The Ministry of National Defense (South Korea) promotes its Defense Green\
+    Growth policy to reduce greenhouse gas emissions. Based on this background\
     this study aimed to conduct the life cycle economic and environmental\
     assessment for establishing the optimal implementation strategy for \
     rooftop photovoltaic system in military facility. Considering three \
-    factors (i.e., the orientation of the gable roof, the installation area of \
+    factors (i.e., the orientation of the gable roof, the installation area of\
     the PV system, and the slope of the installed panel), 12 implementation \
-    scenarios of PV system were established. The detailed results by prototype \
+    scenarios of PV system were established. The detailed results by prototype\
     are summarized in terms of the two perspectives (i.e., the absolute and \
     relative investment values): (i) Prototype 1 (south-north): P1-S/N (opt.) \
     in terms of the NPV25 (net present value at year 25) and P1-S (opt.) in \
     terms of the SIR25 (savings-to-investment ratio at year 25); (ii) \
     Prototype 2 (southeast-northwest): P2-SE/NW (opt.) in terms of the NPV25 \
-    and P2-SE (ext.) in terms of the SIR25; and (iii) Prototype 3 (east-west): \
-    P3-E/W (ext.) in terms of the NPV25 and P3-E (opt.) in terms of the SIR25. \
+    and P2-SE (ext.) in terms of the SIR25; and (iii) Prototype 3 (east-west):\
+    P3-E/W (ext.) in terms of the NPV25 and P3-E (opt.) in terms of the SIR25.\
 C1 [Jeong, Kwangbok; Hong, Taehoon; Ban, Cheolwoo; Koo, Choongwan; Park,
 RP Hong, T (reprint author), Yonsei Univ, Dept Architectural Engn, Seoul
 EM kbjeong7@yonsei.ac.kr; hong7@yonsei.ac.kr; qkscjfdn@naver.com;
@@ -79,7 +79,7 @@ CR Bravi M, 2014, J CLEAN PROD, V66, P301, DOI 10.1016/j.jclepro.2013.11.015
    Dell'lsola A. J., 2003, LIFE CYCLE COSTING F
    Gupta MJ, 2002, ENERGY, V27, P777, DOI 10.1016/S0360-5442(02)00030-0
    Hong T, 2012, ENERG BUILDINGS, V45, P229, DOI 10.1016/j.enbuild.2011.11.006
-   Hong T, 2014, RENEW SUST ENERG REV, V29, P286, DOI 10.1016/j.rser.2013.08.061
+   Hong T, 2014, RENEW SUST ENERG REV, V29, P286, DOI 10.1016/j.rser.2013.08.06
    Hong T, 2014, ENERGY, V65, P190, DOI 10.1016/j.energy.2013.11.082
    Hong T, 2014, ENERG POLICY, V66, P157, DOI 10.1016/j.enpol.2013.10.057
    Hong T, 2013, APPL ENERG, V103, P539, DOI 10.1016/j.apenergy.2012.10.013
@@ -198,9 +198,9 @@ def test_isi_parser_yields_title(isi_text):
     parser = IsiRecordParser()
     data = parser.parse(isi_text)
     title = [
-        'Life cycle economic and environmental assessment for establishing the',
-        'optimal implementation strategy of rooftop photovoltaic system in',
-        'military facility',
+        'Life cycle economic and environmental assessment for establishing',
+        'the optimal implementation strategy of rooftop photovoltaic system',
+        'in military facility',
     ]
     assert ' '.join(title) == data['title']
 

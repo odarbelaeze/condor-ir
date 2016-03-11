@@ -32,7 +32,8 @@ def frequency(words, tokens):
 def lsaquery(parameters, dbname, verbose):
     click.echo('You queried: {}'.format(' '.join(parameters)))
     with collection('models', dbname=dbname, delete=False) as models:
-        model = models.find().sort('created_at', pymongo.DESCENDING).limit(1)[0]
+        model = models.find().sort(
+            'created_at', pymongo.DESCENDING).limit(1)[0]
         if verbose:
             click.echo(model['created_at'])
     ranking = numpy.load(model['file'])
