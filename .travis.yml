@@ -13,6 +13,7 @@ cache:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
+  - sudo apt-get install -y mongodb
 
 install:
   - pip install .
