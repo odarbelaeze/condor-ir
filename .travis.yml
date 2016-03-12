@@ -4,6 +4,9 @@ python:
   - "3.4"
   - "3.5"
 
+services:
+  - mongodb
+
 cache:
   pip: true
   apt: true
