@@ -1,6 +1,9 @@
 import hashlib
 import functools
 import operator
+import re
+
+import bibtexparser
 
 from xml.dom import minidom
 
@@ -12,15 +15,28 @@ from .util import to_list
 
 class RecordParser(object):
 
-    def __init__(self, interest_fields=None):
+    mappings = {}
+
+    def __init__(self, interest_fields=None, list_fields=None):
         self.interest_fields = interest_fields or [
             'uuid', 'title', 'keywords', 'description',
         ]
+        self.list_fields = list_fields or ['keywords']
+
+    def get_default(self, field):
+        '''
+        Returns the default value for a given field
+        '''
+        if field in self.list_fields:
+            return []
+        return ''
 
     def clear(self, field, raw):
         '''
         Clears the given `field` out of a raw data record.
         '''
+        if hasattr(self, '_clear_' + field):
+            return getattr(self, '_clear_' + field)(raw)
         return None
 
     def parse(self, raw):
@@ -99,6 +115,33 @@ class IsiRecordParser(RecordParser):
         if self._is_list(field):
             return self._get_list_from_key(field, raw)
         return self._get_from_key(field, raw)
+
+
+class BibtexRecordParser(RecordParser):
+
+    mappings = {
+        'keywords': 'keyword'
+    }
+
+    def _clear_keywords(self, raw):
+        line = raw.get(self.get_mapping('keywords'), '')
+        return re.split(r'[,; ]+', line)
+
+    def get_mapping(self, field):
+        return self.mappings.get(field, field)
+
+    def clear(self, field, raw):
+        data = super().clear(field, raw)
+        if data is not None:
+            return data
+        _field = self.get_mapping(field)
+        default = super().get_default(field)
+        return raw.get(_field, default)
+
+    def parse(self, raw):
+        if isinstance(raw, str):
+            return super().parse(bibtexparser.loads(raw).entries[0])
+        return super().parse(raw)
 
 
 class RecordIterator(object):

@@ -3,6 +3,7 @@ import pytest
 
 from lsa.record import FroacRecordParser
 from lsa.record import IsiRecordParser
+from lsa.record import BibtexRecordParser
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
 
@@ -132,6 +133,24 @@ ER
 '''
 
 
+@pytest.fixture(scope='module')
+def raw_bibtex():
+    return '''\
+@book{Duque2014,
+author = {Duque, N\'{e}stor and Ovalle, Demetrio and Moreno, Juli\'{a}n},
+file = {:F$\backslash$:/MENDELEY/TodosMendeley/Duque, Ovalle, Moreno - 2014 - \
+Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para \
+Todos.pdf:pdf},
+keywords = {gaia1},
+mendeley-tags = {gaia1},
+pages = {173},
+title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
+para Todos}},
+year = {2014}
+}
+'''
+
+
 def test_froac_parser_is_instantiable():
     record = FroacRecordParser()
     assert record is not None
@@ -220,3 +239,22 @@ def test_isi_record_iterator():
     iterator = IsiRecordIterator(filename)
     assert iterator is not None
     assert len(list(iterator))
+
+
+def test_bibtex_record_is_instantiable():
+    parser = BibtexRecordParser()
+    assert parser is not None
+
+
+def test_bibtex_parser_yields_title(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert '''Objetos de Aprendizaje, Repositorios y Federaciones... \
+Conocimiento para Todos''' == data['title']
+
+
+def test_bibtex_parser_yields_keywords(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    print(data)
+    assert ['gaia1'] == data['keywords']

@@ -15,6 +15,7 @@ setup(
         'scipy>=0.16.0',
         'marshmallow>=2.4.2',
         'click>=6.2',
+        'bibtexparser>=0.6.2',
     ],
     tests_require=[
         'cov-core>=1.15.0',
