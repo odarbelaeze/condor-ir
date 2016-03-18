@@ -1,13 +1,15 @@
+import os
 import pytest
 
-from xml.dom import minidom
-
-from lsa.record import FroacRecord as Record
-from lsa.record import IsiRecord
+from lsa.record import FroacRecordParser
+from lsa.record import IsiRecordParser
+from lsa.record import BibtexRecordParser
+from lsa.record import FroacRecordIterator
+from lsa.record import IsiRecordIterator
 
 
 @pytest.fixture(scope='module')
-def xml_text(request):
+def froac_text(request):
     return '''
 <record>
 <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
@@ -18,11 +20,6 @@ def xml_text(request):
 </lom:lom>
 </record>
     '''
-
-
-@pytest.fixture(scope='module')
-def xml_element(request, xml_text):
-    return minidom.parseString(xml_text)
 
 
 @pytest.fixture(scope='module')
@@ -51,21 +48,21 @@ DE Photovoltaic (PV) system; Life cycle cost; Life cycle CO2; Military
    facility; Gable roof
 ID RENEWABLE ENERGY SYSTEM; EDUCATIONAL FACILITY; SOLAR; COST; ELECTRICITY;
    BUILDINGS; FRAMEWORK; MODEL; OPTIMIZATION; EMISSIONS
-AB The Ministry of National Defense (South Korea) promotes its Defense Green \
-    Growth policy to reduce greenhouse gas emissions. Based on this background,\
+AB The Ministry of National Defense (South Korea) promotes its Defense Green\
+    Growth policy to reduce greenhouse gas emissions. Based on this background\
     this study aimed to conduct the life cycle economic and environmental\
     assessment for establishing the optimal implementation strategy for \
     rooftop photovoltaic system in military facility. Considering three \
-    factors (i.e., the orientation of the gable roof, the installation area of \
+    factors (i.e., the orientation of the gable roof, the installation area of\
     the PV system, and the slope of the installed panel), 12 implementation \
-    scenarios of PV system were established. The detailed results by prototype \
+    scenarios of PV system were established. The detailed results by prototype\
     are summarized in terms of the two perspectives (i.e., the absolute and \
     relative investment values): (i) Prototype 1 (south-north): P1-S/N (opt.) \
     in terms of the NPV25 (net present value at year 25) and P1-S (opt.) in \
     terms of the SIR25 (savings-to-investment ratio at year 25); (ii) \
     Prototype 2 (southeast-northwest): P2-SE/NW (opt.) in terms of the NPV25 \
-    and P2-SE (ext.) in terms of the SIR25; and (iii) Prototype 3 (east-west): \
-    P3-E/W (ext.) in terms of the NPV25 and P3-E (opt.) in terms of the SIR25. \
+    and P2-SE (ext.) in terms of the SIR25; and (iii) Prototype 3 (east-west):\
+    P3-E/W (ext.) in terms of the NPV25 and P3-E (opt.) in terms of the SIR25.\
 C1 [Jeong, Kwangbok; Hong, Taehoon; Ban, Cheolwoo; Koo, Choongwan; Park,
 RP Hong, T (reprint author), Yonsei Univ, Dept Architectural Engn, Seoul
 EM kbjeong7@yonsei.ac.kr; hong7@yonsei.ac.kr; qkscjfdn@naver.com;
@@ -83,7 +80,7 @@ CR Bravi M, 2014, J CLEAN PROD, V66, P301, DOI 10.1016/j.jclepro.2013.11.015
    Dell'lsola A. J., 2003, LIFE CYCLE COSTING F
    Gupta MJ, 2002, ENERGY, V27, P777, DOI 10.1016/S0360-5442(02)00030-0
    Hong T, 2012, ENERG BUILDINGS, V45, P229, DOI 10.1016/j.enbuild.2011.11.006
-   Hong T, 2014, RENEW SUST ENERG REV, V29, P286, DOI 10.1016/j.rser.2013.08.061
+   Hong T, 2014, RENEW SUST ENERG REV, V29, P286, DOI 10.1016/j.rser.2013.08.06
    Hong T, 2014, ENERGY, V65, P190, DOI 10.1016/j.energy.2013.11.082
    Hong T, 2014, ENERG POLICY, V66, P157, DOI 10.1016/j.enpol.2013.10.057
    Hong T, 2013, APPL ENERG, V103, P539, DOI 10.1016/j.apenergy.2012.10.013
@@ -136,25 +133,42 @@ ER
 '''
 
 
-def test_record_wrapper_is_instantiable(xml_element):
-    record = Record(xml_element)
+@pytest.fixture(scope='module')
+def raw_bibtex():
+    return '''\
+@book{Duque2014,
+author = {Duque, N\'{e}stor and Ovalle, Demetrio and Moreno, Juli\'{a}n},
+file = {:F$\backslash$:/MENDELEY/TodosMendeley/Duque, Ovalle, Moreno - 2014 - \
+Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para \
+Todos.pdf:pdf},
+keywords = {gaia1},
+mendeley-tags = {gaia1},
+pages = {173},
+title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
+para Todos}},
+year = {2014}
+}
+'''
+
+
+def test_froac_parser_is_instantiable():
+    record = FroacRecordParser()
     assert record is not None
 
 
 @pytest.fixture(scope='module')
-def record(request, xml_element):
-    return Record(xml_element)
+def froac_parser(request):
+    return FroacRecordParser()
 
 
 @pytest.fixture(scope='module')
-def empty_record(request):
-    return Record(minidom.parseString('<record></record>'))
+def froac_empty(request):
+    return '<record></record>'
 
 
 @pytest.fixture(scope='module')
-def sw_record_xml(request):
-    return minidom.parseString(
-        '''
+def froac_stopwords(request):
+    return '''
         <record>
         <lom:lom xmlns:lom="http://ltsc.ieee.org/xsd/LOM">
         <lom:keyword>a</lom:keyword>
@@ -163,54 +177,84 @@ def sw_record_xml(request):
         <lom:keyword>in</lom:keyword>
         </lom:lom>
         </record>
-        ''')
+    '''
 
 
-@pytest.fixture(scope='module')
-def sw_record(request, sw_record_xml):
-    return Record(sw_record_xml, strip_stopwords=True)
+def test_parser_wrapper_yields_title(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert 'title' == data['title']
 
 
-def test_record_wrapper_yields_title(record):
-    assert 'title' == record.title
+def test_parser_wraper_yields_description(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert 'description' == data['description']
 
 
-def test_record_wraper_yields_description(record):
-    assert 'description' == record.description
+def test_parser_yields_title_in_empty_reccord(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert '' == data['title']
 
 
-def test_record_wrapper_yields_title_in_empty_reccord(empty_record):
-    assert '' == empty_record.title
+def test_parser_yields_description_in_empty_reccord(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert '' == data['description']
 
 
-def test_record_wrapper_yields_description_in_empty_reccord(empty_record):
-    assert '' == empty_record.description
-
-
-def test_record_wrapper_yields_list_of_keywords(record):
-    assert len(record.keywords)
+def test_parser_yields_list_of_keywords(froac_parser, froac_text):
+    data = froac_parser.parse(froac_text)
+    assert len(data['keywords'])
     for key in ['keyword1', 'keyword2']:
-        assert key in record.keywords
+        assert key in data['keywords']
 
 
-def test_record_empty_list_of_keywords_on_empty_record(empty_record):
-    assert not len(empty_record.keywords)
-    assert [] == empty_record.keywords
+def test_parser_list_of_keywords_on_empty_record(froac_parser, froac_empty):
+    data = froac_parser.parse(froac_empty)
+    assert not len(data['keywords'])
+    assert [] == data['keywords']
 
 
-def test_record_raw_data(record, empty_record):
-    data = ['title', 'keyword1', 'keyword2', 'description']
-    assert sorted(data) == sorted(record.tokens())
-    assert not empty_record.tokens()
+def test_isi_parser_yields_title(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    title = [
+        'Life cycle economic and environmental assessment for establishing',
+        'the optimal implementation strategy of rooftop photovoltaic system',
+        'in military facility',
+    ]
+    assert ' '.join(title) == data['title']
 
 
-def test_record_raw_data_with_no_stopwords(sw_record, record):
-    record.strip_stopwords = True
-    assert record.tokens()
-    assert not sw_record.tokens()
+def test_froac_record_iterator():
+    filename = os.path.join(
+        'data', 'froac', 'froac1', '1Flujo de Maquinaria.xml')
+    filename = os.path.abspath(filename)
+    iterator = FroacRecordIterator(filename)
+    assert iterator is not None
+    assert len(list(iterator))
 
 
-def test_isi_record_does_not_act_out(isi_text):
-    record = IsiRecord(isi_text)
-    line = 'optimal implementation strategy of rooftop photovoltaic system in'
-    assert line in ' '.join(record.tokens())
+def test_isi_record_iterator():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = IsiRecordIterator(filename)
+    assert iterator is not None
+    assert len(list(iterator))
+
+
+def test_bibtex_record_is_instantiable():
+    parser = BibtexRecordParser()
+    assert parser is not None
+
+
+def test_bibtex_parser_yields_title(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert '''Objetos de Aprendizaje, Repositorios y Federaciones... \
+Conocimiento para Todos''' == data['title']
+
+
+def test_bibtex_parser_yields_keywords(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    print(data)
+    assert ['gaia1'] == data['keywords']

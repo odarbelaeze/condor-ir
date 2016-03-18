@@ -5,8 +5,9 @@ import click
 
 from pymongo.errors import DuplicateKeyError
 
-from lsa.record import FroacRecordSet
-from lsa.record import IsiRecordSet
+from lsa.record import FroacRecordIterator
+from lsa.record import IsiRecordIterator
+from lsa.record import BibtexRecordIterator
 
 from .dbutil import collection_name
 from .dbutil import collection
@@ -14,9 +15,11 @@ from .dbutil import collection
 
 def recordset_class(name):
     if name == 'isi':
-        return IsiRecordSet
+        return IsiRecordIterator
     elif name == 'xml':
-        return FroacRecordSet
+        return FroacRecordIterator
+    elif name == 'bib':
+        return BibtexRecordIterator
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
 
 
@@ -26,6 +29,8 @@ def recordset_class(name):
               help='Use the xml parser (default)')
 @click.option('--isi', 'kind', flag_value='isi',
               help='Use the isi plain text parser (default xml)')
+@click.option('--bib', 'kind', flag_value='bib',
+              help='Use the bibtex parser (default xml)')
 @click.option('--wipedb/--no-wipedb', default=True,
               help='Wipe existing database.')
 @click.option('--dbname', default='program',
@@ -58,14 +63,16 @@ collection of the {} database...'.format(
         sys.exit(1)
 
     with collection('records', dbname=dbname, delete=wipedb) as records:
-        for filename in glob.glob(pattern):
+        for filename in glob.glob(pattern, recursive=True):
             if verbose:
                 click.echo('I\'m processing file {}...'.format(filename))
             rs = rs_class(filename)
-            for record in rs.metadata():
+            for record in rs:
+                print('here')
                 try:
                     records.insert_one(record)
                 except DuplicateKeyError:
+                    print('duplicate')
                     continue
 
         click.echo('And... I\'m done')

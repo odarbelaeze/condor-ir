@@ -1,0 +1,759 @@
+﻿FN Thomson Reuters Web of Science™
+VR 1.0
+PT J
+AU Gandhi, N
+   Singh, B
+AF Gandhi, Neeraj
+   Singh, Baljit
+TI Study of extrusion behaviour and porridge making characteristics of
+   wheat and guava blends
+SO JOURNAL OF FOOD SCIENCE AND TECHNOLOGY-MYSORE
+LA English
+DT Article
+DE Extrusion; Wheat porridge; Water solubility index; Water absorption
+   index; Expansion ratio
+ID TWIN-SCREW EXTRUSION; PHYSICAL-PROPERTIES; PRODUCT CHARACTERISTICS;
+   STARCH GELATINIZATION; FUNCTIONAL-PROPERTIES; EXPANSION PROPERTIES;
+   BREAKFAST CEREALS; EXPANDED SNACKS; CORN STARCH; QUALITY
+AB Extrusion cooking studies were carried out with a view to develop an instant porridge from wheat grits and guava pulp at different levels from 10 to 50 %. The mixtures were dried to bring down the moisture content to 12, 15 or 18 % and processed using twin screw extruder. The properties of extrudates (expansion ratio and density) and porridge (water absorption index, water solubility index and sensory quality) were studied. Increase in feed moisture content and guava pulp level resulted in the decrease in expansion ratio and increase in density of the extrudates. Water absorption index (WAI) increased and water solubility index (WSI) decreased with increase in feed moisture content. With increase in level of pulp, WAI decreased and WSI increased. Highly acceptable porridge was obtained at 15 % feed moisture content and 20 and 30 % guava pulp. To the samples with selected feed moisture and pulp levels, sugar was added at 20, 25 and 30 % levels to prepare the final product. Sugar level of 30 % was found out to be most acceptable. Fruit porridge stored in LDPE and aluminum laminate pouches at ambient temperature remained acceptable upto 6 months.
+C1 [Gandhi, Neeraj; Singh, Baljit] Punjab Agr Univ, Dept Food Sci & Technol, Ludhiana 141004, Punjab, India.
+RP Gandhi, N (reprint author), Punjab Agr Univ, Dept Food Sci & Technol, Ludhiana 141004, Punjab, India.
+EM gandhi.neeraj@yahoo.com; baljitsj@yahoo.co.in
+FU Council of Scientific & Industrial Research (CSIR), New Delhi
+FX The financial support from the Council of Scientific & Industrial
+   Research (CSIR), New Delhi is gratefully acknowledged.
+CR AACC, 2000, APPR METH AM ASS CER
+   Amerine MA, 1965, PRINCIPLES SENSORY E, P5
+   Anderson RA, 1969, CEREAL SCI TODAY, V14, P3
+   ARTZ WE, 1990, J FOOD SCI, V55, P746, DOI 10.1111/j.1365-2621.1990.tb05220.x
+   Asare EK, 2004, INT J FOOD SCI NUTR, V55, P431, DOI 10.1080/09637480400003238
+   CASE SE, 1992, CEREAL CHEM, V69, P401
+   CHINNASWAMY R, 1988, CEREAL CHEM, V65, P138
+   Ding QB, 2005, J FOOD ENG, V66, P283, DOI 10.1016/j.jfoodeng.2004.03.019
+   Ding QB, 2006, J FOOD ENG, V73, P142, DOI 10.1016/j.jfoodeng.2005.01.013
+   Eastman J, 2001, CEREAL FOOD WORLD, V46, P468
+   FALCONE RG, 1988, J FOOD SCI, V53, P1464, DOI 10.1111/j.1365-2621.1988.tb09300.x
+   FAST RB, 1987, CEREAL FOOD WORLD, V32, P241
+   GOMEZ MH, 1983, J FOOD SCI, V48, P378, DOI 10.1111/j.1365-2621.1983.tb10747.x
+   Gupta HO, 2005, J FOOD SCI TECH MYS, V42, P43
+   Jean IJ, 1996, J FOOD SCI, V61, P783, DOI 10.1111/j.1365-2621.1996.tb12203.x
+   Jones D, 2000, CEREAL FOOD WORLD, V45, P164
+   KIRBY A R, 1988, Journal of Food Engineering, V8, P247, DOI 10.1016/0260-8774(88)90016-7
+   Kohda Y, 1989, J FOOD ENG, V36, P89
+   Larrea MA, 2005, LWT-FOOD SCI TECHNOL, V38, P213, DOI 10.1016/j.lwt.2004.05.014
+   LAWTON BT, 1972, CAN J CHEM ENG, V50, P168
+   LUE S, 1991, CEREAL CHEM, V68, P227
+   Onyango C, 2004, LEBENSM-WISS TECHNOL, V37, P827, DOI 10.1016/j.lwt.2004.03.008
+   Rayas-Duarte P, 1998, CEREAL CHEM, V75, P338, DOI 10.1094/CCHEM.1998.75.3.338
+   Sally M, 2012, FOODGRAINS PRODUCTIO
+   SATHE SK, 1981, J FOOD SCI, V46, P71, DOI 10.1111/j.1365-2621.1981.tb14533.x
+   Singh B, 2007, FOOD CHEM, V100, P198, DOI 10.1016/j.foodchem.2005.09.042
+   Singh R, 2000, J FOOD SCI TECH MYS, V37, P300
+   Steel JP, 1960, PRINCIPLES PROCEDURE
+   Suknark K, 1997, FOOD RES INT, V30, P575, DOI 10.1016/S0963-9969(98)00016-7
+   WEN LF, 1990, CEREAL CHEM, V67, P268
+   ZABIK ME, 1979, CEREAL CHEM, V56, P29
+NR 31
+TC 0
+Z9 0
+PU SPRINGER INDIA
+PI NEW DELHI
+PA 7TH FLOOR, VIJAYA BUILDING, 17, BARAKHAMBA ROAD, NEW DELHI, 110 001,
+   INDIA
+SN 0022-1155
+EI 0975-8402
+J9 J FOOD SCI TECH MYS
+JI J. Food Sci. Technol.-Mysore
+PD MAY
+PY 2015
+VL 52
+IS 5
+BP 3030
+EP 3036
+DI 10.1007/s13197-014-1302-1
+PG 7
+WC Food Science & Technology
+SC Food Science & Technology
+GA CF8MW
+UT WOS:000352816100057
+PM 25892805
+ER
+
+PT J
+AU Cortes, RNF
+   Guzman, IV
+   Martinez-Bustos, F
+AF Falfan Cortes, R. Nallely
+   Verdalet Guzman, Inigo
+   Martinez-Bustos, Fernando
+TI Effects of Some Extrusion Variables on Physicochemical Characteristics
+   of Extruded Corn Starch-passion Fruit Pulp (Passiflora edulis) Snacks
+SO PLANT FOODS FOR HUMAN NUTRITION
+LA English
+DT Article
+DE Passion-fruit; Corn-starch; Extrusion; Snacks
+ID PHYSICAL-PROPERTIES; BETA-CAROTENE; WHEAT BRAN; QUALITY; COOKING; FLOUR;
+   DIGESTIBILITY; OPTIMIZATION; FORMULATION; PRODUCTS
+AB The aim of this work was to study the effect of the addition of passion fruit pulp (PFP: 0-7 %), the variation of barrel temperature in the third zone extruder (BT: 80-140 A degrees C) and feed moisture (FM:16-30 %) in a blend of corn starch and passion fruit pulp on different physicochemical characteristics of directly expanded snacks by extrusion technology. Single-screw laboratory extruder and a central, composite, rotatable experimental design were used. Expansion index of extrudates ranged between 1.0 and 1.8. Decreasing of feed moisture (18 %), passion fruit pulp concentration (1.42 %) and the increasing of barrel temperature (127 A degrees C) resulted in higher expansion index. The increasing of feed moisture and passion fruit pulp concentration resulted in higher penetration force values of extrudates. The passion fruit pulp concentration showed a highly significant effect (p a parts per thousand currency signaEuro parts per thousand 0.01) on the L *, a * and b * parameters. Passion fruit pulp has a reasonable source of beta-carotene, proteins and dietary fibers that can be added to expanded snacks.
+C1 [Falfan Cortes, R. Nallely; Verdalet Guzman, Inigo] Univ Veracruzana, Inst Ciencias Basicas, Xalapa 91190, Veracruz, Mexico.
+   [Martinez-Bustos, Fernando] CINVESTAV Unidad Queretaro, Queretaro, Qro, Mexico.
+RP Martinez-Bustos, F (reprint author), CINVESTAV Unidad Queretaro, Apdo Postal 1-798, Queretaro, Qro, Mexico.
+EM pa_llely@hotmail.com; iverdalet@uv.mx; fmartinez@qro.cinvestav.mx
+CR Aguilar-Palazuelos E, 2012, CIENC TECNOL ALIMENT, V32, P1
+   AOAC, 1999, OFF METH AN AOAC, VI
+   Bhavani KN, 1988, PLANT FOOD HUM NUTR, V52, P271
+   Brennan MA, 2008, STARCH-STARKE, V60, P248, DOI 10.1002/star.200700698
+   Brennan MA, 2013, INT J FOOD SCI TECH, V48, P893, DOI 10.1111/ijfs.12055
+   Cardoso PC, 2009, BRAZ J PHARM SCI, V45, P3
+   CASE SE, 1992, CEREAL CHEM, V69, P401
+   Dehghan-Shoar Z, 2011, J AGR FOOD CHEM, V59, P12047, DOI 10.1021/jf202582t
+   Delgado-Nieblas C, 2012, CEREAL CHEM, V89, P65, DOI 10.1094/CCHEM-02-11-0016
+   Dhawan K, 2004, J ETHNOPHARMACOL, V94, P1, DOI 10.1016/j.jep.2004.02.023
+   Dogan H, 2003, FOOD SCI TECHNOL INT, V9, P101, DOI [10.1177/1082013203009002006, 10.1177/108201303033940]
+   Emin MA, 2012, LWT-FOOD SCI TECHNOL, V48, P302, DOI 10.1016/j.lwt.2012.04.004
+   GUZMANTELLO R, 1990, INT J FOOD SCI TECH, V25, P420
+   Insworth P, 2007, J FOOD ENG, V81, P702
+   Jimenez AM, 2011, FOOD RES INT, V44, P1912, DOI 10.1016/j.foodres.2010.11.007
+   JIN Z, 1995, J CEREAL SCI, V22, P185, DOI 10.1016/0733-5210(95)90049-7
+   Kasemsadeh M, 2011, ADV FOOD EXTRUSION T, P1
+   Licata R, 2014, INT J FOOD SCI TECH, V49, P1408, DOI 10.1111/ijfs.12444
+   Marty C, 1986, J FOOD SCI, V51, P1880
+   Oliveira GA, 2014, FOOD RES INT, V60, P154
+   Robin F, 2011, J FOOD ENG, V107, P80, DOI 10.1016/j.jfoodeng.2011.05.041
+   Soto-Zamora G, 2005, LWT-FOOD SCI TECHNOL, V38, P657, DOI 10.1016/j.lwt.2004.08.005
+   Souza VR, 2012, FOOD CHEM, V134, P381
+   Thakur S, 2000, LEBENSM-WISS TECHNOL, V33, P354, DOI 10.1006/fstl.2000.0668
+   Yanniotis S, 2007, J FOOD ENG, V80, P594, DOI 10.1016/j.jfoodeng.2006.06.018
+   Zeraik ML, 2010, REV BRAS FARMACOGN, V20, P459, DOI 10.1590/S0102-695X2010000300026
+NR 26
+TC 0
+Z9 0
+PU SPRINGER
+PI DORDRECHT
+PA VAN GODEWIJCKSTRAAT 30, 3311 GZ DORDRECHT, NETHERLANDS
+SN 0921-9668
+EI 1573-9104
+J9 PLANT FOOD HUM NUTR
+JI Plant Food Hum. Nutr.
+PD DEC
+PY 2014
+VL 69
+IS 4
+BP 365
+EP 371
+DI 10.1007/s11130-014-0443-8
+PG 7
+WC Plant Sciences; Chemistry, Applied; Food Science & Technology; Nutrition
+   & Dietetics
+SC Plant Sciences; Chemistry; Food Science & Technology; Nutrition &
+   Dietetics
+GA AW1OH
+UT WOS:000346058300012
+PM 25447553
+ER
+
+PT J
+AU Orrego, CE
+   Salgado, N
+   Botero, CA
+AF Orrego, C. E.
+   Salgado, N.
+   Botero, C. A.
+TI Developments and Trends in Fruit Bar Production and Characterization
+SO CRITICAL REVIEWS IN FOOD SCIENCE AND NUTRITION
+LA English
+DT Review
+DE Fruit bars; fruit snacks; production techniques; antioxidants; quality
+ID TOTAL ANTIOXIDANT ACTIVITY; TOTAL PHENOLICS; DRIED FRUITS;
+   MECHANICAL-PROPERTIES; CHITOSAN MEMBRANES; ALGINATE GELS; ASCORBIC-ACID;
+   FIBER CONTENT; IN-VITRO; HOT AIR
+AB Fruits serve as a source of energy, vitamins, minerals, and dietary fiber. One of the barriers in increasing fruit and vegetables consumption is time required to prepare them. Overall, fruit bars have a far greater nutritional value than the fresh fruits because all nutrients are concentrated and, therefore, would be a convenience food assortment to benefit from the health benefits of fruits. The consumers prefer fruit bars that are more tasted followed by proper textural features that could be obtained by establishing the equilibrium of ingredients, the proper choosing of manufacturing stages and the control of the product final moisture content. Fruit bar preparations may include a mixture of pulps, fresh or dried fruit, sugar, binders, and a variety of minor ingredients. Additionally to the conventional steps of manufacturing (pulping, homogenizing, heating, concentrating, and drying) there have been proposed the use of gelled fruit matrices, dried gels or sponges, and extruders as new trends for processing fruit bars. Different single-type dehydration or combined methods include, in order of increasing process time, air-infrared, vacuum and vacuum-microwave drying convective-solar drying, convective drying, and freeze drying are also suggested as alternative to solar traditional drying stage. The dehydration methods that use vacuum exhibited not only higher retention of antioxidants but also better color, texture, and rehydration capacity. Antioxidant activity resulting from the presence of phenolic compounds in the bars is well established. Besides this, fruit bars are also important sources of carbohydrates and minerals. Given the wide range of bioactive factors in fresh fruits that are preserved in fruit bars, it is plausible that their uptake consumption have a positive effect in reducing the risk of many diseases.
+C1 [Orrego, C. E.; Salgado, N.] Univ Nacl Colombia, Inst Biotecnol & Agroind, Dept Fis & Quim, Manizales 127, Colombia.
+   [Botero, C. A.] Frugy SA, Manizales, Colombia.
+RP Orrego, CE (reprint author), Univ Nacl Colombia, Inst Biotecnol & Agroind, Dept Fis & Quim, Campus Nubia Km 4 Via Magdalena, Manizales 127, Colombia.
+EM corregoa@unal.edu.co
+RI Orrego, Carlos/
+OI Orrego, Carlos/0000-0002-7636-878X
+FU Departamento Administrativo de Ciencia Tecnologia e Innovacion
+   COLCIENCIAS [1119-502-27411]; Universidad Nacional de Colombia Sede
+   Manizales [1119-502-27411]
+FX The authors would like to thank to the Departamento Administrativo de
+   Ciencia Tecnologia e Innovacion COLCIENCIAS for the financial support
+   (Project Code 1119-502-27411) together with the Universidad Nacional de
+   Colombia Sede Manizales.
+CR ABDELHAQ E, 1987, J FOOD SCI, V52, P342, DOI 10.1111/j.1365-2621.1987.tb06608.x
+   Agrahari PR, 2004, J FOOD PROCESS PRES, V28, P145, DOI 10.1111/j.1745-4549.2004.tb00817.x
+   Ahmad S, 2005, INT J FOOD PROP, V8, P89, DOI 10.1081/JFP-200048043
+   Altan A, 2009, INT J FOOD SCI TECH, V44, P1263, DOI 10.1111/j.1365-2621.2009.01956.x
+   Asami DK, 2003, J AGR FOOD CHEM, V51, P1237, DOI 10.1021/jf020635c
+   Avila IMLB, 1999, J FOOD ENG, V39, P161, DOI 10.1016/S0260-8774(98)00157-5
+   BenZion O, 1996, FOOD SCI TECHNOL-LEB, V29, P129
+   BLAKE JR, 1980, Patent No. 4205093
+   BOURNE MC, 1966, FOOD TECHNOL-CHICAGO, V20, P522
+   Bower JA, 2000, J SENS STUD, V15, P327, DOI 10.1111/j.1745-459X.2000.tb00274.x
+   BOYLE EAE, 1993, J FOOD SCI, V58, P959, DOI 10.1111/j.1365-2621.1993.tb06088.x
+   BRIZ T, 2008, SCRIPTA HORTIC, P7
+   Camire ME, 2007, FOOD CHEM, V101, P765, DOI 10.1016/j.foodchem.2006.02.031
+   Che Man,Y. B, 1997, Journal of Food Processing and Preservation, V21, P425, DOI 10.1111/j.1745-4549.1997.tb00794.x
+   Che Man Y. B., 1995, Tropical Science, V35, P245
+   Cui ZW, 2008, DRY TECHNOL, V26, P1517, DOI 10.1080/07373930802463960
+   Dae-Ok Kim, 2004, Critical Reviews in Food Science and Nutrition, V44, P253, DOI 10.1080/10408690490464960
+   Davey MW, 2009, J AGR FOOD CHEM, V57, P1742, DOI 10.1021/jf803137d
+   Dewanto V, 2002, J AGR FOOD CHEM, V50, P3010, DOI 10.1021/jf0115589
+   Diaz EL, 2009, FOOD BIOPROCESS TECH, V2, P194, DOI 10.1007/s11947-007-0035-9
+   DONOVAN JL, 1998, J AGR CHEM, V46
+   Doymaz I, 2004, J FOOD ENG, V65, P205, DOI 10.1016/j.jfoodeng.2004.01.016
+   Drouzas AE, 1996, J FOOD ENG, V28, P203, DOI 10.1016/0260-8774(95)00040-2
+   Eberhardt MV, 2000, NATURE, V405, P903, DOI 10.1038/35016148
+   Einbond LS, 2004, FOOD CHEM, V84, P23, DOI 10.1016/S0308-8146(03)00162-6
+   Fernandez-Panchon MS, 2008, CRIT REV FOOD SCI, V48, P649, DOI 10.1080/10408390701761845
+   Gallali YM, 2000, RENEW ENERG, V19, P203, DOI 10.1016/S0960-1481(99)00032-4
+   Gamlath S, 2008, INT J FOOD SCI TECH, V43, P1541, DOI 10.1111/j.1365-2621.2007.01574.x
+   Garcia-Alonso M, 2004, FOOD CHEM, V84, P13, DOI 10.1016/S0308-8146(03)00160-2
+   Gil MI, 2002, J AGR FOOD CHEM, V50, P4976, DOI 10.1021/jf020136b
+   Grizotto RK, 2007, LWT-FOOD SCI TECHNOL, V40, P759, DOI 10.1016/j.lwt.2006.05.002
+   Guclu K, 2006, INT J FOOD SCI TECH, V41, P76, DOI 10.1111/j.1365-2621.2006.01347.x
+   Gujral HS, 2003, INT J FOOD PROP, V6, P269, DOI 10.1081/JFP-120017846
+   Huang XG, 2005, J FOOD SCI, V70, pE177
+   Isabelle M, 2010, FOOD CHEM, V123, P77, DOI 10.1016/j.foodchem.2010.04.002
+   Ishiwata K, 2004, FOOD SCI TECHNOL RES, V10, P152, DOI 10.3136/fstr.10.152
+   Jagtiani J., 1988, TROPICAL FRUIT PROCE
+   JAIN PK, 2007, AGR ENG INT, V9, P2
+   Jaturonglumlert S, 2010, J FOOD ENG, V100, P254, DOI 10.1016/j.jfoodeng.2010.04.007
+   Jaya S, 2003, DRY TECHNOL, V21, P1215, DOI 10.1081/DRT-120023177
+   Jesionkowska Katarzyna, 2008, Journal of Fruit and Ornamental Plant Research, V16, P261
+   Kader AA, 1996, PROCESSING FRUITS SC, V1, P1
+   KALETUNC G, 1990, J FOOD SCI, V55, P1759, DOI 10.1111/j.1365-2621.1990.tb03622.x
+   Kalt W, 2005, J FOOD SCI, V70, P11, DOI DOI 10.1111/J.1365-2621.2005.TB09053.X
+   Khanum F, 2000, PLANT FOOD HUM NUTR, V55, P207, DOI 10.1023/A:1008155732404
+   Kraszewska M, 2009, J HORTIC SCI BIOTECH, P28
+   LEUSINK GJ, 2010, J FOOD SCI, V75, P311
+   Lin PH, 2003, J AM DIET ASSOC, V103, P488, DOI 10.1053/jada.2003.50065
+   LOCK K, 2005, B WHO, V84
+   LODGE N, 1981, FOOD TECHNOL NZ  JUL, P35
+   LUGAI JC, 1992, Patent No. 5084296
+   LUH N, 1976, J FOOD SCI, V41, P89, DOI 10.1111/j.1365-2621.1976.tb01108.x
+   MAGA JA, 1989, LEBENSM WISS TECHNOL, V22, P182
+   Mahattanatawee K, 2006, J AGR FOOD CHEM, V54, P7355, DOI 10.1021/jf060566s
+   Mancini F, 2000, NAHRUNG, V44, P152, DOI 10.1002/1521-3803(20000501)44:3<152::AID-FOOD152>3.0.CO;2-8
+   Margetts B.M., 1997, EUROPEAN J CLIN NUTR, V51, P23
+   Maskan A, 2002, J FOOD ENG, V54, P81, DOI 10.1016/S0260-8774(01)00188-1
+   MCGUIRRE D, 2001, Patent No. 6251446
+   McHugh TH, 1999, FOOD SCI TECHNOL-LEB, V32, P513
+   Meullenet JF, 1998, J SENS STUD, V13, P77, DOI 10.1111/j.1745-459X.1998.tb00076.x
+   MOCHIZUKI Y, 2001, CURR PROTOCOLS FOOD
+   Mouquet C, 1997, FOOD SCI TECHNOL-LEB, V30, P129
+   Mujumdar A.S., 2007, HDB IND DRYING, P25
+   Nicoli MC, 1999, TRENDS FOOD SCI TECH, V10, P94, DOI 10.1016/S0924-2244(99)00023-0
+   Nijhuis HH, 1998, TRENDS FOOD SCI TECH, V9, P13, DOI 10.1016/S0924-2244(97)00007-1
+   Nowak D., 2004, Innovative Food Science & Emerging Technologies, V5, P353, DOI 10.1016/j.ifset.2004.03.003
+   Nussinovitch A, 1998, FOOD HYDROCOLLOID, V12, P105, DOI 10.1016/S0268-005X(98)00047-2
+   Nussinovitch A, 1997, FOOD HYDROCOLLOID, V11, P231
+   NUSSINOVITCH A, 1990, J FOOD PROCESS PRES, V14, P267, DOI 10.1111/j.1745-4549.1990.tb00133.x
+   Nussinovitch A, 2004, FOOD HYDROCOLLOID, V18, P825, DOI 10.1016/j.foodhyd.2004.01.001
+   NUSSINOVITCH A, 1994, FOOD HYDROCOLLOID, V8, P361
+   NUSSINOVITSCH A, 1991, FOOD SCI TECHNOL-LEB, V24, P513
+   Olivas GI, 2005, CRIT REV FOOD SCI, V45, P657, DOI 10.1080/10408690490911837
+   ORREGO C, 2009, INT REV CHEM ENG, V1, P1
+   Orrego CE, 2009, BIOPROC BIOSYST ENG, V32, P197, DOI 10.1007/s00449-008-0237-1
+   ORREGO CE, 2008, CONGELACION LIOFILIZ
+   Orrego CE, 2010, CARBOHYD POLYM, V79, P9, DOI 10.1016/j.carbpol.2009.06.015
+   PAGE C, 1949, FACTORS INFLUENCING
+   PANDE PC, 1991, ENERG CONVERS MANAGE, V31, P419, DOI 10.1016/0196-8904(91)90023-C
+   Peschardt W.J. S., 1946, U.S. Patent, Patent No. [2,403,547, 2403547]
+   PRASAD K, 2009, AGR ENG INT CIGR EJ, V11, P1
+   Rababah TM, 2005, J AGR FOOD CHEM, V53, P4444, DOI 10.1021/jf0502810
+   RAO VS, 1980, INDIAN FOOD PACKER, V34, P64
+   Reifen R, 1998, FOOD HYDROCOLLOID, V12, P111, DOI 10.1016/S0268-005X(98)00051-4
+   Reifsteck BM, 2000, FOOD REV INT, V16, P435, DOI 10.1081/FRI-100102318
+   Roberts WG, 2003, J AGR FOOD CHEM, V51, P1486, DOI 10.1021/jf025983t
+   SAKAI N, 1994, TRENDS FOOD SCI TECH, V5, P357, DOI 10.1016/0924-2244(94)90213-5
+   Scalbert A, 2005, CRIT REV FOOD SCI, V45, P287, DOI 10.1080/1040869059096
+   Sharma A, 2009, RENEW SUST ENERG REV, V13, P1185, DOI 10.1016/j.rser.2008.08.015
+   SLOAN AE, 2008, FOOD TECHNOLOGY MAGA, P24
+   Sreekumar A, 2008, ENERG CONVERS MANAGE, V49, P1388, DOI 10.1016/j.enconman.2008.01.005
+   Sun J, 2007, FOOD SCI TECHNOL INT, V13, P91, DOI 10.1177/1082013207078525
+   Sun-Waterhouse D, 2010, FOOD CHEM, V119, P1369, DOI 10.1016/j.foodchem.2009.09.016
+   Szczeniak A.S., 1968, United States Patent, Patent No. 3362831
+   SZCZESNIAK ALINA SURMACKA, 1963, JOUR FOOD SCI, V28, P397, DOI 10.1111/j.1365-2621.1963.tb00217.x
+   TAN BK, 1995, FOOD CHEM, V53, P267, DOI 10.1016/0308-8146(95)93932-H
+   Tarko T, 2009, J FOOD PROCESS PRES, V33, P676, DOI 10.1111/j.1745-4549.2008.00306.x
+   TGRUL Y, 2004, J FOOD ENG, V65, P413
+   THAI HL, 2007, Patent No. 20070122529
+   Thakur BR, 1997, CRIT REV FOOD SCI, V37, P47
+   Threlfall R, 2007, J FOOD QUALITY, V30, P552, DOI 10.1111/j.1745-4557.2007.00142.x
+   Timoumi S, 2007, LWT-FOOD SCI TECHNOL, V40, P1648, DOI 10.1016/j.lwt.2006.11.008
+   TOLSTOGUZOV VB, 1971, Patent No. 296554
+   TORLEY PJ, 2006, P 4 S FOOD RHEOL STR
+   Vadivambal R, 2007, BIOSYST ENG, V98, P1, DOI 10.1016/j.biosystemseng.2007.06.006
+   Vattem D. A., 2003, Innovative Food Science & Emerging Technologies, V4, P331, DOI 10.1016/S1466-8564(03)00033-X
+   Vatthanakul S, 2010, FOOD QUAL PREFER, V21, P339, DOI 10.1016/j.foodqual.2009.06.002
+   Velioglu YS, 1998, J AGR FOOD CHEM, V46, P4113, DOI 10.1021/jf9801973
+   VIDHYA R, 2010, AFRICAN J FOOD SCI T, V1, P51
+   VIJAYANAND P, 2000, FOOD SCI TECHNOL, V33, P133
+   Vinson JA, 2001, J AGR FOOD CHEM, V49, P5315, DOI 10.1021/jf0009293
+   Vinson JA, 2005, J AM COLL NUTR, V24, P44
+   Wang H, 1996, J AGR FOOD CHEM, V44, P701, DOI 10.1021/jf950579y
+   WEINER G, 1994, FOOD SCI TECHNOL-LEB, V27, P394
+   Yaci S., 2008, J FOOD ENG, V86, P122, DOI 10.1016/j.jfoodeng.2007.09.018
+NR 115
+TC 1
+Z9 1
+PU TAYLOR & FRANCIS INC
+PI PHILADELPHIA
+PA 530 WALNUT STREET, STE 850, PHILADELPHIA, PA 19106 USA
+SN 1040-8398
+EI 1549-7852
+J9 CRIT REV FOOD SCI
+JI Crit. Rev. Food Sci. Nutr.
+PD JAN 1
+PY 2014
+VL 54
+IS 1
+BP 84
+EP 97
+DI 10.1080/10408398.2011.571798
+PG 14
+WC Food Science & Technology; Nutrition & Dietetics
+SC Food Science & Technology; Nutrition & Dietetics
+GA 265CP
+UT WOS:000327927600005
+PM 24188234
+ER
+
+PT J
+AU Trombini, FRM
+   Leonel, M
+   Mischan, MM
+AF Moretti Trombini, Fernanda Rossi
+   Leonel, Magali
+   Mischan, Martha Maria
+TI Physical, rheological and sensory characteristics of extruded products
+   from mixtures of passion fruit flour and cassava starch
+SO CIENCIA RURAL
+LA Portuguese
+DT Article
+DE starch; fiber; viscosity; expansion; acceptance
+ID EXTRUSION-COOKING; WHEAT-STARCH; TEMPERATURE
+AB This research had as objective to evaluate the effect of extrusion temperature and screw speed on physical and rheological properties, as well as, the sensory acceptance of cassava and passion fruit snacks produced in single-screw extruder. A central composite design with 11 treatments was used, considering as dependent variables: expansion index (EI), specific volume (SV), water solubility index (WSI), water absorption index (WAI), color (L*, a*, b*) and pasting properties (RVA). The products were flavored and analyzed for global acceptance. The results showed significant effects of temperature and screw speed on the dependent variables. The chocolate flavored snacks obtained good acceptance.
+C1 [Moretti Trombini, Fernanda Rossi] UNESP, FCA, Programa Posgrad Energia Agr, BR-18610307 Botucatu, SP, Brazil.
+   [Leonel, Magali] UNESP, CERAT, BR-18610307 Botucatu, SP, Brazil.
+   [Mischan, Martha Maria] UNESP, IB, Dept Bioestat, BR-18610307 Botucatu, SP, Brazil.
+RP Leonel, M (reprint author), UNESP, CERAT, Rua Jose Barbosa Barros 1780, BR-18610307 Botucatu, SP, Brazil.
+EM mleonel@cerat.unesp.br
+RI Leonel, Magali/B-5717-2013
+CR A. O. A. C, 2005, OFFICIAL METHODS ANA, V18th
+   American Association of Cereal Chemists, 2003, APPR METH AM ASS CER
+   ANDERSON RA, 1969, CEREAL SCI TODAY, V14, P4
+   BARBOZA L. M. V., 2003, BRASIL ALIMENTOS, P34
+   Barros Neto B., 2007, COMO FAZER EXPT PESQ
+   BHATTACHARYA S, 1994, J FOOD PROCESS PRES, V18, P389, DOI 10.1111/j.1745-4549.1994.tb00261.x
+   Carvalho R. V., 2002, CIENC AGROTEC, V26, P1006
+   COLONNA P, 1984, CEREAL CHEM, V61, P538
+   Córdova K. R. V., 2005, Boletim do Centro de Pesquisa e Processamento de Alimentos, V23, P221
+   FAUBION JM, 1982, CEREAL CHEM, V59, P529
+   Fellows P. J., 2000, FOOD PROCESSING TECH
+   Leonel M, 2010, CIENC RURAL, V40, P1411, DOI 10.1590/S0103-84782010000600027
+   LEORO M. G. V., 2007, THESIS U ESTADUAL CA, P147
+   Lustosa BHB, 2009, ACTA SCI-TECHNOL, V31, P231, DOI 10.4025/actascitechnol.v31i2.892
+   MATSURA F. C. A. U., 2005, THESIS U ESTADUAL CA, P138
+   MEUSER F., 1994, WHEAT PRODUCTION PRO, P179
+   NEWPORT SCIENTIFIC, 1998, NEWP SCI OP MAN SER
+   Rickard J. E., 1991, TROP SCI, V31, P189
+   Singh S, 2007, INT J FOOD SCI TECH, V42, P916, DOI 10.1111/j.1365-2621.2006.01309.x
+   STONE H., 1985, SENSORY EVALUATION P
+   Vernaza M. G., 2009, Brazilian Journal of Food Technology, V12, P145, DOI 10.4260/BJFT20097108
+NR 21
+TC 1
+Z9 1
+PU UNIV FEDERAL SANTA MARIA
+PI SANTA MARIA
+PA UNIV FEDERAL SANTA MARIA, SANTA MARIA, RS 97105.9, BRAZIL
+SN 0103-8478
+J9 CIENC RURAL
+JI Cienc. Rural
+PD OCT
+PY 2013
+VL 43
+IS 10
+BP 1885
+EP 1891
+PG 7
+WC Agronomy
+SC Agriculture
+GA 220OY
+UT WOS:000324595500025
+ER
+
+PT J
+AU Bisharat, GI
+   Oikonomopoulou, VP
+   Panagiotou, NM
+   Krokida, MK
+   Maroulis, ZB
+AF Bisharat, G. I.
+   Oikonomopoulou, V. P.
+   Panagiotou, N. M.
+   Krokida, M. K.
+   Maroulis, Z. B.
+TI Effect of extrusion conditions on the structural properties of corn
+   extrudates enriched with dehydrated vegetables
+SO FOOD RESEARCH INTERNATIONAL
+LA English
+DT Article
+DE Broccoli; Extrusion cooking; Modeling; Moisture diffusion coefficient;
+   Olive paste; Structure
+ID MOISTURE DIFFUSIVITY; FUNCTIONAL-PROPERTIES; SENSORY PROPERTIES;
+   EXPANDED SNACKS; DIETARY FIBER; STARCH; RICE; PRODUCTS; COOKING;
+   TEMPERATURE
+AB The present study examines the addition of dehydrated broccoli or olive paste to corn flour for the production of extrudates with increased value and superior quality. Extrudates were prepared using a twin-screw extruder, operated at different conditions, including screw speed (150 rpm, 200 rpm, 250 rpm) and extrusion temperature (140 degrees C, 160 degrees C, 180 degrees C). The moisture content of the raw mixture was regulated in three levels (14%, 16.5%, 19%), whereas the concentration of the added ingredient was adjusted to 4%, 7% and 10% for broccoli and to 4%, 6% and 8% for olive paste. Structural properties and rehydration were investigated with regard to process conditions and material characteristics. Mathematical models were also used to correlate structural properties with process parameters. Regression analysis showed that the increment of moisture content and broccoli or olive paste concentration, as well as the decrement of temperature and screw speed resulted in denser extrudates with lower porosity. Products with 14% moisture content and 4% material concentration that were extruded at the highest screw speeds (250 rpm) presented the highest degree of expansion. These conclusions were strengthened with the results obtained from mercury porosimetry and scanning electron microscopy. In addition, moisture diffusion coefficient was calculated from the rehydration kinetics and was correlated with process parameters. Diffusion coefficient decreased with moisture content and material concentration, while it increased with temperature and screw speed, indicating positive relationship with extrudates porosity. (C) 2013 Elsevier Ltd. All rights reserved.
+C1 [Bisharat, G. I.] Al Hussein Bin Talal Univ, Dept Chem Engn, Maan, Jordan.
+   [Oikonomopoulou, V. P.; Panagiotou, N. M.; Krokida, M. K.; Maroulis, Z. B.] Natl Tech Univ Athens, Sch Chem Engn, Athens 15780, Greece.
+RP Oikonomopoulou, VP (reprint author), Natl Tech Univ Athens, Sch Chem Engn, Zografou Campus,9 Iroon Polytech, Athens 15780, Greece.
+EM Gibish@ahu.edu.jo; vasiaoik@central.ntua.gr; nickpan@central.ntua.gr;
+   mkrok@central.ntua.gr; maroulis@mail.ntua.gr
+FU National Technical University of Athens
+FX This work has been performed under the framework of Basic Research
+   Project 2010, funded by the National Technical University of Athens.
+CR Ali Y, 1996, FOOD SCI TECHNOL-LEB, V29, P702
+   Anton AA, 2009, FOOD CHEM, V113, P989, DOI 10.1016/j.foodchem.2008.08.050
+   AOAC-Association of Official Analytical Chemists, 1990, OFF METH AN ASS OFF
+   Aylin A., 2011, DEVELOPMENT, P121
+   Baik OD, 2003, J FOOD ENG, V56, P27, DOI 10.1016/S0260-8774(02)00144-9
+   BHATNAGAR S, 1994, CEREAL CHEM, V71, P587
+   Bhattacharya S, 1997, J FOOD ENG, V32, P83, DOI 10.1016/S0260-8774(97)00004-6
+   Chen CM, 2001, CEREAL CHEM, V78, P261, DOI 10.1094/CCHEM.2001.78.3.261
+   CHINNASWAMY R, 1988, J FOOD SCI, V53, P834, DOI 10.1111/j.1365-2621.1988.tb08965.x
+   Dehghan-Shoar Z, 2010, FOOD CHEM, V123, P1117, DOI 10.1016/j.foodchem.2010.05.071
+   Ding QB, 2005, J FOOD ENG, V66, P283, DOI 10.1016/j.jfoodeng.2004.03.019
+   Ding QB, 2006, J FOOD ENG, V73, P142, DOI 10.1016/j.jfoodeng.2005.01.013
+   Dogan H., 2011, INT J FOOD PROP, V16, P341
+   Ferreira R. E., 2011, Alimentos e Nutrição, V22, P507
+   Forsido S. F., 2011, TECHNOLOGY, V2, P75
+   Grochowicz, 2007, POLISH J FOOD NUTR S, V57, P71
+   Hagenimana A, 2006, J CEREAL SCI, V43, P38, DOI 10.1016/j.jcs.2005.09.003
+   HICSASMAZ Z, 1992, FOOD STRUCT, V11, P115
+   Hoefel AL, 2011, CELL BIOCHEM FUNCT, V29, P569, DOI 10.1002/cbf.1789
+   Ilo S, 2000, GRASAS ACEITES, V51, P97
+   Ilo S., 1996, Lebensmittel-Wissenschaft and Technologie, V29, P593, DOI 10.1006/fstl.1996.0092
+   Jamroz J., 1999, INT AGROPHYS, V13, P445
+   Jyothi AN, 2009, J FOOD SCI, V74, pE97, DOI 10.1111/j.1750-3841.2008.01038.x
+   KARATHANOS VT, 1990, J FOOD SCI, V55, P218, DOI 10.1111/j.1365-2621.1990.tb06056.x
+   Karkle EL, 2012, FOOD RES INT, V46, P10, DOI 10.1016/j.foodres.2011.11.003
+   Khanal RC, 2009, J FOOD SCI, V74, pH174, DOI 10.1111/j.1750-3841.2009.01221.x
+   Knai C, 2006, PREV MED, V42, P85, DOI 10.1016/j.ypmed.2005.11.012
+   Kolonel LN, 2000, CANCER EPIDEM BIOMAR, V9, P795
+   Krokida MK, 1998, J FOOD ENG, V35, P369, DOI 10.1016/S0260-8774(98)00031-4
+   Lazou A, 2010, J FOOD ENG, V100, P392, DOI 10.1016/j.jfoodeng.2010.04.024
+   Liu Y, 2000, J FOOD SCI, V65, P1253, DOI 10.1111/j.1365-2621.2000.tb10274.x
+   LUE S, 1991, CEREAL CHEM, V68, P227
+   MAROULIS Z B, 1988, Journal of Food Engineering, V7, P63, DOI 10.1016/0260-8774(88)90069-6
+   Maroulis ZB, 2001, INT J FOOD PROP, V4, P225, DOI 10.1081/JFP-100105189
+   Martinez-Bustos F, 2011, CIENCIA TECNOL ALIME, V31, P870, DOI 10.1590/S0101-20612011000400007
+   Moraru C.I., 2003, COMPREHENSIVE REV FO, V2, P147, DOI DOI 10.1111/J.1541-4337.2003.TB00020.X
+   Noshad M., 2011, J FOOD PROCESS PRES, V36, P383
+   Olsen A, 2012, FOOD QUAL PREFER, V23, P90, DOI 10.1016/j.foodqual.2011.10.004
+   Onwulata CI, 2001, LEBENSM-WISS TECHNOL, V34, P424, DOI 10.1006/fstl.2000.0742
+   Pastor-Cavada E, 2011, FOOD CHEM, V128, P961, DOI 10.1016/j.foodchem.2011.03.126
+   Redovnikovic IR, 2012, ACTA ALIMENT HUNG, V41, P221, DOI 10.1556/AAlim.41.2012.2.9
+   Rahman MS, 2001, DRY TECHNOL, V19, P1, DOI 10.1081/DRT-100001349
+   Roca E, 2006, J CEREAL SCI, V43, P144, DOI 10.1016/j.jcs.2005.08.008
+   Rodriguez-Miranda J., 2011, FOOD SCI TECHNOLOGY, V44, P673
+   Sacchetti G, 2004, FOOD RES INT, V37, P527, DOI 10.1016/j.foodres.2003.11.009
+   Sanjuan N, 2001, EUR FOOD RES TECHNOL, V212, P449, DOI 10.1007/s002170000277
+   Sarkar P., 2011, J FOOD SCI TECHNOLOG, V3, P102
+   Satia JA, 2002, NUTRITION, V18, P247, DOI 10.1016/S0899-9007(01)00758-4
+   Singh B, 2011, METABOLISM, V4, P227, DOI 10.1007/s12349-011-0058-7
+   Singh B, 2007, FOOD CHEM, V100, P198, DOI 10.1016/j.foodchem.2005.09.042
+   Solomon WK, 2008, J FOOD PROCESS ENG, V31, P469, DOI 10.1111/j.1745-4530.2007.00160.x
+   Steel CJ, 2012, THERMOPLASTIC ELASTO, P265, DOI DOI 10.5772/2038
+   Steinmetz KA, 1996, J AM DIET ASSOC, V96, P1027, DOI 10.1016/S0002-8223(96)00273-8
+   Suvendu Bhattacharya, 1997, Journal of Food Engineering, V32, P83, DOI 10.1016/S0260-8774(97)00004-6
+   Thymi S, 2005, J FOOD ENG, V68, P519, DOI 10.1016/j.jfoodeng.2004.07.002
+   Veronica AO, 2006, J FOOD PROCESS ENG, V29, P149, DOI 10.1111/j.1745-4530.2006.00054.x
+   Yagci S, 2008, J FOOD ENG, V86, P122, DOI 10.1016/j.jfoodeng.2007.09.018
+   Yu L, 2013, LWT-FOOD SCI TECHNOL, V50, P279, DOI 10.1016/j.lwt.2012.05.012
+   Zeb A, 2011, NUTS AND SEEDS IN HEALTH AND DISEASE PREVENTION, P847, DOI 10.1016/B978-0-12-375688-6.10100-8
+NR 59
+TC 10
+Z9 10
+PU ELSEVIER SCIENCE BV
+PI AMSTERDAM
+PA PO BOX 211, 1000 AE AMSTERDAM, NETHERLANDS
+SN 0963-9969
+EI 1873-7145
+J9 FOOD RES INT
+JI Food Res. Int.
+PD AUG
+PY 2013
+VL 53
+IS 1
+BP 1
+EP 14
+DI 10.1016/j.foodres.2013.03.043
+PG 14
+WC Food Science & Technology
+SC Food Science & Technology
+GA 202SH
+UT WOS:000323239400001
+ER
+
+PT J
+AU Liu, SW
+   Alavi, S
+   Abughoush, M
+AF Liu, Shaowei
+   Alavi, Sajid
+   Abughoush, Mahmoud
+TI Extruded Moringa Leaf-Oat Flour Snacks: Physical, Nutritional, and
+   Sensory Properties
+SO INTERNATIONAL JOURNAL OF FOOD PROPERTIES
+LA English
+DT Article
+DE Moringa leaf; Oat flour; Extrusion processing; Phase transition analyzer
+ID FUNCTIONAL-PROPERTIES; EXTRUSION-COOKING; BY-PRODUCTS; POLYMER SCIENCE;
+   POMACE BLENDS; DIETARY FIBER; STARCH; MICROSTRUCTURE; FRUIT; FOODS
+AB Expanded snacks based on Moringa (Moringa oleifera) leaf powder (MLP) and oat flour were produced using a lab-scale twin-screw extruder. Four levels of MLP (0, 15, 30, and 45%, dry blend basis) and three levels of in-barrel moisture content (19, 22, and 26%, wet basis) were studied. Expansion of extrudates decreased as MLP level increased. On the other hand, expansion was positively affected by in-barrel moisture for all treatments with MLP. The role of MLP and in-barrel moisture in modifying phase transition, water binding, and gas-holding capacity of the extrusion melt was evaluated and related to product properties.
+C1 [Abughoush, Mahmoud] Hashemite Univ, Dept Clin Nutr & Dietet, Zarqa 13133, Jordan.
+   [Liu, Shaowei] Eastern China Univ Sci & Technol, Dept Food Sci & Technol, Shanghai, Peoples R China.
+   [Alavi, Sajid] Kansas State Univ, Dept Grain Sci & Ind, Manhattan, KS 66506 USA.
+RP Abughoush, M (reprint author), Hashemite Univ, Dept Clin Nutr & Dietet, POB 330156, Zarqa 13133, Jordan.
+EM mahmoud_abughoush@yahoo.com
+FU Eastern China University of Science and Technology [YF0142122]
+FX The authors thank Eric Maichel, operations manager of the KSU extrusion
+   lab, for conducting all processing runs, Tree for Life (Wichita, KS,
+   USA) for providing Moringa leaf powder, and Wegner Manufacturing, Inc.
+   (Sabetha, KS) for donation of the PTA equipment. This is contribution
+   number 09-172-J from the Kansas Agricultural Experiment Station,
+   Manhattan, Kansas. The paper is partly supported by Eastern China
+   University of Science and Technology (grant number YF0142122).
+CR AACC, 2000, APPR METH AACC, V10th
+   Agbisit R, 2007, J TEXTURE STUD, V38, P199, DOI 10.1111/j.1745-4603.2007.00094.x
+   Agbisit R. M. N., 2007, THESIS KANSAS STATE
+   Altan A, 2008, J FOOD ENG, V84, P231, DOI 10.1016/j.jfoodeng.2007.05.014
+   Altan A, 2008, J FOOD ENG, V89, P24, DOI 10.1016/j.jfoodeng.2008.03.025
+   Altan A, 2009, J FOOD SCI, V74, pE77, DOI 10.1111/j.1750-3841.2009.01051.x
+   Amarteifio JO, 2002, PLANT FOOD HUM NUTR, V57, P173, DOI 10.1023/A:1015248326920
+   ANESE M, 2001, LEBENSMITTEL WISSENS, V29, P151
+   Bengoechea C, 2007, J CEREAL SCI, V45, P275, DOI 10.1016/j.jcs.2006.08.011
+   BROWER A, 2002, LA728892
+   BURKITT DP, 1969, LANCET, V2, P1229
+   Camire ME, 2007, FOOD CHEM, V101, P765, DOI 10.1016/j.foodchem.2006.02.031
+   CHAWLA S, 1988, J SCI FOOD AGR, V46, P125, DOI 10.1002/jsfa.2740460112
+   Cheftel J. C., 1989, EXTRUSION COOKING, P435
+   Cheng EM, 2007, J TEXTURE STUD, V38, P473, DOI 10.1111/j.1745-4603.2007.00109.x
+   Colonna P., 1989, EXTRUSION COOKING, P247
+   Fuglie LJ, 2005, MORINGA TREE LOCAL S
+   Gajula H, 2009, INT J FOOD PROP, V12, P27, DOI 10.1080/10942910802227017
+   Gibson L. J., 1997, CELLULAR SOLIDS STRU
+   Guha M, 2002, INT J FOOD PROP, V5, P509, DOI 10.1081/JFP-120015488
+   Kokini JL, 1992, FOOD EXTRUSION SCI T, P631
+   Lockett CT, 2000, INT J FOOD SCI NUTR, V51, P195, DOI [10.1080/096374899101238, 10.1080/09637480050029700]
+   LUE S, 1991, CEREAL CHEM, V68, P227
+   Makkar HPS, 1997, J AGR SCI, V128, P311, DOI 10.1017/S0021859697004292
+   Makkar HPS, 1996, ANIM FEED SCI TECH, V63, P211, DOI 10.1016/S0377-8401(96)01023-1
+   MITCHELL JR, 1992, FOOD EXTRUSION SCI T, P631
+   PARKER R, 1989, RHEOLOGY FOOD BIOL P
+   Slade L, 1995, Adv Food Nutr Res, V38, P103, DOI 10.1016/S1043-4526(08)60084-4
+   Stojceska V, 2008, J FOOD ENG, V87, P554, DOI 10.1016/j.jfoodeng.2008.01.009
+   Strahm B, 2000, CEREAL FOOD WORLD, V45, P300
+   Strahm B, 1998, CEREAL FOOD WORLD, V43, P621
+   Strahm B., 2000, Feed International, V21, P26
+   Trater AM, 2005, FOOD RES INT, V38, P709, DOI 10.1016/j.foodres.2005.01.006
+   Whalen PJ, 1997, CEREAL FOOD WORLD, V42, P469
+   Whalen PJ, 1998, CEREAL FOOD WORLD, V43, P69
+   Yagci S, 2008, J FOOD ENG, V86, P122, DOI 10.1016/j.jfoodeng.2007.09.018
+NR 36
+TC 7
+Z9 7
+PU TAYLOR & FRANCIS INC
+PI PHILADELPHIA
+PA 520 CHESTNUT STREET, STE 850, PHILADELPHIA, PA 19106 USA
+SN 1094-2912
+EI 1532-2386
+J9 INT J FOOD PROP
+JI Int. J. Food Prop.
+PY 2011
+VL 14
+IS 4
+BP 854
+EP 869
+AR PII 927468114
+DI 10.1080/10942910903456358
+PG 16
+WC Food Science & Technology
+SC Food Science & Technology
+GA 780NB
+UT WOS:000291863100015
+ER
+
+PT J
+AU Stojceska, V
+   Ainsworth, P
+   Plunkett, A
+   Ibanoglu, S
+AF Stojceska, Valentina
+   Ainsworth, Paul
+   Plunkett, Andrew
+   Ibanoglu, Senol
+TI The effect of extrusion cooking using different water feed rates on the
+   quality of ready-to-eat snacks made from food by-products
+SO FOOD CHEMISTRY
+LA English
+DT Article
+DE Total dietary fibre; Antioxidants; Ready-to-eat snacks; Extrusion;
+   Brewer's spent grain; Red cabbage trimmings
+ID DIETARY FIBER; RESISTANT STARCH; CEREAL PRODUCTS; SCREW SPEED; CORN
+   STARCH; WHEAT BRAN; BARLEY; ANTIOXIDANTS; TEMPERATURE; VEGETABLES
+AB The effect of different levels of feed moisture (12-17%) during extrusion cooking, using a co-rotating twin-screw extruder on selected nutritional and physical properties of extruded products was investigated. Four different formulations were used based on wheat flour and corn starch with the addition of 10% brewer's spent grain (BSG) and red cabbage (RC) trimming reducing the flour and starch. The samples were: wheat flour + BSG (WBSG), corn starch + BSG (CBSG), wheat flour + red cabbage (WRC) and corn starch + red cabbage (CRC). Process conditions utilised were: constant feed rate of 25 kg/h, screw speed 200 rpm and barrel temperature of 80 and 120 degrees C. The results indicated that increasing the water feed to 15% increased the level of total dietary fibre (TDF) in all the extrudates while extrusion processing increased the level of TDF in WBSG, CBSG and CRC but decreased in WRC products. Extrusion cooking increased the level of total antioxidant capacity (TAC) and total phenolic compounds (TPC) in WRC and CRC. In addition to water feed level affecting the TDF of the extrudates, also affected were the expansion ratio, bulk density, hardness, WSI, SME and colour. The protein level of the products and hardness of extrudates were related to the different formulations. (C) 2008 Elsevier Ltd. All rights reserved.
+C1 [Stojceska, Valentina; Ainsworth, Paul; Plunkett, Andrew] Manchester Metropolitan Univ, Dept Food & Tourism Management, Hollings Fac, Manchester M14 6HR, Lancs, England.
+   [Ibanoglu, Senol] Gaziantep Univ, Dept Food Engn, Fac Engn, TR-27310 Gaziantep, Turkey.
+RP Stojceska, V (reprint author), Manchester Metropolitan Univ, Dept Food & Tourism Management, Hollings Fac, Old Hall Lane, Manchester M14 6HR, Lancs, England.
+EM V.Stojceska@mmu.ac.uk
+FU European Commission [FOOD-CT -2005-006922]
+FX This work was supported by the European Commission, project number
+   FOOD-CT -2005-006922. REPRO. "Reducing Food Processing Waste".
+CR Ainsworth P, 2007, J FOOD ENG, V81, P702, DOI 10.1016/j.jfoodeng.2007.01.004
+   ALVAREZMARTINEZ L, 1988, J FOOD SCI, V53, P609, DOI 10.1111/j.1365-2621.1988.tb07768.x
+   ANDERSON NE, 1980, J FOOD SCI, V45, P1533, DOI 10.1111/j.1365-2621.1980.tb07556.x
+   ANDERSON RA, 1969, CEREAL SCI TODAY, V14, P4
+   AOAC, 1997, INT METH 985 29
+   *AOAC, 1984, OFF METH AN
+   ATWELL WA, 1988, CEREAL FOOD WORLD, V33, P306
+   Baik BK, 2004, CEREAL CHEM, V81, P94, DOI 10.1094/CCHEM.2004.81.1.94
+   BHATTACHARYA M, 1987, LEBENSM WISS TECHNOL, V20, P195
+   CHINNASWAMY R, 1988, J FOOD SCI, V53, P834, DOI 10.1111/j.1365-2621.1988.tb08965.x
+   Erel O, 2004, CLIN BIOCHEM, V37, P277, DOI 10.1016/j.clinbiochem.2003.11.1015
+   Escarpa A, 1996, J AGR FOOD CHEM, V44, P924, DOI 10.1021/jf950328p
+   Esposito F, 2005, FOOD RES INT, V38, P1167, DOI 10.1016/j.foodres.2005.05.002
+   FAUBION JM, 1982, CEREAL CHEM, V59, P529
+   FLETCHER BL, 1985, J FOOD ENG, P291
+   Grigelmo-Miguel Nuria, 1999, Lebensmittel-Wissenschaft and Technologie, V32, P503, DOI 10.1006/fstl.1999.0587
+   HAUG W, 1983, J SCI FOOD AGR, V34, P1423, DOI 10.1002/jsfa.2740341217
+   HU L, 1993, FOOD SCI TECHNOL-LEB, V26, P544
+   Kokini J. L., 1992, FOOD EXTRUSION SCI T, V740, P631
+   Larrea MA, 2005, FOOD CHEM, V89, P301, DOI 10.1016/j.foodchem.2004.02.037
+   Launay B., 1983, Journal of Food Engineering, V2, P259, DOI 10.1016/0260-8774(83)90015-8
+   Lin Y., 2000, J FOOD SCI, V65, P1253
+   MERCIER C, 1975, CEREAL CHEM, V52, P283
+   Mezreb K, 2003, J FOOD ENG, V57, P145, DOI 10.1016/S0260-8774(02)00292-3
+   NYMAN M, 1995, EUR J CLIN NUTR, V49, pS215
+   OSTERGARD K, 1989, FOOD CHEM, V34, P215, DOI 10.1016/0308-8146(89)90142-8
+   Plumb GW, 1996, FREE RADICAL RES, V25, P75, DOI 10.3109/10715769609145657
+   POKORNY J., 2006, ANTIOXIDANTS FOOD, V380, P331
+   SIEVERT D, 1991, CEREAL CHEM, V68, P86
+   Singh B, 2007, FOOD CHEM, V100, P198, DOI 10.1016/j.foodchem.2005.09.042
+   Skerget M, 2005, FOOD CHEM, V89, P191, DOI 10.1016/j.foodchem.2004.02.025
+   Stojceska V, 2008, J FOOD ENG, V87, P554, DOI 10.1016/j.jfoodeng.2008.01.009
+   Stojceska V, 2008, J CEREAL SCI, V47, P469, DOI 10.1016/j.jcs.2007.05.016
+   THYMI S, 2005, J FOOD ENG, P519
+   Unlu E, 1998, CEREAL CHEM, V75, P346, DOI 10.1094/CCHEM.1998.75.3.346
+   VANLENGERICH B, 1990, DOUGH RHEOLOGY BAKED, V603, P421
+   Vasanthan T, 2002, FOOD CHEM, V77, P35, DOI 10.1016/S0308-8146(01)00318-1
+   Yoshimura Y, 1997, J AGR FOOD CHEM, V45, P4106, DOI 10.1021/jf9609845
+NR 38
+TC 48
+Z9 51
+PU ELSEVIER SCI LTD
+PI OXFORD
+PA THE BOULEVARD, LANGFORD LANE, KIDLINGTON, OXFORD OX5 1GB, OXON, ENGLAND
+SN 0308-8146
+J9 FOOD CHEM
+JI Food Chem.
+PD MAY 1
+PY 2009
+VL 114
+IS 1
+BP 226
+EP 232
+DI 10.1016/j.foodchem.2008.09.043
+PG 7
+WC Chemistry, Applied; Food Science & Technology; Nutrition & Dietetics
+SC Chemistry; Food Science & Technology; Nutrition & Dietetics
+GA 405IH
+UT WOS:000263216000032
+ER
+
+PT J
+AU Stojceska, V
+   Ainsworth, P
+   Plunkett, A
+   Ibanoglu, E
+   Ibanoglu, S
+AF Stojceska, Valentina
+   Ainsworth, Paul
+   Plunkett, Andrew
+   Ibanoglu, Esra
+   Ibanoglu, Senol
+TI Cauliflower by-products as a new source of dietary fibre, antioxidants
+   and proteins in cereal based ready-to-eat expanded
+SO JOURNAL OF FOOD ENGINEERING
+LA English
+DT Article
+DE cauliflower by-products; extrusion technology; ready-to eat snacks
+ID EXTRUSION-COOKING; DIGESTIBILITY; CAPACITY; PHYTATE; WASTE; FRUIT; BRAN;
+   PULP; FAT
+AB Cauliflower is a vegetable rich in nutrients but has a highest waste index. The incorporation of cauliflower trimmings into ready-to-eat expanded products and their effect on the textural and functional properties of extrudates have been studied. Dried and milled cauliflower at levels of 5-20% was added to the formulation mix. The results obtained from the analysis of the extrudates are discussed in terms of the effect of cauliflower co-products on nutritional and textural characteristics, and the effects of processing conditions. The samples were processed in a twin-screw extruder with a combination of parameters including: solid feed rate of 20-25 kg/h, water feed adjusted to 9-11%, screw speed of 250-350 rpm and process temperatures 80-120 degrees C. Pressure, torque and material temperature during extrusion were recorded. It was found that addition of cauliflower significantly increased the dietary fibre (r(2) = 0.9***) and levels of proteins. Extrusion cooking significantly (P < 0.0001) increased the level of phenolic compounds and antioxidants but significantly (P < 0.001) decreased protein in vitro digestibility and fibre content in the extruded products. The expansion indices, total cell area of the products, wall thickness showed negative correlation to the level of cauliflower. Sensory test panel indicated that cauliflower could be incorporated into ready-to-eat expanded products up to the level of 10%. (c) 2008 Elsevier Ltd. All rights reserved.
+C1 [Stojceska, Valentina; Ainsworth, Paul; Plunkett, Andrew] Manchester Metropolitan Univ, Dept Food & Tourism Management, Hollings Fac, Manchester M14 6HR, Lancs, England.
+   [Ibanoglu, Esra; Ibanoglu, Senol] Gaziantep Univ, Dept Food Engn, Fac Engn, TR-27310 Gaziantep, Turkey.
+RP Stojceska, V (reprint author), Manchester Metropolitan Univ, Dept Food & Tourism Management, Hollings Fac, Old Hall Lane, Manchester M14 6HR, Lancs, England.
+EM V.Stojceska@mmu.ac.uk
+CR Ainsworth P, 2007, J FOOD ENG, V81, P702, DOI 10.1016/j.jfoodeng.2007.01.004
+   ALVAREZMARTINEZ L, 1988, J FOOD SCI, V53, P609, DOI 10.1111/j.1365-2621.1988.tb07768.x
+   ANDERSON NE, 1980, J FOOD SCI, V45, P1533, DOI 10.1111/j.1365-2621.1980.tb07556.x
+   ANDERSON RA, 1969, CEREAL SCI TODAY, V14, P4
+   *AOAC, 1997, INTERNATIONAL
+   *AOAC, 1984, OFF METH AN
+   Baik BK, 2004, CEREAL CHEM, V81, P94, DOI 10.1094/CCHEM.2004.81.1.94
+   Duodu KG, 2002, J CEREAL SCI, V35, P161, DOI 10.1006/jcrs.2001.0411
+   ENGLYST H N, 1989, Journal of Human Nutrition and Dietetics, V2, P253, DOI 10.1111/j.1365-277X.1989.tb00028.x
+   Erel O, 2004, CLIN BIOCHEM, V37, P277, DOI 10.1016/j.clinbiochem.2003.11.1015
+   Femenia A, 1998, J SCI FOOD AGR, V77, P511, DOI 10.1002/(SICI)1097-0010(199808)77:4<511::AID-JSFA74>3.3.CO;2-U
+   Gertz C, 2000, EUR J LIPID SCI TECH, V102, P154, DOI 10.1002/(SICI)1438-9312(200002)102:2<154::AID-EJLT154>3.3.CO;2-C
+   GRIGELMOMIGUEL N, 1999, LWT-FOOD SCI TECHNOL, P503
+   HAUG W, 1983, J SCI FOOD AGR, V34, P1423, DOI 10.1002/jsfa.2740341217
+   Heredia J., 2002, IFT ANN M BOOK ABSTR, P180
+   HSU HW, 1977, J FOOD SCI, V42, P1269, DOI 10.1111/j.1365-2621.1977.tb14476.x
+   HU L, 1993, FOOD SCI TECHNOL-LEB, V26, P544
+   Karadeniz Feryal, 2005, Turkish Journal of Agriculture and Forestry, V29, P297
+   Kulkarni M, 2001, P INT C SAARC COUNTR, P24
+   Larrea MA, 2005, FOOD CHEM, V89, P301, DOI 10.1016/j.foodchem.2004.02.037
+   Mendonca S, 2000, LEBENSM-WISS TECHNOL, V33, P2, DOI 10.1006/fstl.1999.0601
+   Moraru C. I., 2003, Comprehensive Reviews in Food Science and Food Safety, V2, P120
+   Nawirska A, 2005, FOOD CHEM, V91, P221, DOI 10.1016/j.foodchem.2003.10.005
+   Ng A, 1999, CARBOHYD POLYM, V39, P341, DOI 10.1016/S0144-8617(99)00025-9
+   Podsedek A, 2007, LWT-FOOD SCI TECHNOL, V40, P1, DOI 10.1016/j.lwt.2005.07.023
+   RALET MC, 1991, FOOD SCI TECHNOL-LEB, V24, P107
+   Reyes LF, 2007, FOOD CHEM, V101, P1254, DOI 10.1016/j.foodchem.2006.03.032
+   SALTVEIT ME, 1998, PERISHABLES HANDLING, P5
+   SANDBERG AS, 1986, BRIT J NUTR, V55, P245, DOI 10.1079/BJN19860031
+   Serena A, 2007, ANIM FEED SCI TECH, V139, P109, DOI 10.1016/j.anifeedsci.2006.12.003
+   Skerget M, 2005, FOOD CHEM, V89, P191, DOI 10.1016/j.foodchem.2004.02.025
+   STOJCESKA V, J CEREAL SCI
+   Wadhwa M, 2006, SMALL RUMINANT RES, V64, P279, DOI 10.1016/j.smallrumres.2005.05.017
+   Yanniotis S, 2007, J FOOD ENG, V80, P594, DOI 10.1016/j.jfoodeng.2006.06.018
+   EUROSTAT DATA
+NR 35
+TC 66
+Z9 67
+PU ELSEVIER SCI LTD
+PI OXFORD
+PA THE BOULEVARD, LANGFORD LANE, KIDLINGTON, OXFORD OX5 1GB, OXON, ENGLAND
+SN 0260-8774
+J9 J FOOD ENG
+JI J. Food Eng.
+PD AUG
+PY 2008
+VL 87
+IS 4
+BP 554
+EP 563
+DI 10.1016/j.jfoodeng.2008.01.009
+PG 10
+WC Engineering, Chemical; Food Science & Technology
+SC Engineering; Food Science & Technology
+GA 294RR
+UT WOS:000255423700013
+ER
+
+EF

@@ -1,0 +1,30 @@
+language: python
+
+python:
+  - "3.5"
+
+services:
+  - mongodb
+
+cache:
+  pip: true
+  apt: true
+  directories:
+    - $HOME/.nltk_data
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
+
+install:
+  - pip install .
+
+before_script:
+  - python -m nltk.downloader snowball_data stopwords
+
+script:
+  - python setup.py test
+  - lsapopulate 'data/froac/**/*.xml'
+  - lsapopulate --isi 'data/isi/**/*.txt'
+  - lsamodel
+  - lsaquery find
