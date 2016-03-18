@@ -7,6 +7,7 @@ from pymongo.errors import DuplicateKeyError
 
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
+from lsa.record import BibtexRecordIterator
 
 from .dbutil import collection_name
 from .dbutil import collection
@@ -17,6 +18,8 @@ def recordset_class(name):
         return IsiRecordIterator
     elif name == 'xml':
         return FroacRecordIterator
+    elif name == 'bib':
+        return BibtexRecordIterator
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
 
 
@@ -26,6 +29,8 @@ def recordset_class(name):
               help='Use the xml parser (default)')
 @click.option('--isi', 'kind', flag_value='isi',
               help='Use the isi plain text parser (default xml)')
+@click.option('--bib', 'kind', flag_value='bib',
+              help='Use the bibtex parser (default xml)')
 @click.option('--wipedb/--no-wipedb', default=True,
               help='Wipe existing database.')
 @click.option('--dbname', default='program',
@@ -63,9 +68,11 @@ collection of the {} database...'.format(
                 click.echo('I\'m processing file {}...'.format(filename))
             rs = rs_class(filename)
             for record in rs:
+                print('here')
                 try:
                     records.insert_one(record)
                 except DuplicateKeyError:
+                    print('duplicate')
                     continue
 
         click.echo('And... I\'m done')

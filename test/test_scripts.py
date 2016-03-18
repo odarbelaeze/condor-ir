@@ -18,6 +18,15 @@ def test_basic_usage(runner):
     assert 'Usage' in res.output
 
 
+def test_populate_bibtex(runner):
+    res = runner.invoke(
+        lsapopulate,
+        ['--bib', '--verbose', 'data/bib/*.bib']
+    )
+    assert res.exit_code == 0
+    assert 'The database contains 3 records' in res.output
+
+
 def test_basic_usage_model(runner):
     res = runner.invoke(lsamodel, ['--help'])
     assert res.exit_code == 0

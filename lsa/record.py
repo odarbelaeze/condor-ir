@@ -1,5 +1,6 @@
-import hashlib
 import functools
+import hashlib
+import json
 import operator
 import re
 
@@ -127,6 +128,11 @@ class BibtexRecordParser(RecordParser):
         line = raw.get(self.get_mapping('keywords'), '')
         return re.split(r'[,; ]+', line)
 
+    def _clear_uuid(self, raw):
+        sha = hashlib.sha1()
+        sha.update(json.dumps(raw).encode('utf-8'))
+        return sha.hexdigest()
+
     def get_mapping(self, field):
         return self.mappings.get(field, field)
 
@@ -184,3 +190,19 @@ class IsiRecordIterator(RecordIterator):
             if line[:2] == 'ER':
                 yield parser.parse('\n'.join(buff))
                 buff = []
+
+
+class BibtexRecordIterator(RecordIterator):
+
+    '''
+    Iterates over bibtex reccords
+    '''
+
+    parser_class = BibtexRecordParser
+
+    def __iter__(self):
+        with open(self.filename, 'r') as bibtex:
+            database = bibtexparser.load(bibtex)
+            parser = self.parser_class()
+            for entry in database.entries:
+                yield parser.parse(entry)
