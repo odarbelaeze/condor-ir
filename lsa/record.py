@@ -1,6 +1,5 @@
 import functools
 import hashlib
-import json
 import operator
 import re
 
@@ -130,7 +129,8 @@ class BibtexRecordParser(RecordParser):
 
     def _clear_uuid(self, raw):
         sha = hashlib.sha1()
-        sha.update(json.dumps(raw).encode('utf-8'))
+        data = self.clear('title', raw) + self.clear('description', raw)
+        sha.update(data.encode('utf-8'))
         return sha.hexdigest()
 
     def get_mapping(self, field):

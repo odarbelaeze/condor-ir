@@ -68,11 +68,9 @@ collection of the {} database...'.format(
                 click.echo('I\'m processing file {}...'.format(filename))
             rs = rs_class(filename)
             for record in rs:
-                print('here')
                 try:
                     records.insert_one(record)
                 except DuplicateKeyError:
-                    print('duplicate')
                     continue
 
         click.echo('And... I\'m done')
