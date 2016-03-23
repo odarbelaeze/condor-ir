@@ -6,10 +6,15 @@
 Welcome to lsa-program's documentation!
 =======================================
 
+**lsa-program** is a suite of tools to work with latent semantic search engines
+and other search engines as well, now it offers index database management
+computation of lsa ranking matrices and query tools.
+
 Contents:
 
 .. toctree::
    :maxdepth: 2
+   quicstart
 
 
 
@@ -19,4 +24,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
