@@ -14,7 +14,8 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   quicstart
+
+   quickstart
 
 
 

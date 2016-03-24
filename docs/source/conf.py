@@ -52,8 +52,9 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'lsa-program'
-copyright = '2016, Oscar David Arbeláez Echeverri, German Augusto Osorio Zuluaga'
-author = 'Oscar David Arbeláez Echeverri, German Augusto Osorio Zuluaga'
+copyright = '2016, O. D. Arbeláez Echeverri, G. A. Osorio Zuluaga'
+author = '''O.D. Arbeláez Echeverri,
+G.A. Osorio Zuluaga'''
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -228,7 +229,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'lsa-program.tex', 'lsa-program Documentation',
-     'Oscar David Arbeláez Echeverri, German Augusto Osorio Zuluaga', 'manual'),
+     'Oscar David Arbeláez Echeverri\\\\ German Augusto Osorio Zuluaga', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
