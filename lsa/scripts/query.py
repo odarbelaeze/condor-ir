@@ -30,6 +30,10 @@ def frequency(words, tokens):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 def lsaquery(parameters, dbname, verbose):
+    '''
+    Queries the database using the given parameters, the model that this
+    script will pick up to do the query is the latest available model.
+    '''
     click.echo('You queried: {}'.format(' '.join(parameters)))
     with collection('models', dbname=dbname, delete=False) as models:
         model = models.find().sort(

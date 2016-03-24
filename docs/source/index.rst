@@ -16,7 +16,8 @@ Contents:
    :maxdepth: 2
 
    quickstart
-
+   api-reference
+   developer-quickstart
 
 
 Indices and tables

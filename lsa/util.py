@@ -1,3 +1,7 @@
+'''
+Contains utility functions to work with tokens and decorators
+to work with XML, lists and generators.
+'''
 import bisect
 import collections
 import functools
