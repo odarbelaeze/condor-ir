@@ -87,3 +87,19 @@ contributions through git, you start by adding a new branch to your repo,
 Then you proced to create the pull request in github, right away, so you
 can start communicating with the core developers and other members of the
 community.
+
+Recomendations and code guidelines
+----------------------------------
+
+Honoring code guidelines is a key part of contributing to a project, that's
+because fixing indentation and correcting line lengths is assumed by git as a
+rewrite, and the authorship of the contributed code might be diluted.  This
+project includes a `.editorconfig` file that can be used by modern text editors
+to automatically keep coding guidelines for different filetypes.
+
+Although the code coverage of this project might be low at some point,
+contributors are encouraged to write tests for their features, and also,
+regression tests for the code that is already there. Test are writen using
+**pytest** which is a very easy to use testing framework, to start you just
+need to drop a function whos name starts with `test_` into one module within
+the `tests` folder, and the suite will automatically pick up your testing code.
