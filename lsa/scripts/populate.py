@@ -24,6 +24,8 @@ def recordset_class(name):
         return IsiRecordIterator
     elif name == 'xml':
         return FroacRecordIterator
+    elif name == 'froac':
+        return FroacRecordIterator
     elif name == 'bib':
         return BibtexRecordIterator
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
@@ -33,6 +35,8 @@ def recordset_class(name):
 @click.argument('pattern')
 @click.option('--xml', 'kind', flag_value='xml', default=True,
               help='Use the xml parser (default)')
+@click.option('--froac', 'kind', flag_value='froac', default=True,
+              help='Use the xml froac parser (default)')
 @click.option('--isi', 'kind', flag_value='isi',
               help='Use the isi plain text parser (default xml)')
 @click.option('--bib', 'kind', flag_value='bib',
