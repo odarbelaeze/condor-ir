@@ -16,6 +16,27 @@
 import sys
 import os
 
+from mock import Mock as MagicMock
+
+
+class ModuleMock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return ModuleMock()
+
+
+MOCK_MODULES = [
+    'nltk',
+    'pymongo',
+    'numpy',
+    'scipy',
+    'marshmallow',
+    'click',
+    'bibtexparser',
+]
+
+sys.modules.update((modname, ModuleMock()) for modname in MOCK_MODULES)
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
