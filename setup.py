@@ -22,7 +22,7 @@ def get_install_requires():
 
 setup(
     name='lsa-program',
-    version='0.2.1',
+    version='0.2.2',
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -44,7 +44,7 @@ setup(
     lsaquery=lsa.scripts.query:lsaquery
     ''',
     url='https://github.com/odarbelaeze/lsa-program',
-    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.2.1',
+    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.2.2',
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
 )
