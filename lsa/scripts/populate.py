@@ -1,3 +1,6 @@
+'''
+Implements the populate script.
+'''
 import glob
 import sys
 
@@ -14,6 +17,9 @@ from .dbutil import collection
 
 
 def recordset_class(name):
+    '''
+    Builds a record class out  of the `name` of the extension file.
+    '''
     if name == 'isi':
         return IsiRecordIterator
     elif name == 'xml':
@@ -53,7 +59,7 @@ def lsapopulate(pattern, kind, wipedb, dbname, verbose):
     if wipedb:
         click.echo('I will delete all previous records in the records \
 collection of the {} database...'.format(
-                collection_name(dbname))
+            collection_name(dbname))
         )
 
     try:

@@ -15,9 +15,20 @@ from .util import to_list
 
 class RecordParser(object):
 
+    '''
+    Outlines the API for parsing different kinds of records into dictionaries
+    that are easy to use and store.
+    '''
+
     mappings = {}
 
     def __init__(self, interest_fields=None, list_fields=None):
+        '''
+        Initializes a record parser with a couple of `interest_fields` and
+        a verbose list of `list_fields` the list fields are a hint for the
+        parser to return list of string instead of a string for the given
+        keys.
+        '''
         self.interest_fields = interest_fields or [
             'uuid', 'title', 'keywords', 'description',
         ]
@@ -25,7 +36,7 @@ class RecordParser(object):
 
     def get_default(self, field):
         '''
-        Returns the default value for a given field
+        Returns the default value for a given `field`
         '''
         if field in self.list_fields:
             return []
@@ -160,6 +171,10 @@ class RecordIterator(object):
         self.filename = filename
 
     def __iter__(self):
+        '''
+        Not implemented by default. Iterates over all the records in
+        the file given by the filename.
+        '''
         raise NotImplementedError('Use a specialized implementation')
 
 
