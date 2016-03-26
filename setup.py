@@ -1,5 +1,23 @@
+import os
+
 from setuptools import setup
 from setuptools import find_packages
+
+
+def get_install_requires():
+    if os.environ.get('READTHEDOCS', None) == 'True':
+        return [
+            'mock>=1.3.0',
+        ]
+    return [
+        'nltk>=3.1',
+        'pymongo>=3.2',
+        'numpy>=1.9.2',
+        'scipy>=0.16.0',
+        'marshmallow>=2.4.2',
+        'click>=6.2',
+        'bibtexparser>=0.6.2',
+    ]
 
 
 setup(
@@ -8,15 +26,7 @@ setup(
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
-    install_requires=[
-        'nltk>=3.1',
-        'pymongo>=3.2',
-        'numpy>=1.9.2',
-        'scipy>=0.16.0',
-        'marshmallow>=2.4.2',
-        'click>=6.2',
-        'bibtexparser>=0.6.2',
-    ],
+    install_requires=get_install_requires(),
     tests_require=[
         'cov-core>=1.15.0',
         'coverage>=3.7.1',
