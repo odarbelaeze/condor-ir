@@ -67,7 +67,7 @@ Once you have your dataset organized you can populate your database using the
 
 .. code-block:: bash
 
-  lsapopupate --froac 'data/*/*.xml'
+  lsapopupate --xml 'data/*/*.xml'
 
 You can also stipupate a database name and specify if you want to wipe the
 database, if you want to combine records from different kinds of databases, you
