@@ -13,7 +13,7 @@ import click
 import numpy
 import scipy
 
-from lsa.util import normalize
+from lsa.normalize import normalize
 
 from .dbutil import collection
 from .dbutil import collection_name

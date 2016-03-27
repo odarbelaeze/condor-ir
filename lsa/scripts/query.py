@@ -12,7 +12,7 @@ import numpy
 
 from bson.objectid import ObjectId
 
-from lsa.util import normalize as preprocess
+from lsa.normalize import normalize as preprocess
 
 from .dbutil import collection
 

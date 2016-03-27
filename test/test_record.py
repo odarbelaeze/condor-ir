@@ -236,9 +236,17 @@ def test_froac_record_iterator():
 def test_isi_record_iterator():
     filename = os.path.join('data', 'isi', 'isi.txt')
     filename = os.path.abspath(filename)
-    iterator = IsiRecordIterator(filename)
+    iterator = iter(IsiRecordIterator(filename))
     assert iterator is not None
     assert len(list(iterator))
+
+
+def test_isi_record_iterator_yields_correct_elements():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = iter(IsiRecordIterator(filename))
+    record = next(iterator)
+    assert 'Study of extrusion behaviour and porridge' in record['title']
 
 
 def test_bibtex_record_is_instantiable():

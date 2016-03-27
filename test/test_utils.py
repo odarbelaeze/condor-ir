@@ -1,10 +1,10 @@
 import pytest
 import random
 
-from lsa.util import STOPWORDS
-from lsa.util import is_stopword
-from lsa.util import isi_text_to_dic
-from lsa.util import normalize
+from lsa.normalize import STOPWORDS
+from lsa.normalize import is_stopword
+from lsa.record.util import isi_text_to_dic
+from lsa.normalize import normalize
 
 
 @pytest.fixture(scope='module')
