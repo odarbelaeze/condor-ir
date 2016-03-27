@@ -6,7 +6,7 @@ from .util import isi_text_to_dic
 
 class IsiRecordParser(RecordParser):
 
-    """This represents an ISI web of knowledge record"""
+    '''This represents an ISI web of knowledge record'''
 
     mappings = {
         'title': 'TI',
@@ -16,11 +16,18 @@ class IsiRecordParser(RecordParser):
     }
 
     def parse(self, raw):
+        '''
+        Checks if the input is a string if so it transforms it into a
+        dictionary and runs the default `parse` method.
+        '''
         if isinstance(raw, str):
             return super().parse(isi_text_to_dic(raw))
         return super().parse(raw)
 
     def clear(self, field, raw):
+        '''
+        Uses the `mapings` to get the entries out of the raw dictionary
+        '''
         _field = self.get_mapping(field)
         if field in self.list_fields:
             return raw.get(_field, super().clear(field, raw))
@@ -39,6 +46,10 @@ class IsiRecordIterator(RecordIterator):
     parser_class = IsiRecordParser
 
     def get_buffer(self):
+        '''
+        Iterates over a file by looking for lines containing the ER mark
+        of the isi plain text files.
+        '''
         buff = []
         for line in open(self.filename):
             buff.append(line)
