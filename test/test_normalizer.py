@@ -2,6 +2,7 @@ import pytest
 
 from lsa.normalize import PunctuationRemover
 from lsa.normalize import Stemmer
+from lsa.normalize import StopwordRemover
 
 
 @pytest.fixture(scope="module")
@@ -17,6 +18,11 @@ def punctuation():
 @pytest.fixture(scope="module")
 def stemmer():
     return Stemmer()
+
+
+@pytest.fixture(scope="module")
+def stopwords():
+    return StopwordRemover()
 
 
 def test_punctuation_remover_removes_puchtuation(punctuation, punctuated):
@@ -36,3 +42,22 @@ def test_punctuation_remover_keeps_words(punctuation, punctuated):
 def test_stemmer_changes_words_by_their_stemms(stemmer):
     result = stemmer.apply_to('hola que hace')
     assert 'hol que hac' in result
+
+
+def test_stopword_remover_removes_stopwords(stopwords):
+    result = stopwords.apply_to('costa de concordia')
+    assert 'de' not in result
+
+
+def test_stopword_remover_keeps_important_words(stopwords):
+    result = stopwords.apply_to('costa de concordia')
+    assert 'costa concordia' == result
+
+
+def test_normalizers_can_be_composed(punctuated):
+    class Composed(PunctuationRemover, StopwordRemover, Stemmer):
+        pass
+    print(Composed.__mro__)
+    normalizer = Composed()
+    result = normalizer.apply_to(punctuated)
+    assert 'hol hac' == result
