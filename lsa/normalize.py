@@ -18,6 +18,19 @@ STEMER = SnowballStemmer('spanish')
 PUNCTUATION = str.maketrans(dict.fromkeys(string.punctuation))
 
 
+class PunctuationRemover(object):
+
+    characters = string.punctuation
+
+    def __init__(self, characters=None):
+        self.translation = str.maketrans(
+            dict.fromkeys(characters or self.characters)
+        )
+
+    def apply_to(self, phrase):
+        return phrase.translate(self.translation)
+
+
 def is_stopword(word):
     '''
     Checks if a word is a stopword using the bisection method over a list of
