@@ -12,14 +12,15 @@ import pymongo
 
 from bson.objectid import ObjectId
 
-from lsa.normalize import normalize as preprocess
+from lsa.normalize import CompleteNormalizer
 
 from .dbutil import collection
 
 
 def frequency(words, tokens):
     # word_dict = {word: pos for pos, word in enumerate(words)}
-    frequency = collections.Counter(map(preprocess, tokens))
+    normalizer = CompleteNormalizer()
+    frequency = collections.Counter(normalizer.apply_to(token) for token in tokens)
     return [frequency.get(word, 0) for word in words]
 
 

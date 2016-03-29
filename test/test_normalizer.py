@@ -3,6 +3,7 @@ import pytest
 from lsa.normalize import PunctuationRemover
 from lsa.normalize import Stemmer
 from lsa.normalize import StopwordRemover
+from lsa.normalize import Lowercaser
 
 
 @pytest.fixture(scope="module")
@@ -23,6 +24,11 @@ def stemmer():
 @pytest.fixture(scope="module")
 def stopwords():
     return StopwordRemover()
+
+
+@pytest.fixture(scope="module")
+def lowercase():
+    return Lowercaser()
 
 
 def test_punctuation_remover_removes_puchtuation(punctuation, punctuated):
@@ -61,3 +67,13 @@ def test_normalizers_can_be_composed(punctuated):
     normalizer = Composed()
     result = normalizer.apply_to(punctuated)
     assert 'hol hac' == result
+
+
+def test_lowercase_normalizer_lowercases_tokens(lowercase):
+    result = lowercase.apply_to('Title Cased Phrase')
+    assert result.islower()
+
+
+def test_lowercase_normalizer_keeps_all_tokens(lowercase):
+    result = lowercase.apply_to('Title Cased Phrase')
+    assert 'title cased phrase' == result

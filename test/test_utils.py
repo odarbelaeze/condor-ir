@@ -1,9 +1,5 @@
 import pytest
-import random
 
-from lsa.normalize import STOPWORDS
-from lsa.normalize import is_stopword
-from lsa.normalize import normalize
 from lsa.record.util import isi_text_to_dic
 
 
@@ -117,21 +113,6 @@ GA CM3AG
 UT WOS:000357552900031
 ER
 '''
-
-
-def test_is_stopword_works_with_upper_case_words():
-    word = random.choice(STOPWORDS)
-    assert is_stopword(word.upper())
-
-
-def test_is_stopword_works_with_lower_case_words():
-    word = random.choice(STOPWORDS)
-    assert is_stopword(word.lower())
-
-
-def test_word_normalization():
-    assert 'provoc' == normalize('provocación')
-    assert 'provoc' == normalize('provocación,')
 
 
 def test_isi_record_to_dic(isi_text):

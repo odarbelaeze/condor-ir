@@ -11,13 +11,6 @@ from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 
 
-STOPWORDS = sorted(stopwords.words())
-
-STEMER = SnowballStemmer('spanish')
-
-PUNCTUATION = str.maketrans(dict.fromkeys(string.punctuation))
-
-
 class SpaceTokenizer(object):
 
     '''
@@ -95,24 +88,22 @@ class StopwordRemover(Normalizer):
         return super().apply_to(result)
 
 
-def is_stopword(word):
-    '''
-    Checks if a word is a stopword using the bisection method over a list of
-    known stopwords stored in a global variable.
-    '''
-    # TODO A hash-map is more suitable for this
-    # return word in STOPWORDS
-    _word = word.lower()
-    index = bisect.bisect_left(STOPWORDS, _word)
-    return STOPWORDS[index] == _word
+class Lowercaser(Normalizer):
 
+    '''
+    Changes case to lowercase through the normalizer API
+    '''
 
-def normalize(word):
+    def apply_to(self, sentence):
+        return super().apply_to(sentence.lower())
+
+def CompleteNormalizer(PunctuationRemover,
+                       Lowercaser,
+                       StopwordRemover,
+                       Stemmer):
+
     '''
-    Filters out the punctuation from a word and then applies a steemer, and
-    yields the steemed word.
+    A Normalizer that aggregates all the effects described in this module
     '''
-    # TODO This obviously may take a word normalizer class, to control the
-    #      language and other normalization parameters
-    _word = word.translate(PUNCTUATION)
-    return STEMER.stem(_word)
+
+    pass
