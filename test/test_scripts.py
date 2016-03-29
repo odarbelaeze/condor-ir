@@ -2,8 +2,8 @@ import pytest
 
 from click.testing import CliRunner
 
-from lsa.scripts.populate import lsapopulate
 from lsa.scripts.model import lsamodel
+from lsa.scripts.populate import lsapopulate
 from lsa.scripts.query import lsaquery
 
 

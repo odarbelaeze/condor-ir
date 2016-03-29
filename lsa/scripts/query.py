@@ -7,8 +7,8 @@ import collections
 import operator
 
 import click
-import pymongo
 import numpy
+import pymongo
 
 from bson.objectid import ObjectId
 

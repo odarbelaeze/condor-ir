@@ -1,11 +1,11 @@
 import os
 import pytest
 
-from lsa.record import FroacRecordParser
-from lsa.record import IsiRecordParser
 from lsa.record import BibtexRecordParser
 from lsa.record import FroacRecordIterator
+from lsa.record import FroacRecordParser
 from lsa.record import IsiRecordIterator
+from lsa.record import IsiRecordParser
 
 
 @pytest.fixture(scope='module')

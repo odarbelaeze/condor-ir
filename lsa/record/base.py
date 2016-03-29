@@ -1,3 +1,10 @@
+'''
+This module describes the API for a record parser and a record iterator, they
+have the responsibility of transforming a chunk of text into a usable
+dictionary and go through a file and find all the records.
+'''
+
+
 class RecordParser(object):
 
     '''

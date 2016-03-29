@@ -1,7 +1,7 @@
-"""
+'''
 This script aims to build the model for the current state of a database,
 taking in all the present records.
-"""
+'''
 
 import collections
 import datetime
@@ -46,7 +46,7 @@ def word_set(dbname):
 def records(dbname):
     with collection('records', dbname=dbname, delete=False) as records:
         for record in records.find():
-            yield record["_id"]
+            yield record['_id']
 
 
 def matrix(dbname, words):
@@ -73,7 +73,7 @@ def lsamodel(dbname, verbose):
     `--dbname` flag.
     '''
 
-    click.echo("I will generate a model for the {} database...".format(
+    click.echo('I will generate a model for the {} database...'.format(
         collection_name(dbname)))
 
     words = word_set(dbname)

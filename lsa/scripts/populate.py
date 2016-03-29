@@ -1,6 +1,7 @@
 '''
 Implements the populate script.
 '''
+
 import glob
 import sys
 
@@ -8,12 +9,12 @@ import click
 
 from pymongo.errors import DuplicateKeyError
 
+from lsa.record import BibtexRecordIterator
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
-from lsa.record import BibtexRecordIterator
 
-from .dbutil import collection_name
 from .dbutil import collection
+from .dbutil import collection_name
 
 
 def recordset_class(name):

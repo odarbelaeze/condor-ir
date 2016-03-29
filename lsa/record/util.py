@@ -2,6 +2,7 @@
 Contains utility functions to work with tokens and decorators
 to work with XML, lists and generators.
 '''
+
 import collections
 import functools
 
@@ -39,7 +40,7 @@ def isi_text_to_dic(text):
     values are a list of the strings under that key.
     '''
     fields = collections.defaultdict(list)
-    curr = ""
+    curr = ''
     for line in text.split('\n'):
         name = line[:2]
         value = line[3:]

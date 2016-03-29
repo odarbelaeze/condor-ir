@@ -3,8 +3,8 @@ import random
 
 from lsa.normalize import STOPWORDS
 from lsa.normalize import is_stopword
-from lsa.record.util import isi_text_to_dic
 from lsa.normalize import normalize
+from lsa.record.util import isi_text_to_dic
 
 
 @pytest.fixture(scope='module')

@@ -2,8 +2,8 @@ import hashlib
 
 from xml.dom import minidom
 
-from .base import RecordParser
 from .base import RecordIterator
+from .base import RecordParser
 
 from .util import gen_to_list
 from .util import xml_to_text

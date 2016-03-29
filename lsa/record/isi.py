@@ -1,5 +1,5 @@
-from .base import RecordParser
 from .base import RecordIterator
+from .base import RecordParser
 
 from .util import isi_text_to_dic
 

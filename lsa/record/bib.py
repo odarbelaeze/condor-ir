@@ -2,8 +2,8 @@ import bibtexparser
 import hashlib
 import re
 
-from .base import RecordParser
 from .base import RecordIterator
+from .base import RecordParser
 
 
 class BibtexRecordParser(RecordParser):

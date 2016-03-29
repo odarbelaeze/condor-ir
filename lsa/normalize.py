@@ -1,3 +1,9 @@
+'''
+This module contains utilities to normalize words and simplify them, it should
+be able to remove punctuation, filter out stopwords and maybe transform some
+latex accents into unicode accent characters.
+'''
+
 import bisect
 import string
 
