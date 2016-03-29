@@ -12,6 +12,7 @@ class IsiRecordParser(RecordParser):
         'title': 'TI',
         'description': 'AB',
         'keywords': 'ID',
+        'language': 'LA',
         'uuid': 'UT',
     }
 

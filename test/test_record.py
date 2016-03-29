@@ -17,6 +17,7 @@ def froac_text(request):
 <lom:description>description</lom:description>
 <lom:keyword>keyword1</lom:keyword>
 <lom:keyword>keyword2</lom:keyword>
+<lom:language>english</lom:language>
 </lom:lom>
 </record>
     '''
@@ -146,7 +147,8 @@ mendeley-tags = {gaia1},
 pages = {173},
 title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
 para Todos}},
-year = {2014}
+year = {2014},
+language = {english}
 }
 '''
 
@@ -264,5 +266,22 @@ Conocimiento para Todos''' == data['title']
 def test_bibtex_parser_yields_keywords(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
-    print(data)
     assert ['gaia1'] == data['keywords']
+
+
+def test_isi_parser_yields_language(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    assert 'english' == data['language'].lower()
+
+
+def test_froac_parser_yields_language(froac_text):
+    parser = FroacRecordParser()
+    data = parser.parse(froac_text)
+    assert 'english' == data['language'].lower()
+
+
+def test_bibtex_parser_yields_language(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert 'english' == data['language'].lower()

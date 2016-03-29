@@ -11,12 +11,6 @@ from .util import xml_to_text
 
 class FroacRecordParser(RecordParser):
 
-    def clear(self, field, raw):
-        if field in ['title', 'keywords', 'uuid', 'description']:
-            return getattr(self, '_clear_' + field)(raw)
-        raise NotImplementedError(
-            'The field ' + field + 'has not been implemented')
-
     def parse(self, raw):
         if isinstance(raw, str):
             return super().parse(minidom.parseString(raw))
@@ -29,6 +23,10 @@ class FroacRecordParser(RecordParser):
     @xml_to_text
     def _clear_description(self, raw):
         return raw.getElementsByTagName('lom:description').item(0)
+
+    @xml_to_text
+    def _clear_language(self, raw):
+        return raw.getElementsByTagName('lom:language').item(0)
 
     @gen_to_list
     def _clear_keywords(self, raw):
