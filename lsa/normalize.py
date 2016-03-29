@@ -27,8 +27,27 @@ class PunctuationRemover(object):
             dict.fromkeys(characters or self.characters)
         )
 
-    def apply_to(self, phrase):
-        return phrase.translate(self.translation)
+    def apply_to(self, sentence):
+        return sentence.translate(self.translation)
+
+
+class SpaceTokenizer(object):
+
+    def tokenize(self, sentence):
+        return sentence.split()
+
+
+class Stemmer(object):
+
+    default_tokenizer = SpaceTokenizer
+
+    def __init__(self, language='spanish', tokenizer=None):
+        self.stemmer = SnowballStemmer(language)
+        self.tokenizer = tokenizer or self.default_tokenizer()
+
+    def apply_to(self, sentence):
+        tokens = self.tokenizer.tokenize(sentence)
+        return ' '.join(self.stemmer.stem(token) for token in tokens)
 
 
 def is_stopword(word):
