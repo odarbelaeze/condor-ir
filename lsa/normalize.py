@@ -4,7 +4,6 @@ be able to remove punctuation, filter out stopwords and maybe transform some
 latex accents into unicode accent characters.
 '''
 
-import bisect
 import string
 
 from nltk.corpus import stopwords
@@ -97,10 +96,11 @@ class Lowercaser(Normalizer):
     def apply_to(self, sentence):
         return super().apply_to(sentence.lower())
 
-def CompleteNormalizer(PunctuationRemover,
-                       Lowercaser,
-                       StopwordRemover,
-                       Stemmer):
+
+class CompleteNormalizer(PunctuationRemover,
+                         Lowercaser,
+                         StopwordRemover,
+                         Stemmer):
 
     '''
     A Normalizer that aggregates all the effects described in this module
