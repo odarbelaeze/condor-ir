@@ -5,6 +5,7 @@ to work with XML, lists and generators.
 
 import collections
 import functools
+import re
 
 
 def xml_to_text(func):
@@ -41,7 +42,7 @@ def isi_text_to_dic(text):
     '''
     fields = collections.defaultdict(list)
     curr = ''
-    for line in text.split('\n'):
+    for line in re.split(r'\n+', text):
         name = line[:2]
         value = line[3:]
         if not name.isspace():

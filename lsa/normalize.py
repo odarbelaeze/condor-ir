@@ -16,8 +16,8 @@ class SpaceTokenizer(object):
     Simple tokenization based on spaces
     '''
 
-    def tokenize(self, sentence):
-        return sentence.split()
+    def tokenize(self, text):
+        return text.split()
 
 
 class Normalizer(object):
@@ -29,17 +29,17 @@ class Normalizer(object):
         self.language = language or self.default_language
         self.tokenizer = tokenizer or self.default_tokenizer()
 
-    def apply_to(self, sentence):
-        return sentence
+    def apply_to(self, text):
+        return text
 
 
 class PunctuationRemover(Normalizer):
 
     '''
-    Removes punctuation from a sentence
+    Removes punctuation from a text
     '''
 
-    characters = string.punctuation
+    characters = string.punctuation + '¡¿'
 
     def __init__(self, characters=None, **kwargs):
         self.translation = str.maketrans(
@@ -47,8 +47,8 @@ class PunctuationRemover(Normalizer):
         )
         super().__init__(**kwargs)
 
-    def apply_to(self, sentence):
-        return super().apply_to(sentence.translate(self.translation))
+    def apply_to(self, text):
+        return super().apply_to(text.translate(self.translation))
 
 
 class Stemmer(Normalizer):
@@ -61,8 +61,8 @@ class Stemmer(Normalizer):
         super().__init__(**kwargs)
         self.stemmer = SnowballStemmer(self.language)
 
-    def apply_to(self, sentence):
-        tokens = self.tokenizer.tokenize(sentence)
+    def apply_to(self, text):
+        tokens = self.tokenizer.tokenize(text)
         result = ' '.join(self.stemmer.stem(token) for token in tokens)
         return super().apply_to(result)
 
@@ -70,7 +70,7 @@ class Stemmer(Normalizer):
 class StopwordRemover(Normalizer):
 
     '''
-    Removes stopwords from a sentence
+    Removes stopwords from a text
     '''
 
     def __init__(self, **kwargs):
@@ -79,8 +79,8 @@ class StopwordRemover(Normalizer):
             word: None for word in stopwords.words(fileids=self.language)
         }
 
-    def apply_to(self, sentence):
-        tokens = self.tokenizer.tokenize(sentence)
+    def apply_to(self, text):
+        tokens = self.tokenizer.tokenize(text)
         result = ' '.join(
             token for token in tokens if token not in self.stopwords
         )
@@ -93,8 +93,8 @@ class Lowercaser(Normalizer):
     Changes case to lowercase through the normalizer API
     '''
 
-    def apply_to(self, sentence):
-        return super().apply_to(sentence.lower())
+    def apply_to(self, text):
+        return super().apply_to(text.lower())
 
 
 class CompleteNormalizer(PunctuationRemover,

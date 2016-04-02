@@ -23,6 +23,13 @@ def froac_text(request):
     '''
 
 
+@pytest.fixture(scope="module")
+def isi_data():
+    with open('data/isi/isi.txt', 'r') as f:
+        data = f.read()
+    return data
+
+
 @pytest.fixture(scope='module')
 def isi_text(request):
     return '''
@@ -226,6 +233,13 @@ def test_isi_parser_yields_title(isi_text):
     assert ' '.join(title) == data['title']
 
 
+def test_isi_parser_yields_keywords(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    print(data['keywords'])
+    assert 2 == len(data['keywords'])
+
+
 def test_froac_record_iterator():
     filename = os.path.join(
         'data', 'froac', 'froac1', '1Flujo de Maquinaria.xml')
@@ -241,6 +255,14 @@ def test_isi_record_iterator():
     iterator = iter(IsiRecordIterator(filename))
     assert iterator is not None
     assert len(list(iterator))
+
+
+def test_isi_record_iterator_yields_keywords():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = iter(IsiRecordIterator(filename))
+    data = next(iterator)
+    assert 1 < len(data['keywords'])
 
 
 def test_isi_record_iterator_yields_correct_elements():
