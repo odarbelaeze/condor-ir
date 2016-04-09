@@ -32,7 +32,7 @@ def get_tokens(record, fields=None, list_fields=None):
 
 
 def raw_data(record):
-    normalizer = CompleteNormalizer()
+    normalizer = CompleteNormalizer(language=record.get('language', None))
     return [normalizer.apply_to(token) for token in get_tokens(record)]
 
 
