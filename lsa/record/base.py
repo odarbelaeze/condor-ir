@@ -4,6 +4,12 @@ have the responsibility of transforming a chunk of text into a usable
 dictionary and go through a file and find all the records.
 '''
 
+from enchant import request_dict
+from collections import OrderedDict
+
+from lsa.normalize import PunctuationRemover
+from lsa.normalize import SpaceTokenizer
+
 
 class RecordParser(object):
 
@@ -73,3 +79,55 @@ class RecordIterator(object):
         parser = self.parser_class()
         for item in buff:
             yield parser.parse(item)
+
+
+class LanguageGuesser(object):
+
+    '''
+    Guesses the language of a record if the record field is not
+    defined
+    '''
+
+    languages = OrderedDict([
+        ('en_US', 'english'),
+        ('en_GB', 'english'),
+        ('es_ES', 'spanish'),
+        ('es_CO', 'spanish'),
+        ('es_MX', 'spanish'),
+        ('pt_BR', 'portuguese'),
+        ('pt_PT', 'portuguese'),
+        ('fr_FR', 'french'),
+        ('fr_BE', 'french'),
+        ('it_IT', 'italian'),
+        ('de_DE', 'german'),
+        ('de_CH', 'german'),
+        ('de_AT', 'german'),
+    ])
+
+    default_lang = 'english'
+
+    def __init__(self, languages=None):
+        self.dictionaries = OrderedDict()
+        for language in languages or self.languages:
+            self.dictionaries[language] = request_dict(language)
+        self.normalizer = PunctuationRemover()
+        self.tokenizer = SpaceTokenizer()
+
+    def counts(self, sentence):
+        counts = OrderedDict()
+        tokens = self.tokenizer.tokenize(
+            self.normalizer.apply_to(sentence)
+        )
+        for lang, dictionary in self.dictionaries.items():
+            counts[lang] = sum(dictionary.check(tk) for tk in tokens)
+        return counts
+
+    def guess(self, sentence):
+        counts = self.counts(sentence)
+        guessed_lang = None
+        max_count = 0
+        for lang, count in counts.items():
+            if count > max_count:
+                guessed_lang = lang
+                max_count = count
+        return self.languages.get(guessed_lang, self.default_lang)

@@ -155,7 +155,6 @@ pages = {173},
 title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
 para Todos}},
 year = {2014},
-language = {english}
 }
 '''
 
@@ -306,4 +305,4 @@ def test_froac_parser_yields_language(froac_text):
 def test_bibtex_parser_yields_language(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
-    assert 'english' == data['language'].lower()
+    assert 'spanish' == data['language'].lower()

@@ -4,13 +4,17 @@ import re
 
 from .base import RecordIterator
 from .base import RecordParser
+from .base import LanguageGuesser
 
 
 class BibtexRecordParser(RecordParser):
 
     mappings = {
-        'keywords': 'keyword'
+        'keywords': 'keyword',
+        'description': 'abstract',
     }
+
+    guesser = LanguageGuesser()
 
     def _clear_keywords(self, raw):
         line = raw.get(self.get_mapping('keywords'), '')
@@ -21,6 +25,11 @@ class BibtexRecordParser(RecordParser):
         data = self.clear('title', raw) + self.clear('description', raw)
         sha.update(data.encode('utf-8'))
         return sha.hexdigest()
+
+    def _clear_language(self, raw):
+        data = self.clear('title', raw) + self.clear('description', raw)
+        data += ' '.join(self.clear('keywords', raw))
+        return raw.get('language', self.guesser.guess(data))
 
     def clear(self, field, raw):
         return raw.get(field, super().clear(field, raw))
