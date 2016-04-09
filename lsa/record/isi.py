@@ -29,13 +29,14 @@ class IsiRecordParser(RecordParser):
         '''
         Uses the `mapings` to get the entries out of the raw dictionary
         '''
+        _default = self.get_default(field)
+        _result = super().clear(field, raw)
+        if _result != _default:
+            return _result
         _field = self.get_mapping(field)
         if field in self.list_fields:
-            return raw.get(_field, super().clear(field, raw))
-        try:
-            return ' '.join(raw.get(_field))
-        except KeyError:
-            return self.get_default(field)
+            return raw.get(_field, _default)
+        return ' '.join(raw.get(_field, []))
 
 
 class IsiRecordIterator(RecordIterator):
