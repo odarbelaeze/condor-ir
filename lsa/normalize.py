@@ -26,7 +26,10 @@ class Normalizer(object):
     default_language = 'spanish'
 
     def __init__(self, language=None, tokenizer=None):
-        self.language = language.lower() or self.default_language
+        if language is not None:
+            self.language = language.lower()
+        else:
+            self.language = self.default_language
         self.tokenizer = tokenizer or self.default_tokenizer()
 
     def apply_to(self, text):

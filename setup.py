@@ -17,7 +17,7 @@ def get_install_requires():
         'numpy>=1.9.2',
         'pymongo>=3.2',
         'scipy>=0.16.0',
-        'pyenchang>=1.6',
+        'pyenchant>=1.6',
     ]
 
 
