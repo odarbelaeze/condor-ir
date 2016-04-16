@@ -18,7 +18,7 @@ to extract that information will go into the :class:`~lsa.record.RecordParser`
 child classes.
 
 
-.. autoclass:: lsa.record.RecordParser
+.. autoclass:: lsa.record.base.RecordParser
   :members:
 
 
@@ -27,7 +27,7 @@ Furthermore, the :class:`~lsa.record.RecordParser` is complemented by the
 over a file containing several records and returning (yielding) all the
 records in a memory efficient fashion.
 
-.. autoclass:: lsa.record.RecordIterator
+.. autoclass:: lsa.record.base.RecordIterator
   :members:
   :special-members: __iter__
 
@@ -54,7 +54,7 @@ Parser implementations
   :inherited-members:
 
 Iterator implementations
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. autoclass:: lsa.record.FroacRecordIterator
   :members:
@@ -75,7 +75,7 @@ Iterator implementations
 The utility module
 ==================
 
-.. automodule:: lsa.util
+.. automodule:: lsa.record.util
   :members:
 
 
@@ -96,26 +96,17 @@ but it can be reduced in the future. The populate script, which yields the
 `lsapopulate` command is located in the :mod:`~lsa.scripts.populate` module,
 and contains the information descripted bellow.
 
-.. automodule:: lsa.scripts.populate
-  :members:
-
 .. autofunction:: lsa.scripts.populate.lsapopulate
 
 The model script, which yields the `lsamodel` command is located in the
 :mod:`~lsa.scripts.model` module, and contains the information descripted
 bellow.
 
-.. automodule:: lsa.scripts.model
-  :members:
-
 .. autofunction:: lsa.scripts.model.lsamodel
 
 The query script, which yields the `lsaquery` command is located in the
 :mod:`~lsa.scripts.query` module, and contains the information descripted
 bellow.
-
-.. automodule:: lsa.scripts.query
-  :members:
 
 .. autofunction:: lsa.scripts.query.lsaquery
 

@@ -1,11 +1,11 @@
 import os
 import pytest
 
-from lsa.record import FroacRecordParser
-from lsa.record import IsiRecordParser
 from lsa.record import BibtexRecordParser
 from lsa.record import FroacRecordIterator
+from lsa.record import FroacRecordParser
 from lsa.record import IsiRecordIterator
+from lsa.record import IsiRecordParser
 
 
 @pytest.fixture(scope='module')
@@ -17,9 +17,17 @@ def froac_text(request):
 <lom:description>description</lom:description>
 <lom:keyword>keyword1</lom:keyword>
 <lom:keyword>keyword2</lom:keyword>
+<lom:language>english</lom:language>
 </lom:lom>
 </record>
     '''
+
+
+@pytest.fixture(scope="module")
+def isi_data():
+    with open('data/isi/isi.txt', 'r') as f:
+        data = f.read()
+    return data
 
 
 @pytest.fixture(scope='module')
@@ -135,18 +143,17 @@ ER
 
 @pytest.fixture(scope='module')
 def raw_bibtex():
-    return '''\
+    return r'''\
 @book{Duque2014,
 author = {Duque, N\'{e}stor and Ovalle, Demetrio and Moreno, Juli\'{a}n},
 file = {:F$\backslash$:/MENDELEY/TodosMendeley/Duque, Ovalle, Moreno - 2014 - \
-Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para \
-Todos.pdf:pdf},
+Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para Todos.pdf:pdf},
 keywords = {gaia1},
 mendeley-tags = {gaia1},
 pages = {173},
-title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
-para Todos}},
-year = {2014}
+title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para Todos}},
+abstract = {\'{E}rase una vez},
+year = {2014},
 }
 '''
 
@@ -224,6 +231,13 @@ def test_isi_parser_yields_title(isi_text):
     assert ' '.join(title) == data['title']
 
 
+def test_isi_parser_yields_keywords(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    print(data['keywords'])
+    assert 2 == len(data['keywords'])
+
+
 def test_froac_record_iterator():
     filename = os.path.join(
         'data', 'froac', 'froac1', '1Flujo de Maquinaria.xml')
@@ -236,9 +250,25 @@ def test_froac_record_iterator():
 def test_isi_record_iterator():
     filename = os.path.join('data', 'isi', 'isi.txt')
     filename = os.path.abspath(filename)
-    iterator = IsiRecordIterator(filename)
+    iterator = iter(IsiRecordIterator(filename))
     assert iterator is not None
     assert len(list(iterator))
+
+
+def test_isi_record_iterator_yields_keywords():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = iter(IsiRecordIterator(filename))
+    data = next(iterator)
+    assert 1 < len(data['keywords'])
+
+
+def test_isi_record_iterator_yields_correct_elements():
+    filename = os.path.join('data', 'isi', 'isi.txt')
+    filename = os.path.abspath(filename)
+    iterator = iter(IsiRecordIterator(filename))
+    record = next(iterator)
+    assert 'Study of extrusion behaviour and porridge' in record['title']
 
 
 def test_bibtex_record_is_instantiable():
@@ -256,5 +286,28 @@ Conocimiento para Todos''' == data['title']
 def test_bibtex_parser_yields_keywords(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
-    print(data)
     assert ['gaia1'] == data['keywords']
+
+
+def test_isi_parser_yields_language(isi_text):
+    parser = IsiRecordParser()
+    data = parser.parse(isi_text)
+    assert 'english' == data['language'].lower()
+
+
+def test_froac_parser_yields_language(froac_text):
+    parser = FroacRecordParser()
+    data = parser.parse(froac_text)
+    assert 'english' == data['language'].lower()
+
+
+def test_bibtex_parser_yields_language(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert 'spanish' == data['language'].lower()
+
+
+def test_bibtex_parser_removes_accents(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert 'érase una vez' == data['description'].lower()

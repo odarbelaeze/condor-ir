@@ -1,7 +1,7 @@
 import os
 
-from setuptools import setup
 from setuptools import find_packages
+from setuptools import setup
 
 
 def get_install_requires():
@@ -10,19 +10,20 @@ def get_install_requires():
             'mock>=1.3.0',
         ]
     return [
-        'nltk>=3.1',
-        'pymongo>=3.2',
-        'numpy>=1.9.2',
-        'scipy>=0.16.0',
-        'marshmallow>=2.4.2',
-        'click>=6.2',
         'bibtexparser>=0.6.2',
+        'click>=6.2',
+        'marshmallow>=2.4.2',
+        'nltk>=3.1',
+        'numpy>=1.9.2',
+        'pymongo>=3.2',
+        'scipy>=0.16.0',
+        'pyenchant>=1.6',
     ]
 
 
 setup(
     name='lsa-program',
-    version='0.2.1',
+    version='0.2.2',
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -44,7 +45,7 @@ setup(
     lsaquery=lsa.scripts.query:lsaquery
     ''',
     url='https://github.com/odarbelaeze/lsa-program',
-    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.2.1',
+    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.2.2',
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
 )

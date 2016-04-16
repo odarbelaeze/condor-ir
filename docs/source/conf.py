@@ -26,13 +26,14 @@ class ModuleMock(MagicMock):
 
 
 MOCK_MODULES = [
-    'nltk',
-    'pymongo',
-    'numpy',
-    'scipy',
-    'marshmallow',
-    'click',
     'bibtexparser',
+    'bson',
+    'click',
+    'marshmallow',
+    'nltk',
+    'numpy',
+    'pymongo',
+    'scipy',
 ]
 
 sys.modules.update((modname, ModuleMock()) for modname in MOCK_MODULES)
