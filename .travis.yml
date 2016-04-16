@@ -14,11 +14,11 @@ cache:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
-  - sudo apt-get install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
+  - sudo apt-get -qq install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
+  - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
 
 install:
-  - pip install .
+  - pip --quiet install .
 
 before_script:
   - python -m nltk.downloader snowball_data stopwords
