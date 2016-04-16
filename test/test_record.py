@@ -143,17 +143,16 @@ ER
 
 @pytest.fixture(scope='module')
 def raw_bibtex():
-    return '''\
+    return r'''\
 @book{Duque2014,
 author = {Duque, N\'{e}stor and Ovalle, Demetrio and Moreno, Juli\'{a}n},
 file = {:F$\backslash$:/MENDELEY/TodosMendeley/Duque, Ovalle, Moreno - 2014 - \
-Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para \
-Todos.pdf:pdf},
+Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para Todos.pdf:pdf},
 keywords = {gaia1},
 mendeley-tags = {gaia1},
 pages = {173},
-title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento \
-para Todos}},
+title = {{Objetos de Aprendizaje, Repositorios y Federaciones... Conocimiento para Todos}},
+abstract = {\'{E}rase una vez},
 year = {2014},
 }
 '''
@@ -306,3 +305,9 @@ def test_bibtex_parser_yields_language(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
     assert 'spanish' == data['language'].lower()
+
+
+def test_bibtex_parser_removes_accents(raw_bibtex):
+    parser = BibtexRecordParser()
+    data = parser.parse(raw_bibtex)
+    assert 'érase una vez' == data['description'].lower()

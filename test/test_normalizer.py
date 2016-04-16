@@ -4,6 +4,8 @@ from lsa.normalize import PunctuationRemover
 from lsa.normalize import Stemmer
 from lsa.normalize import StopwordRemover
 from lsa.normalize import Lowercaser
+from lsa.normalize import LatexAccentRemover
+from lsa.normalize import CompleteNormalizer
 
 
 @pytest.fixture(scope="module")
@@ -29,6 +31,16 @@ def stopwords():
 @pytest.fixture(scope="module")
 def lowercase():
     return Lowercaser()
+
+
+@pytest.fixture(scope="module")
+def latex():
+    return LatexAccentRemover()
+
+
+@pytest.fixture(scope="module")
+def complete():
+    return CompleteNormalizer()
 
 
 def test_punctuation_remover_removes_puchtuation(punctuation, punctuated):
@@ -77,3 +89,29 @@ def test_lowercase_normalizer_lowercases_tokens(lowercase):
 def test_lowercase_normalizer_keeps_all_tokens(lowercase):
     result = lowercase.apply_to('Title Cased Phrase')
     assert 'title cased phrase' == result
+
+
+def test_latex_accent_remover_removes_acents_from_vowels(latex):
+    assert 'áéíóú' == latex.apply_to(r"\'a\'e\'i\'o\'u")
+
+
+def test_latex_accent_remover_removes_acents_from_other_formats(latex):
+    assert 'áéíóú' == latex.apply_to(r"{\'a}{\'e}{\'i}{\'o}{\'u}")
+    assert 'áéíóú' == latex.apply_to(r"{\'{a}}{\'{e}}{\'{i}}{\'{o}}{\'{u}}")
+    assert 'áéíóú' == latex.apply_to(r"\'{a}\'{e}\'{i}\'{o}\'{u}")
+
+
+def test_latex_removes_acents_from_other_characters(latex):
+    assert 'ñ' == latex.apply_to(r"\~n")
+
+
+def test_latex_works_for_upercased_characters(latex):
+    assert 'Ñ' == latex.apply_to(r"\~N")
+
+
+def test_latex_accent_remover_works_with_some_cases(latex):
+    assert 'didáctica' == latex.apply_to(r"did{\'{a}}ctica")
+
+
+def test_complete_normalizer_works_with_some_cases(complete):
+    assert 'didact' == complete.apply_to(r"did{\'{a}}ctica")

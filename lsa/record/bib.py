@@ -6,18 +6,21 @@ from .base import RecordIterator
 from .base import RecordParser
 from .base import LanguageGuesser
 
+from lsa.normalize import LatexAccentRemover
+
 
 class BibtexRecordParser(RecordParser):
 
     mappings = {
-        'keywords': 'keyword',
         'description': 'abstract',
     }
 
     guesser = LanguageGuesser()
 
+    accent_remover = LatexAccentRemover()
+
     def _clear_keywords(self, raw):
-        line = raw.get(self.get_mapping('keywords'), '')
+        line = raw.get('keyword', '')
         return re.split(r'[,; ]+', line)
 
     def _clear_uuid(self, raw):
@@ -32,7 +35,11 @@ class BibtexRecordParser(RecordParser):
         return raw.get('language', self.guesser.guess(data))
 
     def clear(self, field, raw):
-        return raw.get(field, super().clear(field, raw))
+        mapping = self.get_mapping(field)
+        cleared = raw.get(mapping, super().clear(field, raw))
+        if field in self.list_fields:
+            return [self.accent_remover.apply_to(item) for item in cleared]
+        return self.accent_remover.apply_to(cleared)
 
     def parse(self, raw):
         if isinstance(raw, str):

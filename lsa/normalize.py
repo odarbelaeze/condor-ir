@@ -100,7 +100,94 @@ class Lowercaser(Normalizer):
         return super().apply_to(text.lower())
 
 
-class CompleteNormalizer(PunctuationRemover,
+class LatexAccentRemover(Normalizer):
+
+    '''
+    Removes latex accents like `\\'{a}` and makes them unicode chars `á`.
+    '''
+
+    accents = {
+        '\'': {
+            'a': 'á',
+            'e': 'é',
+            'i': 'í',
+            'o': 'ó',
+            'u': 'ú',
+        },
+        '`': {
+            'a': 'à',
+            'e': 'è',
+            'i': 'ì',
+            'o': 'ò',
+            'u': 'ù',
+        },
+        '~': {
+            'n': 'ñ',
+            'o': 'õ',
+            'a': 'ã',
+        },
+        '^': {
+            'a': 'â',
+            'e': 'ê',
+            'i': 'î',
+            'o': 'ô',
+            'u': 'û',
+        },
+        '"': {
+            'a': 'ä',
+            'e': 'ë',
+            'i': 'ï',
+            'o': 'ö',
+            'u': 'ü',
+            'y': 'ÿ',
+        },
+        'a': {
+            'e': 'æ',
+        },
+        'c': {
+            'c': 'ç',
+        },
+        'o': {
+            'e': 'œ',
+        },
+        's': {
+            's': 'ß',
+        },
+        'v': {
+            's': 'š',
+        },
+    }
+
+    formats = [
+        r"{{\{accent}{{{character}}}}}",
+        r"{{\{accent}{character}}}",
+        r"\{accent}{{{character}}}",
+        r"\{accent}{character}",
+    ]
+
+    def _replacements(self):
+        for accent, cases in self.accents.items():
+            for character, modification in cases.items():
+                for format_ in self.formats:
+                    latex = format_.format(accent=accent, character=character)
+                    yield (
+                        latex,
+                        modification,
+                    )
+                    yield (
+                        latex.upper(),
+                        modification.upper(),
+                    )
+
+    def apply_to(self, text):
+        result = text
+        for old, new in self._replacements():
+            result = result.replace(old, new)
+        return super().apply_to(result)
+
+
+class CompleteNormalizer(LatexAccentRemover,
+                         PunctuationRemover,
                          Lowercaser,
                          StopwordRemover,
                          Stemmer):
