@@ -41,6 +41,3 @@ def test_language_guesser_preferences(guesser):
     assert 'english' == guesser.guess(
         'Communications in Computer and Information Science'
     )
-    assert 'english' == guesser.guess(
-        'M{\'{e}}todos de investigaci{\'{o}}n'
-    )
