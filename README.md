@@ -31,6 +31,20 @@ pip install -U lsa-program
 the `-U` parameter will upgrade the package to the latest version, a very
 recomendable step for a unstable package.
 
+The language support requires the enchant engine as well as some dictionaries,
+for that you can install using your package manager or external tool:
+
+```bash
+# Arch
+sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
+```
+
+```bash
+# Ubuntu
+sudo apt-get install enchant \
+                     aspell-es aspell-en aspell-fr aspell-it aspell-pt
+```
+
 ## Seting up your database
 
 After installing the program you will have three basic commands at your
