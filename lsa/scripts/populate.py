@@ -74,13 +74,17 @@ collection of the {} database...'.format(
         sys.exit(1)
 
     with collection('records', dbname=dbname, delete=wipedb) as records:
+        inserted = {}
         for filename in glob.glob(pattern, recursive=True):
             if verbose:
                 click.echo('I\'m processing file {}...'.format(filename))
             rs = rs_class(filename)
             for record in rs:
+                if record['uuid'] in inserted:
+                    continue
                 try:
                     records.insert_one(record)
+                    inserted[record['uuid']] = True
                 except DuplicateKeyError:
                     continue
 

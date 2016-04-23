@@ -1,3 +1,5 @@
+SQLAlchemg==1.0.12
+alembic==0.8.6
 bibtexparser>=0.6.2
 click>=6.2
 cov-core>=1.15.0
@@ -5,9 +7,9 @@ coverage>=3.7.1
 marshmallow>=2.4.2
 nltk>=3.1
 numpy>=1.10.4
+psycopg2==2.6.1
 py>=1.4.29
 pyenchant>=1.6
-pymongo>=3.2
 pytest-cov>=1.8.1
 pytest>=2.8.0
 scipy>=0.17.0
