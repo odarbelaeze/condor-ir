@@ -32,4 +32,4 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_column('term_document_matrix')
+    op.drop_table('term_document_matrix')
