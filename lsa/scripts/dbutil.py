@@ -8,6 +8,12 @@ manager.
 import contextlib
 import pymongo
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import (
+    scoped_session,
+    sessionmaker,
+)
+
 
 # That global mongo client
 MONGO_CLIENT = pymongo.MongoClient('localhost', 27017)
@@ -43,3 +49,9 @@ def collection(name, dbname='program', delete=True):
         records.delete_many({})
     records.create_index([('uuid', pymongo.ASCENDING)], unique=True)
     yield records
+
+
+def session():
+    return scoped_session(sessionmaker(bind=create_engine(
+        'postgresql://lsaprogram:@localhost/lsaprogram'
+    )))

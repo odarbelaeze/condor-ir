@@ -13,8 +13,10 @@ from lsa.record import BibtexRecordIterator
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
 
-from .dbutil import collection
-from .dbutil import collection_name
+from .dbutil import session
+
+from lsa.models import Bibliography
+from lsa.models import BibliographySet
 
 
 def recordset_class(name):
@@ -32,6 +34,13 @@ def recordset_class(name):
     raise NotImplementedError('{} parser is not implemented yet'.format(name))
 
 
+def describe_bibset(kind, pattern):
+    desc = 'Bibliography set created from {kind} files ussing {pattern}'
+    return BibliographySet(
+        description=desc.format(kind=kind, pattern=pattern)
+    )
+
+
 @click.command()
 @click.argument('pattern')
 @click.option('--xml', 'kind', flag_value='xml', default=True,
@@ -42,13 +51,11 @@ def recordset_class(name):
               help='Use the isi plain text parser (default xml)')
 @click.option('--bib', 'kind', flag_value='bib',
               help='Use the bibtex parser (default xml)')
-@click.option('--wipedb/--no-wipedb', default=True,
-              help='Wipe existing database.')
 @click.option('--dbname', default='program',
               help='Name of the mongo database to use to store the records')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsapopulate(pattern, kind, wipedb, dbname, verbose):
+def lsapopulate(pattern, kind, dbname, verbose):
     '''
     Populates a mongo database collection with all the records it can find
     in the files matching the provided `PATTERN`, the parser will be determined
@@ -61,33 +68,36 @@ def lsapopulate(pattern, kind, wipedb, dbname, verbose):
     click.echo('I\'m looking for {} records in files matching {}'.format(
         kind, pattern))
 
-    if wipedb:
-        click.echo('I will delete all previous records in the records \
-collection of the {} database...'.format(
-            collection_name(dbname))
-        )
-
     try:
         rs_class = recordset_class(kind)
     except NotImplementedError as e:
         click.echo('Sadly, ' + e.message)
         sys.exit(1)
 
-    with collection('records', dbname=dbname, delete=wipedb) as records:
-        inserted = {}
-        for filename in glob.glob(pattern, recursive=True):
-            if verbose:
-                click.echo('I\'m processing file {}...'.format(filename))
-            rs = rs_class(filename)
-            for record in rs:
-                if record['uuid'] in inserted:
-                    continue
-                try:
-                    records.insert_one(record)
-                    inserted[record['uuid']] = True
-                except DuplicateKeyError:
-                    continue
+    db = session()
+    bibset = describe_bibset(kind, pattern)
+    db.add(bibset)
+    db.commit()
 
-        click.echo('And... I\'m done')
-        click.echo('The database contains {} records'.format(
-            records.count()))
+    inserted = {}
+    for filename in glob.glob(pattern, recursive=True):
+        if verbose:
+            click.echo('I\'m processing file {}...'.format(filename))
+        rs = rs_class(filename)
+        for record in rs:
+            if record['uuid'] in inserted:
+                continue
+            try:
+                record['hash'] = record.pop('uuid')
+                db.add(Bibliography(bibliography_set=bibset, **record))
+                db.commit()
+                inserted[record['hash']] = True
+            except DuplicateKeyError:
+                continue
+
+    click.echo('And... I\'m done')
+    click.echo('The database contains {} records'.format(
+        db.query(Bibliography).join(BibliographySet).
+        filter(BibliographySet.eid == bibset.eid).
+        count()
+    ))
