@@ -24,7 +24,7 @@ def upgrade():
                   sa.ForeignKey('bibliography_set.eid')),
         sa.Column('created', sa.DateTime, nullable=False),
         sa.Column('modified', sa.DateTime, nullable=False),
-        sa.Column('hash', sa.Unicode(40), nullable=False),
+        sa.Column('hash', sa.Unicode(40), nullable=False, index=True),
         sa.Column('title', sa.Unicode(512), nullable=False),
         sa.Column('description', sa.Unicode, nullable=False),
         sa.Column('keywords', sa.Unicode, nullable=False),

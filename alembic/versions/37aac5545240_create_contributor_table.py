@@ -23,7 +23,7 @@ def upgrade():
         sa.Column('created', sa.DateTime, nullable=False),
         sa.Column('modified', sa.DateTime, nullable=False),
         sa.Column('name', sa.Unicode(512), nullable=False),
-        sa.Column('email', sa.Unicode(512), nullable=False),
+        sa.Column('email', sa.Unicode(512), nullable=False, index=True),
         sa.Column('language', sa.Unicode(16), nullable=False),
         sa.Column('topics', sa.Unicode(512), nullable=False),
     )
