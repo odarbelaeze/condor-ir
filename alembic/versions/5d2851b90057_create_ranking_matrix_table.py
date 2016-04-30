@@ -19,10 +19,10 @@ import sqlalchemy as sa
 def upgrade():
     op.create_table(
         'ranking_matrix',
-        sa.Column('eid', sa.Unicode(25), primary_key=True),
+        sa.Column('eid', sa.Unicode(40), primary_key=True),
         sa.Column('created', sa.DateTime, nullable=False),
         sa.Column('modified', sa.DateTime, nullable=False),
-        sa.Column('term_document_matrix_eid', sa.Unicode(25),
+        sa.Column('term_document_matrix_eid', sa.Unicode(40),
                   sa.ForeignKey('term_document_matrix.eid')),
         sa.Column('type', sa.Unicode(16), nullable=False),
         sa.Column('build_options', sa.Unicode(512), nullable=False),

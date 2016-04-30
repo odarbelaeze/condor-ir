@@ -19,7 +19,7 @@ import sqlalchemy as sa
 def upgrade():
     op.create_table(
         'bibliography_set',
-        sa.Column('eid', sa.Unicode(25), primary_key=True),
+        sa.Column('eid', sa.Unicode(40), primary_key=True),
         sa.Column('created', sa.DateTime, nullable=False),
         sa.Column('modified', sa.DateTime, nullable=False),
         sa.Column('description', sa.Unicode, nullable=False),

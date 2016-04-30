@@ -19,12 +19,12 @@ import sqlalchemy as sa
 def upgrade():
     op.create_table(
         'query_result',
-        sa.Column('eid', sa.Unicode(25), primary_key=True),
+        sa.Column('eid', sa.Unicode(40), primary_key=True),
         sa.Column('created', sa.DateTime, nullable=False),
         sa.Column('modified', sa.DateTime, nullable=False),
-        sa.Column('query_eid', sa.Unicode(25),
+        sa.Column('query_eid', sa.Unicode(40),
                   sa.ForeignKey('query.eid')),
-        sa.Column('bibliography_eid', sa.Unicode(25),
+        sa.Column('bibliography_eid', sa.Unicode(40),
                   sa.ForeignKey('bibliography.eid')),
     )
 

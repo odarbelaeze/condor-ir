@@ -1,3 +1,4 @@
+import hashlib
 import uuid
 
 from datetime import datetime
@@ -16,14 +17,15 @@ Base = declarative_base()
 
 
 def eid_gen():
-    return '{}'.format(uuid.uuid4())[:25]
+    sha = hashlib.sha1('{}'.format(uuid.uuid4()).encode())
+    return sha.hexdigest()
 
 
 class Bibliography(Base):
 
     __tablename__ = 'bibliography'
 
-    eid = Column(Unicode(25), primary_key=True, default=eid_gen)
+    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
     created = Column(
         DateTime,
         nullable=False,
@@ -36,7 +38,7 @@ class Bibliography(Base):
         onupdate=datetime.utcnow
     )
     bibliography_set_eid = Column(
-        Unicode(25),
+        Unicode(40),
         ForeignKey('bibliography_set.eid')
     )
     hash = Column(Unicode(40), nullable=False)
@@ -56,7 +58,7 @@ class BibliographySet(Base):
 
     __tablename__ = 'bibliography_set'
 
-    eid = Column(Unicode(25), primary_key=True, default=eid_gen)
+    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
     created = Column(
         DateTime,
         nullable=False,
