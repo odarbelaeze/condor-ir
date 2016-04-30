@@ -3,17 +3,16 @@ Implements the populate script.
 '''
 
 import glob
+import itertools
 import sys
 
 import click
-
-from pymongo.errors import DuplicateKeyError
 
 from lsa.record import BibtexRecordIterator
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
 
-from .dbutil import session
+from lsa.scripts.dbutil import session
 
 from lsa.models import Bibliography
 from lsa.models import BibliographySet
@@ -41,6 +40,34 @@ def describe_bibset(kind, pattern):
     )
 
 
+def find_records(pattern, klass, verbose=False):
+    for filename in glob.glob(pattern, recursive=True):
+        if verbose:
+            click.echo('I\'m processing file {}...'.format(filename))
+        rs = klass(filename)
+        for record in rs:
+            record['hash'] = record.pop('uuid')
+            yield record
+
+
+def chunks(sequence, n):
+    seq_it = iter(sequence)
+    while True:
+        chunk = itertools.islice(seq_it, n)
+        try:
+            first_el = next(chunk)
+        except StopIteration:
+            return
+        yield itertools.chain((first_el, ), chunk)
+
+
+def existing_bibliographies(db, bibset, hashes):
+    query = db.query(Bibliography).join(BibliographySet)
+    query = query.filter(BibliographySet.eid == bibset.eid)
+    query = query.filter(Bibliography.hash.in_(hashes))
+    return query.all()
+
+
 @click.command()
 @click.argument('pattern')
 @click.option('--xml', 'kind', flag_value='xml', default=True,
@@ -51,11 +78,11 @@ def describe_bibset(kind, pattern):
               help='Use the isi plain text parser (default xml)')
 @click.option('--bib', 'kind', flag_value='bib',
               help='Use the bibtex parser (default xml)')
-@click.option('--dbname', default='program',
-              help='Name of the mongo database to use to store the records')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsapopulate(pattern, kind, dbname, verbose):
+@click.option('--chunk-size', default=1000,
+              help='Insert into db in chunks')
+def lsapopulate(pattern, kind, verbose, chunk_size):
     '''
     Populates a mongo database collection with all the records it can find
     in the files matching the provided `PATTERN`, the parser will be determined
@@ -79,21 +106,27 @@ def lsapopulate(pattern, kind, dbname, verbose):
     db.add(bibset)
     db.commit()
 
-    inserted = {}
-    for filename in glob.glob(pattern, recursive=True):
-        if verbose:
-            click.echo('I\'m processing file {}...'.format(filename))
-        rs = rs_class(filename)
-        for record in rs:
-            if record['uuid'] in inserted:
-                continue
-            try:
-                record['hash'] = record.pop('uuid')
-                db.add(Bibliography(bibliography_set=bibset, **record))
-                db.commit()
-                inserted[record['hash']] = True
-            except DuplicateKeyError:
-                continue
+    click.echo('I\'m writting to {bibset.eid}'.format(bibset=bibset))
+
+    records = find_records(pattern, rs_class, verbose=verbose)
+    for chunk in chunks(records, chunk_size):
+        record_hash = {
+            record['hash']: record
+            for record in chunk
+        }
+
+        # Filter out existing bibliography records
+        for bib in existing_bibliographies(db, bibset, record_hash.keys()):
+            record_hash.pop(bib.hash)
+
+        db.bulk_insert_mappings(
+            Bibliography,
+            [
+                dict(bibliography_set_eid=bibset.eid, **record)
+                for record in record_hash.values()
+            ]
+        )
+        db.commit()
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(

@@ -4,6 +4,7 @@ be able to remove punctuation, filter out stopwords and maybe transform some
 latex accents into unicode accent characters.
 '''
 
+import re
 import string
 
 from nltk.corpus import stopwords
@@ -165,6 +166,12 @@ class LatexAccentRemover(Normalizer):
         r"\{accent}{character}",
     ]
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.accent_re = re.compile(
+            r'\\[{patterns}]'.format(patterns=''.join(self.accents.keys()))
+        )
+
     def _replacements(self):
         for accent, cases in self.accents.items():
             for character, modification in cases.items():
@@ -182,6 +189,8 @@ class LatexAccentRemover(Normalizer):
     def apply_to(self, text):
         result = text
         for old, new in self._replacements():
+            if self.accent_re.search(result) is None:
+                break
             result = result.replace(old, new)
         return super().apply_to(result)
 
