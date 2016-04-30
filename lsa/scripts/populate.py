@@ -12,7 +12,7 @@ from lsa.record import BibtexRecordIterator
 from lsa.record import FroacRecordIterator
 from lsa.record import IsiRecordIterator
 
-from lsa.scripts.dbutil import session
+from lsa.dbutil import session
 
 from lsa.models import Bibliography
 from lsa.models import BibliographySet
