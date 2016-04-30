@@ -15,8 +15,8 @@ import scipy
 
 from lsa.normalize import CompleteNormalizer
 
-from .dbutil import collection
-from .dbutil import collection_name
+from lsa.dbutil import collection
+from lsa.dbutil import collection_name
 
 
 def get_tokens(record, fields=None, list_fields=None):
