@@ -37,10 +37,12 @@ class Bibliography(Base):
         default=datetime.utcnow,
         onupdate=datetime.utcnow
     )
+
     bibliography_set_eid = Column(
         Unicode(40),
         ForeignKey('bibliography_set.eid')
     )
+
     hash = Column(Unicode(40), nullable=False)
     title = Column(Unicode(512), nullable=False)
     description = Column(Unicode, nullable=False)
@@ -70,9 +72,85 @@ class BibliographySet(Base):
         default=datetime.utcnow,
         onupdate=datetime.utcnow
     )
+
     description = Column(Unicode, nullable=False)
 
     bibliographies = relationship(
         'Bibliography',
         back_populates='bibliography_set'
     )
+
+    term_document_matrices = relationship(
+        'TermDocumentMatrix',
+        back_populates='bibliography_set'
+    )
+
+
+class RankingMatrix(Base):
+
+    __tablename__ = 'ranking_matrix',
+
+    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
+    created = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow
+    )
+    modified = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+
+    term_document_matrix_eid = Column(
+        Unicode(40),
+        ForeignKey('term_document_matrix.eid')
+    )
+
+    type = Column(Unicode(16), nullable=False)
+    build_options = Column(Unicode(512), nullable=False)
+    ranking_matrix_path = Column(Unicode(512), nullable=False)
+
+    # term_document_matrix = relationship(
+    #     'TermDocumentMatrix',
+    #     back_populates='ranking_matrices',
+    # )
+
+
+class TermDocumentMatrix(Base):
+
+    __tablename__ = 'term_document_matrix',
+
+    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
+    created = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow
+    )
+    modified = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+
+    bibliography_set_eid = Column(
+        Unicode(40),
+        ForeignKey('bibliography_set.eid')
+    )
+
+    bibliography_options = Column(Unicode(512), nullable=False)
+    processing_options = Column(Unicode(512), nullable=False)
+    term_list_path = Column(Unicode(512), nullable=False)
+    tdidf_matrix_path = Column(Unicode(512), nullable=False)
+
+    bibliography_set = relationship(
+        'BibliographySet',
+        back_populates='term_document_matrices'
+    )
+
+    # ranking_matrices = relationship(
+    #     'RankingMatrix',
+    #     back_populates='term_document_matrix',
+    # )

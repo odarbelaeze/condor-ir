@@ -64,6 +64,7 @@ tags
 
 # Model files
 models/
+matrices/
 
 # Work related files
 .timesheet

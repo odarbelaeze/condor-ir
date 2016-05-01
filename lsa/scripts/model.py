@@ -4,19 +4,18 @@ taking in all the present records.
 '''
 
 import collections
-import datetime
+import hashlib
 import itertools
 import os
-import uuid
+import sys
 
 import click
 import numpy
 import scipy
 
+from lsa.dbutil import session
+from lsa.models import BibliographySet
 from lsa.normalize import CompleteNormalizer
-
-from lsa.dbutil import collection
-from lsa.dbutil import collection_name
 
 
 def get_tokens(record, fields=None, list_fields=None):
@@ -26,46 +25,44 @@ def get_tokens(record, fields=None, list_fields=None):
     for field in fields:
         tokens.extend(record.get(field, '').split())
     for field in list_fields:
-        for item in record.get(field, []):
-            tokens.extend(item.split())
+        value = record.get(field, '{""}')
+        if value == '{""}':
+            continue
+        tokens.extend(value[1:-1].split(','))
     return tokens
 
 
-def raw_data(record):
-    normalizer = CompleteNormalizer(language=record.get('language', None))
-    return [normalizer.apply_to(token) for token in get_tokens(record)]
+def raw_data(bib):
+    normalizer = CompleteNormalizer(language=bib.language)
+    return [normalizer.apply_to(token) for token in get_tokens(bib.__dict__)]
 
 
-def word_set(dbname):
+def word_set(bibset):
     def words():
-        with collection('records', dbname=dbname, delete=False) as records:
-            for record in records.find():
-                yield raw_data(record)
+        for bib in bibset.bibliographies:
+            yield raw_data(bib)
     return sorted(set(itertools.chain.from_iterable(words())))
 
 
-def records(dbname):
-    with collection('records', dbname=dbname, delete=False) as records:
-        for record in records.find():
-            yield record['_id']
+def records(bibset):
+    for bib in bibset.bibliographies:
+        yield bib.eid
 
 
-def matrix(dbname, words):
+def matrix(bibset, words):
     word_dict = {word: pos for pos, word in enumerate(words)}
-    with collection('records', dbname=dbname, delete=False) as records:
-        for ind, record in enumerate(records.find()):
-            raw = list(raw_data(record))
-            frequency = collections.Counter(raw)
-            for word, freq in frequency.items():
-                yield ind, word_dict[word], freq
+    for ind, bib in enumerate(bibset.bibliographies):
+        raw = list(raw_data(bib))
+        frequency = collections.Counter(raw)
+        for word, freq in frequency.items():
+            yield ind, word_dict[word], freq
 
 
 @click.command()
-@click.option('--dbname', default='program',
-              help='Name of the mongo database to use to store the records')
+@click.option('--target', default=None, type=str)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsamodel(dbname, verbose):
+def lsamodel(target, verbose):
     '''
     Creates a model for all the records presentin in the record collection of
     the database specified in `dbname`.
@@ -74,27 +71,45 @@ def lsamodel(dbname, verbose):
     `--dbname` flag.
     '''
 
-    click.echo('I will generate a model for the {} database...'.format(
-        collection_name(dbname)))
+    db = session()
+    if target is None:
+        bibset = db.query(BibliographySet).order_by('created desc').first()
+    else:
+        query = db.query(BibliographySet)
+        query = query.filter(BibliographySet.eid.like(target + '%'))
+        bibset = query.first()
 
-    words = word_set(dbname)
+    if bibset is None:
+        click.echo('Please create a bibset first')
+        sys.exit(1)
+
+    click.echo('I will generate a model for the {} bibset...'.format(
+        bibset.eid))
+
+    words = word_set(bibset)
+    nwords = len(words)
     click.echo('I found {} unique word toquens in the database...'.format(
         len(words)))
 
-    mat = matrix(dbname, words)
-    rowid, colid, freq = zip(*mat)
-    sparse = scipy.sparse.csr_matrix((freq, (rowid, colid)), dtype='f').T
+    ndocs = len(bibset.bibliographies)
+    click.echo(
+        'I found {} unique documents toquens in the database...'.format(
+            ndocs
+        )
+    )
+
+    frequency = numpy.zeros((ndocs, nwords), dtype=int)
+    for row, col, freq in matrix(bibset, words):
+        frequency[row, col] = freq
 
     if verbose:
-        nwords, nrecs = sparse.shape
+        nwords, nrecs = matrix.shape
         click.echo('I\'ve built the frequency matrix with the folowing traits')
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
-        click.echo('sparcity: {:0.2f}%'.format(
-            sparse.nnz / (nwords * nrecs) * 100))
 
     # U, S, V = scipy.sparse.linalg.svds(sparse, 562)
-    U, S, V = scipy.linalg.svd(sparse.todense(), full_matrices=False)
+    U, S, V = scipy.linalg.svd(frequency, full_matrices=False)
 
     ss = S / numpy.sum(S)
     ss = numpy.cumsum(ss)
@@ -111,19 +126,26 @@ def lsamodel(dbname, verbose):
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
 
+    if not os.path.exists('matrices'):
+        os.mkdir('matrices')
+
+    matrix_hash = hashlib.sha1(
+        '{}{}{}{}'.format(bibset.eid, bibset.modified, ndocs, nwords)
+        .encode()
+    ).hexdigest()
+
+    matrix_filename = os.path.join('matrices', '{}.npy'.format(matrix_hash))
+    click.echo('Storing the matrix at {}'.format(matrix_filename))
+    numpy.save(matrix_filename, matrix)
+
     if not os.path.exists('models'):
         os.mkdir('models')
 
-    model_uuid = '{}'.format(uuid.uuid4())
-    model_filename = os.path.join('models', '{}.npy'.format(model_uuid))
+    model_hash = hashlib.sha1(
+        '{}{}{}{}lsa'.format(bibset.eid, bibset.modified, ndocs, nwords)
+        .encode()
+    ).hexdigest()
+
+    model_filename = os.path.join('models', '{}.npy'.format(model_hash))
     click.echo('Storing the model at {}'.format(model_filename))
     numpy.save(model_filename, acoted)
-
-    with collection('models', dbname=dbname, delete=False) as models:
-        models.insert_one({
-            'uuid': model_uuid,
-            'file': os.path.abspath(model_filename),
-            'words': words,
-            'docs': list(records(dbname)),
-            'created_at': datetime.datetime.now(),
-        })
