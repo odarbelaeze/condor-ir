@@ -46,7 +46,6 @@ def find_records(pattern, klass, verbose=False):
             click.echo('I\'m processing file {}...'.format(filename))
         rs = klass(filename)
         for record in rs:
-            record['hash'] = record.pop('uuid')
             yield record
 
 

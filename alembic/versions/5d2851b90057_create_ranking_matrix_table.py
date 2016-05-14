@@ -24,7 +24,7 @@ def upgrade():
         sa.Column('modified', sa.DateTime, nullable=False),
         sa.Column('term_document_matrix_eid', sa.Unicode(40),
                   sa.ForeignKey('term_document_matrix.eid')),
-        sa.Column('type', sa.Unicode(16), nullable=False),
+        sa.Column('kind', sa.Unicode(16), nullable=False),
         sa.Column('build_options', sa.Unicode(512), nullable=False),
         sa.Column('ranking_matrix_path', sa.Unicode(512), nullable=False),
     )

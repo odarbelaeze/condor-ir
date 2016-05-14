@@ -13,7 +13,7 @@ from sqlalchemy import (
 )
 
 
-Base = declarative_base()
+DeclarativeBase = declarative_base()
 
 
 def eid_gen():
@@ -21,7 +21,7 @@ def eid_gen():
     return sha.hexdigest()
 
 
-class Bibliography(Base):
+class Bibliography(DeclarativeBase):
 
     __tablename__ = 'bibliography'
 
@@ -56,7 +56,7 @@ class Bibliography(Base):
     )
 
 
-class BibliographySet(Base):
+class BibliographySet(DeclarativeBase):
 
     __tablename__ = 'bibliography_set'
 
@@ -86,41 +86,9 @@ class BibliographySet(Base):
     )
 
 
-class RankingMatrix(Base):
+class TermDocumentMatrix(DeclarativeBase):
 
-    __tablename__ = 'ranking_matrix',
-
-    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
-    created = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
-    modified = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow
-    )
-
-    term_document_matrix_eid = Column(
-        Unicode(40),
-        ForeignKey('term_document_matrix.eid')
-    )
-
-    type = Column(Unicode(16), nullable=False)
-    build_options = Column(Unicode(512), nullable=False)
-    ranking_matrix_path = Column(Unicode(512), nullable=False)
-
-    # term_document_matrix = relationship(
-    #     'TermDocumentMatrix',
-    #     back_populates='ranking_matrices',
-    # )
-
-
-class TermDocumentMatrix(Base):
-
-    __tablename__ = 'term_document_matrix',
+    __tablename__ = 'term_document_matrix'
 
     eid = Column(Unicode(40), primary_key=True, default=eid_gen)
     created = Column(
@@ -150,7 +118,39 @@ class TermDocumentMatrix(Base):
         back_populates='term_document_matrices'
     )
 
-    # ranking_matrices = relationship(
-    #     'RankingMatrix',
-    #     back_populates='term_document_matrix',
-    # )
+    ranking_matrices = relationship(
+        'RankingMatrix',
+        back_populates='term_document_matrix',
+    )
+
+
+class RankingMatrix(DeclarativeBase):
+
+    __tablename__ = 'ranking_matrix',
+
+    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
+    created = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow
+    )
+    modified = Column(
+        DateTime,
+        nullable=False,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )
+
+    term_document_matrix_eid = Column(
+        Unicode(40),
+        ForeignKey('term_document_matrix.eid')
+    )
+
+    kind = Column(Unicode(16), nullable=False)
+    build_options = Column(Unicode(512), nullable=False)
+    ranking_matrix_path = Column(Unicode(512), nullable=False)
+
+    term_document_matrix = relationship(
+        'TermDocumentMatrix',
+        back_populates='ranking_matrices',
+    )

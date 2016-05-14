@@ -34,7 +34,7 @@ class FroacRecordParser(RecordParser):
         for keyword in keywords:
             yield keyword.firstChild.nodeValue
 
-    def _clear_uuid(self, raw):
+    def _clear_hash(self, raw):
         sha = hashlib.sha1()
         sha.update(raw.toxml().encode('utf-8'))
         return sha.hexdigest()
