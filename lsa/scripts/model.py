@@ -14,7 +14,11 @@ import numpy
 import scipy
 
 from lsa.dbutil import session
-from lsa.models import BibliographySet
+from lsa.models import (
+    BibliographySet,
+    TermDocumentMatrix,
+    RankingMatrix
+)
 from lsa.normalize import CompleteNormalizer
 
 
@@ -135,8 +139,22 @@ def lsamodel(target, verbose):
     ).hexdigest()
 
     matrix_filename = os.path.join('matrices', '{}.npy'.format(matrix_hash))
-    click.echo('Storing the matrix at {}'.format(matrix_filename))
+    click.echo(
+        'Storing the term document matrix at {}'
+        .format(matrix_filename)
+    )
     numpy.save(matrix_filename, matrix)
+
+    if not os.path.exists('term_lists'):
+        os.mkdir('term_lists')
+
+    term_list_path = os.path.join('term_lists', '{}.txt'.format(matrix_hash))
+    click.echo(
+        'Storing the term list at {}'
+        .format(term_list_path)
+    )
+    with open(term_list_path, 'w') as file:
+        file.write('\n'.join(words))
 
     if not os.path.exists('models'):
         os.mkdir('models')
@@ -147,5 +165,24 @@ def lsamodel(target, verbose):
     ).hexdigest()
 
     model_filename = os.path.join('models', '{}.npy'.format(model_hash))
-    click.echo('Storing the model at {}'.format(model_filename))
+    click.echo(
+        'Storing the ranking matrix at {}'
+        .format(model_filename)
+    )
     numpy.save(model_filename, acoted)
+    td_matrix = TermDocumentMatrix(
+        bibliography_options='',
+        processing_options=str(CompleteNormalizer.__mro__),
+        term_list_path=term_list_path,
+        tdidf_matrix_path=matrix_filename,
+    )
+    td_matrix.bibliography_set = bibset
+    td_matrix.ranking_matrices = [
+        RankingMatrix(
+            kind='lsa',
+            build_options='',
+            ranking_matrix_path=model_filename,
+        )
+    ]
+    db.add(td_matrix)
+    db.commit()

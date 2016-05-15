@@ -65,6 +65,7 @@ tags
 # Model files
 models/
 matrices/
+term_lists/
 
 # Work related files
 .timesheet

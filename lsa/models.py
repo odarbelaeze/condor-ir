@@ -115,7 +115,7 @@ class TermDocumentMatrix(DeclarativeBase):
 
     bibliography_set = relationship(
         'BibliographySet',
-        back_populates='term_document_matrices'
+        back_populates='term_document_matrices',
     )
 
     ranking_matrices = relationship(
@@ -126,7 +126,7 @@ class TermDocumentMatrix(DeclarativeBase):
 
 class RankingMatrix(DeclarativeBase):
 
-    __tablename__ = 'ranking_matrix',
+    __tablename__ = 'ranking_matrix'
 
     eid = Column(Unicode(40), primary_key=True, default=eid_gen)
     created = Column(
