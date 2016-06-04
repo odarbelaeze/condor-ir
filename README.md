@@ -49,6 +49,7 @@ sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
 git clone https://github.com/odarbelaeze/lsa-program.git
 cd lsa-program
 alembic upgrade heads # to create the database schemas
+```
 
 ## Seting up your database
 
