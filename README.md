@@ -1,6 +1,6 @@
 # LSA Program
 
-[Acces to roadmap here:](https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3)
+Access to roadmap here: [roadmap](https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3)
 
 [![Build Status](https://travis-ci.org/odarbelaeze/lsa-program.svg?branch=master)](https://travis-ci.org/odarbelaeze/lsa-program)
 
