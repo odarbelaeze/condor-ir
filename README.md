@@ -41,6 +41,7 @@ sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
 
 ```bash
 # Ubuntu
+sudo apt-get install postgresql postgresql-contrib
 sudo apt-get install enchant \
                      aspell-es aspell-en aspell-fr aspell-it aspell-pt
 ```
