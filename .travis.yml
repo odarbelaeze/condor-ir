@@ -4,7 +4,7 @@ python:
   - "3.5"
 
 services:
-  - mongodb
+  - postgresql
 
 cache:
   pip: true
@@ -16,9 +16,12 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -qq install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
   - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
+  - sudo -H -u postgres bash -c 'createuser -s lsaprogram'
+  - sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
 
 install:
   - pip --quiet install .
+  - alembic upgrade head
 
 before_script:
   - python -m nltk.downloader snowball_data stopwords
