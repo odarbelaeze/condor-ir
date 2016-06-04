@@ -41,8 +41,14 @@ sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
 
 ```bash
 # Ubuntu
+sudo apt-get install postgresql postgresql-contrib
 sudo apt-get install enchant \
                      aspell-es aspell-en aspell-fr aspell-it aspell-pt
+sudo -H -u postgres bash -c 'createuser -s lsaprogram'
+sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
+git clone https://github.com/odarbelaeze/lsa-program.git
+cd lsa-program
+alembic upgrade heads # to create the database schemas
 ```
 
 ## Seting up your database
