@@ -9,17 +9,17 @@ engines, a.k.a., [LSA](https://en.wikipedia.org/wiki/Latent_semantic_analysis).
 The program is setted up so that it understands froac xml documents on input
 as well as plain text reccords from isi web of knowledge.
 
-You can find more information about froac repositories at
+You can find more infor    git push --set-upstream origin LSA16-Add-installation-docs-for-Arch
+mation about froac repositories at
 [http://froac.manizales.unal.edu.co/froac/](http://froac.manizales.unal.edu.co/froac/)
 and about isi web of knowledge text files at
 [the thomson reuters website](http://images.webofknowledge.com/WOK46/help/WOK/h_ml_options.html)
 
 ## Installing the lsa program package
 
-First of all you will need to get mongodb installed and running in your
-system, at the moment the program only works if mongodb is running in the
-default port (27017). You can find more information in how to install mongodb
-at [https://www.mongodb.org/](https://www.mongodb.org/).
+First of all you will need to get mongodb installed and running in your system,
+at the moment the program only works if postgresql is running on your system,
+you also need to have a database and a database user for the program.
 
 The second thing you will need is to download the program from its pypi
 repository,
@@ -36,7 +36,14 @@ for that you can install using your package manager or external tool:
 
 ```bash
 # Arch
+sudo pacman -S postgresql
 sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
+sudo service start postgresql.service # You might want to enable as well
+git clone https://github.com/odarbelaeze/lsa-program.git
+sudo -H -u postgres bash -c 'createuser -s lsaprogram'
+sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
+cd lsa-program
+alembic upgrade heads # to create the database schemas
 ```
 
 ```bash
