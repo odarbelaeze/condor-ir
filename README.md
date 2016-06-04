@@ -38,7 +38,7 @@ for that you can install using your package manager or external tool:
 
 ```bash
 # Arch
-sudo pacman -S postgresqlOl
+sudo pacman -S postgresql
 sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
 sudo service start postgresql.service # You might want to enable as well
 git clone https://github.com/odarbelaeze/lsa-program.git
