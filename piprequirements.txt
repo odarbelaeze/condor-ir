@@ -11,5 +11,4 @@ py>=1.4.29
 pyenchant>=1.6
 pytest-cov>=1.8.1
 pytest>=2.8.0
-scipy>=0.17.0
 SQLAlchemy==1.0.12

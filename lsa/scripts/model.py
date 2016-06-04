@@ -11,7 +11,6 @@ import sys
 
 import click
 import numpy
-import scipy
 
 from lsa.dbutil import session
 from lsa.models import (
@@ -112,8 +111,7 @@ def lsamodel(target, verbose):
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
 
-    # U, S, V = scipy.sparse.linalg.svds(sparse, 562)
-    U, S, V = scipy.linalg.svd(frequency, full_matrices=False)
+    U, S, V = numpy.linalg.svd(frequency, full_matrices=False)
 
     ss = S / numpy.sum(S)
     ss = numpy.cumsum(ss)

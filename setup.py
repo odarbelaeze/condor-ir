@@ -18,7 +18,6 @@ def get_install_requires():
         'numpy>=1.9.2',
         'psycopg2==2.6.1',
         'pyenchant>=1.6',
-        'scipy>=0.16.0',
         'SQLAlchemy==1.0.12',
     ]
 
