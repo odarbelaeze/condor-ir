@@ -16,10 +16,9 @@ and about isi web of knowledge text files at
 
 ## Installing the lsa program package
 
-First of all you will need to get mongodb installed and running in your
-system, at the moment the program only works if mongodb is running in the
-default port (27017). You can find more information in how to install mongodb
-at [https://www.mongodb.org/](https://www.mongodb.org/).
+First of all you will need to get mongodb installed and running in your system,
+at the moment the program only works if postgresql is running on your system,
+you also need to have a database and a database user for the program.
 
 The second thing you will need is to download the program from its pypi
 repository,
@@ -36,7 +35,12 @@ for that you can install using your package manager or external tool:
 
 ```bash
 # Arch
+sudo pacman -S postgresql
 sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
+sudo service start postgresql.service # You might want to enable as well
+git clone https://github.com/odarbelaeze/lsa-program.git
+cd lsa-program
+alembic upgrade heads # to create the database schemas
 ```
 
 ```bash
