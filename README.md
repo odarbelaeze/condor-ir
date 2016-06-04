@@ -9,7 +9,8 @@ engines, a.k.a., [LSA](https://en.wikipedia.org/wiki/Latent_semantic_analysis).
 The program is setted up so that it understands froac xml documents on input
 as well as plain text reccords from isi web of knowledge.
 
-You can find more information about froac repositories at
+You can find more infor    git push --set-upstream origin LSA16-Add-installation-docs-for-Arch
+mation about froac repositories at
 [http://froac.manizales.unal.edu.co/froac/](http://froac.manizales.unal.edu.co/froac/)
 and about isi web of knowledge text files at
 [the thomson reuters website](http://images.webofknowledge.com/WOK46/help/WOK/h_ml_options.html)
@@ -39,6 +40,8 @@ sudo pacman -S postgresql
 sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
 sudo service start postgresql.service # You might want to enable as well
 git clone https://github.com/odarbelaeze/lsa-program.git
+sudo -H -u postgres bash -c 'createuser -s lsaprogram'
+sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
 cd lsa-program
 alembic upgrade heads # to create the database schemas
 ```
