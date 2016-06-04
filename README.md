@@ -1,5 +1,7 @@
 # LSA Program
 
+[Acces to roadmap here:](https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3)
+
 [![Build Status](https://travis-ci.org/odarbelaeze/lsa-program.svg?branch=master)](https://travis-ci.org/odarbelaeze/lsa-program)
 
 [![Documentation Status](https://readthedocs.org/projects/lsa-program/badge/?version=latest)](http://lsa-program.readthedocs.org/en/latest/?badge=latest)
@@ -36,7 +38,7 @@ for that you can install using your package manager or external tool:
 
 ```bash
 # Arch
-sudo pacman -S postgresql
+sudo pacman -S postgresqlOl
 sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
 sudo service start postgresql.service # You might want to enable as well
 git clone https://github.com/odarbelaeze/lsa-program.git
