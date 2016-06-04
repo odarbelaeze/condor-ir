@@ -13,7 +13,7 @@ class IsiRecordParser(RecordParser):
         'description': 'AB',
         'keywords': 'ID',
         'language': 'LA',
-        'uuid': 'UT',
+        'hash': 'UT',
     }
 
     def parse(self, raw):

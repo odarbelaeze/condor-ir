@@ -23,7 +23,7 @@ class BibtexRecordParser(RecordParser):
         line = raw.get('keyword', '')
         return re.split(r'[,; ]+', line)
 
-    def _clear_uuid(self, raw):
+    def _clear_hash(self, raw):
         sha = hashlib.sha1()
         data = self.clear('title', raw) + self.clear('description', raw)
         sha.update(data.encode('utf-8'))

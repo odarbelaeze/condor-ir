@@ -10,20 +10,21 @@ def get_install_requires():
             'mock>=1.3.0',
         ]
     return [
+        'alembic==0.8.6',
         'bibtexparser>=0.6.2',
         'click>=6.2',
         'marshmallow>=2.4.2',
         'nltk>=3.1',
         'numpy>=1.9.2',
-        'pymongo>=3.2',
-        'scipy>=0.16.0',
+        'psycopg2==2.6.1',
         'pyenchant>=1.6',
+        'SQLAlchemy==1.0.12',
     ]
 
 
 setup(
     name='lsa-program',
-    version='0.3.0',
+    version='1.0.0',
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -45,7 +46,7 @@ setup(
     lsaquery=lsa.scripts.query:lsaquery
     ''',
     url='https://github.com/odarbelaeze/lsa-program',
-    download_url='https://github.com/odarbelaeze/lsa-program/targall/0.3.0',
+    download_url='https://github.com/odarbelaeze/lsa-program/tarball/1.0.0',
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
 )
