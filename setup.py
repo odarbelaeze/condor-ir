@@ -41,6 +41,7 @@ setup(
     ],
     entry_points='''
     [console_scripts]
+    condor=condor.scripts.cli:condor
     condorpopulate=condor.scripts.populate:condorpopulate
     condormodel=condor.scripts.model:condormodel
     condorquery=condor.scripts.query:condorquery

@@ -32,3 +32,6 @@ script:
   - condorpopulate --isi 'data/isi/**/*.txt'
   - condormodel
   - condorquery find
+  - condor bibset
+  - condor matrix
+  - condor ranking
