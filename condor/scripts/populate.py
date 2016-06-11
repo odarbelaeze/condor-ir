@@ -8,14 +8,14 @@ import sys
 
 import click
 
-from lsa.record import BibtexRecordIterator
-from lsa.record import FroacRecordIterator
-from lsa.record import IsiRecordIterator
+from condor.record import BibtexRecordIterator
+from condor.record import FroacRecordIterator
+from condor.record import IsiRecordIterator
 
-from lsa.dbutil import session
+from condor.dbutil import session
 
-from lsa.models import Bibliography
-from lsa.models import BibliographySet
+from condor.models import Bibliography
+from condor.models import BibliographySet
 
 
 def recordset_class(name):
@@ -81,14 +81,11 @@ def existing_bibliographies(db, bibset, hashes):
               help='Be more verbose')
 @click.option('--chunk-size', default=1000,
               help='Insert into db in chunks')
-def lsapopulate(pattern, kind, verbose, chunk_size):
+def condorpopulate(pattern, kind, verbose, chunk_size):
     '''
     Populates a mongo database collection with all the records it can find
     in the files matching the provided `PATTERN`, the parser will be determined
     usint the kind flags.
-
-    'lsa-' will be prepended to the database name provided thorugh the
-    `--dbname` flag.
     '''
 
     click.echo('I\'m looking for {} records in files matching {}'.format(

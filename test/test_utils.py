@@ -1,6 +1,6 @@
 import pytest
 
-from lsa.record.util import isi_text_to_dic
+from condor.record.util import isi_text_to_dic
 
 
 @pytest.fixture(scope='module')

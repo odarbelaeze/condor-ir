@@ -7,8 +7,8 @@ dictionary and go through a file and find all the records.
 from enchant import request_dict
 from collections import OrderedDict
 
-from lsa.normalize import PunctuationRemover
-from lsa.normalize import SpaceTokenizer
+from condor.normalize import PunctuationRemover
+from condor.normalize import SpaceTokenizer
 
 
 class RecordParser(object):

@@ -1,6 +1,6 @@
 import pytest
 
-from lsa.record.base import LanguageGuesser
+from condor.record.base import LanguageGuesser
 
 
 @pytest.fixture(scope='module')
