@@ -4,7 +4,7 @@ from click.testing import CliRunner
 
 from condor.scripts.bibset import create as bibcreate
 from condor.scripts.model import create as modelcreate
-from condor.scripts.query import condorquery
+from condor.scripts.query import query
 
 from condor.scripts.cli import bibset
 from condor.scripts.cli import matrix
@@ -38,7 +38,7 @@ def test_basic_usage_model(runner):
 
 
 def test_basic_usagle_query(runner):
-    res = runner.invoke(condorquery, [])
+    res = runner.invoke(query, [])
     assert res.exit_code == 2
     assert 'Usage' in res.output
 

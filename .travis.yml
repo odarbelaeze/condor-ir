@@ -31,7 +31,7 @@ script:
   - condor bibset create 'data/froac/**/*.xml'
   - condor bibset create --isi 'data/isi/**/*.txt'
   - condor model create
-  - condorquery find
+  - condor query find
   - condor bibset
   - condor matrix
   - condor ranking

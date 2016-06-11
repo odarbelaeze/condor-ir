@@ -3,6 +3,7 @@ import click
 
 from condor.scripts.bibset import bibset
 from condor.scripts.model import model
+from condor.scripts.query import query
 
 
 @click.group()
@@ -28,6 +29,7 @@ class CondorCommand(click.MultiCommand):
         'model': model,
         'matrix': matrix,
         'ranking': ranking,
+        'query': query,
     }
 
     def list_commands(self, ctx):
