@@ -67,7 +67,14 @@ def existing_bibliographies(db, bibset, hashes):
     return query.all()
 
 
-@click.command()
+@click.group()
+def bibset():
+    """
+    Bibliography set related commands.
+    """
+
+
+@bibset.command()
 @click.argument('pattern')
 @click.option('--xml', 'kind', flag_value='xml', default=True,
               help='Use the xml parser (default)')
@@ -81,7 +88,7 @@ def existing_bibliographies(db, bibset, hashes):
               help='Be more verbose')
 @click.option('--chunk-size', default=1000,
               help='Insert into db in chunks')
-def condorpopulate(pattern, kind, verbose, chunk_size):
+def create(pattern, kind, verbose, chunk_size):
     '''
     Populates a mongo database collection with all the records it can find
     in the files matching the provided `PATTERN`, the parser will be determined
@@ -130,3 +137,7 @@ def condorpopulate(pattern, kind, verbose, chunk_size):
         filter(BibliographySet.eid == bibset.eid).
         count()
     ))
+
+
+if __name__ == "__main__":
+    bibset()

@@ -61,14 +61,23 @@ def matrix(bibset, words):
             yield ind, word_dict[word], freq
 
 
-@click.command()
-@click.option('--target', default=None, type=str)
+@click.group()
+def model():
+    """
+    Model shortcut to handle both a matrix and a ranking
+    at the same time.
+    """
+    pass
+
+
+@model.command()
+@click.option('--target', default=None, type=str,
+              help='Bibliography set to work with')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def condormodel(target, verbose):
+def create(target, verbose):
     '''
-    Creates a model for all the records presentin in the record collection of
-    the database specified in `dbname`.
+    Creates a ranking matrix and a lsa model for the specified bibset.
     '''
 
     db = session()

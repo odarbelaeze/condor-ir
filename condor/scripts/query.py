@@ -5,6 +5,7 @@ according to lsa.
 
 import collections
 import operator
+import sys
 
 import click
 import numpy
@@ -29,7 +30,7 @@ def frequency(words, tokens):
 @click.option('--target', default=None, type=str)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def condorquery(parameters, target, verbose):
+def query(parameters, target, verbose):
     '''
     Queries the database using the given parameters, the model that this
     script will pick up to do the query is the latest available model.
