@@ -6,15 +6,15 @@ Setup
 =====
 
 
-In order to use the **lsa-program** you need to setup and configure a
+In order to use the **condorir** you need to setup and configure a
 **mongodb** database and have it run in the default port as the application
 database connection is not yet configurable.
 
-You can also install the **lsa-program** from PyPI using the pip tool
+You can also install the **condorir** from PyPI using the pip tool
 
 .. code-block:: bash
 
-    $ pip install lsa-program
+    $ pip install condorir
 
 Furhtermore, for language support you need to install some dictionaries and a
 spell checking engine:
@@ -42,7 +42,7 @@ Repository preparation
 
 Once you're done with the setup, you should start preparing your documents to
 feed the index database, you can order your sources anyway you want in your
-filesystem because the **lsa-program** cli uses a glob matching interface so
+filesystem because the **condorir** cli uses a glob matching interface so
 you can find the documents you want, an example can be the example repository
 provided along with this package:
 
@@ -77,20 +77,20 @@ Populate the database
 =====================
 
 Once you have your dataset organized you can populate your database using the
-`lsapopupate` program.
+`condorpopulate` program.
 
 .. code-block:: bash
 
-  lsapopupate --xml 'data/*/*.xml'
+  condorpopulate --xml 'data/*/*.xml'
 
 You can also stipupate a database name and specify if you want to wipe the
 database, if you want to combine records from different kinds of databases, you
-can do so by reruning the `lsapopupate` tool with the `--no-wipedb` flag,
+can do so by reruning the `condorpopulate` tool with the `--no-wipedb` flag,
 
 .. code-block:: bash
 
-  lsapopupate --isi --no-wipedb 'data/*/*.isi'
-  lsapopupate --bib --no-wipedb 'data/*/*.bib'
+  condorpopulate --isi --no-wipedb 'data/*/*.isi'
+  condorpopulate --bib --no-wipedb 'data/*/*.bib'
 
 However, whenever using this approximation, beaware of the record duplication
 as the hashing algorithms used to detect duplicates are different for the
@@ -102,9 +102,9 @@ Build a model for the database
 Once your database is populated you can build a model or ranking matrix for
 your database using the command:
 
-.. code-bloc:: bash
+.. code-block:: bash
 
-  lsamodel
+  condormodel
 
 This program will create versioned models so that you can build different
 versions, or query with one model when another one is still being built.
@@ -120,7 +120,7 @@ so by:
 
 .. code-block:: bash
 
-  lsaquery search terms
+  condorquery search terms
 
 This will perform a query to the latest available model in the model database.
 
