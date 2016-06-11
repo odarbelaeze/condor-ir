@@ -1,11 +1,11 @@
 import pytest
 
-from lsa.normalize import PunctuationRemover
-from lsa.normalize import Stemmer
-from lsa.normalize import StopwordRemover
-from lsa.normalize import Lowercaser
-from lsa.normalize import LatexAccentRemover
-from lsa.normalize import CompleteNormalizer
+from condor.normalize import PunctuationRemover
+from condor.normalize import Stemmer
+from condor.normalize import StopwordRemover
+from condor.normalize import Lowercaser
+from condor.normalize import LatexAccentRemover
+from condor.normalize import CompleteNormalizer
 
 
 @pytest.fixture(scope="module")

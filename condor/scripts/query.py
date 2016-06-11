@@ -9,9 +9,9 @@ import operator
 import click
 import numpy
 
-from lsa.normalize import CompleteNormalizer
-from lsa.models import RankingMatrix
-from lsa.dbutil import session
+from condor.normalize import CompleteNormalizer
+from condor.models import RankingMatrix
+from condor.dbutil import session
 
 
 def frequency(words, tokens):
@@ -29,7 +29,7 @@ def frequency(words, tokens):
 @click.option('--target', default=None, type=str)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsaquery(parameters, target, verbose):
+def condorquery(parameters, target, verbose):
     '''
     Queries the database using the given parameters, the model that this
     script will pick up to do the query is the latest available model.

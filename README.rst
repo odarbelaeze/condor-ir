@@ -1,13 +1,11 @@
-===========
-LSA Program
-===========
+========
+condor-ir
+========
 
 Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
 
 .. image:: https://travis-ci.org/odarbelaeze/lsa-program.svg?branch=master
     :target: https://travis-ci.org/odarbelaeze/lsa-program
-
-|
 
 .. image:: https://readthedocs.org/projects/lsa-program/badge/?version=latest
     :target: (http://lsa-program.readthedocs.org/en/latest/?badge=latest
@@ -19,13 +17,12 @@ engines, a.k.a., `LSA <https://en.wikipedia.org/wiki/Latent_semantic_analysis>`_
 The program is setted up so that it understands froac xml documents on input
 as well as plain text reccords from isi web of knowledge.
 
-You can find more infor    git push --set-upstream origin LSA16-Add-installation-docs-for-Arch
-mation about froac repositories at
+You can find more information about froac repositories at
 http://froac.manizales.unal.edu.co/froac/ http://froac.manizales.unal.edu.co/froac/
 and about isi web of knowledge text files at
 `the thomson reuters website <http://images.webofknowledge.com/WOK46/help/WOK/h_ml_options.html>`_
 
-Installing the lsa program package
+Installing the condor-ir package
 ----------------------------------
 
 First of all you will need to get mongodb installed and running in your system,
@@ -37,7 +34,7 @@ repository,
 
 .. code-block:: bash
 
-    pip install pip install -U lsa-program
+    pip install -U condor-ir
 
 the `-U` parameter will upgrade the package to the latest version, a very
 recomendable step for a unstable package.
@@ -51,10 +48,10 @@ for that you can install using your package manager or external tool:
     sudo pacman -S postgresql
     sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
     sudo service start postgresql.service # You might want to enable as well
-    git clone https://github.com/odarbelaeze/lsa-program.git
-    sudo -H -u postgres bash -c 'createuser -s lsaprogram'
-    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
-    cd lsa-program
+    git clone https://github.com/odarbelaeze/condor-ir.git
+    sudo -H -u postgres bash -c 'createuser -s condor-ir'
+    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+    cd condor-ir
     alembic upgrade heads # to create the database schemas
 
 .. code-block:: bash
@@ -63,10 +60,10 @@ for that you can install using your package manager or external tool:
     sudo apt-get install postgresql postgresql-contrib
     sudo apt-get install enchant \
                      aspell-es aspell-en aspell-fr aspell-it aspell-pt
-    sudo -H -u postgres bash -c 'createuser -s lsaprogram'
-    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
-    git clone https://github.com/odarbelaeze/lsa-program.git
-    cd lsa-program
+    sudo -H -u postgres bash -c 'createuser -s condor-ir'
+    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+    git clone https://github.com/odarbelaeze/condor-ir.git
+    cd condor-ir
     alembic upgrade heads # to create the database schemas
 
 
@@ -76,14 +73,14 @@ Seting up your database
 After installing the program you will have three basic commands at your
 disposal,
 
-+------------------+--------------------------------------------------------+
-| Command          | Action                                                 |
-+==================+========================================================+
-| ``lsapopulate``  | populates the mongodb database using files             |
-+------------------+--------------------------------------------------------+
-| ``lsamodel``     | creates a model for the current records in the database|
-+------------------+--------------------------------------------------------+
-| ``lsaquery``     | queries the database using searc terms                 | 
-+------------------+--------------------------------------------------------+
++---------------------+---------------------------------------------------------+
+| Command             | Action                                                  |
++=====================+=========================================================+
+| ``condorpopulate``  | populates the mongodb database using files              |
++---------------------+---------------------------------------------------------+
+| ``condormodel``     | creates a model for the current records in the database |
++---------------------+---------------------------------------------------------+
+| ``condorquery``     | queries the database using searc terms                  |
++---------------------+---------------------------------------------------------+
 
 Feel free to check detailed descriptions of these commands using their ``--help`` flag.

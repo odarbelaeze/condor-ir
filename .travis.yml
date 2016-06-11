@@ -16,8 +16,8 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -qq install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
   - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
-  - sudo -H -u postgres bash -c 'createuser -s lsaprogram'
-  - sudo -H -u postgres bash -c 'createdb -E UTF-8 -U lsaprogram lsaprogram'
+  - sudo -H -u postgres bash -c 'createuser -s condor-ir'
+  - sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
 
 install:
   - pip --quiet install .
@@ -28,7 +28,7 @@ before_script:
 
 script:
   - python setup.py test
-  - lsapopulate 'data/froac/**/*.xml'
-  - lsapopulate --isi 'data/isi/**/*.txt'
-  - lsamodel
-  - lsaquery find
+  - condorpopulate 'data/froac/**/*.xml'
+  - condorpopulate --isi 'data/isi/**/*.txt'
+  - condormodel
+  - condorquery find

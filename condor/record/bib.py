@@ -6,7 +6,7 @@ from .base import RecordIterator
 from .base import RecordParser
 from .base import LanguageGuesser
 
-from lsa.normalize import LatexAccentRemover
+from condor.normalize import LatexAccentRemover
 
 
 class BibtexRecordParser(RecordParser):

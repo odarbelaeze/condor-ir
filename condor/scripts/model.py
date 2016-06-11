@@ -12,13 +12,13 @@ import sys
 import click
 import numpy
 
-from lsa.dbutil import session
-from lsa.models import (
+from condor.dbutil import session
+from condor.models import (
     BibliographySet,
     TermDocumentMatrix,
     RankingMatrix
 )
-from lsa.normalize import CompleteNormalizer
+from condor.normalize import CompleteNormalizer
 
 
 def get_tokens(record, fields=None, list_fields=None):
@@ -65,13 +65,10 @@ def matrix(bibset, words):
 @click.option('--target', default=None, type=str)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-def lsamodel(target, verbose):
+def condormodel(target, verbose):
     '''
     Creates a model for all the records presentin in the record collection of
     the database specified in `dbname`.
-
-    'lsa-' will be prepended to the database name provided thorugh the
-    `--dbname` flag.
     '''
 
     db = session()
@@ -158,7 +155,7 @@ def lsamodel(target, verbose):
         os.mkdir('models')
 
     model_hash = hashlib.sha1(
-        '{}{}{}{}lsa'.format(bibset.eid, bibset.modified, ndocs, nwords)
+        '{}{}{}{}condor'.format(bibset.eid, bibset.modified, ndocs, nwords)
         .encode()
     ).hexdigest()
 

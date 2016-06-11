@@ -3,7 +3,7 @@ Developer quickstart
 ====================
 
 
-**lsa-program** is a free and open source software, contributions are very
+**condor-ir** is a free and open source software, contributions are very
 wellcome and you can start contributing through the common *github* pattern.
 
 
@@ -14,17 +14,17 @@ First you need to clone the repository:
 
 .. code-block:: bash
 
-  git clone https://github.com/odarbelaeze/lsa-program.git
+  git clone https://github.com/odarbelaeze/condor-ir.git
   # Alternatively you can fork and clone your own fork
-  git clone https://github.com/<username>/lsa-program.git
+  git clone https://github.com/<username>/condor-ir.git
 
 Then the most recomendable way for you to do development is in a virtual
 environment, we will assume that you are familiar with *virtualenvwrapper*
 
 .. code-block:: bash
 
-  cd lsa-program
-  mkvirtualenv -a $PWD -p $(which python3) -r piprequirements.txt lsaenv
+  cd condor-ir
+  mkvirtualenv -a $PWD -p $(which python3) -r piprequirements.txt condorenv
   pip install -e .  # This command will also install dependencies
 
 

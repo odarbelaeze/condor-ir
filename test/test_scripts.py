@@ -2,9 +2,9 @@ import pytest
 
 from click.testing import CliRunner
 
-from lsa.scripts.model import lsamodel
-from lsa.scripts.populate import lsapopulate
-from lsa.scripts.query import lsaquery
+from condor.scripts.model import condormodel
+from condor.scripts.populate import condorpopulate
+from condor.scripts.query import condorquery
 
 
 @pytest.fixture
@@ -13,14 +13,14 @@ def runner():
 
 
 def test_basic_usage(runner):
-    res = runner.invoke(lsapopulate, [])
+    res = runner.invoke(condorpopulate, [])
     assert res.exit_code == 2
     assert 'Usage' in res.output
 
 
 def test_populate_bibtex(runner):
     res = runner.invoke(
-        lsapopulate,
+        condorpopulate,
         ['--bib', '--verbose', 'data/bib/*.bib']
     )
     assert res.exit_code == 0
@@ -28,12 +28,12 @@ def test_populate_bibtex(runner):
 
 
 def test_basic_usage_model(runner):
-    res = runner.invoke(lsamodel, ['--help'])
+    res = runner.invoke(condormodel, ['--help'])
     assert res.exit_code == 0
     assert 'Usage' in res.output
 
 
 def test_basic_usagle_query(runner):
-    res = runner.invoke(lsaquery, [])
+    res = runner.invoke(condorquery, [])
     assert res.exit_code == 2
     assert 'Usage' in res.output
