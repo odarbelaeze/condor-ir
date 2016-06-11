@@ -30,7 +30,7 @@ script:
   - python setup.py test
   - condor bibset create 'data/froac/**/*.xml'
   - condor bibset create --isi 'data/isi/**/*.txt'
-  - condormodel
+  - condor model create
   - condorquery find
   - condor bibset
   - condor matrix

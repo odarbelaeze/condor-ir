@@ -3,7 +3,7 @@ import pytest
 from click.testing import CliRunner
 
 from condor.scripts.bibset import create as bibcreate
-from condor.scripts.model import condormodel
+from condor.scripts.model import create as modelcreate
 from condor.scripts.query import condorquery
 
 from condor.scripts.cli import bibset
@@ -32,7 +32,7 @@ def test_populate_bibtex(runner):
 
 
 def test_basic_usage_model(runner):
-    res = runner.invoke(condormodel, ['--help'])
+    res = runner.invoke(modelcreate, ['--help'])
     assert res.exit_code == 0
     assert 'Usage' in res.output
 

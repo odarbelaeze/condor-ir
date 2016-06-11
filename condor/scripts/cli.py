@@ -2,6 +2,7 @@ import click
 
 
 from condor.scripts.bibset import bibset
+from condor.scripts.model import model
 
 
 @click.group()
@@ -24,6 +25,7 @@ class CondorCommand(click.MultiCommand):
 
     COMMANDS = {
         'bibset': bibset,
+        'model': model,
         'matrix': matrix,
         'ranking': ranking,
     }
