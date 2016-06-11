@@ -14,5 +14,5 @@ from sqlalchemy.orm import (
 
 def session():
     return scoped_session(sessionmaker(bind=create_engine(
-        'postgresql://condorir:@localhost/condorir'
+        'postgresql://condor-ir:@localhost/condor-ir'
     )))

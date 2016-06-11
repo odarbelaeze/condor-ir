@@ -1,5 +1,5 @@
 ========
-CondorIR
+condor-ir
 ========
 
 Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
@@ -22,7 +22,7 @@ http://froac.manizales.unal.edu.co/froac/ http://froac.manizales.unal.edu.co/fro
 and about isi web of knowledge text files at
 `the thomson reuters website <http://images.webofknowledge.com/WOK46/help/WOK/h_ml_options.html>`_
 
-Installing the CondorIR package
+Installing the condor-ir package
 ----------------------------------
 
 First of all you will need to get mongodb installed and running in your system,
@@ -34,7 +34,7 @@ repository,
 
 .. code-block:: bash
 
-    pip install -U condorir
+    pip install -U condor-ir
 
 the `-U` parameter will upgrade the package to the latest version, a very
 recomendable step for a unstable package.
@@ -48,10 +48,10 @@ for that you can install using your package manager or external tool:
     sudo pacman -S postgresql
     sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
     sudo service start postgresql.service # You might want to enable as well
-    git clone https://github.com/odarbelaeze/condorir.git
-    sudo -H -u postgres bash -c 'createuser -s condorir'
-    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condorir condorir'
-    cd condorir
+    git clone https://github.com/odarbelaeze/condor-ir.git
+    sudo -H -u postgres bash -c 'createuser -s condor-ir'
+    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+    cd condor-ir
     alembic upgrade heads # to create the database schemas
 
 .. code-block:: bash
@@ -60,10 +60,10 @@ for that you can install using your package manager or external tool:
     sudo apt-get install postgresql postgresql-contrib
     sudo apt-get install enchant \
                      aspell-es aspell-en aspell-fr aspell-it aspell-pt
-    sudo -H -u postgres bash -c 'createuser -s condorir'
-    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condorir condorir'
-    git clone https://github.com/odarbelaeze/condorir.git
-    cd condorir
+    sudo -H -u postgres bash -c 'createuser -s condor-ir'
+    sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+    git clone https://github.com/odarbelaeze/condor-ir.git
+    cd condor-ir
     alembic upgrade heads # to create the database schemas
 
 

@@ -6,15 +6,15 @@ Setup
 =====
 
 
-In order to use the **condorir** you need to setup and configure a
+In order to use the **condor-ir** you need to setup and configure a
 **mongodb** database and have it run in the default port as the application
 database connection is not yet configurable.
 
-You can also install the **condorir** from PyPI using the pip tool
+You can also install the **condor-ir** from PyPI using the pip tool
 
 .. code-block:: bash
 
-    $ pip install condorir
+    $ pip install condor-ir
 
 Furhtermore, for language support you need to install some dictionaries and a
 spell checking engine:
@@ -42,7 +42,7 @@ Repository preparation
 
 Once you're done with the setup, you should start preparing your documents to
 feed the index database, you can order your sources anyway you want in your
-filesystem because the **condorir** cli uses a glob matching interface so
+filesystem because the **condor-ir** cli uses a glob matching interface so
 you can find the documents you want, an example can be the example repository
 provided along with this package:
 
