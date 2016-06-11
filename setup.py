@@ -41,9 +41,9 @@ setup(
     ],
     entry_points='''
     [console_scripts]
-    condorpopulate=lsa.scripts.populate:lsapopulate
-    condormodel=lsa.scripts.model:lsamodel
-    condorquery=lsa.scripts.query:lsaquery
+    condorpopulate=condor.scripts.populate:lsapopulate
+    condormodel=condor.scripts.model:lsamodel
+    condorquery=condor.scripts.query:lsaquery
     ''',
     url='https://github.com/odarbelaeze/lsa-program',
     download_url='https://github.com/odarbelaeze/condor-ir/tarball/1.0.0',
