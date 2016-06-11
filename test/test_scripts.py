@@ -2,8 +2,8 @@ import pytest
 
 from click.testing import CliRunner
 
+from condor.scripts.bibset import create as bibcreate
 from condor.scripts.model import condormodel
-from condor.scripts.populate import condorpopulate
 from condor.scripts.query import condorquery
 
 from condor.scripts.cli import bibset
@@ -17,14 +17,14 @@ def runner():
 
 
 def test_basic_usage(runner):
-    res = runner.invoke(condorpopulate, [])
+    res = runner.invoke(bibcreate, [])
     assert res.exit_code == 2
     assert 'Usage' in res.output
 
 
 def test_populate_bibtex(runner):
     res = runner.invoke(
-        condorpopulate,
+        bibcreate,
         ['--bib', '--verbose', 'data/bib/*.bib']
     )
     assert res.exit_code == 0

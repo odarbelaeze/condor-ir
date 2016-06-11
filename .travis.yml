@@ -28,8 +28,8 @@ before_script:
 
 script:
   - python setup.py test
-  - condorpopulate 'data/froac/**/*.xml'
-  - condorpopulate --isi 'data/isi/**/*.txt'
+  - condor bibset create 'data/froac/**/*.xml'
+  - condor bibset create --isi 'data/isi/**/*.txt'
   - condormodel
   - condorquery find
   - condor bibset

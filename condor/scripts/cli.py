@@ -1,20 +1,10 @@
 import click
 
 
+from condor.scripts.bibset import bibset
+
+
 @click.group()
-def condor():
-    pass
-
-
-@condor.group()
-def bibset():
-    """
-    Bibliography set related commands.
-    """
-    pass
-
-
-@condor.group()
 def matrix():
     """
     Term document matrix related commands.
@@ -22,12 +12,32 @@ def matrix():
     pass
 
 
-@condor.group()
+@click.group()
 def ranking():
     """
     Ranking matrix related commands.
     """
     pass
+
+
+class CondorCommand(click.MultiCommand):
+
+    COMMANDS = {
+        'bibset': bibset,
+        'matrix': matrix,
+        'ranking': ranking,
+    }
+
+    def list_commands(self, ctx):
+        return list(self.COMMANDS.keys())
+
+    def get_command(self, ctx, name):
+        return self.COMMANDS.get(name)
+
+
+condor = CondorCommand(
+    help='Condor information retrieval software'
+)
 
 
 if __name__ == "__main__":
