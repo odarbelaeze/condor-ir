@@ -4,11 +4,11 @@ condor-ir
 
 Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
 
-.. image:: https://travis-ci.org/odarbelaeze/lsa-program.svg?branch=master
-    :target: https://travis-ci.org/odarbelaeze/lsa-program
+.. image:: https://travis-ci.org/odarbelaeze/condor-ir.svg?branch=master
+    :target: https://travis-ci.org/odarbelaeze/condor-ir
 
-.. image:: https://readthedocs.org/projects/lsa-program/badge/?version=latest
-    :target: (http://lsa-program.readthedocs.org/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/condor-ir/badge/?version=latest
+    :target: (http://condor-ir.readthedocs.org/en/latest/?badge=latest
 
 
 
