@@ -72,6 +72,31 @@ def bibset():
     """
     Bibliography set related commands.
     """
+    pass
+
+
+@bibset.command()
+def list():
+    """
+    List all the bibliography sets.
+    """
+    click.echo('All the bibsets.')
+
+
+@bibset.command()
+@click.argument('target')
+def delete(target):
+    """
+    Delete the target bibliography set.
+    """
+    click.echo(
+        'I will delete the bibliography set {}.'
+        .format(target)
+    )
+    click.echo('And also n bibliographies.')
+    click.echo('And also n document matrices.')
+    click.echo('And there n seach engines.')
+    click.echo('Promt the user.')
 
 
 @bibset.command()
