@@ -52,7 +52,7 @@ class Bibliography(DeclarativeBase):
 
     bibliography_set = relationship(
         'BibliographySet',
-        back_populates='bibliographies'
+        back_populates='bibliographies',
     )
 
 
@@ -77,12 +77,14 @@ class BibliographySet(DeclarativeBase):
 
     bibliographies = relationship(
         'Bibliography',
-        back_populates='bibliography_set'
+        back_populates='bibliography_set',
+        cascade='all, delete-orphan',
     )
 
     term_document_matrices = relationship(
         'TermDocumentMatrix',
-        back_populates='bibliography_set'
+        back_populates='bibliography_set',
+        cascade='all, delete-orphan',
     )
 
 
@@ -121,6 +123,7 @@ class TermDocumentMatrix(DeclarativeBase):
     ranking_matrices = relationship(
         'RankingMatrix',
         back_populates='term_document_matrix',
+        cascade='all, delete-orphan',
     )
 
 
