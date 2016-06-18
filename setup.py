@@ -19,6 +19,7 @@ def get_install_requires():
         'psycopg2==2.6.1',
         'pyenchant>=1.6',
         'SQLAlchemy==1.0.12',
+        'tabulate>=0.7.5'
     ]
 
 

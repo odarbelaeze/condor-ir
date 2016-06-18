@@ -103,7 +103,14 @@ def list(count):
             tablefmt='rst',
         )
     )
-    click.echo('All the bibsets.')
+    total = session().query(BibliographySet).count()
+    if count >= total:
+        click.echo('All the bibsets.')
+    else:
+        msg = 'Shwoing {count} out of {total} bibliography sets.'
+        click.echo(
+            msg.format(count=count, total=total)
+        )
 
 
 @bibset.command()
