@@ -17,6 +17,8 @@ from condor.dbutil import session
 from condor.models import Bibliography
 from condor.models import BibliographySet
 
+from tabulate import tabulate
+
 
 def recordset_class(name):
     '''
@@ -76,10 +78,31 @@ def bibset():
 
 
 @bibset.command()
-def list():
+@click.option('--count', default=10, help='Number of bibsets.')
+def list(count):
     """
     List all the bibliography sets.
     """
+    bibliographies = (
+        session().query(BibliographySet).order_by('created desc').limit(count)
+    )
+    click.echo(
+        tabulate(
+            [
+                [
+                    bibset.eid[:8],
+                    bibset.description,
+                    bibset.modified.strftime('%b %d, %Y, %I:%M%p'),
+                    len(bibset.bibliographies)
+                ]
+                for bibset in bibliographies
+            ],
+            headers=[
+                'Identifier', 'Description', 'Updated at', 'Docs count'
+            ],
+            tablefmt='rst',
+        )
+    )
     click.echo('All the bibsets.')
 
 
