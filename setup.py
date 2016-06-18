@@ -10,6 +10,7 @@ def get_install_requires():
             'mock>=1.3.0',
         ]
     return [
+        'SQLAlchemy==1.0.12',
         'alembic==0.8.6',
         'bibtexparser>=0.6.2',
         'click>=6.2',
@@ -18,8 +19,7 @@ def get_install_requires():
         'numpy>=1.9.2',
         'psycopg2==2.6.1',
         'pyenchant>=1.6',
-        'SQLAlchemy==1.0.12',
-        'tabulate>=0.7.5'
+        'tabulate>=0.7.5',
     ]
 
 

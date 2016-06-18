@@ -98,7 +98,7 @@ def list(count):
                 for bibset in bibliographies
             ],
             headers=[
-                'Identifier', 'Description', 'Updated at', 'Docs count'
+                'Identifier', 'Description', 'Updated at', 'Docs count',
             ],
             tablefmt='rst',
         )
@@ -107,9 +107,9 @@ def list(count):
     if count >= total:
         click.echo('All the bibsets.')
     else:
-        msg = 'Shwoing {count} out of {total} bibliography sets.'
         click.echo(
-            msg.format(count=count, total=total)
+            'Shwoing {count} out of {total} bibliography sets.'
+            .format(count=count, total=total)
         )
 
 
