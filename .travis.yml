@@ -18,6 +18,7 @@ before_install:
   - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
   - sudo -H -u postgres bash -c 'createuser -s condor-ir'
   - sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+  - psql -c 'alter user "condor-ir" with password ''condor-ir'';' -U postgres
 
 install:
   - pip --quiet install .
