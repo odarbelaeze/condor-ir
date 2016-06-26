@@ -22,13 +22,14 @@ spell checking engine:
 .. code-block:: bash
 
   # Arch
-  sudo pacman -S enchant aspell-es aspell-en aspell-fr aspell-it aspell-pt
+  sudo pacman -S enchant \
+                 aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
 
 .. code-block:: bash
 
   # Ubuntu
   sudo apt-get install enchant \
-                       aspell-es aspell-en aspell-fr aspell-it aspell-pt
+                       aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
 
 Once you have the mongodb daemon running in your system you can start building
 your models using any of the three supported formats:
@@ -81,7 +82,7 @@ Once you have your dataset organized you can populate your database using the
 
 .. code-block:: bash
 
-  condorpopulate --xml 'data/*/*.xml'
+  condor bibset create --xml 'data/*/*.xml'
 
 You can also stipupate a database name and specify if you want to wipe the
 database, if you want to combine records from different kinds of databases, you
@@ -89,8 +90,8 @@ can do so by reruning the `condorpopulate` tool with the `--no-wipedb` flag,
 
 .. code-block:: bash
 
-  condorpopulate --isi --no-wipedb 'data/*/*.isi'
-  condorpopulate --bib --no-wipedb 'data/*/*.bib'
+  condor bibset create --isi 'data/*/*.isi'
+  condor bibset create --bib 'data/*/*.bib'
 
 However, whenever using this approximation, beaware of the record duplication
 as the hashing algorithms used to detect duplicates are different for the
@@ -104,7 +105,7 @@ your database using the command:
 
 .. code-block:: bash
 
-  condormodel
+  condor model
 
 This program will create versioned models so that you can build different
 versions, or query with one model when another one is still being built.
@@ -120,7 +121,7 @@ so by:
 
 .. code-block:: bash
 
-  condorquery search terms
+  condor query search terms
 
 This will perform a query to the latest available model in the model database.
 
