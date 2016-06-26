@@ -21,9 +21,11 @@ def eid_gen():
     return sha.hexdigest()
 
 
-class Bibliography(DeclarativeBase):
-
-    __tablename__ = 'bibliography'
+class AuditableMixing(object):
+    """
+    Table mixing to add the common fields in our database, to make it auditable
+    we add timestamps and an eid field as primary key just for convenience.
+    """
 
     eid = Column(Unicode(40), primary_key=True, default=eid_gen)
     created = Column(
@@ -37,6 +39,11 @@ class Bibliography(DeclarativeBase):
         default=datetime.utcnow,
         onupdate=datetime.utcnow
     )
+
+
+class Bibliography(AuditableMixing, DeclarativeBase):
+
+    __tablename__ = 'bibliography'
 
     bibliography_set_eid = Column(
         Unicode(40),
@@ -56,22 +63,9 @@ class Bibliography(DeclarativeBase):
     )
 
 
-class BibliographySet(DeclarativeBase):
+class BibliographySet(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'bibliography_set'
-
-    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
-    created = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
-    modified = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow
-    )
 
     description = Column(Unicode, nullable=False)
 
@@ -88,22 +82,9 @@ class BibliographySet(DeclarativeBase):
     )
 
 
-class TermDocumentMatrix(DeclarativeBase):
+class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'term_document_matrix'
-
-    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
-    created = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
-    modified = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow
-    )
 
     bibliography_set_eid = Column(
         Unicode(40),
@@ -127,22 +108,9 @@ class TermDocumentMatrix(DeclarativeBase):
     )
 
 
-class RankingMatrix(DeclarativeBase):
+class RankingMatrix(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'ranking_matrix'
-
-    eid = Column(Unicode(40), primary_key=True, default=eid_gen)
-    created = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow
-    )
-    modified = Column(
-        DateTime,
-        nullable=False,
-        default=datetime.utcnow,
-        onupdate=datetime.utcnow
-    )
 
     term_document_matrix_eid = Column(
         Unicode(40),
