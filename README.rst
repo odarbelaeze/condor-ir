@@ -74,20 +74,27 @@ Setup database and schemas
   cd condor-ir
   alembic upgrade heads # to create the database schemas
 
-Seting up your database
------------------------
+
+CLI Interface
+-------------
 
 After installing the program you will have three basic commands at your
-disposal,
+disposal, for handling bibliography sets, term document matrices and engines,
+the CLI interface gives you most CRUD operations in a hierachical manner.
 
-+---------------------+---------------------------------------------------------+
-| Command             | Action                                                  |
-+=====================+=========================================================+
-| ``condorpopulate``  | populates the mongodb database using files              |
-+---------------------+---------------------------------------------------------+
-| ``condormodel``     | creates a model for the current records in the database |
-+---------------------+---------------------------------------------------------+
-| ``condorquery``     | queries the database using searc terms                  |
-+---------------------+---------------------------------------------------------+
+``condor`` triggers the main program and you can get top level help by running
+``condor --help``.
 
-Feel free to check detailed descriptions of these commands using their ``--help`` flag.
+``condor bibset`` namespaces the bibliography set related commands, you can
+list and get help about those using ``condor bibset --help``.
+
+``condor model`` is a short cut that offers the ``condor model create``
+subcommand, that chreates both a term document matrix and an *lsa* search
+engine, get help on *models* using ``condor model --help``.
+
+``condor query <string...>`` this non crud command search a bibliography set
+using a previously created search engine, the search engine can be targeted
+figure out how using ``condor query --help``.
+
+Feel free to check detailed descriptions of these commands using their
+``--help`` flag.
