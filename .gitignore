@@ -64,6 +64,7 @@ tags
 
 # Model files
 models/
+!condor/models/
 matrices/
 term_lists/
 
