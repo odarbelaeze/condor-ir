@@ -71,3 +71,6 @@ term_lists/
 # Work related files
 .timesheet
 
+# Vagrant
+.vagrant/
+
