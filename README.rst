@@ -62,7 +62,7 @@ for that you can install using your package manager or external tool:
 Setup database and schemas
 --------------------------
 
-.. code-bloc:: bash
+.. code-block:: bash
 
   # Ubuntu only
   sudo useradd condor-ir
