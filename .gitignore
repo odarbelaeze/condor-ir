@@ -64,9 +64,13 @@ tags
 
 # Model files
 models/
+!condor/models/
 matrices/
 term_lists/
 
 # Work related files
 .timesheet
+
+# Vagrant
+.vagrant/
 
