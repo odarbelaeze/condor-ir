@@ -70,7 +70,7 @@ def model():
     pass
 
 
-@model.command()
+@model.command()    # noqa
 @click.option('--target', default=None, type=str,
               help='Bibliography set to work with')
 @click.option('--verbose/--quiet', default=False,
@@ -82,7 +82,9 @@ def create(target, verbose):
 
     db = session()
     if target is None:
-        bibset = db.query(BibliographySet).order_by('created desc').first()
+        bibset = db.query(BibliographySet).order_by(
+            BibliographySet.created.desc()
+        ).first()
     else:
         query = db.query(BibliographySet)
         query = query.filter(BibliographySet.eid.like(target + '%'))
