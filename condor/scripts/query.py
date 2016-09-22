@@ -40,7 +40,9 @@ def query(parameters, target, verbose):
 
     db = session()
     if target is None:
-        ranking = db.query(RankingMatrix).order_by('created desc').first()
+        ranking = db.query(RankingMatrix).order_by(
+            RankingMatrix.created.desc()
+        ).first()
     else:
         query = db.query(RankingMatrix)
         query = query.filter(RankingMatrix.eid.like(target + '%'))
