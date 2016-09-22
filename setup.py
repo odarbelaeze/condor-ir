@@ -23,9 +23,11 @@ def get_install_requires():
     ]
 
 
+version = '1.0.0-beta.1'
+
 setup(
     name='condor-ir',
-    version='1.0.0',
+    version=version,
     author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -44,8 +46,11 @@ setup(
     [console_scripts]
     condor=condor.scripts.cli:condor
     ''',
-    url='https://github.com/odarbelaeze/lsa-program',
-    download_url='https://github.com/odarbelaeze/condor-ir/tarball/1.0.0',
+    url='https://condor-ir.co',
+    download_url=(
+        'https://github.com/odarbelaeze/condor-ir/tarball/{}'
+        .format(version)
+    ),
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
 )
