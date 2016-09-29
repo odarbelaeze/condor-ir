@@ -4,14 +4,7 @@ import click
 from condor.scripts.bibset import bibset
 from condor.scripts.model import model
 from condor.scripts.query import query
-
-
-@click.group()
-def matrix():
-    """
-    Term document matrix related commands.
-    """
-    pass
+from condor.scripts.matrix import matrix
 
 
 @click.group()
