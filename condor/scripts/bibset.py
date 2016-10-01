@@ -144,7 +144,7 @@ def delete(target):
                .format(len([
                    rm
                    for tdm in bibliography_set.term_document_matrices
-                   for rm in tdm
+                   for rm in tdm.ranking_matrices
                ])))
     click.confirm('Do you want me to delete all this information?', abort=True)
     db.delete(bibliography_set)
