@@ -1,7 +1,7 @@
-'''
+"""
 This script aims to build the model for the current state of a database,
 taking in all the present records.
-'''
+"""
 
 import hashlib
 import os
@@ -60,7 +60,7 @@ def create(target, verbose):
     click.echo('I will generate a model for the {} bibset...'.format(
         bibset.eid))
 
-    words, frequency, options = build_matrix(bibset)
+    words, frequency, options, matrix_hash = build_matrix(bibset)
     nwords, nrecs = frequency.shape
 
     if verbose:
@@ -84,10 +84,6 @@ def create(target, verbose):
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
 
-    matrix_hash = hashlib.sha1(
-        '{}{}{}{}'.format(bibset.eid, bibset.modified, nrecs, nwords)
-        .encode()
-    ).hexdigest()
     matrix_filename = os.path.join(MATRIX_PATH, '{}.npy'.format(matrix_hash))
     click.echo(
         'Storing the term document matrix at {}'
