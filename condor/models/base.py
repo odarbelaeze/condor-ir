@@ -4,11 +4,9 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column,
     DateTime,
-    ForeignKey,
     Unicode,
 )
 
@@ -39,3 +37,25 @@ class AuditableMixing(object):
         default=datetime.utcnow,
         onupdate=datetime.utcnow
     )
+
+    @classmethod
+    def find_by_eid(cls, db, eid):
+        """
+        Finds a model by it's eid of a chunk of it, returns None if there are
+        no models matching the eid chunk.
+
+        :param db: sqlalchemy session to find the item.
+        :param eid: eid to match, can be a partial.
+        :returns: the model if its found None otherwise.
+        """
+        return db.query(cls).filter(cls.eid.like_('%{}'.format(eid))).first()
+
+    @classmethod
+    def latest(cls, db):
+        """
+        Finds the latest model in the given db.
+
+        :param db: sqlalchemy session to find the item.
+        :returns: the latest model if its found None otherwise.
+        """
+        return db.query(cls).order_by(cls.created.desc()).first()

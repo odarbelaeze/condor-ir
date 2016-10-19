@@ -5,6 +5,7 @@
 """
 
 import collections
+import hashlib
 import itertools
 import numpy
 
@@ -13,7 +14,7 @@ from condor.normalize import CompleteNormalizer
 
 BuildMatrixResult = collections.namedtuple(
     'BuildMatrixResult',
-    ['words', 'matrix', 'options']
+    ['words', 'matrix', 'options', 'hash']
 )
 
 
@@ -30,7 +31,16 @@ def build_matrix(bibset):
         words,
         frequency,
         str(CompleteNormalizer.__mro__),
+        get_hash(bibset, frequency)
     )
+
+
+def get_hash(bibset, frequency):
+    nwords, nrecs = frequency.shape
+    return hashlib.sha1(
+        '{}{}{}{}'.format(bibset.eid, bibset.modified, nrecs, nwords)
+        .encode()
+    ).hexdigest()
 
 
 def get_tokens(record, fields=None, list_fields=None):
@@ -43,7 +53,11 @@ def get_tokens(record, fields=None, list_fields=None):
         value = record.get(field, '{""}')
         if value == '{""}':
             continue
-        tokens.extend(word for val in value[1:-1].split(',') for word in val.split())
+        tokens.extend(
+            word
+            for val in value[1:-1].split(',')
+            for word in val.split()
+        )
     return tokens
 
 
