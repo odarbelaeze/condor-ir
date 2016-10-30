@@ -7,7 +7,7 @@ Setup
 
 
 In order to use the **condor-ir** you need to setup and configure a
-**mongodb** database and have it run in the default port as the application
+**posgresql** database and have it run in the default port as the application
 database connection is not yet configurable.
 
 You can also install the **condor-ir** from PyPI using the pip tool
