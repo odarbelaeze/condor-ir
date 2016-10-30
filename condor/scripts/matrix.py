@@ -10,7 +10,7 @@ import sqlalchemy
 import sys
 import tabulate
 
-from condor.dbutil import session
+from condor.dbutil import session, requires_db
 from condor.models import BibliographySet, TermDocumentMatrix
 from condor.builders.matrix import build_matrix
 from condor.config import MATRIX_PATH, TERM_LIST_PATH
@@ -29,6 +29,7 @@ def matrix():
               help='Bibliography set to work with')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
+@requires_db
 def create(target, verbose):
     """
     Create a new term document matrix.
@@ -78,6 +79,7 @@ def create(target, verbose):
 
 @matrix.command()
 @click.option('--count', default=10, help='Number of bibsets.')
+@requires_db
 def list(count):
     """
     List all the available term document matrices.
@@ -116,6 +118,7 @@ def list(count):
 
 @matrix.command()
 @click.argument('target')
+@requires_db
 def delete(target):
     """
     Delete a given matrix and associated search engines.

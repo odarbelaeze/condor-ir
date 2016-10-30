@@ -1,10 +1,6 @@
 import click
-
-
-from condor.scripts.bibset import bibset
-from condor.scripts.model import model
-from condor.scripts.query import query
-from condor.scripts.matrix import matrix
+import enchant
+import sys
 
 
 @click.group()
@@ -17,19 +13,33 @@ def ranking():
 
 class CondorCommand(click.MultiCommand):
 
-    COMMANDS = {
-        'bibset': bibset,
-        'model': model,
-        'matrix': matrix,
-        'ranking': ranking,
-        'query': query,
-    }
+    @property
+    def commands(self):
+        try:
+            from condor.scripts.bibset import bibset
+            from condor.scripts.model import model
+            from condor.scripts.query import query
+            from condor.scripts.matrix import matrix
+            return {
+                'bibset': bibset,
+                'model': model,
+                'matrix': matrix,
+                'ranking': ranking,
+                'query': query,
+            }
+        except enchant.errors.DictNotFoundError:
+            click.echo(
+                click.style('There was an error retrieving dictionaries.',
+                            fg='red')
+            )
+            sys.exit(1)
 
     def list_commands(self, ctx):
-        return list(self.COMMANDS.keys())
+        click.echo(str(self.commands.keys()))
+        return list(self.commands.keys())
 
     def get_command(self, ctx, name):
-        return self.COMMANDS.get(name)
+        return self.commands.get(name)
 
 
 condor = CondorCommand(
