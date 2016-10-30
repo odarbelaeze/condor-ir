@@ -45,7 +45,7 @@ for that you can install using your package manager or external tool:
 .. code-block:: bash
 
   # Arch
-  sudo pacman -S postgresql
+  sudo pacman -S postgresql postgresql-libs
   sudo pacman -S enchant \
                  aspell-es aspell-en aspell-fr \
                  aspell-it aspell-pt aspell-de
@@ -54,7 +54,7 @@ for that you can install using your package manager or external tool:
 .. code-block:: bash
 
   # Ubuntu
-  sudo apt-get install postgresql postgresql-contrib postgresql-client
+  sudo apt-get install postgresql postgresql-contrib postgresql-client libpq-dev
   sudo apt-get install enchant \
                        aspell-es aspell-en aspell-fr \
                        aspell-it aspell-pt aspell-de
