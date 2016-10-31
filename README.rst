@@ -45,18 +45,18 @@ for that you can install using your package manager or external tool:
 .. code-block:: bash
 
   # Arch
-  sudo pacman -S postgresql
+  sudo pacman -S postgresql postgresql-libs
   sudo pacman -S enchant \
-                 aspell-es aspell-en aspell-fr
+                 aspell-es aspell-en aspell-fr \
                  aspell-it aspell-pt aspell-de
   sudo service start postgresql.service # You might want to enable as well
 
 .. code-block:: bash
 
   # Ubuntu
-  sudo apt-get install postgresql postgresql-contrib
+  sudo apt-get install postgresql postgresql-contrib postgresql-client libpq-dev
   sudo apt-get install enchant \
-                       aspell-es aspell-en aspell-fr
+                       aspell-es aspell-en aspell-fr \
                        aspell-it aspell-pt aspell-de
 
 Setup database and schemas
@@ -69,7 +69,8 @@ Setup database and schemas
   # Ubuntu and Arch
   sudo -H -u postgres bash -c 'createuser -s condor-ir --pwprompt'
   # Type "condor-ir" as password when prompted
-  sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
+  # this step might require to supplant the postgres user instead
+  sudo -H -u condor-ir bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
   condor utils preparedb
 
 
