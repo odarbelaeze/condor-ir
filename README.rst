@@ -70,9 +70,7 @@ Setup database and schemas
   sudo -H -u postgres bash -c 'createuser -s condor-ir --pwprompt'
   # Type "condor-ir" as password when prompted
   sudo -H -u postgres bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
-  git clone https://github.com/odarbelaeze/condor-ir.git
-  cd condor-ir
-  alembic upgrade heads # to create the database schemas
+  condor utils preparedb
 
 
 CLI Interface
