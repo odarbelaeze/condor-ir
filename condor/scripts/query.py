@@ -12,7 +12,7 @@ import numpy
 
 from condor.normalize import CompleteNormalizer
 from condor.models import RankingMatrix
-from condor.dbutil import session
+from condor.dbutil import session, requires_db
 
 
 def frequency(words, tokens):
@@ -30,6 +30,7 @@ def frequency(words, tokens):
 @click.option('--target', default=None, type=str)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
+@requires_db
 def query(parameters, target, verbose):
     '''
     Queries the database using the given parameters, the model that this

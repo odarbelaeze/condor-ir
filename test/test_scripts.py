@@ -6,8 +6,8 @@ from condor.scripts.bibset import create as bibcreate
 from condor.scripts.model import create as modelcreate
 from condor.scripts.query import query
 
-from condor.scripts.cli import bibset
-from condor.scripts.cli import matrix
+from condor.scripts.bibset import bibset
+from condor.scripts.matrix import matrix
 from condor.scripts.cli import ranking
 
 

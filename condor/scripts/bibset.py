@@ -14,7 +14,7 @@ from condor.record import BibtexRecordIterator
 from condor.record import FroacRecordIterator
 from condor.record import IsiRecordIterator
 
-from condor.dbutil import session
+from condor.dbutil import session, requires_db
 
 from condor.models import Bibliography
 from condor.models import BibliographySet
@@ -79,6 +79,7 @@ def bibset():
 
 @bibset.command()
 @click.option('--count', default=10, help='Number of bibsets.')
+@requires_db
 def list(count):
     """
     List all the bibliography sets.
@@ -116,6 +117,7 @@ def list(count):
 
 @bibset.command()
 @click.argument('target')
+@requires_db
 def delete(target):
     """
     Delete the target bibliography set.
@@ -165,6 +167,7 @@ def delete(target):
               help='Be more verbose')
 @click.option('--chunk-size', default=1000,
               help='Insert into db in chunks')
+@requires_db
 def create(pattern, kind, verbose, chunk_size):
     '''
     Populates a mongo database collection with all the records it can find
