@@ -20,12 +20,14 @@ class CondorCommand(click.MultiCommand):
             from condor.scripts.model import model
             from condor.scripts.query import query
             from condor.scripts.matrix import matrix
+            from condor.scripts.utils import utils
             return {
                 'bibset': bibset,
                 'model': model,
                 'matrix': matrix,
                 'ranking': ranking,
                 'query': query,
+                'utils': utils,
             }
         except enchant.errors.DictNotFoundError:
             click.echo(
