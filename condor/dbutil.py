@@ -38,11 +38,12 @@ def requires_db(func):
         # Check for the database
         try:
             session()
-            return func(*args, **kwargs)
+        # TODO: Be specific with this exception.
         except:
             click.echo(
                 click.style('There was an error connectig to the database.',
                             fg='red')
             )
             sys.exit(1)
+        return func(*args, **kwargs)
     return wrapper
