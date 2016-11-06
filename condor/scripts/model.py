@@ -3,7 +3,6 @@ This script aims to build the model for the current state of a database,
 taking in all the present records.
 """
 
-import hashlib
 import os
 import sys
 
@@ -12,6 +11,7 @@ import numpy
 
 from condor.dbutil import session, requires_db
 from condor.builders.matrix import build_matrix
+from condor.builders.ranking import build_lsa_ranking
 from condor.models import (
     BibliographySet,
     TermDocumentMatrix,
@@ -69,22 +69,6 @@ def create(target, verbose):
         click.echo('Number of records: {}'.format(nrecs))
         click.echo('Number of words: {}'.format(nwords))
 
-    U, S, V = numpy.linalg.svd(frequency, full_matrices=False)
-    ss = S / numpy.sum(S)
-    ss = numpy.cumsum(ss)
-
-    # Keep 80% of the covariance
-    k = numpy.sum(ss < 0.8)
-
-    acoted = numpy.dot(numpy.diag(S[:k]), V[:k, :])
-    acoted = numpy.dot(U[:, :k], acoted)
-
-    if verbose:
-        nwords, nrecs = acoted.shape
-        click.echo('I\'ve removed noise from the freq mat...')
-        click.echo('Number of records: {}'.format(nrecs))
-        click.echo('Number of words: {}'.format(nwords))
-
     matrix_filename = os.path.join(MATRIX_PATH, '{}.npy'.format(matrix_hash))
     click.echo(
         'Storing the term document matrix at {}'
@@ -98,19 +82,10 @@ def create(target, verbose):
     click.echo(
         'Storing the term list at {}'.format(TERM_LIST_PATH)
     )
+
     with open(term_list_filename, 'w') as file:
         file.write('\n'.join(words))
 
-    model_hash = hashlib.sha1(
-        '{}{}{}{}condor'.format(bibset.eid, bibset.modified, nrecs, nwords)
-        .encode()
-    ).hexdigest()
-    model_filename = os.path.join(MODEL_PATH, '{}.npy'.format(model_hash))
-    click.echo(
-        'Storing the ranking matrix at {}'
-        .format(model_filename)
-    )
-    numpy.save(model_filename, acoted)
     td_matrix = TermDocumentMatrix(
         bibliography_options='',
         processing_options=options,
@@ -118,12 +93,34 @@ def create(target, verbose):
         tdidf_matrix_path=matrix_filename,
     )
     td_matrix.bibliography_set = bibset
+
+    print(td_matrix.matrix)
+
+    ranking_result = build_lsa_ranking(td_matrix, covariance=0.8)
+
+    if verbose:
+        nwords, nrecs = ranking_result.ranking.shape
+        click.echo('I\'ve removed noise from the freq mat...')
+        click.echo('Number of records: {}'.format(nrecs))
+        click.echo('Number of words: {}'.format(nwords))
+
+    model_filename = os.path.join(
+        MODEL_PATH,
+        '{}.npy'.format(ranking_result.hash)
+    )
+    click.echo(
+        'Storing the ranking matrix at {}'
+        .format(model_filename)
+    )
+    numpy.save(model_filename, ranking_result.ranking)
+
     td_matrix.ranking_matrices = [
         RankingMatrix(
             kind='lsa',
-            build_options='',
+            build_options=ranking_result.options,
             ranking_matrix_path=model_filename,
         )
     ]
+
     db.add(td_matrix)
     db.commit()

@@ -1,3 +1,5 @@
+import numpy
+
 from sqlalchemy import (
     Column,
     ForeignKey,
@@ -36,3 +38,13 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
         back_populates='term_document_matrix',
         cascade='all, delete-orphan',
     )
+
+    @property
+    def terms(self):
+        with open(self.term_list_path) as term_file:
+            terms = term_file.read().split('\n')
+        return terms
+
+    @property
+    def matrix(self):
+        return numpy.load(self.tdidf_matrix_path)
