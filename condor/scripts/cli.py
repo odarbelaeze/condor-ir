@@ -3,14 +3,6 @@ import enchant
 import sys
 
 
-@click.group()
-def ranking():
-    """
-    Ranking matrix related commands.
-    """
-    pass
-
-
 class CondorCommand(click.MultiCommand):
 
     @property
@@ -20,6 +12,7 @@ class CondorCommand(click.MultiCommand):
             from condor.scripts.model import model
             from condor.scripts.query import query
             from condor.scripts.matrix import matrix
+            from condor.scripts.ranking import ranking
             from condor.scripts.utils import utils
             return {
                 'bibset': bibset,

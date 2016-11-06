@@ -8,7 +8,7 @@ from condor.scripts.query import query
 
 from condor.scripts.bibset import bibset
 from condor.scripts.matrix import matrix
-from condor.scripts.cli import ranking
+from condor.scripts.ranking import ranking
 
 
 @pytest.fixture
