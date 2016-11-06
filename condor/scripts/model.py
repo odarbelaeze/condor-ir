@@ -94,8 +94,6 @@ def create(target, verbose):
     )
     td_matrix.bibliography_set = bibset
 
-    print(td_matrix.matrix)
-
     ranking_result = build_lsa_ranking(td_matrix, covariance=0.8)
 
     if verbose:
