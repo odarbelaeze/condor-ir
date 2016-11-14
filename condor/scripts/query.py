@@ -28,10 +28,11 @@ def frequency(words, tokens):
 @click.command()
 @click.argument('parameters', nargs=-1, required=True)
 @click.option('--target', default=None, type=str)
+@click.option('--limit', default=5)
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def query(parameters, target, verbose):
+def query(parameters, limit, target, verbose):
     '''
     Queries the database using the given parameters, the model that this
     script will pick up to do the query is the latest available model.
@@ -76,7 +77,7 @@ def query(parameters, target, verbose):
 
     ordered = reversed(sorted(zip(documents, cos), key=operator.itemgetter(1)))
     ordered = list(ordered)
-    for document, imp in ordered[:3]:
+    for document, imp in ordered[:limit]:
         click.echo('')
         click.echo('With an importance of {}:'.format(imp))
         click.echo(document.title)
