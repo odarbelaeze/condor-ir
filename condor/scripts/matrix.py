@@ -27,10 +27,12 @@ def matrix():
 @matrix.command()
 @click.option('--target', default=None, type=str,
               help='Bibliography set to work with')
+@click.option('--regularise/--no-regularise', default=True,
+              help='Apply TF-IDF regularisation to the matrix')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(target, verbose):
+def create(target, regularise, verbose):
     """
     Create a new term document matrix.
     """
@@ -47,7 +49,7 @@ def create(target, verbose):
     click.echo('I will generate a matrix for the {} bibset...'.format(
         bibset.eid))
 
-    words, frequency, options, matrix_hash = build_matrix(bibset)
+    words, frequency, options, matrix_hash = build_matrix(bibset, regularise)
     nwords, nrecs = frequency.shape
 
     matrix_filename = os.path.join(MATRIX_PATH, '{}.npy'.format(matrix_hash))

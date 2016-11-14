@@ -18,7 +18,7 @@ BuildMatrixResult = collections.namedtuple(
 )
 
 
-def build_matrix(bibset):
+def build_matrix(bibset, regularise=True):
     """Builds a term document matrix using a bibliography set.
     """
     words = word_set(bibset)
@@ -27,6 +27,12 @@ def build_matrix(bibset):
     frequency = numpy.zeros((ndocs, nwords), dtype=int)
     for row, col, freq in matrix(bibset, words):
         frequency[row, col] = freq
+    if regularise:
+        tf = (frequency.T / numpy.sum(frequency, axis=1)).T
+        numpy.savetxt('data.txt', tf)
+        df = numpy.sum(frequency > 0, axis=0)
+        idf = numpy.log(ndocs / df) + 1
+        frequency = tf * idf
     return BuildMatrixResult(
         words,
         frequency,

@@ -48,7 +48,7 @@ class AuditableMixing(object):
         :param eid: eid to match, can be a partial.
         :returns: the model if its found None otherwise.
         """
-        return db.query(cls).filter(cls.eid.like_('%{}'.format(eid))).first()
+        return db.query(cls).filter(cls.eid.like('{}%'.format(eid))).first()
 
     @classmethod
     def latest(cls, db):
