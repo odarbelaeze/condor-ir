@@ -64,7 +64,10 @@ def query(parameters, target, verbose):
 
     freq = frequency(words, parameters)
     documents = ranking.term_document_matrix.bibliography_set.bibliographies
-    cos = numpy.dot(ranking_matrix, freq)
+    dot = numpy.dot(ranking_matrix, freq)
+    norm_rank = numpy.linalg.norm(ranking_matrix, axis=1)
+    norm_freq = numpy.linalg.norm(freq)
+    cos = dot / (norm_rank * norm_freq)
     if verbose:
         click.echo('Your words are: {}'.format(words))
         click.echo('Your frequency is: {}'.format(freq))
