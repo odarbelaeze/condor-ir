@@ -14,6 +14,7 @@ from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
 )
+from sqlalchemy.exc import OperationalError
 
 
 def engine():
@@ -38,12 +39,11 @@ def requires_db(func):
         # Check for the database
         try:
             session()
-        # TODO: Be specific with this exception.
-        except:
+            return func(*args, **kwargs)
+        except OperationalError:
             click.echo(
                 click.style('There was an error connectig to the database.',
                             fg='red')
             )
             sys.exit(1)
-        return func(*args, **kwargs)
     return wrapper

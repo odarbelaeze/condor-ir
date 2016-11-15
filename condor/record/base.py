@@ -78,7 +78,12 @@ class RecordIterator(object):
         buff = self.get_buffer()
         parser = self.parser_class()
         for item in buff:
-            yield parser.parse(item)
+            parsed = parser.parse(item)
+            important_fields = dict(parsed, language=None, hash=None)
+            # Omit all the null records, no title, abstract or keywords
+            if all(not i for i in important_fields.values()):
+                continue
+            yield parsed
 
 
 class LanguageGuesser(object):
