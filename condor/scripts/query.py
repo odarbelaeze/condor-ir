@@ -13,11 +13,22 @@ import numpy
 from condor.normalize import CompleteNormalizer
 from condor.models import RankingMatrix
 from condor.dbutil import session, requires_db
+from condor.util import LanguageGuesser
 
 
 def frequency(words, tokens):
+    """
+    Computes the frequency list of a list of tokens in a dense representation.
+
+    :param list words: list of the words to look for
+    :param list tokens: list of the tokens to count
+
+    .. note:: this function applies a complete normalizer to the given tokens
+    and guesses the language.
+    """
     # word_dict = {word: pos for pos, word in enumerate(words)}
-    normalizer = CompleteNormalizer()
+    language = LanguageGuesser().guess(' '.join(tokens))
+    normalizer = CompleteNormalizer(language=language)
     frequency = collections.Counter(
         normalizer.apply_to(token)
         for token in tokens

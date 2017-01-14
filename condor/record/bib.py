@@ -2,9 +2,9 @@ import bibtexparser
 import hashlib
 import re
 
-from .base import RecordIterator
-from .base import RecordParser
-from .base import LanguageGuesser
+from condor.record.base import RecordIterator
+from condor.record.base import RecordParser
+from condor.util import LanguageGuesser
 
 from condor.normalize import LatexAccentRemover
 
