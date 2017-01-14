@@ -28,7 +28,7 @@ def frequency(words, tokens):
     """
     # word_dict = {word: pos for pos, word in enumerate(words)}
     language = LanguageGuesser().gess(' '.join(tokens))
-    normalizer = CompleteNormalizer()
+    normalizer = CompleteNormalizer(language=language)
     frequency = collections.Counter(
         normalizer.apply_to(token)
         for token in tokens
