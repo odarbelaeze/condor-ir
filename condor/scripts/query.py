@@ -13,7 +13,7 @@ import numpy
 from condor.normalize import CompleteNormalizer
 from condor.models import RankingMatrix
 from condor.dbutil import session, requires_db
-from condor.record.base import LanguageGuesser
+from condor.util import LanguageGuesser
 
 
 def frequency(words, tokens):

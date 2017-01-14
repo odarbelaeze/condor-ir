@@ -1,7 +1,7 @@
-from .base import RecordIterator
-from .base import RecordParser
+from condor.record.base import RecordIterator
+from condor.record.base import RecordParser
 
-from .util import isi_text_to_dic
+from condor.util import isi_text_to_dic
 
 
 class IsiRecordParser(RecordParser):

@@ -2,11 +2,11 @@ import hashlib
 
 from xml.dom import minidom
 
-from .base import RecordIterator
-from .base import RecordParser
+from condor.record.base import RecordIterator
+from condor.record.base import RecordParser
 
-from .util import gen_to_list
-from .util import xml_to_text
+from condor.util import gen_to_list
+from condor.util import xml_to_text
 
 
 class FroacRecordParser(RecordParser):
