@@ -29,7 +29,6 @@ def build_matrix(bibset, regularise=True):
         frequency[row, col] = freq
     if regularise:
         tf = (frequency.T / numpy.sum(frequency, axis=1)).T
-        numpy.savetxt('data.txt', tf)
         df = numpy.sum(frequency > 0, axis=0)
         idf = numpy.log(ndocs / df) + 1
         frequency = tf * idf
