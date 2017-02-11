@@ -17,7 +17,6 @@ def get_install_requires():
         'marshmallow>=2.4.2',
         'nltk>=3.1',
         'numpy>=1.9.2',
-        'psycopg2==2.6.1',
         'pyenchant>=1.6',
         'tabulate>=0.7.5',
     ]
