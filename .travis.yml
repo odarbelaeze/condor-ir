@@ -4,9 +4,6 @@ python:
   - "3.5"
   - "3.6"
 
-services:
-  - postgresql
-
 cache:
   pip: true
   apt: true
@@ -15,7 +12,6 @@ cache:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get -qq install -y gfortran libfftw3-dev liblapack-dev libopenblas-dev
   - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
 
 install:
