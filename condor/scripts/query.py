@@ -38,9 +38,12 @@ def frequency(words, tokens):
 
 @click.command()
 @click.argument('parameters', nargs=-1, required=True)
-@click.option('--target', default=None, type=str)
-@click.option('--limit', default=5, help='Results to show.')
-@click.option('--show', '-s', type=str, multiple=True, help='Fields to show.')
+@click.option('--target', default=None, type=str,
+              help='Ranking matrix to search')
+@click.option('--limit', '-l', default=5,
+              help='Results to show.')
+@click.option('--show', '-s', type=str, multiple=True,
+              help='Fields to show.')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
