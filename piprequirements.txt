@@ -7,7 +7,6 @@ coverage>=3.7.1
 marshmallow>=2.4.2
 nltk>=3.1
 numpy>=1.10.4
-psycopg2==2.6.1
 py>=1.4.29
 pyenchant>=1.6
 pytest-cov>=1.8.1

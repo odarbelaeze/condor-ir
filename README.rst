@@ -25,16 +25,12 @@ and about isi web of knowledge text files at
 Installing the condor-ir package
 ----------------------------------
 
-First of all you will need to get mongodb installed and running in your system,
-at the moment the program only works if postgresql is running on your system,
-you also need to have a database and a database user for the program.
-
 The second thing you will need is to download the program from its pypi
 repository,
 
 .. code-block:: bash
 
-  pip install -U condor-ir==1.0.0b6
+  pip install -U condor-ir==1.0.0b7
 
 the `-U` parameter will upgrade the package to the latest version, a very
 recomendable step for a unstable package.
@@ -45,16 +41,13 @@ for that you can install using your package manager or external tool:
 .. code-block:: bash
 
   # Arch
-  sudo pacman -S postgresql postgresql-libs
   sudo pacman -S enchant \
                  aspell-es aspell-en aspell-fr \
                  aspell-it aspell-pt aspell-de
-  sudo service start postgresql.service # You might want to enable as well
 
 .. code-block:: bash
 
   # Ubuntu
-  sudo apt-get install postgresql postgresql-contrib postgresql-client libpq-dev
   sudo apt-get install enchant \
                        aspell-es aspell-en aspell-fr \
                        aspell-it aspell-pt aspell-de
@@ -64,13 +57,6 @@ Setup database and schemas
 
 .. code-block:: bash
 
-  # Ubuntu only
-  sudo useradd condor-ir
-  # Ubuntu and Arch
-  sudo -H -u postgres bash -c 'createuser -s condor-ir --pwprompt'
-  # Type "condor-ir" as password when prompted
-  # this step might require to supplant the postgres user instead
-  sudo -H -u condor-ir bash -c 'createdb -E UTF-8 -U condor-ir condor-ir'
   condor utils preparedb
 
 
