@@ -48,6 +48,8 @@ def find_records(pattern, klass, verbose=False):
             click.echo('I\'m processing file {}...'.format(filename))
         rs = klass(filename)
         for record in rs:
+            keywords = record.get('keywords', [])
+            record['keywords'] = '; '.join(keywords)
             yield record
 
 
