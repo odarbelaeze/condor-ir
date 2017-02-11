@@ -23,7 +23,7 @@ def get_install_requires():
     ]
 
 
-version = '1.0.0b6'
+version = '1.0.0b7'
 
 setup(
     name='condor-ir',
