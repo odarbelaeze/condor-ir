@@ -8,6 +8,7 @@ manager.
 import click
 import functools
 import sys
+import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import (
@@ -16,13 +17,16 @@ from sqlalchemy.orm import (
 )
 from sqlalchemy.exc import OperationalError
 
+from condor.config import DEFAULT_DB_PATH
+
 
 def engine():
     """Creates an engine to handle our database.
     """
-    return create_engine(
-        'postgresql://condor-ir:condor-ir@localhost/condor-ir'
-    )
+    # Use a sqlite database by default.
+    default_url = 'sqlite:///' + os.path.join(DEFAULT_DB_PATH, 'condor.db')
+    url = os.environ.get('CONDOR_DB_URL', default_url)
+    return create_engine(url)
 
 
 def session():
@@ -40,10 +44,11 @@ def requires_db(func):
         try:
             session()
             return func(*args, **kwargs)
-        except OperationalError:
+        except OperationalError as e:
             click.echo(
                 click.style('There was an error connectig to the database.',
                             fg='red')
             )
+            raise e
             sys.exit(1)
     return wrapper
