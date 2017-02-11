@@ -20,7 +20,7 @@ before_install:
 
 install:
   - pip --quiet install .
-  - condor utils preparedb
+  - condor utils preparedb -y
 
 before_script:
   - python -m nltk.downloader snowball_data stopwords

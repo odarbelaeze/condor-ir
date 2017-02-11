@@ -17,7 +17,8 @@ def utils():
 
 @utils.command()
 @requires_db
-def preparedb():
+@click.option('--yes', '-y', is_flag=True, help='Do not ask.')
+def preparedb(yes):
     """Wipes out and creates all the tables on the db.
 
     This is meant to be used with care, all data will be lost after running
@@ -25,11 +26,13 @@ def preparedb():
     """
     click.echo(
         click.style(
-            'This command will delete all your tables if they exists careful '
-            'with it', fg='yellow'
+            'This command will delete all your tables if they exists be careful'
+            ' with it', fg='yellow'
         )
     )
-    click.confirm('Do you want me to reset the database schema?', abort=True)
+    if not yes:
+        click.confirm('Do you want me to reset the database schema?',
+                      abort=True)
     _engine = engine()
     DeclarativeBase.metadata.drop_all(_engine)
     DeclarativeBase.metadata.create_all(_engine)
