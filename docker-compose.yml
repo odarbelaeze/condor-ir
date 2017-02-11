@@ -1,0 +1,6 @@
+version: '2'
+services:
+        condor:
+                build: .
+                volumes:
+                        - .:/srv/app
