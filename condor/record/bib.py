@@ -32,7 +32,7 @@ class BibtexRecordParser(RecordParser):
     def _clear_language(self, raw):
         data = self.clear('title', raw) + self.clear('description', raw)
         data += ' '.join(self.clear('keywords', raw))
-        return raw.get('language', self.guesser.guess(data))
+        return raw.get('language', self.guesser.guess(data)).lower()
 
     def clear(self, field, raw):
         mapping = self.get_mapping(field)
