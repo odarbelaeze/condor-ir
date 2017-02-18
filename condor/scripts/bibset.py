@@ -1,6 +1,7 @@
 '''
 Implements the populate script.
 '''
+import pprint
 
 import click
 import sqlalchemy
@@ -117,25 +118,27 @@ def create(kind, files, description, verbose):
         )
 
     db = session()
-    bibset, mappings =BibliographySet.from_file_list(
-        [file.name for file in files],
-        kind
-    )
-    bibset.description = description or 'Bibliography set from {count} {kind} files.'.format(
+    description = description or 'Bibliography set from {count} {kind} files.'.format(
         count=len(files),
         kind=kind
+    )
+    bibset = BibliographySet(
+        description=description
     )
     db.add(bibset)
     db.flush()
 
     click.echo('I\'m writting to {bibset.eid}'.format(bibset=bibset))
 
+    mappings = Bibliography.mappings_from_files(
+        [file.name for file in files],
+        kind,
+        bibliography_set_eid=bibset.eid
+    )
+
     db.bulk_insert_mappings(
         Bibliography,
-        [
-            dict(bibliography_set_eid=bibset.eid, **mapping)
-            for mapping in mappings
-        ]
+        mappings
     )
 
     db.commit()
