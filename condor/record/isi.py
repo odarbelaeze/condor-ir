@@ -27,7 +27,7 @@ class IsiRecordParser(RecordParser):
 
     def clear(self, field, raw):
         '''
-        Uses the `mapings` to get the entries out of the raw dictionary
+        Uses the `mappings` to get the entries out of the raw dictionary
         '''
         _default = self.get_default(field)
         _result = super().clear(field, raw)
@@ -36,6 +36,8 @@ class IsiRecordParser(RecordParser):
         _field = self.get_mapping(field)
         if field in self.list_fields:
             return raw.get(_field, _default)
+        if field == 'language':
+            return ' '.join(raw.get(_field, [])).lower()
         return ' '.join(raw.get(_field, []))
 
 
