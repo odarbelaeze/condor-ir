@@ -1,11 +1,13 @@
 import os
 import pytest
 
+from condor.record import record_iterator_class
 from condor.record import BibtexRecordParser
 from condor.record import FroacRecordIterator
 from condor.record import FroacRecordParser
 from condor.record import IsiRecordIterator
 from condor.record import IsiRecordParser
+from condor.record import BibtexRecordIterator
 
 
 @pytest.fixture(scope='module')
@@ -234,7 +236,6 @@ def test_isi_parser_yields_title(isi_text):
 def test_isi_parser_yields_keywords(isi_text):
     parser = IsiRecordParser()
     data = parser.parse(isi_text)
-    print(data['keywords'])
     assert 2 == len(data['keywords'])
 
 
@@ -311,3 +312,11 @@ def test_bibtex_parser_removes_accents(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
     assert 'érase una vez' == data['description'].lower()
+
+
+def test_record_class_yields_the_rirgt_record():
+    assert record_iterator_class('bib') == BibtexRecordIterator
+    assert record_iterator_class('isi') == IsiRecordIterator
+    assert record_iterator_class('froac') == FroacRecordIterator
+    with pytest.raises(ValueError):
+        _ = record_iterator_class('not legit')

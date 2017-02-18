@@ -10,29 +10,12 @@ import click
 import sqlalchemy
 import tabulate
 
-from condor.record import BibtexRecordIterator
-from condor.record import FroacRecordIterator
-from condor.record import IsiRecordIterator
+from condor.record import record_iterator_class
 
 from condor.dbutil import session, requires_db
 
 from condor.models import Bibliography
 from condor.models import BibliographySet
-
-
-def recordset_class(name):
-    '''
-    Builds a record class out  of the `name` of the extension file.
-    '''
-    if name == 'isi':
-        return IsiRecordIterator
-    elif name == 'xml':
-        return FroacRecordIterator
-    elif name == 'froac':
-        return FroacRecordIterator
-    elif name == 'bib':
-        return BibtexRecordIterator
-    raise NotImplementedError('{} parser is not implemented yet'.format(name))
 
 
 def describe_bibset(kind, pattern):
@@ -181,7 +164,7 @@ def create(pattern, kind, verbose, chunk_size):
         kind, pattern))
 
     try:
-        rs_class = recordset_class(kind)
+        rs_class = record_iterator_class(kind)
     except NotImplementedError as e:
         click.echo('Sadly, ' + e.message)
         sys.exit(1)
