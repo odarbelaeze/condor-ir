@@ -28,6 +28,11 @@ class Query(AuditableMixing, DeclarativeBase):
         back_populates='queries'
     )
 
+    results = relationship(
+        'QueryResult',
+        back_populates='query'
+    )
+
 
 class QueryResult(AuditableMixing, DeclarativeBase):
 
@@ -48,7 +53,4 @@ class QueryResult(AuditableMixing, DeclarativeBase):
         back_populates='results'
     )
 
-    bibliography = relationship(
-        'Bibliography',
-        back_populates='query_results'
-    )
+    bibliography = relationship('Bibliography')
