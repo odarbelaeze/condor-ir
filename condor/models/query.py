@@ -18,6 +18,11 @@ class Query(AuditableMixing, DeclarativeBase):
         nullable=True
     )
 
+    topic = Column(
+        Unicode(40),
+        nullable=True
+    )
+
     query_string = Column(
         Unicode(),
         nullable=False
