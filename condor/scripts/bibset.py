@@ -1,6 +1,7 @@
 '''
 Implements the populate script.
 '''
+import pprint
 
 import click
 import sqlalchemy
@@ -101,15 +102,16 @@ def delete(target):
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
 @click.option('--description', '-d', type=str, default=None,
               help='Describe your bibliography set')
+@click.option('--language', '-l', 'languages', multiple=True,
+              help='Filter specific languages.')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(kind, files, description, verbose):
-    '''
-    Populates a mongo database collection with all the records it can find
-    in the files matching the provided `PATTERN`, the parser will be determined
-    usint the kind flags.
-    '''
+def create(kind, files, description, languages, verbose):
+    """
+    Populates the condor database with information from the given files
+    kind parameter indicates what type of files you're working with.
+    """
 
     if verbose:
         click.echo('I\'m looking for {} records in these files:\n{}'.format(
@@ -117,25 +119,36 @@ def create(kind, files, description, verbose):
         )
 
     db = session()
-    bibset, mappings =BibliographySet.from_file_list(
-        [file.name for file in files],
-        kind
-    )
-    bibset.description = description or 'Bibliography set from {count} {kind} files.'.format(
+    description = description or 'Bibliography set from {count} {kind} files.'.format(
         count=len(files),
         kind=kind
+    )
+    bibset = BibliographySet(
+        description=description
     )
     db.add(bibset)
     db.flush()
 
     click.echo('I\'m writting to {bibset.eid}'.format(bibset=bibset))
 
+    mappings = Bibliography.mappings_from_files(
+        [file.name for file in files],
+        kind,
+        bibliography_set_eid=bibset.eid
+    )
+
+    if languages:
+        click.echo('Filter the following languages only: ' + ', '.join(languages))
+        bibset.description += ' Filtered to {}.'.format(', '.join(languages))
+        mappings = [
+            m
+            for m in mappings
+            if m.get('language', 'english').lower() in languages
+        ]
+
     db.bulk_insert_mappings(
         Bibliography,
-        [
-            dict(bibliography_set_eid=bibset.eid, **mapping)
-            for mapping in mappings
-        ]
+        mappings
     )
 
     db.commit()

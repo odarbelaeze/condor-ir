@@ -31,6 +31,16 @@ def test_populate_bibtex(runner):
     assert 'The database contains 3 records' in res.output
 
 
+def test_populate_bibtex(runner):
+    res = runner.invoke(
+        bibcreate,
+        ['--verbose', '-l', 'english', 'bib', 'data/bib/oaa.bib']
+    )
+    assert res.exit_code == 0
+    assert 'Filter the following languages only: english' in res.output
+    assert 'The database contains 0 records' in res.output
+
+
 def test_populate_xml(runner):
     res = runner.invoke(
         bibcreate,
