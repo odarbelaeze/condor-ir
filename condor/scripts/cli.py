@@ -14,8 +14,10 @@ class CondorCommand(click.MultiCommand):
             from condor.scripts.matrix import matrix
             from condor.scripts.ranking import ranking
             from condor.scripts.utils import utils
+            from condor.scripts.contributor import contributor
             return {
                 'bibset': bibset,
+                'contributor': contributor,
                 'model': model,
                 'matrix': matrix,
                 'ranking': ranking,
