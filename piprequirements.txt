@@ -1,5 +1,4 @@
 SQLAlchemy==1.0.12
-alembic==0.8.6
 bibtexparser>=0.6.2
 click>=6.2
 cov-core>=1.15.0
