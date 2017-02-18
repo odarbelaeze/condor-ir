@@ -111,8 +111,10 @@ def create(kind, files, description, verbose):
     usint the kind flags.
     '''
 
-    click.echo('I\'m looking for {} records in these files {}'.format(
-        kind, '\n'.join(file.name for file in files)))
+    if verbose:
+        click.echo('I\'m looking for {} records in these files:\n{}'.format(
+            kind, '\n'.join(file.name for file in files))
+        )
 
     db = session()
     bibset, mappings =BibliographySet.from_file_list(

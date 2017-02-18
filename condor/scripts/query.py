@@ -53,7 +53,8 @@ def query(parameters, limit, target, show, verbose):
     script will pick up to do the query is the latest available model.
     '''
 
-    click.echo('You queried: {}'.format(' '.join(parameters)))
+    if verbose:
+        click.echo('You queried: {}'.format(' '.join(parameters)))
 
     db = session()
     if target is None:
