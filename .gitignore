@@ -74,3 +74,5 @@ term_lists/
 # Vagrant
 .vagrant/
 
+# PyCharm
+.idea/

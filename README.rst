@@ -14,8 +14,8 @@ Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/
 
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., `LSA <https://en.wikipedia.org/wiki/Latent_semantic_analysis>`_.
-The program is setted up so that it understands froac xml documents on input
-as well as plain text reccords from isi web of knowledge.
+The program is set up so that it understands froac xml documents on input
+as well as plain text records from isi web of knowledge.
 
 You can find more information about froac repositories at
 http://froac.manizales.unal.edu.co/froac/ http://froac.manizales.unal.edu.co/froac/
@@ -33,7 +33,7 @@ repository,
   pip install -U condor-ir==1.0.0b8
 
 the `-U` parameter will upgrade the package to the latest version, a very
-recomendable step for a unstable package.
+recommendable step for a unstable package.
 
 The language support requires the enchant engine as well as some dictionaries,
 for that you can install using your package manager or external tool:
@@ -74,7 +74,7 @@ the CLI interface gives you most CRUD operations in a hierachical manner.
 list and get help about those using ``condor bibset --help``.
 
 ``condor model`` is a short cut that offers the ``condor model create``
-subcommand, that chreates both a term document matrix and an *lsa* search
+sub command, that creates both a term document matrix and an *lsa* search
 engine, get help on *models* using ``condor model --help``.
 
 ``condor query <string...>`` this non crud command search a bibliography set
