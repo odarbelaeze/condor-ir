@@ -25,10 +25,18 @@ def test_basic_usage(runner):
 def test_populate_bibtex(runner):
     res = runner.invoke(
         bibcreate,
-        ['--bib', '--verbose', 'data/bib/*.bib']
+        ['--verbose', 'bib', 'data/bib/oaa.bib']
     )
     assert res.exit_code == 0
     assert 'The database contains 3 records' in res.output
+
+
+def test_populate_xml(runner):
+    res = runner.invoke(
+        bibcreate,
+        ['--verbose', 'xml', 'data/froac/roapManizales1.xml']
+    )
+    assert res.exit_code == 0
 
 
 def test_basic_usage_model(runner):

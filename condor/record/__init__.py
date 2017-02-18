@@ -14,7 +14,7 @@ def record_iterator_class(record_type):
     """
     if record_type == 'bib':
         return BibtexRecordIterator
-    elif record_type == 'froac':
+    elif record_type == 'froac' or record_type == 'xml':
         return FroacRecordIterator
     elif record_type == 'isi':
         return IsiRecordIterator

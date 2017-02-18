@@ -23,8 +23,8 @@ before_script:
 
 script:
   - python setup.py test
-  - condor bibset create 'data/froac/**/*.xml'
-  - condor bibset create --isi 'data/isi/**/*.txt'
+  - condor bibset create froac data/froac/**/*.xml
+  - condor bibset create isi data/isi/**/*.txt
   - condor model create
   - condor query find
   - condor bibset

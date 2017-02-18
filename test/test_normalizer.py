@@ -75,7 +75,6 @@ def test_stopword_remover_keeps_important_words(stopwords):
 def test_normalizers_can_be_composed(punctuated):
     class Composed(PunctuationRemover, StopwordRemover, Stemmer):
         pass
-    print(Composed.__mro__)
     normalizer = Composed()
     result = normalizer.apply_to(punctuated)
     assert 'hol hac' == result

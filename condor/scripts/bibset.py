@@ -2,56 +2,14 @@
 Implements the populate script.
 '''
 
-import glob
-import itertools
-import sys
-
 import click
 import sqlalchemy
 import tabulate
-
-from condor.record import record_iterator_class
 
 from condor.dbutil import session, requires_db
 
 from condor.models import Bibliography
 from condor.models import BibliographySet
-
-
-def describe_bibset(kind, pattern):
-    desc = 'Bibliography set created from {kind} files ussing {pattern}'
-    return BibliographySet(
-        description=desc.format(kind=kind, pattern=pattern)
-    )
-
-
-def find_records(pattern, klass, verbose=False):
-    for filename in glob.glob(pattern, recursive=True):
-        if verbose:
-            click.echo('I\'m processing file {}...'.format(filename))
-        rs = klass(filename)
-        for record in rs:
-            keywords = record.get('keywords', [])
-            record['keywords'] = '; '.join(keywords)
-            yield record
-
-
-def chunks(sequence, n):
-    seq_it = iter(sequence)
-    while True:
-        chunk = itertools.islice(seq_it, n)
-        try:
-            first_el = next(chunk)
-        except StopIteration:
-            return
-        yield itertools.chain((first_el, ), chunk)
-
-
-def existing_bibliographies(db, bibset, hashes):
-    query = db.query(Bibliography).join(BibliographySet)
-    query = query.filter(BibliographySet.eid == bibset.eid)
-    query = query.filter(Bibliography.hash.in_(hashes))
-    return query.all()
 
 
 @click.group()
@@ -139,62 +97,46 @@ def delete(target):
 
 
 @bibset.command()
-@click.argument('pattern')
-@click.option('--xml', 'kind', flag_value='xml', default=True,
-              help='Use the xml parser (default)')
-@click.option('--froac', 'kind', flag_value='froac', default=True,
-              help='Use the xml froac parser (default)')
-@click.option('--isi', 'kind', flag_value='isi',
-              help='Use the isi plain text parser (default xml)')
-@click.option('--bib', 'kind', flag_value='bib',
-              help='Use the bibtex parser (default xml)')
+@click.argument('kind', type=click.Choice(['xml', 'froac', 'bib', 'isi']))
+@click.argument('files', nargs=-1, type=click.File(lazy=True))
+@click.option('--description', '-d', type=str, default=None,
+              help='Describe your bibliography set')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
-@click.option('--chunk-size', default=1000,
-              help='Insert into db in chunks')
 @requires_db
-def create(pattern, kind, verbose, chunk_size):
+def create(kind, files, description, verbose):
     '''
     Populates a mongo database collection with all the records it can find
     in the files matching the provided `PATTERN`, the parser will be determined
     usint the kind flags.
     '''
 
-    click.echo('I\'m looking for {} records in files matching {}'.format(
-        kind, pattern))
-
-    try:
-        rs_class = record_iterator_class(kind)
-    except NotImplementedError as e:
-        click.echo('Sadly, ' + e.message)
-        sys.exit(1)
+    click.echo('I\'m looking for {} records in these files {}'.format(
+        kind, '\n'.join(file.name for file in files)))
 
     db = session()
-    bibset = describe_bibset(kind, pattern)
+    bibset, mappings =BibliographySet.from_file_list(
+        [file.name for file in files],
+        kind
+    )
+    bibset.description = description or 'Bibliography set from {count} {kind} files.'.format(
+        count=len(files),
+        kind=kind
+    )
     db.add(bibset)
-    db.commit()
+    db.flush()
 
     click.echo('I\'m writting to {bibset.eid}'.format(bibset=bibset))
 
-    records = find_records(pattern, rs_class, verbose=verbose)
-    for chunk in chunks(records, chunk_size):
-        record_hash = {
-            record['hash']: record
-            for record in chunk
-        }
+    db.bulk_insert_mappings(
+        Bibliography,
+        [
+            dict(bibliography_set_eid=bibset.eid, **mapping)
+            for mapping in mappings
+        ]
+    )
 
-        # Filter out existing bibliography records
-        for bib in existing_bibliographies(db, bibset, record_hash.keys()):
-            record_hash.pop(bib.hash)
-
-        db.bulk_insert_mappings(
-            Bibliography,
-            [
-                dict(bibliography_set_eid=bibset.eid, **record)
-                for record in record_hash.values()
-            ]
-        )
-        db.commit()
+    db.commit()
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(

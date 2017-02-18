@@ -318,5 +318,6 @@ def test_record_class_yields_the_rirgt_record():
     assert record_iterator_class('bib') == BibtexRecordIterator
     assert record_iterator_class('isi') == IsiRecordIterator
     assert record_iterator_class('froac') == FroacRecordIterator
+    assert record_iterator_class('xml') == FroacRecordIterator
     with pytest.raises(ValueError):
         _ = record_iterator_class('not legit')
