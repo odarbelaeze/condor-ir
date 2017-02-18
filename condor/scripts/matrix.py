@@ -10,7 +10,7 @@ import sqlalchemy
 import sys
 import tabulate
 
-from condor.dbutil import session, requires_db
+from condor.dbutil import requires_db
 from condor.models import BibliographySet, TermDocumentMatrix
 from condor.builders.matrix import build_matrix
 from condor.config import MATRIX_PATH, TERM_LIST_PATH
@@ -32,11 +32,10 @@ def matrix():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(target, regularise, verbose):
+def create(db, target, regularise, verbose):
     """
     Create a new term document matrix.
     """
-    db = session()
     if target is None:
         bibset = BibliographySet.latest(db)
     else:
@@ -82,11 +81,10 @@ def create(target, regularise, verbose):
 @matrix.command()
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(count):
+def list(db, count):
     """
     List all the available term document matrices.
     """
-    db = session()
     term_doc_matrices = db.query(TermDocumentMatrix).order_by(
         TermDocumentMatrix.created.desc()
     ).limit(count)
@@ -108,7 +106,7 @@ def list(count):
             tablefmt='rst',
         )
     )
-    total = session().query(TermDocumentMatrix).count()
+    total = db.query(TermDocumentMatrix).count()
     if count >= total:
         click.echo('Showing all the term document matrices.')
     else:
@@ -121,11 +119,10 @@ def list(count):
 @matrix.command()
 @click.argument('target')
 @requires_db
-def delete(target):
+def delete(db, target):
     """
     Delete a given matrix and associated search engines.
     """
-    db = session()
     try:
         term_document_matrix = db.query(TermDocumentMatrix).filter(
             TermDocumentMatrix.eid.like(target + '%')

@@ -12,7 +12,7 @@ import numpy
 
 from condor.normalize import CompleteNormalizer
 from condor.models import RankingMatrix
-from condor.dbutil import session, requires_db
+from condor.dbutil import requires_db
 from condor.util import LanguageGuesser
 
 
@@ -47,7 +47,7 @@ def frequency(words, tokens):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def query(parameters, limit, target, show, verbose):
+def query(db, parameters, limit, target, show, verbose):
     '''
     Queries the database using the given parameters, the model that this
     script will pick up to do the query is the latest available model.
@@ -56,7 +56,6 @@ def query(parameters, limit, target, show, verbose):
     if verbose:
         click.echo('You queried: {}'.format(' '.join(parameters)))
 
-    db = session()
     if target is None:
         ranking = db.query(RankingMatrix).order_by(
             RankingMatrix.created.desc()

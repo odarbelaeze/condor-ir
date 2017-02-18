@@ -9,7 +9,7 @@ import sys
 import click
 import numpy
 
-from condor.dbutil import session, requires_db
+from condor.dbutil import requires_db
 from condor.builders.matrix import build_matrix
 from condor.builders.ranking import build_lsa_ranking
 from condor.models import (
@@ -39,12 +39,11 @@ def model():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(target, verbose):
+def create(db, target, verbose):
     '''
     Creates a ranking matrix and a lsa model for the specified bibset.
     '''
 
-    db = session()
     if target is None:
         bibset = db.query(BibliographySet).order_by(
             BibliographySet.created.desc()

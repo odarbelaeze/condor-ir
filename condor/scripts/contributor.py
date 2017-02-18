@@ -83,7 +83,7 @@ def contributor():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(kind, files, description, languages, warn, verbose):
+def create(db, kind, files, description, languages, warn, verbose):
     """
     Loads a query set with the associated files.
      

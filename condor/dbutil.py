@@ -42,8 +42,8 @@ def requires_db(func):
     def wrapper(*args, **kwargs):
         # Check for the database
         try:
-            session()
-            return func(*args, **kwargs)
+            db = session()
+            return func(db, *args, **kwargs)
         except OperationalError as e:
             click.echo(
                 click.style('There was an error connectig to the database.',
