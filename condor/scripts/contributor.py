@@ -130,3 +130,5 @@ def create(db, kind, files, description, languages, warn, verbose):
             mappings_to_store[mapping['hash']] = mapping
         mappings_for_results[props] = mappings
         pprint.pprint(mappings)
+
+    # TODO: With the info gathered here write the appropriate objects to the db
