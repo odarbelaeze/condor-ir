@@ -92,7 +92,6 @@ def delete(db, target):
                ])))
     click.confirm('Do you want me to delete all this information?', abort=True)
     db.delete(bibliography_set)
-    db.commit()
 
 
 @bibset.command()
@@ -148,7 +147,7 @@ def create(db, kind, files, description, languages, verbose):
         mappings
     )
 
-    db.commit()
+    db.flush()
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(

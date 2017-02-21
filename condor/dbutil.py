@@ -36,19 +36,41 @@ def session():
 
 
 def requires_db(func):
-    """Checks if the db is available and we can create a session.
+    """
+    Injects a database session into a function as first argument.
+
+    Checks if the db is available and we can create a session otherwise errors
+    out, if the database is available, it tries to run the underlying function
+    and commit any changes to the database, if something fails, it rolls back
+    any uncommitted changes.
+
+    .. note::
+        for best results use `db.flush()` instead of `db.commit()` in functions
+        that require a database connection.
     """
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         # Check for the database
         try:
             db = session()
-            return func(db, *args, **kwargs)
+            try:
+                # Execute the function, commit and return
+                result = func(db, *args, **kwargs)
+                db.commit()
+                return result
+            except Exception as e:
+                # Rollback the database if anything bad happens
+                click.echo(click.style(
+                    'Rolling back the database.',
+                    fg='yellow'
+                ))
+                db.rollback()
+                raise e
         except OperationalError as e:
-            click.echo(
-                click.style('There was an error connectig to the database.',
-                            fg='red')
-            )
+            click.echo(click.style(
+                'There was an error connecting to the database.',
+                fg='red'
+            ))
             raise e
             sys.exit(1)
     return wrapper

@@ -74,7 +74,6 @@ def create(db, target, verbose):
     )
     ranking_matrix.term_document_matrix = td_matrix
     db.add(ranking_matrix)
-    db.commit()
 
 
 @ranking.command()
@@ -142,4 +141,3 @@ def delete(db, target):
     )
     click.confirm('Do you want me to continue?', abort=True)
     db.delete(ranking_matrix)
-    db.commit()

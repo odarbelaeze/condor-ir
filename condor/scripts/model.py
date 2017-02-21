@@ -120,4 +120,3 @@ def create(db, target, verbose):
     ]
 
     db.add(td_matrix)
-    db.commit()

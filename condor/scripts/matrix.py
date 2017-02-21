@@ -75,7 +75,6 @@ def create(db, target, regularise, verbose):
     )
     td_matrix.bibliography_set = bibset
     db.add(td_matrix)
-    db.commit()
 
 
 @matrix.command()
@@ -142,4 +141,3 @@ def delete(db, target):
                .format(len(term_document_matrix.ranking_matrices)))
     click.confirm('Do you want me to delete all this information?', abort=True)
     db.delete(term_document_matrix)
-    db.commit()
