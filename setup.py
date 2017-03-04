@@ -11,7 +11,6 @@ def get_install_requires():
         ]
     return [
         'SQLAlchemy==1.0.12',
-        'alembic==0.8.6',
         'bibtexparser>=0.6.2',
         'click>=6.2',
         'marshmallow>=2.4.2',
@@ -22,7 +21,7 @@ def get_install_requires():
     ]
 
 
-version = '1.0.0b8'
+version = '1.0.0rc'
 
 setup(
     name='condor-ir',

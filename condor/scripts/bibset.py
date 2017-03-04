@@ -1,13 +1,12 @@
-'''
+"""
 Implements the populate script.
-'''
-import pprint
+"""
 
 import click
 import sqlalchemy
 import tabulate
 
-from condor.dbutil import session, requires_db
+from condor.dbutil import requires_db
 
 from condor.models import Bibliography
 from condor.models import BibliographySet
@@ -24,11 +23,11 @@ def bibset():
 @bibset.command()
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(count):
+def list(db, count):
     """
     List all the bibliography sets.
     """
-    bibliography_sets = session().query(BibliographySet).order_by(
+    bibliography_sets = db.query(BibliographySet).order_by(
         BibliographySet.created.desc()
     ).limit(count)
 
@@ -49,12 +48,12 @@ def list(count):
             tablefmt='rst',
         )
     )
-    total = session().query(BibliographySet).count()
+    total = db.query(BibliographySet).count()
     if count >= total:
-        click.echo('Showing all the bibsets.')
+        click.echo('Showing all the bibliography sets.')
     else:
         click.echo(
-            'Shwoing {count} out of {total} bibliography sets.'
+            'Showing {count} out of {total} bibliography sets.'
             .format(count=count, total=total)
         )
 
@@ -62,11 +61,10 @@ def list(count):
 @bibset.command()
 @click.argument('target')
 @requires_db
-def delete(target):
+def delete(db, target):
     """
     Delete the target bibliography set.
     """
-    db = session()
     try:
         bibliography_set = db.query(BibliographySet).filter(
             BibliographySet.eid.like(target + '%')
@@ -94,7 +92,6 @@ def delete(target):
                ])))
     click.confirm('Do you want me to delete all this information?', abort=True)
     db.delete(bibliography_set)
-    db.commit()
 
 
 @bibset.command()
@@ -107,7 +104,7 @@ def delete(target):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(kind, files, description, languages, verbose):
+def create(db, kind, files, description, languages, verbose):
     """
     Populates the condor database with information from the given files
     kind parameter indicates what type of files you're working with.
@@ -118,7 +115,6 @@ def create(kind, files, description, languages, verbose):
             kind, '\n'.join(file.name for file in files))
         )
 
-    db = session()
     description = description or 'Bibliography set from {count} {kind} files.'.format(
         count=len(files),
         kind=kind
@@ -151,7 +147,7 @@ def create(kind, files, description, languages, verbose):
         mappings
     )
 
-    db.commit()
+    db.flush()
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(

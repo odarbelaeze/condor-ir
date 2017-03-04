@@ -10,7 +10,7 @@ import sqlalchemy
 import sys
 import tabulate
 
-from condor.dbutil import session, requires_db
+from condor.dbutil import requires_db
 from condor.models import (
     TermDocumentMatrix,
     RankingMatrix
@@ -33,12 +33,11 @@ def ranking():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(target, verbose):
+def create(db, target, verbose):
     """
     Create a new term document matrix.
     """
     # TODO: Throw this into db_util.
-    db = session()
     if target is None:
         td_matrix = TermDocumentMatrix.latest(db)
     else:
@@ -75,17 +74,15 @@ def create(target, verbose):
     )
     ranking_matrix.term_document_matrix = td_matrix
     db.add(ranking_matrix)
-    db.commit()
 
 
 @ranking.command()
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(count):
+def list(db, count):
     """
     List all the available ranking matrices.
     """
-    db = session()
     ranking_matrices = db.query(RankingMatrix).order_by(
         RankingMatrix.created.desc()
     ).limit(count)
@@ -110,7 +107,7 @@ def list(count):
             tablefmt='rst',
         )
     )
-    total = session().query(RankingMatrix).count()
+    total = db.query(RankingMatrix).count()
     if count >= total:
         click.echo('Showing all the term document matrices.')
     else:
@@ -123,11 +120,10 @@ def list(count):
 @ranking.command()
 @click.argument('target')
 @requires_db
-def delete(target):
+def delete(db, target):
     """
     Delete a given matrix and associated search engines.
     """
-    db = session()
     try:
         ranking_matrix = db.query(RankingMatrix).filter(
             RankingMatrix.eid.like(target + '%')
@@ -145,4 +141,3 @@ def delete(target):
     )
     click.confirm('Do you want me to continue?', abort=True)
     db.delete(ranking_matrix)
-    db.commit()

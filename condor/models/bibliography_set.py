@@ -25,3 +25,8 @@ class BibliographySet(AuditableMixing, DeclarativeBase):
         back_populates='bibliography_set',
         cascade='all, delete-orphan',
     )
+
+    queries = relationship(
+        'Query',
+        back_populates='bibliography_set'
+    )
