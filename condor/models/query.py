@@ -38,6 +38,11 @@ class Query(AuditableMixing, DeclarativeBase):
         back_populates='query'
     )
 
+    def __repr__(self):
+        return 'Query(eid={}, contributor={}, topic={}, query_string={})'.format(
+            self.eid, self.contributor, self.topic, self.query_string
+        )
+
 
 class QueryResult(AuditableMixing, DeclarativeBase):
 
@@ -59,3 +64,8 @@ class QueryResult(AuditableMixing, DeclarativeBase):
     )
 
     bibliography = relationship('Bibliography')
+
+    def __repr__(self):
+        return 'Query(query={}, bibliography={})'.format(
+            self.query, self.bibliography
+        )

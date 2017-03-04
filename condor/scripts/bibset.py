@@ -1,6 +1,6 @@
-'''
+"""
 Implements the populate script.
-'''
+"""
 
 import click
 import sqlalchemy
@@ -50,10 +50,10 @@ def list(db, count):
     )
     total = db.query(BibliographySet).count()
     if count >= total:
-        click.echo('Showing all the bibsets.')
+        click.echo('Showing all the bibliography sets.')
     else:
         click.echo(
-            'Shwoing {count} out of {total} bibliography sets.'
+            'Showing {count} out of {total} bibliography sets.'
             .format(count=count, total=total)
         )
 
