@@ -124,24 +124,40 @@ def create(db, kind, files, description, languages, warn, verbose):
     if verbose:
         click.echo('Files: \n{}'.format('\n'.join(file_names)))
 
+    description = description or (
+        'Bibliography set for contributors from {count} {kind} files'
+    ).format(count=len(files), kind=kind)
+    bibliography_set = BibliographySet(description=description)
+    db.add(bibliography_set)
+    db.flush()
+
+    if languages:
+        click.echo(
+            'Filter the following languages only: ' + ', '.join(languages)
+        )
+        bibliography_set.description += ' Filtered to {}.'.format(
+            ', '.join(languages)
+        )
+
     mappings_to_store = dict()
     mappings_for_results = dict()
 
     for props in prop_queries(file_names, warn):
         mappings = Bibliography.mappings_from_files([props.path], kind)
+        if languages:
+            mappings = [
+                m
+                for m in mappings
+                if m.get('language', 'english').lower() in languages
+            ]
+        if not mappings:
+            continue
         for mapping in mappings:
             mappings_to_store[mapping['hash']] = mapping
         if props.query_string is not None:
             mappings_for_results[props] = mappings
 
     # Store the documents
-    description = description or (
-        'Bibliography set for contributors from {count} {kind} files'
-    ).format(count=len(files), kind=kind)
-
-    bibliography_set = BibliographySet(description=description)
-    db.add(bibliography_set)
-    db.flush()
     db.bulk_insert_mappings(
         Bibliography,
         [
@@ -189,7 +205,8 @@ def list(db, count):
     bibliography_sets = db.query(BibliographySet) \
         .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
         .filter(Query.eid) \
-        .order_by(BibliographySet.created.desc())\
+        .order_by(BibliographySet.created.desc()) \
+        .distinct() \
         .limit(count)
 
     click.echo(
@@ -218,6 +235,7 @@ def list(db, count):
     total = db.query(BibliographySet) \
         .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
         .filter(Query.eid) \
+        .distinct() \
         .count()
 
     if count >= total:
@@ -225,4 +243,5 @@ def list(db, count):
     else:
         click.echo(
             'Sowing {count} out of {total} contributor bibliography sets.'
-        ).format(count=count, total=total)
+            .format(count=count, total=total)
+        )
