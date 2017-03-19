@@ -14,6 +14,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import (
     scoped_session,
     sessionmaker,
+    exc,
 )
 from sqlalchemy.exc import OperationalError
 
@@ -21,7 +22,8 @@ from condor.config import DEFAULT_DB_PATH
 
 
 def engine():
-    """Creates an engine to handle our database.
+    """
+    Creates an engine to handle our database.
     """
     # Use a sqlite database by default.
     default_url = 'sqlite:///' + os.path.join(DEFAULT_DB_PATH, 'condor.db')
@@ -30,7 +32,8 @@ def engine():
 
 
 def session():
-    """Creates a session maker instance attached to our default engine.
+    """
+    Creates a session maker instance attached to our default engine.
     """
     return scoped_session(sessionmaker(bind=engine()))
 
@@ -74,3 +77,27 @@ def requires_db(func):
             raise e
             sys.exit(1)
     return wrapper
+
+
+def find_one(db, model, eid):
+    """
+    Finds exactly one of the given models in the db by eid.
+    
+    It's useful when trying to delete or show an item, if we don't know such
+    item we might as well exit the program.
+
+    :param db: db connection instance
+    :param model: model to look for, should have an eid field
+    :param eid: part of the eid to look for
+    :return: the instance of the model found
+    """
+    try:
+        return db.query(model).filter(
+            model.eid.like(eid + '%')
+        ).one()
+    except exc.NoResultFound:
+        click.secho('Could not find a result matching {}'.format(eid), fg='red')
+        raise click.Abort()
+    except exc.MultipleResultsFound:
+        click.secho('Found many results matching {}'.format(eid), fg='red')
+        raise click.Abort()

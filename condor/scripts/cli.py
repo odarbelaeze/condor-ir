@@ -15,6 +15,7 @@ class CondorCommand(click.MultiCommand):
             from condor.scripts.ranking import ranking
             from condor.scripts.utils import utils
             from condor.scripts.contributor import contributor
+            from condor.scripts.evaluate import evaluate
             return {
                 'bibset': bibset,
                 'contributor': contributor,
@@ -22,6 +23,7 @@ class CondorCommand(click.MultiCommand):
                 'matrix': matrix,
                 'ranking': ranking,
                 'query': query,
+                'evaluate': evaluate,
                 'utils': utils,
             }
         except enchant.errors.DictNotFoundError:
