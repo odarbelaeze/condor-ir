@@ -36,5 +36,7 @@ def evaluate(db, target, limit):
             'TP', len(true_positives),
             'FP', len(false_positives),
             'TN', len(true_negatives),
+            # 'PR', len(true_positives) / (len(true_positives) + len(false_positives)),
+            'RC', len(true_positives) / (len(true_positives) + len(false_negatives)),
             '\n',
         )
