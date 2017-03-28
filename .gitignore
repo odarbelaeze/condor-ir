@@ -76,3 +76,8 @@ term_lists/
 
 # PyCharm
 .idea/
+.vscode/
+
+# Data files
+performance*.json
+data.*

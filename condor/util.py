@@ -10,7 +10,7 @@ import re
 from collections import OrderedDict
 from enchant import request_dict
 
-from condor.normalize import PunctuationRemover
+from condor.normalize import PunctuationRemover, CompleteNormalizer
 from condor.normalize import SpaceTokenizer
 
 
@@ -118,3 +118,22 @@ class LanguageGuesser(object):
                 guessed_lang = lang
                 max_count = count
         return self.languages.get(guessed_lang, self.default_lang)
+
+
+def frequency(words, tokens):
+    """
+    Computes the frequency list of a list of tokens in a dense representation.
+
+    :param list words: list of the words to look for
+    :param list tokens: list of the tokens to count
+
+    .. note:: this function applies a complete normalizer to the given tokens and guesses the language.
+    """
+    # word_dict = {word: pos for pos, word in enumerate(words)}
+    language = LanguageGuesser().guess(' '.join(tokens))
+    normalizer = CompleteNormalizer(language=language)
+    counts = collections.Counter(
+        normalizer.apply_to(token)
+        for token in tokens
+    )
+    return [counts.get(word, 0) for word in words]

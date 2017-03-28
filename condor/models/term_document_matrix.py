@@ -40,7 +40,7 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
     )
 
     @property
-    def terms(self):
+    def words(self):
         with open(self.term_list_path) as term_file:
             terms = term_file.read().split('\n')
         return terms
