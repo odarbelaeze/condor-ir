@@ -20,13 +20,12 @@ def get_install_requires():
         'tabulate>=0.7.5',
     ]
 
-
-version = '1.0.0rc1'
+VERSION = '1.0.0rc2'
 
 setup(
     name='condor-ir',
-    version=version,
-    author='Oscar David Arbeláez <@odarbelaeze>, German Augusto Osorio',
+    version=VERSION,
+    author='Oscar D. Arbeláez-Echeverri <@odarbelaeze>, German A. Osorio-Zuluaga',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
     install_requires=get_install_requires(),
@@ -47,7 +46,7 @@ setup(
     url='https://condor-ir.co',
     download_url=(
         'https://github.com/odarbelaeze/condor-ir/tarball/{}'
-        .format(version)
+        .format(VERSION)
     ),
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',

@@ -30,7 +30,7 @@ repository,
 
 .. code-block:: bash
 
-  pip install -U condor-ir==1.0.0rc1
+  pip install -U condor-ir==1.0.0rc2
 
 the `-U` parameter will upgrade the package to the latest version, a very
 recommendable step for a unstable package.
