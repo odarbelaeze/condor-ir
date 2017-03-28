@@ -76,7 +76,7 @@ Iterator implementations
 The utility module
 ==================
 
-.. automodule:: condor.record.util
+.. automodule:: condor.util
   :members:
 
 
@@ -86,7 +86,7 @@ The scripts package
 Database manipulation
 ---------------------
 
-.. automodule:: condor.scripts.dbutil
+.. automodule:: condor.dbutil
   :members:
 
 Script entry points
@@ -97,17 +97,23 @@ but it can be reduced in the future. The populate script, which yields the
 `condorpopulate` command is located in the :mod:`~condor.scripts.populate`
 module, and contains the information descripted bellow.
 
-.. autofunction:: condor.scripts.populate.condorpopulate
+.. automodule:: condor.scripts.bibset
+  :members:
+  :undoc-members:
 
 The model script, which yields the `condormodel` command is located in the
 :mod:`~condor.scripts.model` module, and contains the information descripted
 bellow.
 
-.. autofunction:: condor.scripts.model.condormodel
+.. automodule:: condor.scripts.model
+  :members:
+  :undoc-members:
 
 The query script, which yields the `condorquery` command is located in the
 :mod:`~condor.scripts.query` module, and contains the information descripted
 bellow.
 
-.. autofunction:: condor.scripts.query.condorquery
+.. automodule:: condor.scripts.query
+  :members:
+  :undoc-members:
 
