@@ -31,15 +31,16 @@ class RankingMatrix(AuditableMixing, DeclarativeBase):
     def matrix(self):
         return numpy.load(self.ranking_matrix_path)
 
-    def query(self, tokens, limit=10):
+    def query(self, tokens, limit=None, cosine=None):
         """
         Find the most relevant documents in the index given this tokens.
-        
+
         The tokens are normalized and language guessed internally! So no
         worries, just pass in the tokens as entered by the user.
 
         :param tokens: query string to search
         :param limit: limit of documents to use
+        :param cosine: limit cosine to use
         :return: list of documents
         """
 
@@ -55,5 +56,14 @@ class RankingMatrix(AuditableMixing, DeclarativeBase):
         cos = dot / (norm_rank * norm_freq)
 
         ordered = reversed(sorted(zip(documents, cos), key=itemgetter(1)))
+
+        if limit is None and cosine is None:
+            limit = 10
+        
+        if cosine is not None:
+            return [
+                r for r in ordered
+                if r[1] > cosine
+            ]
 
         return list(ordered)[:limit]

@@ -21,18 +21,23 @@ PerformanceResult = collections.namedtuple(
         'false_negatives',
         'precision',
         'recall',
+        'f1_score',
     ]
 )
 
 
 @click.command()
 @click.argument('target')
-@click.option('--limit', '-l', default=10,
+@click.option('--limit', '-l', default=None, type=int,
               help='limit the number of results to use.')
+@click.option('--cosine', '-c', default=None, type=float,
+              help='limit the query by cosine.')
+@click.option('--words', '-w', default=None, type=int,
+              help='limit the number of words in the query')
 @click.option('--output', '-o', type=click.File('w'),
               help='export a detailed performance report')
 @requires_db
-def evaluate(db, target, limit, output):
+def evaluate(db, target, limit, cosine, words, output):
     """
     Evaluates a target search engine, the search engine needs to be associated
     to some queries in order to be evaluated, this command mainly returns
@@ -49,7 +54,10 @@ def evaluate(db, target, limit, output):
     performance_results = {}
 
     for query in queries:
-        results = ranking_matrix.query(query.query_string.split(), limit=limit)
+        if words is not None and len(query.query_string.split()) != words:
+            continue
+        results = ranking_matrix.query(
+            query.query_string.split(), limit=limit, cosine=cosine)
         experiment = set(r.eid for r, _ in results)
         truth = set(r.bibliography.eid for r in query.results)
         false_negatives = truth.difference(experiment)
@@ -62,14 +70,19 @@ def evaluate(db, target, limit, output):
             precision = len(true_positives) / \
                 (len(true_positives) + len(false_positives))
         else:
-            precision = 0.0
+            precision = None
 
         # Validate recall this might never happen
         if len(true_positives) + len(false_negatives) > 0:
             recall = len(true_positives) / \
                 (len(true_positives) + len(false_negatives))
         else:
-            recall = 0.0
+            recall = None
+
+        if precision is not None and recall is not None and precision + recall > 0:
+            f1_score = 2 * precision * recall / (precision + recall)
+        else:
+            f1_score = None
 
         performance_results[query.query_string] = PerformanceResult(
             false_negatives=len(false_negatives),
@@ -78,18 +91,31 @@ def evaluate(db, target, limit, output):
             true_negatives=len(true_negatives),
             precision=precision,
             recall=recall,
+            f1_score=f1_score,
         )
 
-    mean_f1_score = numpy.mean([
-        2 * result.precision * result.recall / (result.precision + result.recall)
-        for result in performance_results.values()
-        if result.precision + result.recall > 0
-    ])
+    averages = {
+        metric: numpy.mean([
+            getattr(result, metric)
+            for result in performance_results.values()
+            if getattr(result, metric) is not None
+        ])
+        for metric in PerformanceResult._fields
+    }
 
     if output:
         json.dump({
-            q: res._asdict()
-            for q, res in performance_results.items()
+            'parameters': {
+                'target': ranking_matrix.eid,
+                'queries': len(performance_results),
+                'cosine': cosine,
+                'limit': limit,
+            },
+            'averages': averages,
+            'results': {
+                q: res._asdict()
+                for q, res in performance_results.items()
+            },
         }, output, indent=2)
 
-    click.echo(mean_f1_score)
+    click.echo(json.dumps(averages, indent=2))

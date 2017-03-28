@@ -127,8 +127,7 @@ def frequency(words, tokens):
     :param list words: list of the words to look for
     :param list tokens: list of the tokens to count
 
-    .. note:: this function applies a complete normalizer to the given tokens
-    and guesses the language.
+    .. note:: this function applies a complete normalizer to the given tokens and guesses the language.
     """
     # word_dict = {word: pos for pos, word in enumerate(words)}
     language = LanguageGuesser().guess(' '.join(tokens))
