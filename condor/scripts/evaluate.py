@@ -36,8 +36,10 @@ PerformanceResult = collections.namedtuple(
               help='limit the number of words in the query')
 @click.option('--output', '-o', type=click.File('w'),
               help='export a detailed performance report')
+@click.option('--tabular', '-t', is_flag=True,
+              help='show tabular output')
 @requires_db
-def evaluate(db, target, limit, cosine, words, output):
+def evaluate(db, target, limit, cosine, words, tabular, output):
     """
     Evaluates a target search engine, the search engine needs to be associated
     to some queries in order to be evaluated, this command mainly returns
@@ -100,7 +102,7 @@ def evaluate(db, target, limit, cosine, words, output):
             for result in performance_results.values()
             if getattr(result, metric) is not None
         ])
-        for metric in PerformanceResult._fields
+        for metric in ('precision', 'recall', 'f1_score')
     }
 
     if output:
@@ -118,4 +120,10 @@ def evaluate(db, target, limit, cosine, words, output):
             },
         }, output, indent=2)
 
-    click.echo(json.dumps(averages, indent=2))
+    if tabular:
+        click.echo('{param} {results}'.format(
+            param=limit or cosine or 10,
+            results=' '.join([str(a) for a in averages.values()])
+        ))
+    else:
+        click.echo(json.dumps(averages, indent=2))
