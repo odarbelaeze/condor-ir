@@ -81,12 +81,14 @@ def contributor():
               help='Describe your bibliography set')
 @click.option('--language', '-l', 'languages', multiple=True,
               help='Filter specific languages.')
+@click.option('--ignore', '-i', 'ignored', multiple=True,
+              help='Ignore queries that contain these strings.')
 @click.option('--warn', is_flag=True,
               help='Warn if file names do not follow the convention')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, kind, files, description, languages, warn, verbose):
+def create(db, kind, files, description, languages, ignored, warn, verbose):
     """
     Loads a query set with the associated files.
 
@@ -97,10 +99,11 @@ def create(db, kind, files, description, languages, warn, verbose):
 
         topic - CONTRIBUTOR - query string.ext \n
         topic - CONTRIBUTOR.ext \n
+        topic - CONTRIBUTOR - NP.ext \n
 
     the files with the first format will be associated to queries and the ones
-    with the second format is used for not pertinent results, i.e., results
-    that are not relevant to any of the contributor's queries, they will be
+    with the second and third formats will be used for not pertinent results, i.e.,
+    results that are not relevant to any of the contributor's queries, they will be
     added to the bibliography set just to add noise, the CONTRIBUTOR identifier
     should be uppercase and do not have spaces.
     """
@@ -119,10 +122,20 @@ def create(db, kind, files, description, languages, warn, verbose):
         )
         sys.exit(1)
 
-    file_names = [f.name for f in files]
+    if ignored is None:
+        ignored = []
+
+    file_names = [
+        f.name for f in files
+        if not any([term in f.name for term in ignored])
+    ]
 
     if verbose:
         click.echo('Files: \n{}'.format('\n'.join(file_names)))
+    else:
+        click.echo(
+            'Ignoring queries containing: ' + ', '.join(ignored)
+        )
 
     description = description or (
         'Bibliography set for contributors from {count} {kind} files'
@@ -154,7 +167,7 @@ def create(db, kind, files, description, languages, warn, verbose):
             continue
         for mapping in mappings:
             mappings_to_store[mapping['hash']] = mapping
-        if props.query_string is not None:
+        if props.query_string is not None and props.query_string != 'NP':
             mappings_for_results[props] = mappings
 
     # Store the documents
