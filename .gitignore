@@ -76,3 +76,4 @@ term_lists/
 
 # PyCharm
 .idea/
+.vscode/
