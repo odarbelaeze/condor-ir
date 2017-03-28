@@ -82,7 +82,7 @@ def requires_db(func):
 def find_one(db, model, eid):
     """
     Finds exactly one of the given models in the db by eid.
-    
+
     It's useful when trying to delete or show an item, if we don't know such
     item we might as well exit the program.
 
@@ -101,3 +101,21 @@ def find_one(db, model, eid):
     except exc.MultipleResultsFound:
         click.secho('Found many results matching {}'.format(eid), fg='red')
         raise click.Abort()
+
+
+def one_or_latest(db, model, eid):
+    """
+    Finds an instance of the given model if the eid is provided otherwise returns the
+    latest created in the database. If there's no instance in the database, returns
+    None.
+
+    :param db: db connection instance
+    :param model: model to look for, should have an eid field
+    :param eid: part of the eid to look for
+    :return: the instance of the model found
+    """
+    if eid is None:
+        return db.query(model).order_by(
+            model.created.desc()
+        ).first()
+    return find_one(db, model, eid)
