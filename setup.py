@@ -17,6 +17,7 @@ def get_install_requires():
         'nltk>=3.1',
         'numpy>=1.9.2',
         'pyenchant>=1.6',
+        'PyPDF2==1.26.0',
         'tabulate>=0.7.5',
     ]
 

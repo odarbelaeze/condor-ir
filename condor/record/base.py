@@ -13,7 +13,7 @@ class RecordParser(object):
     '''
 
     mappings = {}
-    interest_fields = ['hash', 'title', 'keywords', 'description', 'language']
+    interest_fields = ['hash', 'title', 'keywords', 'description', 'language', 'file']
     list_fields = ['keywords', ]
 
     def get_mapping(self, field):

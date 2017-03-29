@@ -2,14 +2,62 @@
 Implements the populate script.
 """
 
+import glob
+import os
+
 import click
 import sqlalchemy
 import tabulate
+import PyPDF2
 
+from condor.config import FULL_TEXT_PATH
 from condor.dbutil import requires_db
-
+from condor.normalize import LatexAccentRemover
 from condor.models import Bibliography
 from condor.models import BibliographySet
+
+
+def full_text_from_pdf(filename):
+    """
+    Tries to extract text from pdfs.
+    """
+    chunks = []
+    with open(filename, 'rb') as handle:
+        try:
+            pdf_reader = PyPDF2.PdfFileReader(handle)
+            for page in pdf_reader.pages:
+                try:
+                    chunks.append(page.extractText())
+                except:
+                    pass
+        except:
+            pass
+    return '\n'.join(chunks)
+
+
+def get_fulltext(full_text_path, mappings):
+    """
+    Creates a full text path for the given mappings.
+    """
+    files = {
+        os.path.basename(p): p
+        for p in glob.glob(full_text_path + '/**/*.pdf', recursive=True)
+    }
+    accent_remover = LatexAccentRemover()
+    new_mappings = mappings.copy()
+    for i, mapping in enumerate(mappings):
+        filename = accent_remover.apply_to(mapping.get('file'))
+        if not filename:
+            continue
+        basename = os.path.basename(
+            ':'.join(filename.split(':')[:-1])
+        )
+        full_text_path = os.path.join(FULL_TEXT_PATH, mapping.get('hash', 'lost'))
+        if basename in files:
+            with open(full_text_path, 'w') as output:
+                output.write(full_text_from_pdf(files[basename]))
+            new_mappings[i]['full_text_path'] = full_text_path
+    return new_mappings
 
 
 @click.group()
@@ -97,6 +145,8 @@ def delete(db, target):
 @bibset.command()
 @click.argument('kind', type=click.Choice(['xml', 'froac', 'bib', 'isi']))
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
+@click.option('--full-text-path', '-f', 'fulltext', type=click.Path(exists=True),
+              help='Try to find full text pdf files in this path.')
 @click.option('--description', '-d', type=str, default=None,
               help='Describe your bibliography set')
 @click.option('--language', '-l', 'languages', multiple=True,
@@ -104,7 +154,7 @@ def delete(db, target):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, kind, files, description, languages, verbose):
+def create(db, kind, files, fulltext, description, languages, verbose):
     """
     Populates the condor database with information from the given files
     kind parameter indicates what type of files you're working with.
@@ -119,23 +169,26 @@ def create(db, kind, files, description, languages, verbose):
         count=len(files),
         kind=kind
     )
-    bibset = BibliographySet(
+    bibliograpy_set = BibliographySet(
         description=description
     )
-    db.add(bibset)
+    db.add(bibliograpy_set)
     db.flush()
 
-    click.echo('I\'m writting to {bibset.eid}'.format(bibset=bibset))
+    click.echo('I\'m writting to {bibliograpy_set.eid}'.format(bibliograpy_set=bibliograpy_set))
 
     mappings = Bibliography.mappings_from_files(
         [file.name for file in files],
         kind,
-        bibliography_set_eid=bibset.eid
+        bibliography_set_eid=bibliograpy_set.eid
     )
+
+    if fulltext:
+        mappings = get_fulltext(fulltext, mappings)
 
     if languages:
         click.echo('Filter the following languages only: ' + ', '.join(languages))
-        bibset.description += ' Filtered to {}.'.format(', '.join(languages))
+        bibliograpy_set.description += ' Filtered to {}.'.format(', '.join(languages))
         mappings = [
             m
             for m in mappings
@@ -152,7 +205,7 @@ def create(db, kind, files, description, languages, verbose):
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
         db.query(Bibliography).join(BibliographySet).
-        filter(BibliographySet.eid == bibset.eid).
+        filter(BibliographySet.eid == bibliograpy_set.eid).
         count()
     ))
 

@@ -1,6 +1,7 @@
-import bibtexparser
 import hashlib
 import re
+
+import bibtexparser
 
 from condor.record.base import RecordIterator
 from condor.record.base import RecordParser

@@ -3,11 +3,12 @@ Implements the condor matrix commands to create term document matrices from
 bibsets.
 """
 
+import os
+import sys
+
 import click
 import numpy
-import os
 import sqlalchemy
-import sys
 import tabulate
 
 from condor.dbutil import requires_db
@@ -49,7 +50,6 @@ def create(db, target, regularise, verbose):
         bibset.eid))
 
     words, frequency, options, matrix_hash = build_matrix(bibset, regularise)
-    nwords, nrecs = frequency.shape
 
     matrix_filename = os.path.join(MATRIX_PATH, '{}.npy'.format(matrix_hash))
     click.echo(
