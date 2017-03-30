@@ -30,6 +30,9 @@ def full_text_from_pdf(filename):
                     chunks.append(page.extractText())
                 except PyPDF2.utils.PyPdfError:
                     pass
+                except Exception:
+                    # Some exceptios leak from PyPDF2
+                    pass
         except PyPDF2.utils.PyPdfError:
             pass
     return '\n'.join(chunks)
