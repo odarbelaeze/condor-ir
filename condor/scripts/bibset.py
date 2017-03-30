@@ -35,7 +35,7 @@ def full_text_from_pdf(filename):
     return '\n'.join(chunks)
 
 
-def get_fulltext(full_text_path, mappings):
+def get_fulltext(full_text_path, mappings, force=False):
     """
     Creates a full text path for the given mappings.
     """
@@ -53,6 +53,10 @@ def get_fulltext(full_text_path, mappings):
             ':'.join(filename.split(':')[:-1])
         )
         full_text_path = os.path.join(FULL_TEXT_PATH, mapping.get('hash', 'lost'))
+        # Cache those files
+        if not force and os.path.exists(full_text_path):
+            new_mappings[i]['full_text_path'] = full_text_path
+            continue
         if basename in files:
             with open(full_text_path, 'w') as output:
                 output.write(full_text_from_pdf(files[basename]))
@@ -147,6 +151,8 @@ def delete(db, target):
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
 @click.option('--full-text-path', '-f', 'fulltext', type=click.Path(exists=True),
               help='Try to find full text pdf files in this path.')
+@click.option('--no-cache', is_flag=True,
+              help='Do not cache the files for full text.')
 @click.option('--description', '-d', type=str, default=None,
               help='Describe your bibliography set')
 @click.option('--language', '-l', 'languages', multiple=True,
@@ -154,7 +160,7 @@ def delete(db, target):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, kind, files, fulltext, description, languages, verbose):
+def create(db, kind, files, fulltext, no_cache, description, languages, verbose):
     """
     Populates the condor database with information from the given files
     kind parameter indicates what type of files you're working with.
@@ -162,8 +168,8 @@ def create(db, kind, files, fulltext, description, languages, verbose):
 
     if verbose:
         click.echo('I\'m looking for {} records in these files:\n{}'.format(
-            kind, '\n'.join(file.name for file in files))
-        )
+            kind, '\n'.join(file.name for file in files)
+        ))
 
     description = description or 'Bibliography set from {count} {kind} files.'.format(
         count=len(files),
@@ -184,7 +190,7 @@ def create(db, kind, files, fulltext, description, languages, verbose):
     )
 
     if fulltext:
-        mappings = get_fulltext(fulltext, mappings)
+        mappings = get_fulltext(fulltext, mappings, force=no_cache)
 
     if languages:
         click.echo('Filter the following languages only: ' + ', '.join(languages))
