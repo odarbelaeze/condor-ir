@@ -28,9 +28,9 @@ def full_text_from_pdf(filename):
             for page in pdf_reader.pages:
                 try:
                     chunks.append(page.extractText())
-                except:
+                except PyPDF2.utils.PyPdfError:
                     pass
-        except:
+        except PyPDF2.utils.PyPdfError:
             pass
     return '\n'.join(chunks)
 
