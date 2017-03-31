@@ -42,7 +42,7 @@ class PunctuationRemover(Normalizer):
     Removes punctuation from a text
     '''
 
-    characters = string.punctuation + '¡¿'
+    characters = string.punctuation + '¡¿“”‘’—\''
 
     def __init__(self, characters=None, **kwargs):
         self.translation = str.maketrans(

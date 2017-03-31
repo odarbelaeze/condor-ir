@@ -34,6 +34,19 @@ class Bibliography(AuditableMixing, DeclarativeBase):
         back_populates='bibliographies',
     )
 
+    def raw_data(self, fields, normalizer_class):
+        """
+        Get the raw data from the given fields in this record.
+
+        :param fields: fields of interest
+        :param normalizer_class: normalizer for the data
+        :return: list of normalized data
+        """
+        normalizer = normalizer_class(language=self.language)
+        data = ' '.join(getattr(self, field) for field in fields)
+        return normalizer.apply_to(data).split()
+
+
     @staticmethod
     def mappings_from_files(file_names, record_type, **kwargs):
         """

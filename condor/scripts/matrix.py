@@ -3,18 +3,14 @@ Implements the condor matrix commands to create term document matrices from
 bibsets.
 """
 
-import os
 import sys
 
 import click
-import numpy
 import sqlalchemy
 import tabulate
 
-from condor.dbutil import requires_db
+from condor.dbutil import requires_db, one_or_latest
 from condor.models import BibliographySet, TermDocumentMatrix
-from condor.builders.matrix import build_matrix
-from condor.config import MATRIX_PATH, TERM_LIST_PATH
 
 
 @click.group()
@@ -37,43 +33,22 @@ def create(db, target, regularise, verbose):
     """
     Create a new term document matrix.
     """
-    if target is None:
-        bibset = BibliographySet.latest(db)
-    else:
-        bibset = BibliographySet.find_by_eid(db, target)
 
-    if bibset is None:
+    bibliography_set = one_or_latest(db, BibliographySet, target)
+    if bibliography_set is None:
         click.echo('Please create a bibset first')
         sys.exit(1)
 
-    click.echo('I will generate a matrix for the {} bibset...'.format(
-        bibset.eid))
+    if verbose:
+        click.echo('I will generate a matrix for the {} bibset...'.format(
+            bibliography_set.eid))
 
-    words, frequency, options, matrix_hash = build_matrix(bibset, regularise)
+    td_matrix = TermDocumentMatrix.from_bibliography_set(
+        bibliography_set, regularise=regularise
+    )
 
-    matrix_filename = os.path.join(MATRIX_PATH, '{}.npy'.format(matrix_hash))
-    click.echo(
-        'Storing the term document matrix at {}'
-        .format(matrix_filename)
-    )
-    numpy.save(matrix_filename, frequency)
+    click.secho('Done!', fg='green')
 
-    term_list_filename = os.path.join(
-        TERM_LIST_PATH, '{}.txt'.format(matrix_hash)
-    )
-    click.echo(
-        'Storing the term list at {}'.format(TERM_LIST_PATH)
-    )
-    with open(term_list_filename, 'w') as file:
-        file.write('\n'.join(words))
-
-    td_matrix = TermDocumentMatrix(
-        bibliography_options='',
-        processing_options=options,
-        term_list_path=term_list_filename,
-        tdidf_matrix_path=matrix_filename,
-    )
-    td_matrix.bibliography_set = bibset
     db.add(td_matrix)
 
 

@@ -42,7 +42,7 @@ def test_matrices_and_engines_are_deleted(session, bibset):
         bibliography_options='',
         processing_options='',
         term_list_path='',
-        tdidf_matrix_path='',
+        matrix_path='',
     )
     session.add(term_matrix)
     session.flush()
@@ -74,7 +74,7 @@ def test_engines_are_deleted(session, bibset):
         bibliography_options='',
         processing_options='',
         term_list_path='',
-        tdidf_matrix_path='',
+        matrix_path='',
     )
     session.add(term_matrix)
     session.flush()

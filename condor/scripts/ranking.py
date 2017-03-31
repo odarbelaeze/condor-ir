@@ -4,19 +4,12 @@ bibsets.
 """
 
 import click
-import numpy
-import os
 import sqlalchemy
 import sys
 import tabulate
 
-from condor.dbutil import requires_db
-from condor.models import (
-    TermDocumentMatrix,
-    RankingMatrix
-)
-from condor.builders.ranking import build_lsa_ranking
-from condor.config import MODEL_PATH
+from condor.dbutil import requires_db, one_or_latest
+from condor.models import TermDocumentMatrix, RankingMatrix
 
 
 @click.group()
@@ -30,50 +23,34 @@ def ranking():
 @ranking.command()
 @click.option('--target', default=None, type=str,
               help='Bibliography set to work with')
+@click.option('--covariance', default=0.8,
+              help='Default covariance to keep in an lsa model')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, verbose):
+def create(db, target, covariance, verbose):
     """
     Create a new term document matrix.
     """
-    # TODO: Throw this into db_util.
-    if target is None:
-        td_matrix = TermDocumentMatrix.latest(db)
-    else:
-        td_matrix = TermDocumentMatrix.find_by_eid(db, target)
+    td_matrix = one_or_latest(db, TermDocumentMatrix, target)
     if td_matrix is None:
-        click.echo('Please create a bibset first')
+        click.echo('Please create a matrix first')
         sys.exit(1)
 
-    click.echo('I will generate a ranking for the {} term doc matrix.'.format(
-        td_matrix.eid))
-
-    ranking_result = build_lsa_ranking(td_matrix, covariance=0.8)
-
     if verbose:
-        nwords, nrecs = ranking_result.ranking.shape
-        click.echo('I\'ve removed noise from the freq mat...')
-        click.echo('Number of records: {}'.format(nrecs))
-        click.echo('Number of words: {}'.format(nwords))
+        click.echo(
+            'I will generate a ranking for the {} term doc matrix.'.format(
+                td_matrix.eid
+            )
+        )
 
-    model_filename = os.path.join(
-        MODEL_PATH,
-        '{}.npy'.format(ranking_result.hash)
+    ranking_matrix = RankingMatrix.lsa_from_term_document_matrix(
+        term_document_matrix=td_matrix,
+        covariance=covariance,
     )
-    click.echo(
-        'Storing the ranking matrix at {}'
-        .format(model_filename)
-    )
-    numpy.save(model_filename, ranking_result.ranking)
-
-    ranking_matrix = RankingMatrix(
-        kind='lsa',
-        build_options=ranking_result.options,
-        ranking_matrix_path=model_filename,
-    )
-    ranking_matrix.term_document_matrix = td_matrix
     db.add(ranking_matrix)
+
+    click.secho('Done!', fg='green')
 
 
 @ranking.command()
