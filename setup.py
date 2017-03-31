@@ -19,6 +19,7 @@ def get_install_requires():
         'pyenchant>=1.6',
         'PyPDF2==1.26.0',
         'tabulate>=0.7.5',
+        'tqdm==4.11.2',
     ]
 
 VERSION = '1.0.0rc2'

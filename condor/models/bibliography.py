@@ -1,16 +1,15 @@
-from sqlalchemy import (
-    Column,
-    ForeignKey,
-    Unicode,
-)
+import os
+import glob
 
+from sqlalchemy import Column, ForeignKey, Unicode
 from sqlalchemy.orm import relationship
+from tqdm import tqdm
 
-from condor.models.base import (
-    AuditableMixing,
-    DeclarativeBase,
-)
+from condor.config import FULL_TEXT_PATH
+from condor.models.base import AuditableMixing, DeclarativeBase
+from condor.normalize import LatexAccentRemover
 from condor.record import record_iterator_class
+from condor.util import full_text_from_pdf
 
 
 class Bibliography(AuditableMixing, DeclarativeBase):
@@ -57,21 +56,58 @@ class Bibliography(AuditableMixing, DeclarativeBase):
         return ' '.join(open(self.full_text_path).read().split('\n'))
 
     @staticmethod
-    def mappings_from_files(file_names, record_type, **kwargs):
+    def load_full_text(record, files, force=False):
+        accent_remover = LatexAccentRemover()
+        filename = accent_remover.apply_to(record.get('file'))
+        if not filename:
+            return
+        basename = os.path.basename(
+            ':'.join(filename.split(':')[:-1])
+        )
+        full_text_path = os.path.join(
+            FULL_TEXT_PATH,
+            record.get('hash', 'lost') + '.txt'
+        )
+        if not force and os.path.exists(full_text_path):
+            return full_text_path
+        if basename in files:
+            with open(full_text_path, 'w') as output:
+                output.write(full_text_from_pdf(files[basename]))
+            return full_text_path
+
+    @staticmethod
+    def mappings_from_files(file_names, record_type,
+                            full_text_path=None, force=False,
+                            **kwargs):
         """
         Creates bibliography mappings out of files.
 
         :param file_names: paths to the files
         :param record_type: type of record to extract
         :param kwargs: extra fields to include in the mappings
+        :param full_text_path: path to look for full text pdf files
+        :param force: force reading the full text from pdf files
         :return: an iterable over mappings
         """
         iterator_class = record_iterator_class(record_type)
         records = dict()
-        for file in file_names:
-            for record in iterator_class(file):
+        if full_text_path:
+            files = {
+                os.path.basename(path): path
+                for path in glob.glob(full_text_path + '**/*.pdf',
+                                      recursive=True)
+            }
+        for file in tqdm(file_names, desc='processing files', unit='file'):
+            progress_bar = tqdm(iterator_class(file), desc='processing records',
+                                unit='record', leave=False)
+            for record in progress_bar:
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
-
+                if full_text_path:
+                    record['full_text_path'] = Bibliography.load_full_text(
+                        record,
+                        files,
+                        force=force
+                    )
         return [record for record in records.values()]

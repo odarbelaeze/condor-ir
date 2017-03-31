@@ -1,13 +1,14 @@
-'''
+"""
 Contains utility functions to work with tokens and decorators
 to work with XML, lists and generators.
-'''
+"""
 
 import collections
 import functools
 import re
-
 from collections import OrderedDict
+
+import PyPDF2
 from enchant import request_dict
 
 from condor.normalize import PunctuationRemover, CompleteNormalizer
@@ -15,10 +16,10 @@ from condor.normalize import SpaceTokenizer
 
 
 def xml_to_text(func):
-    '''
+    """
     Transforms a function that would return an XML element into a function
     that returns the text content of the XML element as a string.
-    '''
+    """
     @functools.wraps(func)
     def inner(*args, **kwargs):
         result = func(*args, **kwargs)
@@ -29,11 +30,11 @@ def xml_to_text(func):
 
 
 def gen_to_list(func):
-    '''
+    """
     Transforms a function that would return a generator into a function that
     returns a list of the generated values, ergo, do not use this decorator
     with infinite generators.
-    '''
+    """
     @functools.wraps(func)
     def inner(*args, **kwargs):
         return list(func(*args, **kwargs))
@@ -41,11 +42,11 @@ def gen_to_list(func):
 
 
 def isi_text_to_dic(text):
-    '''
+    """
     This function takes in any ISI WOS plain text formatted string and turns it
     into a dictionary where the keys are the two letter leading keys and the
     values are a list of the strings under that key.
-    '''
+    """
     fields = collections.defaultdict(list)
     curr = ''
     for line in re.split(r'\n+', text):
@@ -59,10 +60,10 @@ def isi_text_to_dic(text):
 
 
 def to_list(obj):
-    '''
+    """
     Transforms a non iterable object into a singleton list, or an iterable
     into a list.
-    '''
+    """
     if isinstance(obj, list) or isinstance(obj, tuple):
         return list(obj)
     return [obj]
@@ -70,10 +71,10 @@ def to_list(obj):
 
 class LanguageGuesser(object):
 
-    '''
+    """
     Guesses the language of a record if the record field is not
     defined
-    '''
+    """
 
     languages = OrderedDict([
         ('en_US', 'english'),
@@ -137,3 +138,27 @@ def frequency(words, tokens):
         for token in tokens
     )
     return [counts.get(word, 0) for word in words]
+
+
+def full_text_from_pdf(filename):
+    """
+    Tries to extract text from pdfs.
+    """
+    chunks = []
+    with open(filename, 'rb') as handle:
+        try:
+            pdf_reader = PyPDF2.PdfFileReader(handle)
+            for page in pdf_reader.pages:
+                try:
+                    chunks.append(page.extractText())
+                except PyPDF2.utils.PyPdfError:
+                    pass
+                except Exception:
+                    # Some exceptions leak from PyPDF2
+                    pass
+        except PyPDF2.utils.PyPdfError:
+            pass
+        except Exception:
+            # Some exceptions leak from PyPDF2
+            pass
+    return '\n'.join(chunks)

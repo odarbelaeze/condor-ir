@@ -34,12 +34,12 @@ class RankingMatrix(AuditableMixing, DeclarativeBase):
     def lsa_from_term_document_matrix(cls, term_document_matrix, covariance):
         """Builds an lsa ranking matrix.
    
-       This will ccut the matrix so taht it keeps the given covariance.
+        This will ccut the matrix so taht it keeps the given covariance.
    
-       :param term_document_matrix: term document matrix to use
-       :param float covariance: amount of covariance to keep.
-       :returns: the ranking matrix
-       """
+        :param term_document_matrix: term document matrix to use
+        :param float covariance: amount of covariance to keep.
+        :returns: the ranking matrix
+        """
         u, s, v = numpy.linalg.svd(term_document_matrix.matrix,
                                    full_matrices=False)
         ss = s / numpy.sum(s)
@@ -95,7 +95,7 @@ class RankingMatrix(AuditableMixing, DeclarativeBase):
 
         if limit is None and cosine is None:
             limit = 10
-        
+
         if cosine is not None:
             return [
                 r for r in ordered

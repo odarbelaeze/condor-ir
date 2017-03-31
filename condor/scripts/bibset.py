@@ -2,69 +2,16 @@
 Implements the populate script.
 """
 
-import glob
-import os
-
 import click
 import sqlalchemy
 import tabulate
-import PyPDF2
 
-from condor.config import FULL_TEXT_PATH
 from condor.dbutil import requires_db
-from condor.normalize import LatexAccentRemover
 from condor.models import Bibliography
 from condor.models import BibliographySet
 
 
-def full_text_from_pdf(filename):
-    """
-    Tries to extract text from pdfs.
-    """
-    chunks = []
-    with open(filename, 'rb') as handle:
-        try:
-            pdf_reader = PyPDF2.PdfFileReader(handle)
-            for page in pdf_reader.pages:
-                try:
-                    chunks.append(page.extractText())
-                except PyPDF2.utils.PyPdfError:
-                    pass
-                except Exception:
-                    # Some exceptios leak from PyPDF2
-                    pass
-        except PyPDF2.utils.PyPdfError:
-            pass
-    return '\n'.join(chunks)
-
-
-def get_fulltext(full_text_path, mappings, force=False):
-    """
-    Creates a full text path for the given mappings.
-    """
-    files = {
-        os.path.basename(p): p
-        for p in glob.glob(full_text_path + '/**/*.pdf', recursive=True)
-    }
-    accent_remover = LatexAccentRemover()
-    new_mappings = mappings.copy()
-    for i, mapping in enumerate(mappings):
-        filename = accent_remover.apply_to(mapping.get('file'))
-        if not filename:
-            continue
-        basename = os.path.basename(
-            ':'.join(filename.split(':')[:-1])
-        )
-        full_text_path = os.path.join(FULL_TEXT_PATH, mapping.get('hash', 'lost'))
-        # Cache those files
-        if not force and os.path.exists(full_text_path):
-            new_mappings[i]['full_text_path'] = full_text_path
-            continue
-        if basename in files:
-            with open(full_text_path, 'w') as output:
-                output.write(full_text_from_pdf(files[basename]))
-            new_mappings[i]['full_text_path'] = full_text_path
-    return new_mappings
+default_list = list
 
 
 @click.group()
@@ -178,26 +125,30 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
         count=len(files),
         kind=kind
     )
-    bibliograpy_set = BibliographySet(
+    bibliography_set = BibliographySet(
         description=description
     )
-    db.add(bibliograpy_set)
+    db.add(bibliography_set)
     db.flush()
 
-    click.echo('I\'m writting to {bibliograpy_set.eid}'.format(bibliograpy_set=bibliograpy_set))
+    click.echo('I\'m writing to {bibliography_set.eid}'.format(
+        bibliography_set=bibliography_set))
 
     mappings = Bibliography.mappings_from_files(
-        [file.name for file in files],
+        default_list([file.name for file in files]),
         kind,
-        bibliography_set_eid=bibliograpy_set.eid
+        full_text_path=fulltext,
+        force=no_cache,
+        bibliography_set_eid=bibliography_set.eid
     )
 
-    if fulltext:
-        mappings = get_fulltext(fulltext, mappings, force=no_cache)
-
     if languages:
-        click.echo('Filter the following languages only: ' + ', '.join(languages))
-        bibliograpy_set.description += ' Filtered to {}.'.format(', '.join(languages))
+        click.echo(
+            'Filter the following languages only: ' + ', '.join(languages)
+        )
+        bibliography_set.description += ' Filtered to {}.'.format(
+            ', '.join(languages)
+        )
         mappings = [
             m
             for m in mappings
@@ -214,7 +165,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
         db.query(Bibliography).join(BibliographySet).
-        filter(BibliographySet.eid == bibliograpy_set.eid).
+        filter(BibliographySet.eid == bibliography_set.eid).
         count()
     ))
 
