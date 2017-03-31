@@ -1,3 +1,4 @@
+import itertools
 from sqlalchemy import (
     Column,
     Unicode,
@@ -30,3 +31,16 @@ class BibliographySet(AuditableMixing, DeclarativeBase):
         'Query',
         back_populates='bibliography_set'
     )
+
+    def words(self, fields, normalizer_class):
+        """
+        List of normalized words from the given fields.
+
+        :param fields: list of fields to check
+        :param normalizer_class: normalizer to use
+        :return: list of words
+        """
+        return sorted(set(itertools.chain.from_iterable(
+            bib.raw_data(fields, normalizer_class)
+            for bib in self.bibliographies
+        )))
