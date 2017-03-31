@@ -1,6 +1,6 @@
-========
+=========
 condor-ir
-========
+=========
 
 Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
 
@@ -30,7 +30,7 @@ repository,
 
 .. code-block:: bash
 
-  pip install -U condor-ir==1.0.0rc2
+  pip install -U condor-ir==1.0.0rc3
 
 the `-U` parameter will upgrade the package to the latest version, a very
 recommendable step for a unstable package.

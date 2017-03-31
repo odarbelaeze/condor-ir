@@ -22,7 +22,7 @@ def get_install_requires():
         'tqdm==4.11.2',
     ]
 
-VERSION = '1.0.0rc2'
+VERSION = '1.0.0rc3'
 
 setup(
     name='condor-ir',
