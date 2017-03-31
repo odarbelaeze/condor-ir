@@ -46,6 +46,15 @@ class Bibliography(AuditableMixing, DeclarativeBase):
         data = ' '.join(getattr(self, field) for field in fields)
         return normalizer.apply_to(data).split()
 
+    @property
+    def full_text(self):
+        """
+        Retrieve full text.
+        :return: string with the full text
+        """
+        if not self.full_text_path:
+            return ''
+        return ' '.join(open(self.full_text_path).read().split('\n'))
 
     @staticmethod
     def mappings_from_files(file_names, record_type, **kwargs):
