@@ -3,9 +3,10 @@ Implements the condor matrix commands to create term document matrices from
 bibsets.
 """
 
+import sys
+
 import click
 import sqlalchemy
-import sys
 import tabulate
 
 from condor.dbutil import requires_db, one_or_latest
@@ -25,10 +26,12 @@ def matrix():
               help='Bibliography set to work with')
 @click.option('--regularise/--no-regularise', default=True,
               help='Apply TF-IDF regularisation to the matrix')
+@click.option('--field', '-f', 'fields', multiple=True, type=str, default=None,
+              help='Use these fields on matrix creation.')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, regularise, verbose):
+def create(db, target, regularise, fields, verbose):
     """
     Create a new term document matrix.
     """
@@ -43,7 +46,7 @@ def create(db, target, regularise, verbose):
             bibliography_set.eid))
 
     td_matrix = TermDocumentMatrix.from_bibliography_set(
-        bibliography_set, regularise=regularise
+        bibliography_set, regularise=regularise, fields=fields
     )
 
     click.secho('Done!', fg='green')

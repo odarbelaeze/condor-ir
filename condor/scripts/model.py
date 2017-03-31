@@ -27,10 +27,12 @@ def model():
               help='Regularise the term document matrix on creation')
 @click.option('--covariance', default=0.8,
               help='Default covariance to keep in an lsa model')
+@click.option('--field', '-f', 'fields', multiple=True, type=str, default=None,
+              help='Use these fields on matrix creation.')
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, regularise, covariance, verbose):
+def create(db, target, regularise, covariance, fields, verbose):
     """
     Creates a ranking matrix and a lsa model for the specified bibset.
     """
@@ -44,7 +46,7 @@ def create(db, target, regularise, covariance, verbose):
             bibliography_set.eid))
 
     td_matrix = TermDocumentMatrix.from_bibliography_set(
-        bibliography_set, regularise=regularise
+        bibliography_set, regularise=regularise, fields=fields
     )
     db.add(td_matrix)
     db.flush()

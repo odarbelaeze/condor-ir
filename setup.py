@@ -17,10 +17,12 @@ def get_install_requires():
         'nltk>=3.1',
         'numpy>=1.9.2',
         'pyenchant>=1.6',
+        'PyPDF2==1.26.0',
         'tabulate>=0.7.5',
+        'tqdm==4.11.2',
     ]
 
-VERSION = '1.0.0rc2'
+VERSION = '1.0.0rc3'
 
 setup(
     name='condor-ir',

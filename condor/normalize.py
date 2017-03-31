@@ -4,7 +4,6 @@ be able to remove punctuation, filter out stopwords and maybe transform some
 latex accents into unicode accent characters.
 '''
 
-import re
 import string
 
 from nltk.corpus import stopwords
@@ -114,6 +113,7 @@ class LatexAccentRemover(Normalizer):
             'i': 'í',
             'o': 'ó',
             'u': 'ú',
+            'c': 'ć'
         },
         '`': {
             'a': 'à',

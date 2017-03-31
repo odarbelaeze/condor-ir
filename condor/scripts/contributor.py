@@ -81,6 +81,10 @@ def contributor():
               help='Describe your bibliography set')
 @click.option('--language', '-l', 'languages', multiple=True,
               help='Filter specific languages.')
+@click.option('--full-text-path', '-f', type=click.Path(exists=True),
+              help='Try to find full text pdf files in this path.')
+@click.option('--no-cache', is_flag=True,
+              help='Do not cache the files for full text.')
 @click.option('--ignore', '-i', 'ignored', multiple=True,
               help='Ignore queries that contain these strings.')
 @click.option('--warn', is_flag=True,
@@ -88,7 +92,8 @@ def contributor():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, kind, files, description, languages, ignored, warn, verbose):
+def create(db, kind, files, description, languages,
+           full_text_path, no_cache, ignored, warn, verbose):
     """
     Loads a query set with the associated files.
 
@@ -156,7 +161,9 @@ def create(db, kind, files, description, languages, ignored, warn, verbose):
     mappings_for_results = dict()
 
     for props in prop_queries(file_names, warn):
-        mappings = Bibliography.mappings_from_files([props.path], kind)
+        mappings = Bibliography.mappings_from_files(
+            [props.path], kind, full_text_path=full_text_path, force=no_cache
+        )
         if languages:
             mappings = [
                 m

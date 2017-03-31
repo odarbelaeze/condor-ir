@@ -8,6 +8,8 @@ nltk>=3.1
 numpy>=1.10.4
 py>=1.4.29
 pyenchant>=1.6
+PyPDF2==1.26.0
 pytest-cov>=1.8.1
 pytest>=2.8.0
 tabulate>=0.7.5
+tqdm==4.11.2
