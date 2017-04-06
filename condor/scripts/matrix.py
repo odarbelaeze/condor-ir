@@ -23,7 +23,7 @@ def matrix():
 
 @matrix.command()
 @click.option('--target', default=None, type=str,
-              help='Bibliography set to work with')
+              help='Document set to work with')
 @click.option('--regularise/--no-regularise', default=True,
               help='Apply TF-IDF regularisation to the matrix')
 @click.option('--field', '-f', 'fields', multiple=True, type=str, default=None,
@@ -77,7 +77,7 @@ def list(db, count):
                 for td in term_doc_matrices
             ],
             headers=[
-                'Identifier', 'Bibliography Set', 'Created at', 'Updated at'
+                'Identifier', 'Document Set', 'Created at', 'Updated at'
             ],
             tablefmt='rst',
         )

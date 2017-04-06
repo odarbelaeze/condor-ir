@@ -55,7 +55,7 @@ class QueryResult(AuditableMixing, DeclarativeBase):
 
     bibliography_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography.eid')
+        ForeignKey('document.eid')
     )
 
     query = relationship(
@@ -63,9 +63,9 @@ class QueryResult(AuditableMixing, DeclarativeBase):
         back_populates='results'
     )
 
-    bibliography = relationship('Bibliography')
+    document = relationship('Document')
 
     def __repr__(self):
-        return 'Query(query={}, bibliography={})'.format(
-            self.query, self.bibliography
+        return 'Query(query={}, document={})'.format(
+            self.query, self.document
         )

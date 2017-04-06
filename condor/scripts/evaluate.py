@@ -49,7 +49,7 @@ def evaluate(db, target, limit, cosine, words, tabular, output):
     ranking_matrix = find_one(db, RankingMatrix, target)
     bibliography_set = ranking_matrix.term_document_matrix.bibliography_set
     queries = bibliography_set.queries
-    universe = set(d.eid for d in bibliography_set.bibliographies)
+    universe = set(d.eid for d in bibliography_set.documents)
 
     # We'll perform all the queries and  do a mean of the f1 score
 
@@ -61,7 +61,7 @@ def evaluate(db, target, limit, cosine, words, tabular, output):
         results = ranking_matrix.query(
             query.query_string.split(), limit=limit, cosine=cosine)
         experiment = set(r.eid for r, _ in results)
-        truth = set(r.bibliography.eid for r in query.results)
+        truth = set(r.document.eid for r in query.results)
         false_negatives = truth.difference(experiment)
         true_positives = truth.intersection(experiment)
         false_positives = experiment.difference(truth)

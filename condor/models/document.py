@@ -12,9 +12,9 @@ from condor.record import record_iterator_class
 from condor.util import full_text_from_pdf
 
 
-class Bibliography(AuditableMixing, DeclarativeBase):
+class Document(AuditableMixing, DeclarativeBase):
 
-    __tablename__ = 'bibliography'
+    __tablename__ = 'document'
 
     bibliography_set_eid = Column(
         Unicode(40),
@@ -30,7 +30,7 @@ class Bibliography(AuditableMixing, DeclarativeBase):
 
     bibliography_set = relationship(
         'BibliographySet',
-        back_populates='bibliographies',
+        back_populates='documents',
     )
 
     def raw_data(self, fields, normalizer_class):
@@ -80,7 +80,7 @@ class Bibliography(AuditableMixing, DeclarativeBase):
                             full_text_path=None, force=False,
                             **kwargs):
         """
-        Creates bibliography mappings out of files.
+        Creates document mappings out of files.
 
         :param file_names: paths to the files
         :param record_type: type of record to extract
@@ -105,7 +105,7 @@ class Bibliography(AuditableMixing, DeclarativeBase):
                 record.update(kwargs)
                 records[record['hash']] = record
                 if full_text_path:
-                    record['full_text_path'] = Bibliography.load_full_text(
+                    record['full_text_path'] = Document.load_full_text(
                         record,
                         files,
                         force=force

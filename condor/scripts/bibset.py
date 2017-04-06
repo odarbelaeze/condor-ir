@@ -7,7 +7,7 @@ import sqlalchemy
 import tabulate
 
 from condor.dbutil import requires_db
-from condor.models import Bibliography
+from condor.models import Document
 from condor.models import BibliographySet
 
 
@@ -17,7 +17,7 @@ default_list = list
 @click.group()
 def bibset():
     """
-    Bibliography set related commands.
+    Document set related commands.
     """
     pass
 
@@ -27,7 +27,7 @@ def bibset():
 @requires_db
 def list(db, count):
     """
-    List all the bibliography sets.
+    List all the document sets.
     """
     bibliography_sets = db.query(BibliographySet).order_by(
         BibliographySet.created.desc()
@@ -40,7 +40,7 @@ def list(db, count):
                     bibset.eid[:8],
                     bibset.description,
                     bibset.modified.strftime('%b %d, %Y, %I:%M%p'),
-                    len(bibset.bibliographies)
+                    len(bibset.documents)
                 ]
                 for bibset in bibliography_sets
             ],
@@ -52,10 +52,10 @@ def list(db, count):
     )
     total = db.query(BibliographySet).count()
     if count >= total:
-        click.echo('Showing all the bibliography sets.')
+        click.echo('Showing all the document sets.')
     else:
         click.echo(
-            'Showing {count} out of {total} bibliography sets.'
+            'Showing {count} out of {total} document sets.'
             .format(count=count, total=total)
         )
 
@@ -65,7 +65,7 @@ def list(db, count):
 @requires_db
 def delete(db, target):
     """
-    Delete the target bibliography set.
+    Delete the target document set.
     """
     try:
         bibliography_set = db.query(BibliographySet).filter(
@@ -79,11 +79,11 @@ def delete(db, target):
         return
 
     click.echo(
-        'I will delete the bibliography set {}.'
+        'I will delete the document set {}.'
         .format(bibliography_set.eid)
     )
-    click.echo('And also {} bibliographies.'
-               .format(len(bibliography_set.bibliographies)))
+    click.echo('And also {} documents.'
+               .format(len(bibliography_set.documents)))
     click.echo('And also {} term document matrices.'
                .format(len(bibliography_set.term_document_matrices)))
     click.echo('And also {} search engines.'
@@ -104,7 +104,7 @@ def delete(db, target):
 @click.option('--no-cache', is_flag=True,
               help='Do not cache the files for full text.')
 @click.option('--description', '-d', type=str, default=None,
-              help='Describe your bibliography set')
+              help='Describe your document set')
 @click.option('--language', '-l', 'languages', multiple=True,
               help='Filter specific languages.')
 @click.option('--verbose/--quiet', default=False,
@@ -121,7 +121,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
             kind, '\n'.join(file.name for file in files)
         ))
 
-    description = description or 'Bibliography set from {count} {kind} files.'.format(
+    description = description or 'Document set from {count} {kind} files.'.format(
         count=len(files),
         kind=kind
     )
@@ -134,7 +134,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
     click.echo('I\'m writing to {bibliography_set.eid}'.format(
         bibliography_set=bibliography_set))
 
-    mappings = Bibliography.mappings_from_files(
+    mappings = Document.mappings_from_files(
         default_list([file.name for file in files]),
         kind,
         full_text_path=fulltext,
@@ -156,7 +156,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
         ]
 
     db.bulk_insert_mappings(
-        Bibliography,
+        Document,
         mappings
     )
 
@@ -164,7 +164,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
-        db.query(Bibliography).join(BibliographySet).
+        db.query(Document).join(BibliographySet).
         filter(BibliographySet.eid == bibliography_set.eid).
         count()
     ))

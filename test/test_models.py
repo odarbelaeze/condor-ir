@@ -2,7 +2,7 @@ import pytest
 
 from condor.dbutil import session as Session
 from condor.models import (
-    Bibliography,
+    Document,
     BibliographySet,
     TermDocumentMatrix,
     RankingMatrix,
@@ -25,14 +25,14 @@ def bibset(session):
     return bibset
 
 
-def test_bibliographies_are_deleted(session, bibset):
-    bibliography = Bibliography(bibliography_set_eid=bibset.eid)
+def test_documents_are_deleted(session, bibset):
+    document = Document(bibliography_set_eid=bibset.eid)
     session.flush()
-    bib_eid = bibliography.eid
+    bib_eid = document.eid
     session.delete(bibset)
     session.flush()
-    assert session.query(Bibliography).filter(
-        Bibliography.eid == bib_eid
+    assert session.query(Document).filter(
+        Document.eid == bib_eid
     ).first() is None
 
 

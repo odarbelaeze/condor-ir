@@ -22,7 +22,7 @@ def ranking():
 
 @ranking.command()
 @click.option('--target', default=None, type=str,
-              help='Bibliography set to work with')
+              help='Document set to work with')
 @click.option('--covariance', default=0.8,
               help='Default covariance to keep in an lsa model')
 @click.option('--verbose/--quiet', default=False,

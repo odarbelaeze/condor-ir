@@ -22,7 +22,7 @@ def model():
 
 @model.command()
 @click.option('--target', default=None, type=str,
-              help='Bibliography set to work with')
+              help='Document set to work with')
 @click.option('--regularise', is_flag=True,
               help='Regularise the term document matrix on creation')
 @click.option('--covariance', default=0.8,

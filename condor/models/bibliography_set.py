@@ -15,8 +15,8 @@ class BibliographySet(AuditableMixing, DeclarativeBase):
 
     description = Column(Unicode, nullable=False)
 
-    bibliographies = relationship(
-        'Bibliography',
+    documents = relationship(
+        'Document',
         back_populates='bibliography_set',
         cascade='all, delete-orphan',
     )
@@ -42,5 +42,5 @@ class BibliographySet(AuditableMixing, DeclarativeBase):
         """
         return sorted(set(itertools.chain.from_iterable(
             bib.raw_data(fields, normalizer_class)
-            for bib in self.bibliographies
+            for bib in self.documents
         )))
