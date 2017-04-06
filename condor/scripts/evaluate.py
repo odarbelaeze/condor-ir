@@ -47,9 +47,9 @@ def evaluate(db, target, limit, cosine, words, tabular, output):
     these values at the end.
     """
     ranking_matrix = find_one(db, RankingMatrix, target)
-    bibliography_set = ranking_matrix.term_document_matrix.bibliography_set
-    queries = bibliography_set.queries
-    universe = set(d.eid for d in bibliography_set.documents)
+    bibliography = ranking_matrix.term_document_matrix.bibliography
+    queries = bibliography.queries
+    universe = set(d.eid for d in bibliography.documents)
 
     # We'll perform all the queries and  do a mean of the f1 score
 

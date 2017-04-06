@@ -10,7 +10,7 @@ import sqlalchemy
 import tabulate
 
 from condor.dbutil import requires_db, one_or_latest
-from condor.models import BibliographySet, TermDocumentMatrix
+from condor.models import Bibliography, TermDocumentMatrix
 
 
 @click.group()
@@ -36,17 +36,17 @@ def create(db, target, regularise, fields, verbose):
     Create a new term document matrix.
     """
 
-    bibliography_set = one_or_latest(db, BibliographySet, target)
-    if bibliography_set is None:
-        click.echo('Please create a bibset first')
+    bibliography = one_or_latest(db, Bibliography, target)
+    if bibliography is None:
+        click.echo('Please create a bibliography first')
         sys.exit(1)
 
     if verbose:
-        click.echo('I will generate a matrix for the {} bibset...'.format(
-            bibliography_set.eid))
+        click.echo('I will generate a matrix for the {} bibliography...'.format(
+            bibliography.eid))
 
     td_matrix = TermDocumentMatrix.from_bibliography_set(
-        bibliography_set, regularise=regularise, fields=fields
+        bibliography, regularise=regularise, fields=fields
     )
 
     click.secho('Done!', fg='green')
@@ -70,7 +70,7 @@ def list(db, count):
             [
                 [
                     td.eid[:8],
-                    td.bibliography_set.eid[:8],
+                    td.bibliography.eid[:8],
                     td.created.strftime('%b %d, %Y, %I:%M%p'),
                     td.modified.strftime('%b %d, %Y, %I:%M%p'),
                 ]

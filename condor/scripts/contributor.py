@@ -12,7 +12,7 @@ import tabulate
 
 from condor.dbutil import requires_db
 from condor.models.document import Document
-from condor.models.bibliography_set import BibliographySet
+from condor.models.bibliography import Bibliography
 from condor.models.query import Query, QueryResult
 
 
@@ -145,15 +145,15 @@ def create(db, kind, files, description, languages,
     description = description or (
         'Document set for contributors from {count} {kind} files'
     ).format(count=len(files), kind=kind)
-    bibliography_set = BibliographySet(description=description)
-    db.add(bibliography_set)
+    bibliography = Bibliography(description=description)
+    db.add(bibliography)
     db.flush()
 
     if languages:
         click.echo(
             'Filter the following languages only: ' + ', '.join(languages)
         )
-        bibliography_set.description += ' Filtered to {}.'.format(
+        bibliography.description += ' Filtered to {}.'.format(
             ', '.join(languages)
         )
 
@@ -181,7 +181,7 @@ def create(db, kind, files, description, languages,
     db.bulk_insert_mappings(
         Document,
         [
-            dict(mapping, bibliography_set_eid=bibliography_set.eid)
+            dict(mapping, bibliography_eid=bibliography.eid)
             for mapping in mappings_to_store.values()
         ]
     )
@@ -189,7 +189,7 @@ def create(db, kind, files, description, languages,
 
     bibliography_hash = {
         document.hash: document.eid
-        for document in bibliography_set.documents
+        for document in bibliography.documents
     }
 
     for props, results in mappings_for_results.items():
@@ -197,13 +197,13 @@ def create(db, kind, files, description, languages,
             contributor=props.contributor,
             topic=props.topic,
             query_string=props.query_string,
-            bibliography_set_eid=bibliography_set.eid
+            bibliography_eid=bibliography.eid
         )
         db.add(query)
         db.flush()
         db.bulk_insert_mappings(QueryResult, [
             {
-                'bibliography_eid': bibliography_hash[result['hash']],
+                'document_eid': bibliography_hash[result['hash']],
                 'query_eid': query.eid,
             }
             for result in results
@@ -222,10 +222,10 @@ def list(db, count):
     List all the document sets.
     """
 
-    bibliography_sets = db.query(BibliographySet) \
-        .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
+    bibliography_sets = db.query(Bibliography) \
+        .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
-        .order_by(BibliographySet.created.desc()) \
+        .order_by(Bibliography.created.desc()) \
         .distinct() \
         .limit(count)
 
@@ -233,13 +233,13 @@ def list(db, count):
         tabulate.tabulate(
             [
                 [
-                    bibliography_set.eid[:8],
-                    bibliography_set.description,
-                    bibliography_set.modified.strftime('%b %d, %Y, %I:%M%p'),
-                    len(bibliography_set.queries),
-                    len(bibliography_set.documents),
+                    bibliography.eid[:8],
+                    bibliography.description,
+                    bibliography.modified.strftime('%b %d, %Y, %I:%M%p'),
+                    len(bibliography.queries),
+                    len(bibliography.documents),
                 ]
-                for bibliography_set in bibliography_sets
+                for bibliography in bibliography_sets
             ],
             headers=[
                 'Identifier',
@@ -252,8 +252,8 @@ def list(db, count):
         )
     )
 
-    total = db.query(BibliographySet) \
-        .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
+    total = db.query(Bibliography) \
+        .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
         .distinct() \
         .count()

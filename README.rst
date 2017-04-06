@@ -70,8 +70,8 @@ the CLI interface gives you most CRUD operations in a hierachical manner.
 ``condor`` triggers the main program and you can get top level help by running
 ``condor --help``.
 
-``condor bibset`` namespaces the bibliography set related commands, you can
-list and get help about those using ``condor bibset --help``.
+``condor bibliography`` namespaces the bibliography set related commands, you can
+list and get help about those using ``condor bibliography --help``.
 
 ``condor model`` is a short cut that offers the ``condor model create``
 sub command, that creates both a term document matrix and an *lsa* search

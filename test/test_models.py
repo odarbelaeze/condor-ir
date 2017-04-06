@@ -3,7 +3,7 @@ import pytest
 from condor.dbutil import session as Session
 from condor.models import (
     Document,
-    BibliographySet,
+    Bibliography,
     TermDocumentMatrix,
     RankingMatrix,
 )
@@ -19,7 +19,7 @@ def session():
 
 @pytest.fixture
 def bibset(session):
-    bibset = BibliographySet(description='asdkfjaskldf')
+    bibset = Bibliography(description='asdkfjaskldf')
     session.add(bibset)
     session.flush()
     return bibset

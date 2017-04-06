@@ -23,10 +23,10 @@ before_script:
 
 script:
   - python setup.py test
-  - condor bibset create froac data/froac/**/*.xml
-  - condor bibset create isi data/isi/*.txt
+  - condor bibliography create froac data/froac/**/*.xml
+  - condor bibliography create isi data/isi/*.txt
   - condor model create
   - condor query find
-  - condor bibset
+  - condor bibliography
   - condor matrix
   - condor ranking

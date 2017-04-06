@@ -8,9 +8,9 @@ class Query(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'query'
 
-    bibliography_set_eid = Column(
+    bibliography_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography_set.eid')
+        ForeignKey('bibliography.eid')
     )
 
     contributor = Column(
@@ -28,8 +28,8 @@ class Query(AuditableMixing, DeclarativeBase):
         nullable=False
     )
 
-    bibliography_set = relationship(
-        'BibliographySet',
+    bibliography = relationship(
+        'Bibliography',
         back_populates='queries'
     )
 
@@ -53,7 +53,7 @@ class QueryResult(AuditableMixing, DeclarativeBase):
         ForeignKey('query.eid')
     )
 
-    bibliography_eid = Column(
+    document_eid = Column(
         Unicode(40),
         ForeignKey('document.eid')
     )

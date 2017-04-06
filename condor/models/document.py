@@ -16,9 +16,9 @@ class Document(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'document'
 
-    bibliography_set_eid = Column(
+    bibliography_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography_set.eid')
+        ForeignKey('bibliography.eid')
     )
 
     hash = Column(Unicode(40), nullable=False)
@@ -28,8 +28,8 @@ class Document(AuditableMixing, DeclarativeBase):
     language = Column(Unicode(16), nullable=False)
     full_text_path = Column(Unicode(512), nullable=True)
 
-    bibliography_set = relationship(
-        'BibliographySet',
+    bibliography = relationship(
+        'Bibliography',
         back_populates='documents',
     )
 

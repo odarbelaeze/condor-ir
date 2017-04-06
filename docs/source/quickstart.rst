@@ -82,7 +82,7 @@ Once you have your dataset organized you can populate your database using the
 
 .. code-block:: bash
 
-  condor bibset create --xml 'data/*/*.xml'
+  condor bibliography create --xml 'data/*/*.xml'
 
 You can also stipupate a database name and specify if you want to wipe the
 database, if you want to combine records from different kinds of databases, you
@@ -90,8 +90,8 @@ can do so by reruning the `condorpopulate` tool with the `--no-wipedb` flag,
 
 .. code-block:: bash
 
-  condor bibset create --isi 'data/*/*.isi'
-  condor bibset create --bib 'data/*/*.bib'
+  condor bibliography create --isi 'data/*/*.isi'
+  condor bibliography create --bib 'data/*/*.bib'
 
 However, whenever using this approximation, beaware of the record duplication
 as the hashing algorithms used to detect duplicates are different for the

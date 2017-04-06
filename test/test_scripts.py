@@ -2,11 +2,11 @@ import pytest
 
 from click.testing import CliRunner
 
-from condor.scripts.bibset import create as bibcreate
+from condor.scripts.bibliography import create as bibcreate
 from condor.scripts.model import create as modelcreate
 from condor.scripts.query import query
 
-from condor.scripts.bibset import bibset
+from condor.scripts.bibliography import bibliography
 from condor.scripts.matrix import matrix
 from condor.scripts.ranking import ranking
 
@@ -62,7 +62,7 @@ def test_basic_usagle_query(runner):
 
 
 def test_condor_bibset_group(runner):
-    res = runner.invoke(bibset, [])
+    res = runner.invoke(bibliography, [])
     assert res.exit_code == 0
     assert 'Usage' in res.output
 

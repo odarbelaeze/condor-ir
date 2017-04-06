@@ -9,27 +9,27 @@ from sqlalchemy.orm import relationship
 from condor.models.base import AuditableMixing, DeclarativeBase
 
 
-class BibliographySet(AuditableMixing, DeclarativeBase):
+class Bibliography(AuditableMixing, DeclarativeBase):
 
-    __tablename__ = 'bibliography_set'
+    __tablename__ = 'bibliography'
 
     description = Column(Unicode, nullable=False)
 
     documents = relationship(
         'Document',
-        back_populates='bibliography_set',
+        back_populates='bibliography',
         cascade='all, delete-orphan',
     )
 
     term_document_matrices = relationship(
         'TermDocumentMatrix',
-        back_populates='bibliography_set',
+        back_populates='bibliography',
         cascade='all, delete-orphan',
     )
 
     queries = relationship(
         'Query',
-        back_populates='bibliography_set'
+        back_populates='bibliography'
     )
 
     def words(self, fields, normalizer_class):
