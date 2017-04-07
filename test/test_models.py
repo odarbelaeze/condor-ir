@@ -26,7 +26,7 @@ def bibset(session):
 
 
 def test_documents_are_deleted(session, bibset):
-    document = Document(bibliography_set_eid=bibset.eid)
+    document = Document(bibliography_eid=bibset.eid)
     session.flush()
     bib_eid = document.eid
     session.delete(bibset)
@@ -38,7 +38,7 @@ def test_documents_are_deleted(session, bibset):
 
 def test_matrices_and_engines_are_deleted(session, bibset):
     term_matrix = TermDocumentMatrix(
-        bibliography_set_eid=bibset.eid,
+        bibliography_eid=bibset.eid,
         bibliography_options='',
         processing_options='',
         term_list_path='',
@@ -70,7 +70,7 @@ def test_matrices_and_engines_are_deleted(session, bibset):
 
 def test_engines_are_deleted(session, bibset):
     term_matrix = TermDocumentMatrix(
-        bibliography_set_eid=bibset.eid,
+        bibliography_eid=bibset.eid,
         bibliography_options='',
         processing_options='',
         term_list_path='',
