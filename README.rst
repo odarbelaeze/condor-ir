@@ -7,11 +7,6 @@ Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/
 .. image:: https://travis-ci.org/odarbelaeze/condor-ir.svg?branch=master
     :target: https://travis-ci.org/odarbelaeze/condor-ir
 
-.. image:: https://readthedocs.org/projects/condor-ir/badge/?version=latest
-    :target: (http://condor-ir.readthedocs.org/en/latest/?badge=latest
-
-
-
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., `LSA <https://en.wikipedia.org/wiki/Latent_semantic_analysis>`_.
 The program is set up so that it understands froac xml documents on input
@@ -52,8 +47,15 @@ for that you can install using your package manager or external tool:
                        aspell-es aspell-en aspell-fr \
                        aspell-it aspell-pt aspell-de
 
-Setup database and schemas
---------------------------
+Furthermore, we require a bit of the `nltk` data package for the stems and stop
+word removal to work.
+
+.. code-block:: bash
+
+  python -m nltk.downloader snowball_data stopwords
+
+Finally, in order to prepare the database or reset the database in preparation
+for a new version of `condor-ir` you can run the database preparation script,
 
 .. code-block:: bash
 
