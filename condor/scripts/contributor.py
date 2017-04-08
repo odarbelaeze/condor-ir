@@ -11,8 +11,8 @@ import click
 import tabulate
 
 from condor.dbutil import requires_db
+from condor.models.document import Document
 from condor.models.bibliography import Bibliography
-from condor.models.bibliography_set import BibliographySet
 from condor.models.query import Query, QueryResult
 
 
@@ -78,7 +78,7 @@ def contributor():
 @click.argument('kind', type=click.Choice(['xml', 'froac', 'bib', 'isi']))
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
 @click.option('--description', '-d', type=str, default=None,
-              help='Describe your bibliography set')
+              help='Describe your document set')
 @click.option('--language', '-l', 'languages', multiple=True,
               help='Filter specific languages.')
 @click.option('--full-text-path', '-f', type=click.Path(exists=True),
@@ -97,7 +97,7 @@ def create(db, kind, files, description, languages,
     """
     Loads a query set with the associated files.
 
-    It will create the bibliography set, queries and query results that are
+    It will create the document set, queries and query results that are
     necessary for an automatic benchmark of a search engine.
 
     The file names should have the following format: \n
@@ -109,7 +109,7 @@ def create(db, kind, files, description, languages,
     the files with the first format will be associated to queries and the ones
     with the second and third formats will be used for not pertinent results, i.e.,
     results that are not relevant to any of the contributor's queries, they will be
-    added to the bibliography set just to add noise, the CONTRIBUTOR identifier
+    added to the document set just to add noise, the CONTRIBUTOR identifier
     should be uppercase and do not have spaces.
     """
     if verbose:
@@ -143,17 +143,17 @@ def create(db, kind, files, description, languages,
         )
 
     description = description or (
-        'Bibliography set for contributors from {count} {kind} files'
+        'Document set for contributors from {count} {kind} files'
     ).format(count=len(files), kind=kind)
-    bibliography_set = BibliographySet(description=description)
-    db.add(bibliography_set)
+    bibliography = Bibliography(description=description)
+    db.add(bibliography)
     db.flush()
 
     if languages:
         click.echo(
             'Filter the following languages only: ' + ', '.join(languages)
         )
-        bibliography_set.description += ' Filtered to {}.'.format(
+        bibliography.description += ' Filtered to {}.'.format(
             ', '.join(languages)
         )
 
@@ -161,7 +161,7 @@ def create(db, kind, files, description, languages,
     mappings_for_results = dict()
 
     for props in prop_queries(file_names, warn):
-        mappings = Bibliography.mappings_from_files(
+        mappings = Document.mappings_from_files(
             [props.path], kind, full_text_path=full_text_path, force=no_cache
         )
         if languages:
@@ -179,17 +179,17 @@ def create(db, kind, files, description, languages,
 
     # Store the documents
     db.bulk_insert_mappings(
-        Bibliography,
+        Document,
         [
-            dict(mapping, bibliography_set_eid=bibliography_set.eid)
+            dict(mapping, bibliography_eid=bibliography.eid)
             for mapping in mappings_to_store.values()
         ]
     )
     db.flush()
 
     bibliography_hash = {
-        bibliography.hash: bibliography.eid
-        for bibliography in bibliography_set.bibliographies
+        document.hash: document.eid
+        for document in bibliography.documents
     }
 
     for props, results in mappings_for_results.items():
@@ -197,13 +197,13 @@ def create(db, kind, files, description, languages,
             contributor=props.contributor,
             topic=props.topic,
             query_string=props.query_string,
-            bibliography_set_eid=bibliography_set.eid
+            bibliography_eid=bibliography.eid
         )
         db.add(query)
         db.flush()
         db.bulk_insert_mappings(QueryResult, [
             {
-                'bibliography_eid': bibliography_hash[result['hash']],
+                'document_eid': bibliography_hash[result['hash']],
                 'query_eid': query.eid,
             }
             for result in results
@@ -219,13 +219,13 @@ def create(db, kind, files, description, languages,
 @requires_db
 def list(db, count):
     """
-    List all the bibliography sets.
+    List all the document sets.
     """
 
-    bibliography_sets = db.query(BibliographySet) \
-        .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
+    bibliography_sets = db.query(Bibliography) \
+        .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
-        .order_by(BibliographySet.created.desc()) \
+        .order_by(Bibliography.created.desc()) \
         .distinct() \
         .limit(count)
 
@@ -233,13 +233,13 @@ def list(db, count):
         tabulate.tabulate(
             [
                 [
-                    bibliography_set.eid[:8],
-                    bibliography_set.description,
-                    bibliography_set.modified.strftime('%b %d, %Y, %I:%M%p'),
-                    len(bibliography_set.queries),
-                    len(bibliography_set.bibliographies),
+                    bibliography.eid[:8],
+                    bibliography.description,
+                    bibliography.modified.strftime('%b %d, %Y, %I:%M%p'),
+                    len(bibliography.queries),
+                    len(bibliography.documents),
                 ]
-                for bibliography_set in bibliography_sets
+                for bibliography in bibliography_sets
             ],
             headers=[
                 'Identifier',
@@ -252,16 +252,16 @@ def list(db, count):
         )
     )
 
-    total = db.query(BibliographySet) \
-        .join(Query, Query.bibliography_set_eid == BibliographySet.eid) \
+    total = db.query(Bibliography) \
+        .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
         .distinct() \
         .count()
 
     if count >= total:
-        click.echo('Showing all the contributor contributor bibliography sets')
+        click.echo('Showing all the contributor contributor document sets')
     else:
         click.echo(
-            'Sowing {count} out of {total} contributor bibliography sets.'
+            'Sowing {count} out of {total} contributor document sets.'
             .format(count=count, total=total)
         )

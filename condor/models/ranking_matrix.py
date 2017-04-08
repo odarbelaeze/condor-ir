@@ -85,7 +85,7 @@ class RankingMatrix(AuditableMixing, DeclarativeBase):
         if numpy.allclose(freq, 0):
             return []
 
-        documents = self.term_document_matrix.bibliography_set.bibliographies
+        documents = self.term_document_matrix.bibliography.documents
         dot = numpy.dot(self.matrix, freq)
         norm_rank = numpy.linalg.norm(self.matrix, axis=1)
         norm_freq = numpy.linalg.norm(freq)

@@ -23,9 +23,9 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'term_document_matrix'
 
-    bibliography_set_eid = Column(
+    bibliography_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography_set.eid')
+        ForeignKey('bibliography.eid')
     )
 
     bibliography_options = Column(Unicode(512), nullable=False)
@@ -33,8 +33,8 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
     term_list_path = Column(Unicode(512), nullable=False)
     matrix_path = Column(Unicode(512), nullable=False)
 
-    bibliography_set = relationship(
-        'BibliographySet',
+    bibliography = relationship(
+        'Bibliography',
         back_populates='term_document_matrices',
     )
 
@@ -45,14 +45,14 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
     )
 
     @classmethod
-    def from_bibliography_set(cls, bibliography_set, regularise=True,
+    def from_bibliography_set(cls, bibliography, regularise=True,
                               fields=None, normalizer_class=None):
         """
-        Build a matrix from a bibliography set.
+        Build a matrix from a document set.
 
         This has the side effect of creating the matrix a and terms files.
 
-        :param bibliography_set: a bibliography set
+        :param bibliography: a document set
         :param regularise: apply TF IDF regularization.
         :param fields: fields of interest
         :param normalizer_class: normalizer class to use
@@ -60,14 +60,14 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
         """
         fields = fields or ['title', 'description', 'keywords']
         normalizer_class = normalizer_class or CompleteNormalizer
-        words = bibliography_set.words(fields=fields,
+        words = bibliography.words(fields=fields,
                                        normalizer_class=CompleteNormalizer)
         frequency = numpy.zeros(
-            (len(bibliography_set.bibliographies), len(words)),
+            (len(bibliography.documents), len(words)),
             dtype=int
         )
         for row, col, freq in cls._matrix(words,
-                                          bibliography_set,
+                                          bibliography,
                                           fields,
                                           normalizer_class):
             frequency[row][col] = freq
@@ -75,7 +75,7 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
         if regularise:
             tf = (frequency.T / numpy.sum(frequency, axis=1)).T
             df = numpy.sum(frequency > 0, axis=0)
-            idf = numpy.log(len(bibliography_set.bibliographies) / df) + 1
+            idf = numpy.log(len(bibliography.documents) / df) + 1
             frequency = tf * idf
 
         unique_hash = hashlib.sha1(
@@ -96,13 +96,13 @@ class TermDocumentMatrix(AuditableMixing, DeclarativeBase):
             processing_options=str(normalizer_class.__mro__),
             term_list_path=words_filename,
             matrix_path=matrix_filename,
-            bibliography_set_eid=bibliography_set.eid
+            bibliography_eid=bibliography.eid
         )
 
     @staticmethod
-    def _matrix(words, bibliography_set, fields, normalizer_class):
+    def _matrix(words, bibliography, fields, normalizer_class):
         word_dict = {word: pos for pos, word in enumerate(words)}
-        for ind, bib in enumerate(bibliography_set.bibliographies):
+        for ind, bib in enumerate(bibliography.documents):
             raw = bib.raw_data(fields, normalizer_class)
             frequency = collections.Counter(raw)
             for word, freq in frequency.items():

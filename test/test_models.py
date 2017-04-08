@@ -2,8 +2,8 @@ import pytest
 
 from condor.dbutil import session as Session
 from condor.models import (
+    Document,
     Bibliography,
-    BibliographySet,
     TermDocumentMatrix,
     RankingMatrix,
 )
@@ -19,26 +19,26 @@ def session():
 
 @pytest.fixture
 def bibset(session):
-    bibset = BibliographySet(description='asdkfjaskldf')
+    bibset = Bibliography(description='asdkfjaskldf')
     session.add(bibset)
     session.flush()
     return bibset
 
 
-def test_bibliographies_are_deleted(session, bibset):
-    bibliography = Bibliography(bibliography_set_eid=bibset.eid)
+def test_documents_are_deleted(session, bibset):
+    document = Document(bibliography_eid=bibset.eid)
     session.flush()
-    bib_eid = bibliography.eid
+    bib_eid = document.eid
     session.delete(bibset)
     session.flush()
-    assert session.query(Bibliography).filter(
-        Bibliography.eid == bib_eid
+    assert session.query(Document).filter(
+        Document.eid == bib_eid
     ).first() is None
 
 
 def test_matrices_and_engines_are_deleted(session, bibset):
     term_matrix = TermDocumentMatrix(
-        bibliography_set_eid=bibset.eid,
+        bibliography_eid=bibset.eid,
         bibliography_options='',
         processing_options='',
         term_list_path='',
@@ -70,7 +70,7 @@ def test_matrices_and_engines_are_deleted(session, bibset):
 
 def test_engines_are_deleted(session, bibset):
     term_matrix = TermDocumentMatrix(
-        bibliography_set_eid=bibset.eid,
+        bibliography_eid=bibset.eid,
         bibliography_options='',
         processing_options='',
         term_list_path='',

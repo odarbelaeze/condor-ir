@@ -7,30 +7,30 @@ import sqlalchemy
 import tabulate
 
 from condor.dbutil import requires_db
+from condor.models import Document
 from condor.models import Bibliography
-from condor.models import BibliographySet
 
 
 default_list = list
 
 
 @click.group()
-def bibset():
+def bibliography():
     """
-    Bibliography set related commands.
+    Document set related commands.
     """
     pass
 
 
-@bibset.command()
+@bibliography.command()
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
 def list(db, count):
     """
-    List all the bibliography sets.
+    List all the document sets.
     """
-    bibliography_sets = db.query(BibliographySet).order_by(
-        BibliographySet.created.desc()
+    bibliography_sets = db.query(Bibliography).order_by(
+        Bibliography.created.desc()
     ).limit(count)
 
     click.echo(
@@ -40,7 +40,7 @@ def list(db, count):
                     bibset.eid[:8],
                     bibset.description,
                     bibset.modified.strftime('%b %d, %Y, %I:%M%p'),
-                    len(bibset.bibliographies)
+                    len(bibset.documents)
                 ]
                 for bibset in bibliography_sets
             ],
@@ -50,26 +50,26 @@ def list(db, count):
             tablefmt='rst',
         )
     )
-    total = db.query(BibliographySet).count()
+    total = db.query(Bibliography).count()
     if count >= total:
-        click.echo('Showing all the bibliography sets.')
+        click.echo('Showing all the document sets.')
     else:
         click.echo(
-            'Showing {count} out of {total} bibliography sets.'
+            'Showing {count} out of {total} document sets.'
             .format(count=count, total=total)
         )
 
 
-@bibset.command()
+@bibliography.command()
 @click.argument('target')
 @requires_db
 def delete(db, target):
     """
-    Delete the target bibliography set.
+    Delete the target document set.
     """
     try:
-        bibliography_set = db.query(BibliographySet).filter(
-            BibliographySet.eid.like(target + '%')
+        bibliography = db.query(Bibliography).filter(
+            Bibliography.eid.like(target + '%')
         ).one()
     except sqlalchemy.orm.exc.NoResultFound:
         click.echo('Could not find a result matching {}'.format(target))
@@ -79,24 +79,24 @@ def delete(db, target):
         return
 
     click.echo(
-        'I will delete the bibliography set {}.'
-        .format(bibliography_set.eid)
+        'I will delete the document set {}.'
+        .format(bibliography.eid)
     )
-    click.echo('And also {} bibliographies.'
-               .format(len(bibliography_set.bibliographies)))
+    click.echo('And also {} documents.'
+               .format(len(bibliography.documents)))
     click.echo('And also {} term document matrices.'
-               .format(len(bibliography_set.term_document_matrices)))
+               .format(len(bibliography.term_document_matrices)))
     click.echo('And also {} search engines.'
                .format(len([
                    rm
-                   for tdm in bibliography_set.term_document_matrices
+                   for tdm in bibliography.term_document_matrices
                    for rm in tdm.ranking_matrices
                ])))
     click.confirm('Do you want me to delete all this information?', abort=True)
-    db.delete(bibliography_set)
+    db.delete(bibliography)
 
 
-@bibset.command()
+@bibliography.command()
 @click.argument('kind', type=click.Choice(['xml', 'froac', 'bib', 'isi']))
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
 @click.option('--full-text-path', '-f', 'fulltext', type=click.Path(exists=True),
@@ -104,7 +104,7 @@ def delete(db, target):
 @click.option('--no-cache', is_flag=True,
               help='Do not cache the files for full text.')
 @click.option('--description', '-d', type=str, default=None,
-              help='Describe your bibliography set')
+              help='Describe your document set')
 @click.option('--language', '-l', 'languages', multiple=True,
               help='Filter specific languages.')
 @click.option('--verbose/--quiet', default=False,
@@ -121,32 +121,32 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
             kind, '\n'.join(file.name for file in files)
         ))
 
-    description = description or 'Bibliography set from {count} {kind} files.'.format(
+    description = description or 'Document set from {count} {kind} files.'.format(
         count=len(files),
         kind=kind
     )
-    bibliography_set = BibliographySet(
+    bibliography = Bibliography(
         description=description
     )
-    db.add(bibliography_set)
+    db.add(bibliography)
     db.flush()
 
-    click.echo('I\'m writing to {bibliography_set.eid}'.format(
-        bibliography_set=bibliography_set))
+    click.echo('I\'m writing to {bibliography.eid}'.format(
+        bibliography=bibliography))
 
-    mappings = Bibliography.mappings_from_files(
+    mappings = Document.mappings_from_files(
         default_list([file.name for file in files]),
         kind,
         full_text_path=fulltext,
         force=no_cache,
-        bibliography_set_eid=bibliography_set.eid
+        bibliography_eid=bibliography.eid
     )
 
     if languages:
         click.echo(
             'Filter the following languages only: ' + ', '.join(languages)
         )
-        bibliography_set.description += ' Filtered to {}.'.format(
+        bibliography.description += ' Filtered to {}.'.format(
             ', '.join(languages)
         )
         mappings = [
@@ -156,7 +156,7 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
         ]
 
     db.bulk_insert_mappings(
-        Bibliography,
+        Document,
         mappings
     )
 
@@ -164,11 +164,11 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
-        db.query(Bibliography).join(BibliographySet).
-        filter(BibliographySet.eid == bibliography_set.eid).
+        db.query(Document).join(Bibliography).
+        filter(Bibliography.eid == bibliography.eid).
         count()
     ))
 
 
 if __name__ == "__main__":
-    bibset()
+    bibliography()

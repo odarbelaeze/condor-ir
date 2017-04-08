@@ -8,7 +8,7 @@ class CondorCommand(click.MultiCommand):
     @property
     def commands(self):
         try:
-            from condor.scripts.bibset import bibset
+            from condor.scripts.bibliography import bibliography
             from condor.scripts.model import model
             from condor.scripts.query import query
             from condor.scripts.matrix import matrix
@@ -17,7 +17,7 @@ class CondorCommand(click.MultiCommand):
             from condor.scripts.contributor import contributor
             from condor.scripts.evaluate import evaluate
             return {
-                'bibset': bibset,
+                'bibliography': bibliography,
                 'contributor': contributor,
                 'model': model,
                 'matrix': matrix,
@@ -34,7 +34,6 @@ class CondorCommand(click.MultiCommand):
             sys.exit(1)
 
     def list_commands(self, ctx):
-        click.echo(str(self.commands.keys()))
         return list(self.commands.keys())
 
     def get_command(self, ctx, name):

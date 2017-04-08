@@ -8,7 +8,7 @@ import sys
 import click
 
 from condor.dbutil import requires_db, one_or_latest
-from condor.models import BibliographySet, TermDocumentMatrix, RankingMatrix
+from condor.models import Bibliography, TermDocumentMatrix, RankingMatrix
 
 
 @click.group()
@@ -22,7 +22,7 @@ def model():
 
 @model.command()
 @click.option('--target', default=None, type=str,
-              help='Bibliography set to work with')
+              help='Document set to work with')
 @click.option('--regularise', is_flag=True,
               help='Regularise the term document matrix on creation')
 @click.option('--covariance', default=0.8,
@@ -34,19 +34,19 @@ def model():
 @requires_db
 def create(db, target, regularise, covariance, fields, verbose):
     """
-    Creates a ranking matrix and a lsa model for the specified bibset.
+    Creates a ranking matrix and a lsa model for the specified bibliography.
     """
-    bibliography_set = one_or_latest(db, BibliographySet, target)
-    if bibliography_set is None:
-        click.echo('Please create a bibset first')
+    bibliography = one_or_latest(db, Bibliography, target)
+    if bibliography is None:
+        click.echo('Please create a bibliography first')
         sys.exit(1)
 
     if verbose:
-        click.echo('I will generate a model for the {} bibset...'.format(
-            bibliography_set.eid))
+        click.echo('I will generate a model for the {} bibliography...'.format(
+            bibliography.eid))
 
     td_matrix = TermDocumentMatrix.from_bibliography_set(
-        bibliography_set, regularise=regularise, fields=fields
+        bibliography, regularise=regularise, fields=fields
     )
     db.add(td_matrix)
     db.flush()

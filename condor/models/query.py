@@ -8,9 +8,9 @@ class Query(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'query'
 
-    bibliography_set_eid = Column(
+    bibliography_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography_set.eid')
+        ForeignKey('bibliography.eid')
     )
 
     contributor = Column(
@@ -28,8 +28,8 @@ class Query(AuditableMixing, DeclarativeBase):
         nullable=False
     )
 
-    bibliography_set = relationship(
-        'BibliographySet',
+    bibliography = relationship(
+        'Bibliography',
         back_populates='queries'
     )
 
@@ -53,9 +53,9 @@ class QueryResult(AuditableMixing, DeclarativeBase):
         ForeignKey('query.eid')
     )
 
-    bibliography_eid = Column(
+    document_eid = Column(
         Unicode(40),
-        ForeignKey('bibliography.eid')
+        ForeignKey('document.eid')
     )
 
     query = relationship(
@@ -63,9 +63,9 @@ class QueryResult(AuditableMixing, DeclarativeBase):
         back_populates='results'
     )
 
-    bibliography = relationship('Bibliography')
+    document = relationship('Document')
 
     def __repr__(self):
-        return 'Query(query={}, bibliography={})'.format(
-            self.query, self.bibliography
+        return 'Query(query={}, document={})'.format(
+            self.query, self.document
         )
