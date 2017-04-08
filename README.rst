@@ -2,10 +2,10 @@
 condor-ir
 =========
 
-Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
-
 .. image:: https://travis-ci.org/odarbelaeze/condor-ir.svg?branch=master
     :target: https://travis-ci.org/odarbelaeze/condor-ir
+
+Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
 
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., `LSA <https://en.wikipedia.org/wiki/Latent_semantic_analysis>`_.
@@ -27,7 +27,7 @@ repository,
 
   pip install -U condor-ir
 
-the `-U` parameter will upgrade the package to the latest version, a very
+the ``-U`` parameter will upgrade the package to the latest version, a very
 recommendable step for a unstable package.
 
 The language support requires the enchant engine as well as some dictionaries,
@@ -47,8 +47,8 @@ for that you can install using your package manager or external tool:
                        aspell-es aspell-en aspell-fr \
                        aspell-it aspell-pt aspell-de
 
-Furthermore, we require a bit of the `nltk` data package for the stems and stop
-word removal to work.
+Furthermore, we require a bit of the ``nltk`` data package for the stems and
+stop word removal to work.
 
 .. code-block:: bash
 
