@@ -7,8 +7,8 @@ RUN apt-get install -y -q enchant aspell-es aspell-en aspell-fr aspell-it aspell
 
 ADD . /src/app
 RUN pip install -r piprequirements.txt
-RUN pip install -e .
+RUN pip install .
 RUN python -m nltk.downloader snowball_data
-RUN python -m nltk.downloader porter_test
 RUN python -m nltk.downloader stopwords
+RUN condor utils preparedb -y
 
