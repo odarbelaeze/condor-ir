@@ -11,9 +11,6 @@ from condor.models import Document
 from condor.models import Bibliography
 
 
-default_list = list
-
-
 @click.group()
 def bibliography():
     """
@@ -22,16 +19,14 @@ def bibliography():
     pass
 
 
-@bibliography.command()
+@bibliography.command('list')
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(db, count):
+def list_bibliographies(database, count):
     """
     List all the document sets.
     """
-    bibliography_sets = db.query(Bibliography).order_by(
-        Bibliography.created.desc()
-    ).limit(count)
+    bibliography_sets = Bibliography.list(database, count)
 
     click.echo(
         tabulate.tabulate(
@@ -50,7 +45,7 @@ def list(db, count):
             tablefmt='rst',
         )
     )
-    total = db.query(Bibliography).count()
+    total = Bibliography.count(database)
     if count >= total:
         click.echo('Showing all the document sets.')
     else:
@@ -63,12 +58,12 @@ def list(db, count):
 @bibliography.command()
 @click.argument('target')
 @requires_db
-def delete(db, target):
+def delete(database, target):
     """
     Delete the target document set.
     """
     try:
-        bibliography = db.query(Bibliography).filter(
+        bibliography = database.query(Bibliography).filter(
             Bibliography.eid.like(target + '%')
         ).one()
     except sqlalchemy.orm.exc.NoResultFound:
@@ -93,7 +88,7 @@ def delete(db, target):
                    for rm in tdm.ranking_matrices
                ])))
     click.confirm('Do you want me to delete all this information?', abort=True)
-    db.delete(bibliography)
+    database.delete(bibliography)
 
 
 @bibliography.command()
@@ -110,7 +105,7 @@ def delete(db, target):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, kind, files, fulltext, no_cache, description, languages, verbose):
+def create(database, kind, files, fulltext, no_cache, description, languages, verbose):
     """
     Populates the condor database with information from the given files
     kind parameter indicates what type of files you're working with.
@@ -125,28 +120,24 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
         count=len(files),
         kind=kind
     )
-    bibliography = Bibliography(
-        description=description
-    )
-    db.add(bibliography)
-    db.flush()
+    bib = Bibliography(description=description)
+    database.add(bib)
+    database.flush()
 
-    click.echo('I\'m writing to {bibliography.eid}'.format(
-        bibliography=bibliography))
-
+    click.echo('I\'m writing to {bib.eid}'.format(bib=bib)) 
     mappings = Document.mappings_from_files(
-        default_list([file.name for file in files]),
+        list([file.name for file in files]),
         kind,
         full_text_path=fulltext,
         force=no_cache,
-        bibliography_eid=bibliography.eid
+        bibliography_eid=bib.eid
     )
 
     if languages:
         click.echo(
             'Filter the following languages only: ' + ', '.join(languages)
         )
-        bibliography.description += ' Filtered to {}.'.format(
+        bib.description += ' Filtered to {}.'.format(
             ', '.join(languages)
         )
         mappings = [
@@ -155,17 +146,17 @@ def create(db, kind, files, fulltext, no_cache, description, languages, verbose)
             if m.get('language', 'english').lower() in languages
         ]
 
-    db.bulk_insert_mappings(
+    database.bulk_insert_mappings(
         Document,
         mappings
     )
 
-    db.flush()
+    database.flush()
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
-        db.query(Document).join(Bibliography).
-        filter(Bibliography.eid == bibliography.eid).
+        database.query(Document).join(Bibliography).
+        filter(Bibliography.eid == bib.eid).
         count()
     ))
 

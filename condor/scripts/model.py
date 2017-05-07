@@ -32,11 +32,11 @@ def model():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, regularise, covariance, fields, verbose):
+def create(database, target, regularise, covariance, fields, verbose):
     """
     Creates a ranking matrix and a lsa model for the specified bibliography.
     """
-    bibliography = one_or_latest(db, Bibliography, target)
+    bibliography = one_or_latest(database, Bibliography, target)
     if bibliography is None:
         click.echo('Please create a bibliography first')
         sys.exit(1)
@@ -48,12 +48,12 @@ def create(db, target, regularise, covariance, fields, verbose):
     td_matrix = TermDocumentMatrix.from_bibliography_set(
         bibliography, regularise=regularise, fields=fields
     )
-    db.add(td_matrix)
-    db.flush()
+    database.add(td_matrix)
+    database.flush()
 
     ranking_matrix = RankingMatrix.lsa_from_term_document_matrix(
         term_document_matrix=td_matrix,
         covariance=covariance,
     )
-    db.add(ranking_matrix)
+    database.add(ranking_matrix)
     click.secho('Done!', fg='green')

@@ -214,15 +214,15 @@ def create(db, kind, files, description, languages,
     )
 
 
-@contributor.command()
+@contributor.command('list')
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(db, count):
+def list_contributors(database, count):
     """
     List all the document sets.
     """
 
-    bibliography_sets = db.query(Bibliography) \
+    bibliography_sets = database.query(Bibliography) \
         .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
         .order_by(Bibliography.created.desc()) \
@@ -252,7 +252,7 @@ def list(db, count):
         )
     )
 
-    total = db.query(Bibliography) \
+    total = database.query(Bibliography) \
         .join(Query, Query.bibliography_eid == Bibliography.eid) \
         .filter(Query.eid) \
         .distinct() \

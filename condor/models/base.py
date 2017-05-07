@@ -1,3 +1,7 @@
+"""
+Common functionality for sqlalchemy schemas.
+"""
+
 import hashlib
 import uuid
 
@@ -15,6 +19,11 @@ DeclarativeBase = declarative_base()
 
 
 def eid_gen():
+    """
+    Generates an unique eid based on a random string.
+
+    :returns: a unique random string.
+    """
     sha = hashlib.sha1('{}'.format(uuid.uuid4()).encode())
     return sha.hexdigest()
 
@@ -39,7 +48,7 @@ class AuditableMixing(object):
     )
 
     @classmethod
-    def find_by_eid(cls, db, eid):
+    def find_by_eid(cls, database, eid):
         """
         Finds a model by it's eid of a chunk of it, returns None if there are
         no models matching the eid chunk.
@@ -48,14 +57,27 @@ class AuditableMixing(object):
         :param eid: eid to match, can be a partial.
         :returns: the model if its found None otherwise.
         """
-        return db.query(cls).filter(cls.eid.like('{}%'.format(eid))).first()
+        return database.query(cls).filter(cls.eid.like('{}%'.format(eid))).first()
 
     @classmethod
-    def latest(cls, db):
+    def latest(cls, database):
         """
         Finds the latest model in the given db.
 
         :param db: sqlalchemy session to find the item.
         :returns: the latest model if its found None otherwise.
         """
-        return db.query(cls).order_by(cls.created.desc()).first()
+        return database.query(cls).order_by(cls.created.desc()).first()
+    
+
+    @classmethod
+    def list(cls, database, count=None):
+        query = database.query(cls).order_by(cls.created.desc())
+        if count is not None:
+            query = query.limit(count)
+        return query.all()
+
+    @classmethod
+    def count(cls, database):
+        query = database.query(cls)
+        return query.count()
