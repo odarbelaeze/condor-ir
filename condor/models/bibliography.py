@@ -1,3 +1,7 @@
+"""
+Tools for handling a set of documents called bibliography.
+"""
+
 import itertools
 from sqlalchemy import (
     Column,
@@ -10,6 +14,9 @@ from condor.models.base import AuditableMixing, DeclarativeBase
 
 
 class Bibliography(AuditableMixing, DeclarativeBase):
+    """
+    Describes a group of documents.
+    """
 
     __tablename__ = 'bibliography'
 

@@ -1,6 +1,6 @@
 """This module includes utility scripts.
 
-Such as creating and wiping the db and others in the future.
+Such as creating and wiping the database and others in the future.
 """
 
 import click
@@ -18,8 +18,8 @@ def utils():
 @utils.command()
 @click.option('--yes', '-y', is_flag=True, help='Do not ask.')
 @requires_db
-def preparedb(db, yes):
-    """Wipes out and creates all the tables on the db.
+def preparedb(database, yes):
+    """Wipes out and creates all the tables on the database.
 
     This is meant to be used with care, all data will be lost after running
     this command.
@@ -33,7 +33,7 @@ def preparedb(db, yes):
     if not yes:
         click.confirm('Do you want me to reset the database schema?',
                       abort=True)
-    _engine = db.connection().engine
+    _engine = database.connection().engine
     DeclarativeBase.metadata.drop_all(_engine)
     DeclarativeBase.metadata.create_all(_engine)
     click.echo(

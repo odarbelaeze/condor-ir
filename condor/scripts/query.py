@@ -24,7 +24,7 @@ from condor.models import RankingMatrix
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def query(db, parameters, limit, cosine, target, show, verbose):
+def query(database, parameters, limit, cosine, target, show, verbose):
     """
     Queries the database using the given parameters, the model that this
     script will pick up to do the query is the latest available model.
@@ -33,7 +33,7 @@ def query(db, parameters, limit, cosine, target, show, verbose):
     if verbose:
         click.echo('You queried: {}'.format(' '.join(parameters)))
 
-    ranking_matrix = one_or_latest(db, RankingMatrix, target)
+    ranking_matrix = one_or_latest(database, RankingMatrix, target)
 
     if ranking_matrix is None:
         click.echo('Please create a ranking first')

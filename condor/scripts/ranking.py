@@ -28,11 +28,11 @@ def ranking():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, covariance, verbose):
+def create(database, target, covariance, verbose):
     """
     Create a new term document matrix.
     """
-    td_matrix = one_or_latest(db, TermDocumentMatrix, target)
+    td_matrix = one_or_latest(database, TermDocumentMatrix, target)
     if td_matrix is None:
         click.echo('Please create a matrix first')
         sys.exit(1)
@@ -48,22 +48,19 @@ def create(db, target, covariance, verbose):
         term_document_matrix=td_matrix,
         covariance=covariance,
     )
-    db.add(ranking_matrix)
+    database.add(ranking_matrix)
 
     click.secho('Done!', fg='green')
 
 
-@ranking.command()
+@ranking.command('list')
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(db, count):
+def list_ranking_matrices(database, count):
     """
     List all the available ranking matrices.
     """
-    ranking_matrices = db.query(RankingMatrix).order_by(
-        RankingMatrix.created.desc()
-    ).limit(count)
-
+    ranking_matrices = RankingMatrix.list(database, count)
     click.echo(
         tabulate.tabulate(
             [
@@ -84,7 +81,7 @@ def list(db, count):
             tablefmt='rst',
         )
     )
-    total = db.query(RankingMatrix).count()
+    total = RankingMatrix.count(database)
     if count >= total:
         click.echo('Showing all the term document matrices.')
     else:
@@ -97,12 +94,12 @@ def list(db, count):
 @ranking.command()
 @click.argument('target')
 @requires_db
-def delete(db, target):
+def delete(database, target):
     """
     Delete a given matrix and associated search engines.
     """
     try:
-        ranking_matrix = db.query(RankingMatrix).filter(
+        ranking_matrix = database.query(RankingMatrix).filter(
             RankingMatrix.eid.like(target + '%')
         ).one()
     except sqlalchemy.orm.exc.NoResultFound:
@@ -117,4 +114,4 @@ def delete(db, target):
         .format(ranking_matrix.eid)
     )
     click.confirm('Do you want me to continue?', abort=True)
-    db.delete(ranking_matrix)
+    database.delete(ranking_matrix)

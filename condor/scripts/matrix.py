@@ -31,12 +31,12 @@ def matrix():
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(db, target, regularise, fields, verbose):
+def create(database, target, regularise, fields, verbose):
     """
     Create a new term document matrix.
     """
 
-    bibliography = one_or_latest(db, Bibliography, target)
+    bibliography = one_or_latest(database, Bibliography, target)
     if bibliography is None:
         click.echo('Please create a bibliography first')
         sys.exit(1)
@@ -51,19 +51,17 @@ def create(db, target, regularise, fields, verbose):
 
     click.secho('Done!', fg='green')
 
-    db.add(td_matrix)
+    database.add(td_matrix)
 
 
-@matrix.command()
+@matrix.command('list')
 @click.option('--count', default=10, help='Number of bibsets.')
 @requires_db
-def list(db, count):
+def list_matrices(database, count):
     """
     List all the available term document matrices.
     """
-    term_doc_matrices = db.query(TermDocumentMatrix).order_by(
-        TermDocumentMatrix.created.desc()
-    ).limit(count)
+    term_doc_matrices = TermDocumentMatrix.list(database, count)
 
     click.echo(
         tabulate.tabulate(
@@ -82,7 +80,7 @@ def list(db, count):
             tablefmt='rst',
         )
     )
-    total = db.query(TermDocumentMatrix).count()
+    total = TermDocumentMatrix.count(database)
     if count >= total:
         click.echo('Showing all the term document matrices.')
     else:
@@ -95,12 +93,12 @@ def list(db, count):
 @matrix.command()
 @click.argument('target')
 @requires_db
-def delete(db, target):
+def delete(database, target):
     """
     Delete a given matrix and associated search engines.
     """
     try:
-        term_document_matrix = db.query(TermDocumentMatrix).filter(
+        term_document_matrix = database.query(TermDocumentMatrix).filter(
             TermDocumentMatrix.eid.like(target + '%')
         ).one()
     except sqlalchemy.orm.exc.NoResultFound:
@@ -117,4 +115,4 @@ def delete(db, target):
     click.echo('And also {} search engines.'
                .format(len(term_document_matrix.ranking_matrices)))
     click.confirm('Do you want me to delete all this information?', abort=True)
-    db.delete(term_document_matrix)
+    database.delete(term_document_matrix)
