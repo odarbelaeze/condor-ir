@@ -155,9 +155,7 @@ def create(database, kind, files, fulltext, no_cache, description, languages, ve
 
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
-        database.query(Document).join(Bibliography).
-        filter(Bibliography.eid == bib.eid).
-        count()
+        Document.count(database, bib.eid)
     ))
 
 

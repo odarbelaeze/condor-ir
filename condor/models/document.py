@@ -1,3 +1,7 @@
+"""
+A tool for managing single documents within a bibliography.
+"""
+
 import os
 import glob
 
@@ -13,6 +17,9 @@ from condor.util import full_text_from_pdf
 
 
 class Document(AuditableMixing, DeclarativeBase):
+    """
+    Describes a single document.
+    """
 
     __tablename__ = 'document'
 
@@ -111,3 +118,22 @@ class Document(AuditableMixing, DeclarativeBase):
                         force=force
                     )
         return [record for record in records.values()]
+
+    @classmethod
+    def list(cls, database, bibliography_eid, count=None):
+        """
+        Different to the usual list this one should just return records related to just
+        one bibliography.
+        """
+        query = database.query(cls).filter(cls.bibliography_eid == bibliography_eid)
+        if count is not None:
+            query = query.limit(count)
+        return query.all()
+
+    @classmethod
+    def count(cls, database, bibliography_eid):
+        """
+        Different to the usual count, it counts the number of documents in a given bibliography.
+        """
+        query = database.query(cls).filter(cls.bibliography_eid == bibliography_eid)
+        return query.count()
