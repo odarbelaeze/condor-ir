@@ -10,8 +10,6 @@ Welcome to condor-ir's documentation!
 and other search engines as well, now it offers index database management
 computation of lsa ranking matrices and query tools.
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
