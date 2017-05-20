@@ -1,0 +1,198 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Developer quickstart &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="condor" href="modules.html" />
+    <link rel="prev" title="Quickstart for users" href="quickstart.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="developer-quickstart">
+<h1>Developer quickstart<a class="headerlink" href="#developer-quickstart" title="Permalink to this headline">¶</a></h1>
+<p><strong>condor-ir</strong> is a free and open source software, contributions are very
+wellcome and you can start contributing through the common <em>github</em> pattern.</p>
+<div class="section" id="setting-up-the-development-environment">
+<h2>Setting up the development environment<a class="headerlink" href="#setting-up-the-development-environment" title="Permalink to this headline">¶</a></h2>
+<p>First you need to clone the repository:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/odarbelaeze/condor-ir.git
+<span class="c1"># Alternatively you can fork and clone your own fork</span>
+git clone https://github.com/&lt;username&gt;/condor-ir.git
+</pre></div>
+</div>
+<p>Then the most recomendable way for you to do development is in a virtual
+environment, we will assume that you are familiar with <em>virtualenvwrapper</em></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> condor-ir
+mkvirtualenv -a <span class="nv">$PWD</span> -p <span class="k">$(</span>which python3<span class="k">)</span> -r piprequirements.txt condorenv
+pip install -e .  <span class="c1"># This command will also install dependencies</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-tests">
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h2>
+<p>When contributing to an open source project, it’s crucial that you are able to
+run its test suite, this project suggests pytest as testing framework and you
+can use its test runner to run our tests, in order to run our test you need to
+install testing dependencies, you can do so automatically using the <cite>setup.py</cite>
+script</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python setup.py <span class="nb">test</span>
+</pre></div>
+</div>
+<p>Otherwise, you could manually install the testing dependencies and run tests
+manually,</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install pytest
+python -m pytest
+</pre></div>
+</div>
+<p>Furthermore, you can install pytest plugins such as <strong>coverage</strong> via the
+<strong>pytest-cov</strong> plugin and run the test suite using their custom flags.</p>
+</div>
+<div class="section" id="contributing-to-the-code">
+<h2>Contributing to the code<a class="headerlink" href="#contributing-to-the-code" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-you-can-contribute">
+<h3>What you can contribute<a class="headerlink" href="#what-you-can-contribute" title="Permalink to this headline">¶</a></h3>
+<p>You can contribute to the code, not only by adding new features and smashing
+yourself to the keyboard at the core of the program, some examples of
+contributions you can make are the following:</p>
+<ul class="simple">
+<li>Write documentation</li>
+<li>Write tests, maybe while you are trying to understand what the code does</li>
+<li>Refactor code, here and there there are optimizations that can be made</li>
+</ul>
+<p>Otherwise, you can expand the funcionality of th erecord parsers by adding
+support for more document kinds.</p>
+</div>
+<div class="section" id="how-to-contribute">
+<h3>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h3>
+<p>This project supports the feature branch and pull request (PR) way of doing
+contributions through git, you start by adding a new branch to your repo,</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># While in the repo folder</span>
+git checkout -b &lt;a-name-that-outlines-your-contribution&gt;
+<span class="c1"># Do some ground work</span>
+git push -u &lt;origin&gt; &lt;a-name-that-outlines-your-contribution&gt;
+</pre></div>
+</div>
+<p>Then you proced to create the pull request in github, right away, so you
+can start communicating with the core developers and other members of the
+community.</p>
+</div>
+<div class="section" id="recomendations-and-code-guidelines">
+<h3>Recomendations and code guidelines<a class="headerlink" href="#recomendations-and-code-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>Honoring code guidelines is a key part of contributing to a project, that’s
+because fixing indentation and correcting line lengths is assumed by git as a
+rewrite, and the authorship of the contributed code might be diluted.  This
+project includes a <cite>.editorconfig</cite> file that can be used by modern text editors
+to automatically keep coding guidelines for different filetypes.</p>
+<p>Although the code coverage of this project might be low at some point,
+contributors are encouraged to write tests for their features, and also,
+regression tests for the code that is already there. Test are writen using
+<strong>pytest</strong> which is a very easy to use testing framework, to start you just
+need to drop a function whos name starts with <cite>test_</cite> into one module within
+the <cite>tests</cite> folder, and the suite will automatically pick up your testing code.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Developer quickstart</a><ul>
+<li><a class="reference internal" href="#setting-up-the-development-environment">Setting up the development environment</a></li>
+<li><a class="reference internal" href="#running-tests">Running tests</a></li>
+<li><a class="reference internal" href="#contributing-to-the-code">Contributing to the code</a><ul>
+<li><a class="reference internal" href="#what-you-can-contribute">What you can contribute</a></li>
+<li><a class="reference internal" href="#how-to-contribute">How to contribute</a></li>
+<li><a class="reference internal" href="#recomendations-and-code-guidelines">Recomendations and code guidelines</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quickstart.html" title="previous chapter">Quickstart for users</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">condor</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/developer-quickstart.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/developer-quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

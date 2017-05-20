@@ -1,0 +1,225 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Quickstart for users &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer quickstart" href="developer-quickstart.html" />
+    <link rel="prev" title="Welcome to condor-ir’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="quickstart-for-users">
+<h1>Quickstart for users<a class="headerlink" href="#quickstart-for-users" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>In order to use the <strong>condor-ir</strong> you need to setup and configure a
+<strong>posgresql</strong> database and have it run in the default port as the application
+database connection is not yet configurable.</p>
+<p>You can also install the <strong>condor-ir</strong> from PyPI using the pip tool</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install condor-ir
+</pre></div>
+</div>
+<p>Furhtermore, for language support you need to install some dictionaries and a
+spell checking engine:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Arch</span>
+sudo pacman -S enchant <span class="se">\</span>
+               aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
+</pre></div>
+</div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Ubuntu</span>
+sudo apt-get install enchant <span class="se">\</span>
+                     aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
+</pre></div>
+</div>
+<p>Once you have the mongodb daemon running in your system you can start building
+your models using any of the three supported formats:</p>
+<ol class="arabic simple">
+<li>Froac</li>
+<li>Isi plain text</li>
+<li>Bibtex</li>
+</ol>
+</div>
+<div class="section" id="repository-preparation">
+<h2>Repository preparation<a class="headerlink" href="#repository-preparation" title="Permalink to this headline">¶</a></h2>
+<p>Once you’re done with the setup, you should start preparing your documents to
+feed the index database, you can order your sources anyway you want in your
+filesystem because the <strong>condor-ir</strong> cli uses a glob matching interface so
+you can find the documents you want, an example can be the example repository
+provided along with this package:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ tree ../data
+../data
++── bib
+│   +── oaa.bib
++── froac
+│   +── froac1
+│   │   +── 30Algebra relacional. OperaciÃ³n ComposiciÃ³n.xml
+│   │   +── 71Estandares.xml
+│   │   +── 7Programacion lineal.xml
+│   │   +── 83Modelo - Vista - Controlador.xml
+│   │   +── 85Video objeto de aprendizaje CrazyTalk.xml
+│   │   +── 86Aprendiendo con Cuadernia.xml
+│   │   +── 87Introduccion a eXe Learning.xml
+│   │   +── 89OA <span class="m">1</span> Clase UTP.xml
+│   │   +── 92Prueba parcial <span class="m">1</span>.xml
+│   │   +── 97Respuesta libre en circuitos de primer orden.xml
+│   │   +── ...
+│   +── roapManizales1.xml
+│   +── roapManizales2.xml
+│   +── roapManizales3.xml
+│   +── roapManizales4.xml
+│   +── roapManizales5.xml
++── isi
+    +── isi.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="populate-the-database">
+<h2>Populate the database<a class="headerlink" href="#populate-the-database" title="Permalink to this headline">¶</a></h2>
+<p>Once you have your dataset organized you can populate your database using the
+<cite>condorpopulate</cite> program.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>condor bibliography create --xml <span class="s1">&#39;data/*/*.xml&#39;</span>
+</pre></div>
+</div>
+<p>You can also stipupate a database name and specify if you want to wipe the
+database, if you want to combine records from different kinds of databases, you
+can do so by reruning the <cite>condorpopulate</cite> tool with the <cite>–no-wipedb</cite> flag,</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>condor bibliography create --isi <span class="s1">&#39;data/*/*.isi&#39;</span>
+condor bibliography create --bib <span class="s1">&#39;data/*/*.bib&#39;</span>
+</pre></div>
+</div>
+<p>However, whenever using this approximation, beaware of the record duplication
+as the hashing algorithms used to detect duplicates are different for the
+different kinds of record files.</p>
+</div>
+<div class="section" id="build-a-model-for-the-database">
+<h2>Build a model for the database<a class="headerlink" href="#build-a-model-for-the-database" title="Permalink to this headline">¶</a></h2>
+<p>Once your database is populated you can build a model or ranking matrix for
+your database using the command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>condor model
+</pre></div>
+</div>
+<p>This program will create versioned models so that you can build different
+versions, or query with one model when another one is still being built.</p>
+<p>Beaware that this is the most time consuming operation in the suite as it
+involves inverting a several thousand rank matrix.</p>
+</div>
+<div class="section" id="query-the-model">
+<h2>Query the model<a class="headerlink" href="#query-the-model" title="Permalink to this headline">¶</a></h2>
+<p>Once you have built the model you can start performing queries, you can do
+so by:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>condor query search terms
+</pre></div>
+</div>
+<p>This will perform a query to the latest available model in the model database.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Learn more about latent semantic analysis</li>
+<li>Learn more about index databases</li>
+<li>Learn more about the different supported fileformats</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Quickstart for users</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#repository-preparation">Repository preparation</a></li>
+<li><a class="reference internal" href="#populate-the-database">Populate the database</a></li>
+<li><a class="reference internal" href="#build-a-model-for-the-database">Build a model for the database</a></li>
+<li><a class="reference internal" href="#query-the-model">Query the model</a></li>
+<li><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to condor-ir’s documentation!</a></li>
+      <li>Next: <a href="developer-quickstart.html" title="next chapter">Developer quickstart</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/quickstart.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

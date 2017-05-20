@@ -10,6 +10,8 @@ Welcome to condor-ir's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   quickstart
+   developer-quickstart
    modules
 
 
