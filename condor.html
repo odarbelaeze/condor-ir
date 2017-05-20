@@ -1,0 +1,483 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor package &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="condor-package">
+<h1>condor package<a class="headerlink" href="#condor-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="condor.models.html">condor.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.base">condor.models.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.bibliography">condor.models.bibliography module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.document">condor.models.document module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.query">condor.models.query module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.ranking_matrix">condor.models.ranking_matrix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models.term_document_matrix">condor.models.term_document_matrix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.models.html#module-condor.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="condor.record.html">condor.record package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#module-condor.record.base">condor.record.base module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#module-condor.record.bib">condor.record.bib module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#module-condor.record.froac">condor.record.froac module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#module-condor.record.isi">condor.record.isi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.record.html#module-condor.record">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="condor.scripts.html">condor.scripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.bibliography">condor.scripts.bibliography module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.cli">condor.scripts.cli module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.contributor">condor.scripts.contributor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.evaluate">condor.scripts.evaluate module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.matrix">condor.scripts.matrix module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.model">condor.scripts.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.query">condor.scripts.query module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.ranking">condor.scripts.ranking module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts.utils">condor.scripts.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="condor.scripts.html#module-condor.scripts">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-condor.config">
+<span id="condor-config-module"></span><h2>condor.config module<a class="headerlink" href="#module-condor.config" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-condor.dbutil">
+<span id="condor-dbutil-module"></span><h2>condor.dbutil module<a class="headerlink" href="#module-condor.dbutil" title="Permalink to this headline">¶</a></h2>
+<p>Utils to work with a mongo database, it contains a global connection to the
+database so that a new one is not created with every request which is a huge
+overhead. Furthermore it has a tool to use a pymongo collection as a context
+manager.</p>
+<dl class="function">
+<dt id="condor.dbutil.engine">
+<code class="descclassname">condor.dbutil.</code><code class="descname">engine</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/dbutil.html#engine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.dbutil.engine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an engine to handle our database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.dbutil.find_one">
+<code class="descclassname">condor.dbutil.</code><code class="descname">find_one</code><span class="sig-paren">(</span><em>db</em>, <em>model</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/dbutil.html#find_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.dbutil.find_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds exactly one of the given models in the db by eid.</p>
+<p>It’s useful when trying to delete or show an item, if we don’t know such
+item we might as well exit the program.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>db</strong> – db connection instance</li>
+<li><strong>model</strong> – model to look for, should have an eid field</li>
+<li><strong>eid</strong> – part of the eid to look for</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the instance of the model found</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.dbutil.one_or_latest">
+<code class="descclassname">condor.dbutil.</code><code class="descname">one_or_latest</code><span class="sig-paren">(</span><em>db</em>, <em>model</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/dbutil.html#one_or_latest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.dbutil.one_or_latest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds an instance of the given model if the eid is provided otherwise returns the
+latest created in the database. If there’s no instance in the database, returns
+None.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>db</strong> – db connection instance</li>
+<li><strong>model</strong> – model to look for, should have an eid field</li>
+<li><strong>eid</strong> – part of the eid to look for</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the instance of the model found</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.dbutil.requires_db">
+<code class="descclassname">condor.dbutil.</code><code class="descname">requires_db</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/dbutil.html#requires_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.dbutil.requires_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Injects a database session into a function as first argument.</p>
+<p>Checks if the db is available and we can create a session otherwise errors
+out, if the database is available, it tries to run the underlying function
+and commit any changes to the database, if something fails, it rolls back
+any uncommitted changes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">for best results use <cite>db.flush()</cite> instead of <cite>db.commit()</cite> in functions
+that require a database connection.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.dbutil.session">
+<code class="descclassname">condor.dbutil.</code><code class="descname">session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/dbutil.html#session"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.dbutil.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a session maker instance attached to our default engine.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.normalize">
+<span id="condor-normalize-module"></span><h2>condor.normalize module<a class="headerlink" href="#module-condor.normalize" title="Permalink to this headline">¶</a></h2>
+<p>This module contains utilities to normalize words and simplify them, it should
+be able to remove punctuation, filter out stopwords and maybe transform some
+latex accents into unicode accent characters.</p>
+<dl class="class">
+<dt id="condor.normalize.CompleteNormalizer">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">CompleteNormalizer</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#CompleteNormalizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.CompleteNormalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.LatexAccentRemover" title="condor.normalize.LatexAccentRemover"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.LatexAccentRemover</span></code></a>, <a class="reference internal" href="#condor.normalize.PunctuationRemover" title="condor.normalize.PunctuationRemover"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.PunctuationRemover</span></code></a>, <a class="reference internal" href="#condor.normalize.Lowercaser" title="condor.normalize.Lowercaser"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Lowercaser</span></code></a>, <a class="reference internal" href="#condor.normalize.StopwordRemover" title="condor.normalize.StopwordRemover"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.StopwordRemover</span></code></a>, <a class="reference internal" href="#condor.normalize.Stemmer" title="condor.normalize.Stemmer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Stemmer</span></code></a></p>
+<p>A Normalizer that aggregates all the effects described in this module</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.LatexAccentRemover">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">LatexAccentRemover</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#LatexAccentRemover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.LatexAccentRemover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.Normalizer" title="condor.normalize.Normalizer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Normalizer</span></code></a></p>
+<p>Removes latex accents like <cite>‘{a}</cite> and makes them unicode chars <cite>á</cite>.</p>
+<dl class="attribute">
+<dt id="condor.normalize.LatexAccentRemover.accents">
+<code class="descname">accents</code><em class="property"> = {“’”: {‘a’: ‘á’, ‘e’: ‘é’, ‘i’: ‘í’, ‘o’: ‘ó’, ‘u’: ‘ú’, ‘c’: ‘ć’}, ‘`’: {‘a’: ‘à’, ‘e’: ‘è’, ‘i’: ‘ì’, ‘o’: ‘ò’, ‘u’: ‘ù’}, ‘~’: {‘n’: ‘ñ’, ‘o’: ‘õ’, ‘a’: ‘ã’}, ‘^’: {‘a’: ‘â’, ‘e’: ‘ê’, ‘i’: ‘î’, ‘o’: ‘ô’, ‘u’: ‘û’}, ‘”’: {‘a’: ‘ä’, ‘e’: ‘ë’, ‘i’: ‘ï’, ‘o’: ‘ö’, ‘u’: ‘ü’, ‘y’: ‘ÿ’}, ‘a’: {‘e’: ‘æ’}, ‘c’: {‘c’: ‘ç’}, ‘o’: {‘e’: ‘œ’}, ‘s’: {‘s’: ‘ß’}, ‘v’: {‘s’: ‘š’}}</em><a class="headerlink" href="#condor.normalize.LatexAccentRemover.accents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.normalize.LatexAccentRemover.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#LatexAccentRemover.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.LatexAccentRemover.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.normalize.LatexAccentRemover.formats">
+<code class="descname">formats</code><em class="property"> = [‘{{\{accent}{{{character}}}}}’, ‘{{\{accent}{character}}}’, ‘\{accent}{{{character}}}’, ‘\{accent}{character}’]</em><a class="headerlink" href="#condor.normalize.LatexAccentRemover.formats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.Lowercaser">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">Lowercaser</code><span class="sig-paren">(</span><em>language=None</em>, <em>tokenizer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Lowercaser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Lowercaser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.Normalizer" title="condor.normalize.Normalizer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Normalizer</span></code></a></p>
+<p>Changes case to lowercase through the normalizer API</p>
+<dl class="method">
+<dt id="condor.normalize.Lowercaser.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Lowercaser.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Lowercaser.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.Normalizer">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">Normalizer</code><span class="sig-paren">(</span><em>language=None</em>, <em>tokenizer=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Normalizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Normalizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="condor.normalize.Normalizer.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Normalizer.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Normalizer.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.normalize.Normalizer.default_language">
+<code class="descname">default_language</code><em class="property"> = ‘spanish’</em><a class="headerlink" href="#condor.normalize.Normalizer.default_language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.normalize.Normalizer.default_tokenizer">
+<code class="descname">default_tokenizer</code><a class="headerlink" href="#condor.normalize.Normalizer.default_tokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#condor.normalize.SpaceTokenizer" title="condor.normalize.SpaceTokenizer"><code class="xref py py-class docutils literal"><span class="pre">SpaceTokenizer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.PunctuationRemover">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">PunctuationRemover</code><span class="sig-paren">(</span><em>characters=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#PunctuationRemover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.PunctuationRemover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.Normalizer" title="condor.normalize.Normalizer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Normalizer</span></code></a></p>
+<p>Removes punctuation from a text</p>
+<dl class="method">
+<dt id="condor.normalize.PunctuationRemover.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#PunctuationRemover.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.PunctuationRemover.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.normalize.PunctuationRemover.characters">
+<code class="descname">characters</code><em class="property"> = ‘!”#$%&amp;'()*+,-./:;&lt;=&gt;?&#64;[\]^_`{|}~¡¿“”‘’—'’</em><a class="headerlink" href="#condor.normalize.PunctuationRemover.characters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.SpaceTokenizer">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">SpaceTokenizer</code><a class="reference internal" href="_modules/condor/normalize.html#SpaceTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.SpaceTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Simple tokenization based on spaces</p>
+<dl class="method">
+<dt id="condor.normalize.SpaceTokenizer.tokenize">
+<code class="descname">tokenize</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#SpaceTokenizer.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.SpaceTokenizer.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.Stemmer">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">Stemmer</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Stemmer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Stemmer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.Normalizer" title="condor.normalize.Normalizer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Normalizer</span></code></a></p>
+<p>Changes words to their respective stemms</p>
+<dl class="method">
+<dt id="condor.normalize.Stemmer.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#Stemmer.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.Stemmer.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.normalize.StopwordRemover">
+<em class="property">class </em><code class="descclassname">condor.normalize.</code><code class="descname">StopwordRemover</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#StopwordRemover"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.StopwordRemover" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.normalize.Normalizer" title="condor.normalize.Normalizer"><code class="xref py py-class docutils literal"><span class="pre">condor.normalize.Normalizer</span></code></a></p>
+<p>Removes stopwords from a text</p>
+<dl class="method">
+<dt id="condor.normalize.StopwordRemover.apply_to">
+<code class="descname">apply_to</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/normalize.html#StopwordRemover.apply_to"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.normalize.StopwordRemover.apply_to" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.schemas">
+<span id="condor-schemas-module"></span><h2>condor.schemas module<a class="headerlink" href="#module-condor.schemas" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.schemas.ModelSchema">
+<em class="property">class </em><code class="descclassname">condor.schemas.</code><code class="descname">ModelSchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=()</em>, <em>exclude=()</em>, <em>prefix=”</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/schemas.html#ModelSchema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.schemas.ModelSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">marshmallow.schema.Schema</span></code></p>
+<dl class="attribute">
+<dt id="condor.schemas.ModelSchema.opts">
+<code class="descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#condor.schemas.ModelSchema.opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.schemas.RecordSchema">
+<em class="property">class </em><code class="descclassname">condor.schemas.</code><code class="descname">RecordSchema</code><span class="sig-paren">(</span><em>extra=None</em>, <em>only=()</em>, <em>exclude=()</em>, <em>prefix=”</em>, <em>strict=None</em>, <em>many=False</em>, <em>context=None</em>, <em>load_only=()</em>, <em>dump_only=()</em>, <em>partial=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/schemas.html#RecordSchema"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.schemas.RecordSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">marshmallow.schema.Schema</span></code></p>
+<dl class="attribute">
+<dt id="condor.schemas.RecordSchema.opts">
+<code class="descname">opts</code><em class="property"> = &lt;marshmallow.schema.SchemaOpts object&gt;</em><a class="headerlink" href="#condor.schemas.RecordSchema.opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.util">
+<span id="condor-util-module"></span><h2>condor.util module<a class="headerlink" href="#module-condor.util" title="Permalink to this headline">¶</a></h2>
+<p>Contains utility functions to work with tokens and decorators
+to work with XML, lists and generators.</p>
+<dl class="class">
+<dt id="condor.util.LanguageGuesser">
+<em class="property">class </em><code class="descclassname">condor.util.</code><code class="descname">LanguageGuesser</code><span class="sig-paren">(</span><em>languages=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#LanguageGuesser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.LanguageGuesser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Guesses the language of a record if the record field is not
+defined</p>
+<dl class="method">
+<dt id="condor.util.LanguageGuesser.counts">
+<code class="descname">counts</code><span class="sig-paren">(</span><em>sentence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#LanguageGuesser.counts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.LanguageGuesser.counts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.util.LanguageGuesser.default_lang">
+<code class="descname">default_lang</code><em class="property"> = ‘english’</em><a class="headerlink" href="#condor.util.LanguageGuesser.default_lang" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.util.LanguageGuesser.guess">
+<code class="descname">guess</code><span class="sig-paren">(</span><em>sentence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#LanguageGuesser.guess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.LanguageGuesser.guess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.util.LanguageGuesser.languages">
+<code class="descname">languages</code><em class="property"> = OrderedDict([(‘en_US’, ‘english’), (‘en_GB’, ‘english’), (‘es_ES’, ‘spanish’), (‘es_CO’, ‘spanish’), (‘es_MX’, ‘spanish’), (‘pt_BR’, ‘portuguese’), (‘pt_PT’, ‘portuguese’), (‘fr_FR’, ‘french’), (‘fr_BE’, ‘french’), (‘it_IT’, ‘italian’), (‘de_DE’, ‘german’), (‘de_CH’, ‘german’), (‘de_AT’, ‘german’)])</em><a class="headerlink" href="#condor.util.LanguageGuesser.languages" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.frequency">
+<code class="descclassname">condor.util.</code><code class="descname">frequency</code><span class="sig-paren">(</span><em>words</em>, <em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#frequency"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes the frequency list of a list of tokens in a dense representation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>words</strong> (<a class="reference internal" href="condor.models.html#condor.models.base.AuditableMixing.list" title="condor.models.base.AuditableMixing.list"><em>list</em></a>) – list of the words to look for</li>
+<li><strong>tokens</strong> (<a class="reference internal" href="condor.models.html#condor.models.base.AuditableMixing.list" title="condor.models.base.AuditableMixing.list"><em>list</em></a>) – list of the tokens to count</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">this function applies a complete normalizer to the given tokens and guesses the language.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.full_text_from_pdf">
+<code class="descclassname">condor.util.</code><code class="descname">full_text_from_pdf</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#full_text_from_pdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.full_text_from_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to extract text from pdfs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.gen_to_list">
+<code class="descclassname">condor.util.</code><code class="descname">gen_to_list</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#gen_to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.gen_to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a function that would return a generator into a function that
+returns a list of the generated values, ergo, do not use this decorator
+with infinite generators.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.isi_text_to_dic">
+<code class="descclassname">condor.util.</code><code class="descname">isi_text_to_dic</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#isi_text_to_dic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.isi_text_to_dic" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes in any ISI WOS plain text formatted string and turns it
+into a dictionary where the keys are the two letter leading keys and the
+values are a list of the strings under that key.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.to_list">
+<code class="descclassname">condor.util.</code><code class="descname">to_list</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#to_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.to_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a non iterable object into a singleton list, or an iterable
+into a list.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.util.xml_to_text">
+<code class="descclassname">condor.util.</code><code class="descname">xml_to_text</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/util.html#xml_to_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.util.xml_to_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms a function that would return an XML element into a function
+that returns the text content of the XML element as a string.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-condor" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">condor package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-condor.config">condor.config module</a></li>
+<li><a class="reference internal" href="#module-condor.dbutil">condor.dbutil module</a></li>
+<li><a class="reference internal" href="#module-condor.normalize">condor.normalize module</a></li>
+<li><a class="reference internal" href="#module-condor.schemas">condor.schemas module</a></li>
+<li><a class="reference internal" href="#module-condor.util">condor.util module</a></li>
+<li><a class="reference internal" href="#module-condor">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/condor.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/condor.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

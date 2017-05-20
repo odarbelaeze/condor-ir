@@ -1,0 +1,193 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.models.ranking_matrix &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.models.ranking_matrix</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Unicode</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="k">import</span> <span class="n">relationship</span>
+
+<span class="kn">from</span> <span class="nn">condor.config</span> <span class="k">import</span> <span class="n">MODEL_PATH</span>
+<span class="kn">from</span> <span class="nn">condor.models.base</span> <span class="k">import</span> <span class="n">AuditableMixing</span><span class="p">,</span> <span class="n">DeclarativeBase</span>
+<span class="kn">from</span> <span class="nn">condor.util</span> <span class="k">import</span> <span class="n">frequency</span>
+
+
+<div class="viewcode-block" id="RankingMatrix"><a class="viewcode-back" href="../../../condor.models.html#condor.models.ranking_matrix.RankingMatrix">[docs]</a><span class="k">class</span> <span class="nc">RankingMatrix</span><span class="p">(</span><span class="n">AuditableMixing</span><span class="p">,</span> <span class="n">DeclarativeBase</span><span class="p">):</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;ranking_matrix&#39;</span>
+
+    <span class="n">term_document_matrix_eid</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">Unicode</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;term_document_matrix.eid&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">kind</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">build_options</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">ranking_matrix_path</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">term_document_matrix</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s1">&#39;TermDocumentMatrix&#39;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;ranking_matrices&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    
+<div class="viewcode-block" id="RankingMatrix.lsa_from_term_document_matrix"><a class="viewcode-back" href="../../../condor.models.html#condor.models.ranking_matrix.RankingMatrix.lsa_from_term_document_matrix">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">lsa_from_term_document_matrix</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">term_document_matrix</span><span class="p">,</span> <span class="n">covariance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Builds an lsa ranking matrix.</span>
+<span class="sd">   </span>
+<span class="sd">        This will ccut the matrix so taht it keeps the given covariance.</span>
+<span class="sd">   </span>
+<span class="sd">        :param term_document_matrix: term document matrix to use</span>
+<span class="sd">        :param float covariance: amount of covariance to keep.</span>
+<span class="sd">        :returns: the ranking matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span>
+                                   <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="n">s</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">ss</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ss</span> <span class="o">&lt;</span> <span class="n">covariance</span><span class="p">)</span>
+        <span class="n">bounded</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">[:</span><span class="n">k</span><span class="p">]),</span> <span class="n">v</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="n">ranking</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">],</span> <span class="n">bounded</span><span class="p">)</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">&#39;covariance&#39;</span><span class="p">:</span> <span class="n">covariance</span><span class="p">})</span>
+
+        <span class="n">unique_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">matrix_path</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+        <span class="n">ranking_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MODEL_PATH</span><span class="p">,</span> <span class="n">unique_hash</span> <span class="o">+</span> <span class="s1">&#39;.npy&#39;</span><span class="p">)</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ranking_filename</span><span class="p">,</span> <span class="n">ranking</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;lsa&#39;</span><span class="p">,</span>
+            <span class="n">build_options</span><span class="o">=</span><span class="n">options</span><span class="p">,</span>
+            <span class="n">ranking_matrix_path</span><span class="o">=</span><span class="n">ranking_filename</span><span class="p">,</span>
+            <span class="n">term_document_matrix_eid</span><span class="o">=</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">eid</span>
+        <span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ranking_matrix_path</span><span class="p">)</span>
+
+<div class="viewcode-block" id="RankingMatrix.query"><a class="viewcode-back" href="../../../condor.models.html#condor.models.ranking_matrix.RankingMatrix.query">[docs]</a>    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cosine</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find the most relevant documents in the index given this tokens.</span>
+
+<span class="sd">        The tokens are normalized and language guessed internally! So no</span>
+<span class="sd">        worries, just pass in the tokens as entered by the user.</span>
+
+<span class="sd">        :param tokens: query string to search</span>
+<span class="sd">        :param limit: limit of documents to use</span>
+<span class="sd">        :param cosine: limit cosine to use</span>
+<span class="sd">        :return: list of documents</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">freq</span> <span class="o">=</span> <span class="n">frequency</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">words</span><span class="p">,</span> <span class="n">tokens</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">freq</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">documents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span>
+        <span class="n">dot</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">freq</span><span class="p">)</span>
+        <span class="n">norm_rank</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">norm_freq</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+        <span class="n">cos</span> <span class="o">=</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="n">norm_rank</span> <span class="o">*</span> <span class="n">norm_freq</span><span class="p">)</span>
+
+        <span class="n">ordered</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">documents</span><span class="p">,</span> <span class="n">cos</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="n">limit</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cosine</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">limit</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="k">if</span> <span class="n">cosine</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="n">r</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">ordered</span>
+                <span class="k">if</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">cosine</span>
+            <span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">ordered</span><span class="p">)[:</span><span class="n">limit</span><span class="p">]</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,348 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.record package &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="condor-record-package">
+<h1>condor.record package<a class="headerlink" href="#condor-record-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-condor.record.base">
+<span id="condor-record-base-module"></span><h2>condor.record.base module<a class="headerlink" href="#module-condor.record.base" title="Permalink to this headline">¶</a></h2>
+<p>This module describes the API for a record parser and a record iterator, they
+have the responsibility of transforming a chunk of text into a usable
+dictionary and go through a file and find all the records.</p>
+<dl class="class">
+<dt id="condor.record.base.RecordIterator">
+<em class="property">class </em><code class="descclassname">condor.record.base.</code><code class="descname">RecordIterator</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Iterates over a bunch of reccords in a file.</p>
+<dl class="method">
+<dt id="condor.record.base.RecordIterator.get_buffer">
+<code class="descname">get_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordIterator.get_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordIterator.get_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.base.RecordIterator.parser_class">
+<code class="descname">parser_class</code><a class="headerlink" href="#condor.record.base.RecordIterator.parser_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#condor.record.base.RecordParser" title="condor.record.base.RecordParser"><code class="xref py py-class docutils literal"><span class="pre">RecordParser</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.record.base.RecordParser">
+<em class="property">class </em><code class="descclassname">condor.record.base.</code><code class="descname">RecordParser</code><a class="reference internal" href="_modules/condor/record/base.html#RecordParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Outlines the API for parsing different kinds of records into dictionaries
+that are easy to use and store.</p>
+<dl class="method">
+<dt id="condor.record.base.RecordParser.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>field</em>, <em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordParser.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordParser.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clears the given <cite>field</cite> out of a raw data record.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="condor.record.base.RecordParser.get_default">
+<code class="descname">get_default</code><span class="sig-paren">(</span><em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordParser.get_default"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordParser.get_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the default value for a given <cite>field</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="condor.record.base.RecordParser.get_mapping">
+<code class="descname">get_mapping</code><span class="sig-paren">(</span><em>field</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordParser.get_mapping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordParser.get_mapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of a field with a modification useful when the field
+is easy to clear but it requires just a change of name.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.base.RecordParser.interest_fields">
+<code class="descname">interest_fields</code><em class="property"> = [‘hash’, ‘title’, ‘keywords’, ‘description’, ‘language’, ‘file’]</em><a class="headerlink" href="#condor.record.base.RecordParser.interest_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.base.RecordParser.list_fields">
+<code class="descname">list_fields</code><em class="property"> = [‘keywords’]</em><a class="headerlink" href="#condor.record.base.RecordParser.list_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.base.RecordParser.mappings">
+<code class="descname">mappings</code><em class="property"> = {}</em><a class="headerlink" href="#condor.record.base.RecordParser.mappings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.record.base.RecordParser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/base.html#RecordParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.base.RecordParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary of the interest fields in the metadata.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.record.bib">
+<span id="condor-record-bib-module"></span><h2>condor.record.bib module<a class="headerlink" href="#module-condor.record.bib" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.record.bib.BibtexRecordIterator">
+<em class="property">class </em><code class="descclassname">condor.record.bib.</code><code class="descname">BibtexRecordIterator</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/bib.html#BibtexRecordIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.bib.BibtexRecordIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordIterator" title="condor.record.base.RecordIterator"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordIterator</span></code></a></p>
+<p>Iterates over bibtex reccords</p>
+<dl class="method">
+<dt id="condor.record.bib.BibtexRecordIterator.get_buffer">
+<code class="descname">get_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/bib.html#BibtexRecordIterator.get_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.bib.BibtexRecordIterator.get_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.bib.BibtexRecordIterator.parser_class">
+<code class="descname">parser_class</code><a class="headerlink" href="#condor.record.bib.BibtexRecordIterator.parser_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#condor.record.bib.BibtexRecordParser" title="condor.record.bib.BibtexRecordParser"><code class="xref py py-class docutils literal"><span class="pre">BibtexRecordParser</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.record.bib.BibtexRecordParser">
+<em class="property">class </em><code class="descclassname">condor.record.bib.</code><code class="descname">BibtexRecordParser</code><a class="reference internal" href="_modules/condor/record/bib.html#BibtexRecordParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.bib.BibtexRecordParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordParser" title="condor.record.base.RecordParser"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordParser</span></code></a></p>
+<dl class="attribute">
+<dt id="condor.record.bib.BibtexRecordParser.accent_remover">
+<code class="descname">accent_remover</code><em class="property"> = &lt;condor.normalize.LatexAccentRemover object&gt;</em><a class="headerlink" href="#condor.record.bib.BibtexRecordParser.accent_remover" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.record.bib.BibtexRecordParser.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>field</em>, <em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/bib.html#BibtexRecordParser.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.bib.BibtexRecordParser.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.bib.BibtexRecordParser.guesser">
+<code class="descname">guesser</code><em class="property"> = &lt;condor.util.LanguageGuesser object&gt;</em><a class="headerlink" href="#condor.record.bib.BibtexRecordParser.guesser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.bib.BibtexRecordParser.mappings">
+<code class="descname">mappings</code><em class="property"> = {‘description’: ‘abstract’}</em><a class="headerlink" href="#condor.record.bib.BibtexRecordParser.mappings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.record.bib.BibtexRecordParser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/bib.html#BibtexRecordParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.bib.BibtexRecordParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.record.froac">
+<span id="condor-record-froac-module"></span><h2>condor.record.froac module<a class="headerlink" href="#module-condor.record.froac" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.record.froac.FroacRecordIterator">
+<em class="property">class </em><code class="descclassname">condor.record.froac.</code><code class="descname">FroacRecordIterator</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/froac.html#FroacRecordIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.froac.FroacRecordIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordIterator" title="condor.record.base.RecordIterator"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordIterator</span></code></a></p>
+<p>Iterates plain txt froac records in a file.</p>
+<dl class="method">
+<dt id="condor.record.froac.FroacRecordIterator.get_buffer">
+<code class="descname">get_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/froac.html#FroacRecordIterator.get_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.froac.FroacRecordIterator.get_buffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.froac.FroacRecordIterator.parser_class">
+<code class="descname">parser_class</code><a class="headerlink" href="#condor.record.froac.FroacRecordIterator.parser_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#condor.record.froac.FroacRecordParser" title="condor.record.froac.FroacRecordParser"><code class="xref py py-class docutils literal"><span class="pre">FroacRecordParser</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.record.froac.FroacRecordParser">
+<em class="property">class </em><code class="descclassname">condor.record.froac.</code><code class="descname">FroacRecordParser</code><a class="reference internal" href="_modules/condor/record/froac.html#FroacRecordParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.froac.FroacRecordParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordParser" title="condor.record.base.RecordParser"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordParser</span></code></a></p>
+<dl class="attribute">
+<dt id="condor.record.froac.FroacRecordParser.default_language">
+<code class="descname">default_language</code><em class="property"> = ‘english’</em><a class="headerlink" href="#condor.record.froac.FroacRecordParser.default_language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.froac.FroacRecordParser.language_key">
+<code class="descname">language_key</code><em class="property"> = {‘es’: ‘spanish’, ‘en’: ‘english’, ‘pt’: ‘portuguese’, ‘fr’: ‘french’, ‘it’: ‘italian’, ‘de’: ‘german’}</em><a class="headerlink" href="#condor.record.froac.FroacRecordParser.language_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.record.froac.FroacRecordParser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/froac.html#FroacRecordParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.froac.FroacRecordParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.record.isi">
+<span id="condor-record-isi-module"></span><h2>condor.record.isi module<a class="headerlink" href="#module-condor.record.isi" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.record.isi.IsiRecordIterator">
+<em class="property">class </em><code class="descclassname">condor.record.isi.</code><code class="descname">IsiRecordIterator</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/isi.html#IsiRecordIterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.isi.IsiRecordIterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordIterator" title="condor.record.base.RecordIterator"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordIterator</span></code></a></p>
+<p>Iterates over a file with ISI txt reccords while yielding reccords.</p>
+<dl class="method">
+<dt id="condor.record.isi.IsiRecordIterator.get_buffer">
+<code class="descname">get_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/isi.html#IsiRecordIterator.get_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.isi.IsiRecordIterator.get_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterates over a file by looking for lines containing the ER mark
+of the isi plain text files.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.isi.IsiRecordIterator.parser_class">
+<code class="descname">parser_class</code><a class="headerlink" href="#condor.record.isi.IsiRecordIterator.parser_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#condor.record.isi.IsiRecordParser" title="condor.record.isi.IsiRecordParser"><code class="xref py py-class docutils literal"><span class="pre">IsiRecordParser</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.record.isi.IsiRecordParser">
+<em class="property">class </em><code class="descclassname">condor.record.isi.</code><code class="descname">IsiRecordParser</code><a class="reference internal" href="_modules/condor/record/isi.html#IsiRecordParser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.isi.IsiRecordParser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.record.base.RecordParser" title="condor.record.base.RecordParser"><code class="xref py py-class docutils literal"><span class="pre">condor.record.base.RecordParser</span></code></a></p>
+<p>This represents an ISI web of knowledge record</p>
+<dl class="method">
+<dt id="condor.record.isi.IsiRecordParser.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><em>field</em>, <em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/isi.html#IsiRecordParser.clear"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.isi.IsiRecordParser.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the <cite>mappings</cite> to get the entries out of the raw dictionary</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.record.isi.IsiRecordParser.mappings">
+<code class="descname">mappings</code><em class="property"> = {‘title’: ‘TI’, ‘description’: ‘AB’, ‘keywords’: ‘ID’, ‘language’: ‘LA’, ‘hash’: ‘UT’}</em><a class="headerlink" href="#condor.record.isi.IsiRecordParser.mappings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.record.isi.IsiRecordParser.parse">
+<code class="descname">parse</code><span class="sig-paren">(</span><em>raw</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record/isi.html#IsiRecordParser.parse"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.isi.IsiRecordParser.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the input is a string if so it transforms it into a
+dictionary and runs the default <cite>parse</cite> method.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.record">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-condor.record" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="condor.record.record_iterator_class">
+<code class="descclassname">condor.record.</code><code class="descname">record_iterator_class</code><span class="sig-paren">(</span><em>record_type</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/record.html#record_iterator_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.record.record_iterator_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the record iterator for a given type</p>
+<p>A way to abstract the construction of a record iterator class.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record_type</strong> – the type of file as string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the appropriate record iterator class</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">condor.record package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-condor.record.base">condor.record.base module</a></li>
+<li><a class="reference internal" href="#module-condor.record.bib">condor.record.bib module</a></li>
+<li><a class="reference internal" href="#module-condor.record.froac">condor.record.froac module</a></li>
+<li><a class="reference internal" href="#module-condor.record.isi">condor.record.isi module</a></li>
+<li><a class="reference internal" href="#module-condor.record">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/condor.record.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/condor.record.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

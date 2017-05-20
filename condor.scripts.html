@@ -1,0 +1,288 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.scripts package &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="condor-scripts-package">
+<h1>condor.scripts package<a class="headerlink" href="#condor-scripts-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-condor.scripts.bibliography">
+<span id="condor-scripts-bibliography-module"></span><h2>condor.scripts.bibliography module<a class="headerlink" href="#module-condor.scripts.bibliography" title="Permalink to this headline">¶</a></h2>
+<p>Implements the populate script.</p>
+</div>
+<div class="section" id="module-condor.scripts.cli">
+<span id="condor-scripts-cli-module"></span><h2>condor.scripts.cli module<a class="headerlink" href="#module-condor.scripts.cli" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.scripts.cli.CondorCommand">
+<em class="property">class </em><code class="descclassname">condor.scripts.cli.</code><code class="descname">CondorCommand</code><span class="sig-paren">(</span><em>name=None</em>, <em>invoke_without_command=False</em>, <em>no_args_is_help=None</em>, <em>subcommand_metavar=None</em>, <em>chain=False</em>, <em>result_callback=None</em>, <em>**attrs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/scripts/cli.html#CondorCommand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.scripts.cli.CondorCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">click.core.MultiCommand</span></code></p>
+<dl class="attribute">
+<dt id="condor.scripts.cli.CondorCommand.commands">
+<code class="descname">commands</code><a class="headerlink" href="#condor.scripts.cli.CondorCommand.commands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.scripts.cli.CondorCommand.get_command">
+<code class="descname">get_command</code><span class="sig-paren">(</span><em>ctx</em>, <em>name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/scripts/cli.html#CondorCommand.get_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.scripts.cli.CondorCommand.get_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.scripts.cli.CondorCommand.list_commands">
+<code class="descname">list_commands</code><span class="sig-paren">(</span><em>ctx</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/scripts/cli.html#CondorCommand.list_commands"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.scripts.cli.CondorCommand.list_commands" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.scripts.contributor">
+<span id="condor-scripts-contributor-module"></span><h2>condor.scripts.contributor module<a class="headerlink" href="#module-condor.scripts.contributor" title="Permalink to this headline">¶</a></h2>
+<p>Functions to work with a contributed set of queries from the command line.</p>
+<dl class="class">
+<dt id="condor.scripts.contributor.QueryProps">
+<em class="property">class </em><code class="descclassname">condor.scripts.contributor.</code><code class="descname">QueryProps</code><span class="sig-paren">(</span><em>path</em>, <em>topic</em>, <em>contributor</em>, <em>query_string</em>, <em>extension</em><span class="sig-paren">)</span><a class="headerlink" href="#condor.scripts.contributor.QueryProps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<dl class="attribute">
+<dt id="condor.scripts.contributor.QueryProps.contributor">
+<code class="descname">contributor</code><a class="headerlink" href="#condor.scripts.contributor.QueryProps.contributor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.contributor.QueryProps.extension">
+<code class="descname">extension</code><a class="headerlink" href="#condor.scripts.contributor.QueryProps.extension" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.contributor.QueryProps.path">
+<code class="descname">path</code><a class="headerlink" href="#condor.scripts.contributor.QueryProps.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.contributor.QueryProps.query_string">
+<code class="descname">query_string</code><a class="headerlink" href="#condor.scripts.contributor.QueryProps.query_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.contributor.QueryProps.topic">
+<code class="descname">topic</code><a class="headerlink" href="#condor.scripts.contributor.QueryProps.topic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.scripts.contributor.prop_queries">
+<code class="descclassname">condor.scripts.contributor.</code><code class="descname">prop_queries</code><span class="sig-paren">(</span><em>file_names</em>, <em>warn</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/scripts/contributor.html#prop_queries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.scripts.contributor.prop_queries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="condor.scripts.contributor.query_props">
+<code class="descclassname">condor.scripts.contributor.</code><code class="descname">query_props</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/scripts/contributor.html#query_props"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.scripts.contributor.query_props" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extracts a QueryProps object from a file name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – Path to a query file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">QueryProps of the file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.scripts.evaluate">
+<span id="condor-scripts-evaluate-module"></span><h2>condor.scripts.evaluate module<a class="headerlink" href="#module-condor.scripts.evaluate" title="Permalink to this headline">¶</a></h2>
+<p>Scripts to evaluate rankins based on ground truth databases.</p>
+<dl class="class">
+<dt id="condor.scripts.evaluate.PerformanceResult">
+<em class="property">class </em><code class="descclassname">condor.scripts.evaluate.</code><code class="descname">PerformanceResult</code><span class="sig-paren">(</span><em>true_positives</em>, <em>true_negatives</em>, <em>false_positives</em>, <em>false_negatives</em>, <em>precision</em>, <em>recall</em>, <em>f1_score</em><span class="sig-paren">)</span><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.f1_score">
+<code class="descname">f1_score</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.f1_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.false_negatives">
+<code class="descname">false_negatives</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.false_negatives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.false_positives">
+<code class="descname">false_positives</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.false_positives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.precision">
+<code class="descname">precision</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.recall">
+<code class="descname">recall</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.recall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.true_negatives">
+<code class="descname">true_negatives</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.true_negatives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.scripts.evaluate.PerformanceResult.true_positives">
+<code class="descname">true_positives</code><a class="headerlink" href="#condor.scripts.evaluate.PerformanceResult.true_positives" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.scripts.matrix">
+<span id="condor-scripts-matrix-module"></span><h2>condor.scripts.matrix module<a class="headerlink" href="#module-condor.scripts.matrix" title="Permalink to this headline">¶</a></h2>
+<p>Implements the condor matrix commands to create term document matrices from
+bibsets.</p>
+</div>
+<div class="section" id="module-condor.scripts.model">
+<span id="condor-scripts-model-module"></span><h2>condor.scripts.model module<a class="headerlink" href="#module-condor.scripts.model" title="Permalink to this headline">¶</a></h2>
+<p>This script aims to build the model for the current state of a database,
+taking in all the present records.</p>
+</div>
+<div class="section" id="module-condor.scripts.query">
+<span id="condor-scripts-query-module"></span><h2>condor.scripts.query module<a class="headerlink" href="#module-condor.scripts.query" title="Permalink to this headline">¶</a></h2>
+<p>Uses the latest model to query the database for the most important documents
+according to lsa.</p>
+</div>
+<div class="section" id="module-condor.scripts.ranking">
+<span id="condor-scripts-ranking-module"></span><h2>condor.scripts.ranking module<a class="headerlink" href="#module-condor.scripts.ranking" title="Permalink to this headline">¶</a></h2>
+<p>Implements the condor matrix commands to create term document matrices from
+bibsets.</p>
+</div>
+<div class="section" id="module-condor.scripts.utils">
+<span id="condor-scripts-utils-module"></span><h2>condor.scripts.utils module<a class="headerlink" href="#module-condor.scripts.utils" title="Permalink to this headline">¶</a></h2>
+<p>This module includes utility scripts.</p>
+<p>Such as creating and wiping the database and others in the future.</p>
+</div>
+<div class="section" id="module-condor.scripts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-condor.scripts" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">condor.scripts package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.bibliography">condor.scripts.bibliography module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.cli">condor.scripts.cli module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.contributor">condor.scripts.contributor module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.evaluate">condor.scripts.evaluate module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.matrix">condor.scripts.matrix module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.model">condor.scripts.model module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.query">condor.scripts.query module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.ranking">condor.scripts.ranking module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts.utils">condor.scripts.utils module</a></li>
+<li><a class="reference internal" href="#module-condor.scripts">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/condor.scripts.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/condor.scripts.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

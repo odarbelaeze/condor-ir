@@ -1,0 +1,291 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.normalize &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.normalize</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">This module contains utilities to normalize words and simplify them, it should</span>
+<span class="sd">be able to remove punctuation, filter out stopwords and maybe transform some</span>
+<span class="sd">latex accents into unicode accent characters.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">string</span>
+
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem.snowball</span> <span class="k">import</span> <span class="n">SnowballStemmer</span>
+
+
+<div class="viewcode-block" id="SpaceTokenizer"><a class="viewcode-back" href="../../condor.html#condor.normalize.SpaceTokenizer">[docs]</a><span class="k">class</span> <span class="nc">SpaceTokenizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Simple tokenization based on spaces</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="SpaceTokenizer.tokenize"><a class="viewcode-back" href="../../condor.html#condor.normalize.SpaceTokenizer.tokenize">[docs]</a>    <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span></div></div>
+
+
+<div class="viewcode-block" id="Normalizer"><a class="viewcode-back" href="../../condor.html#condor.normalize.Normalizer">[docs]</a><span class="k">class</span> <span class="nc">Normalizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">default_tokenizer</span> <span class="o">=</span> <span class="n">SpaceTokenizer</span>
+    <span class="n">default_language</span> <span class="o">=</span> <span class="s1">&#39;spanish&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">language</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">language</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">language</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_language</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_tokenizer</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Normalizer.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.Normalizer.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">text</span></div></div>
+
+
+<div class="viewcode-block" id="PunctuationRemover"><a class="viewcode-back" href="../../condor.html#condor.normalize.PunctuationRemover">[docs]</a><span class="k">class</span> <span class="nc">PunctuationRemover</span><span class="p">(</span><span class="n">Normalizer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Removes punctuation from a text</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span> <span class="o">+</span> <span class="s1">&#39;¡¿“”‘’—</span><span class="se">\&#39;</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">characters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">translation</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">characters</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">characters</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="PunctuationRemover.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.PunctuationRemover.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">translation</span><span class="p">))</span></div></div>
+
+
+<div class="viewcode-block" id="Stemmer"><a class="viewcode-back" href="../../condor.html#condor.normalize.Stemmer">[docs]</a><span class="k">class</span> <span class="nc">Stemmer</span><span class="p">(</span><span class="n">Normalizer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Changes words to their respective stemms</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stemmer</span> <span class="o">=</span> <span class="n">SnowballStemmer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Stemmer.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.Stemmer.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">token</span><span class="p">)</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="StopwordRemover"><a class="viewcode-back" href="../../condor.html#condor.normalize.StopwordRemover">[docs]</a><span class="k">class</span> <span class="nc">StopwordRemover</span><span class="p">(</span><span class="n">Normalizer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Removes stopwords from a text</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stopwords</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">word</span><span class="p">:</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="n">fileids</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">language</span><span class="p">)</span>
+        <span class="p">}</span>
+
+<div class="viewcode-block" id="StopwordRemover.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.StopwordRemover.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">token</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stopwords</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="Lowercaser"><a class="viewcode-back" href="../../condor.html#condor.normalize.Lowercaser">[docs]</a><span class="k">class</span> <span class="nc">Lowercaser</span><span class="p">(</span><span class="n">Normalizer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Changes case to lowercase through the normalizer API</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+<div class="viewcode-block" id="Lowercaser.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.Lowercaser.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span></div></div>
+
+
+<div class="viewcode-block" id="LatexAccentRemover"><a class="viewcode-back" href="../../condor.html#condor.normalize.LatexAccentRemover">[docs]</a><span class="k">class</span> <span class="nc">LatexAccentRemover</span><span class="p">(</span><span class="n">Normalizer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Removes latex accents like `\\&#39;{a}` and makes them unicode chars `á`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">accents</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;</span><span class="se">\&#39;</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;á&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;é&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;í&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;ó&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="s1">&#39;ú&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;ć&#39;</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;`&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;à&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;è&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;ì&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;ò&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="s1">&#39;ù&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;~&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="s1">&#39;ñ&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;õ&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;ã&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;^&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;â&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;ê&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;î&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;ô&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="s1">&#39;û&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;&quot;&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;ä&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;ë&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;ï&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;ö&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="s1">&#39;ü&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="s1">&#39;ÿ&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;æ&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="s1">&#39;ç&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;œ&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;ß&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="s1">&#39;š&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
+
+    <span class="n">formats</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s2">&quot;{{\</span><span class="si">{accent}</span><span class="s2">{{</span><span class="si">{character}</span><span class="s2">}}}}&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;{{\</span><span class="si">{accent}{character}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\</span><span class="si">{accent}</span><span class="s2">{{</span><span class="si">{character}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;\</span><span class="si">{accent}{character}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_replacements</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">accent</span><span class="p">,</span> <span class="n">cases</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">accents</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">character</span><span class="p">,</span> <span class="n">modification</span> <span class="ow">in</span> <span class="n">cases</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">format_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">formats</span><span class="p">:</span>
+                    <span class="n">latex</span> <span class="o">=</span> <span class="n">format_</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accent</span><span class="o">=</span><span class="n">accent</span><span class="p">,</span> <span class="n">character</span><span class="o">=</span><span class="n">character</span><span class="p">)</span>
+                    <span class="k">yield</span> <span class="p">(</span>
+                        <span class="n">latex</span><span class="p">,</span>
+                        <span class="n">modification</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">yield</span> <span class="p">(</span>
+                        <span class="n">latex</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                        <span class="n">modification</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span>
+                    <span class="p">)</span>
+
+<div class="viewcode-block" id="LatexAccentRemover.apply_to"><a class="viewcode-back" href="../../condor.html#condor.normalize.LatexAccentRemover.apply_to">[docs]</a>    <span class="k">def</span> <span class="nf">apply_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="k">for</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replacements</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CompleteNormalizer"><a class="viewcode-back" href="../../condor.html#condor.normalize.CompleteNormalizer">[docs]</a><span class="k">class</span> <span class="nc">CompleteNormalizer</span><span class="p">(</span><span class="n">LatexAccentRemover</span><span class="p">,</span>
+                         <span class="n">PunctuationRemover</span><span class="p">,</span>
+                         <span class="n">Lowercaser</span><span class="p">,</span>
+                         <span class="n">StopwordRemover</span><span class="p">,</span>
+                         <span class="n">Stemmer</span><span class="p">):</span>
+
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    A Normalizer that aggregates all the effects described in this module</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

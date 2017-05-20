@@ -1,0 +1,704 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.models package &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="condor-models-package">
+<h1>condor.models package<a class="headerlink" href="#condor-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-condor.models.base">
+<span id="condor-models-base-module"></span><h2>condor.models.base module<a class="headerlink" href="#module-condor.models.base" title="Permalink to this headline">¶</a></h2>
+<p>Common functionality for sqlalchemy schemas.</p>
+<dl class="class">
+<dt id="condor.models.base.AuditableMixing">
+<em class="property">class </em><code class="descclassname">condor.models.base.</code><code class="descname">AuditableMixing</code><a class="reference internal" href="_modules/condor/models/base.html#AuditableMixing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.AuditableMixing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Table mixing to add the common fields in our database, to make it auditable
+we add timestamps and an eid field as primary key just for convenience.</p>
+<dl class="classmethod">
+<dt id="condor.models.base.AuditableMixing.count">
+<em class="property">classmethod </em><code class="descname">count</code><span class="sig-paren">(</span><em>database</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/base.html#AuditableMixing.count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.AuditableMixing.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.base.AuditableMixing.created">
+<code class="descname">created</code><em class="property"> = Column(None, DateTime(), table=None, nullable=False, default=ColumnDefault(&lt;function ColumnDefault._maybe_wrap_callable.&lt;locals&gt;.&lt;lambda&gt;&gt;))</em><a class="headerlink" href="#condor.models.base.AuditableMixing.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.base.AuditableMixing.eid">
+<code class="descname">eid</code><em class="property"> = Column(None, Unicode(length=40), table=None, primary_key=True, nullable=False, default=ColumnDefault(&lt;function ColumnDefault._maybe_wrap_callable.&lt;locals&gt;.&lt;lambda&gt;&gt;))</em><a class="headerlink" href="#condor.models.base.AuditableMixing.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.base.AuditableMixing.find_by_eid">
+<em class="property">classmethod </em><code class="descname">find_by_eid</code><span class="sig-paren">(</span><em>database</em>, <em>eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/base.html#AuditableMixing.find_by_eid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.AuditableMixing.find_by_eid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds a model by it’s eid of a chunk of it, returns None if there are
+no models matching the eid chunk.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>db</strong> – sqlalchemy session to find the item.</li>
+<li><strong>eid</strong> – eid to match, can be a partial.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the model if its found None otherwise.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.base.AuditableMixing.latest">
+<em class="property">classmethod </em><code class="descname">latest</code><span class="sig-paren">(</span><em>database</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/base.html#AuditableMixing.latest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.AuditableMixing.latest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the latest model in the given db.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>db</strong> – sqlalchemy session to find the item.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the latest model if its found None otherwise.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.base.AuditableMixing.list">
+<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>database</em>, <em>count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/base.html#AuditableMixing.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.AuditableMixing.list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.base.AuditableMixing.modified">
+<code class="descname">modified</code><em class="property"> = Column(None, DateTime(), table=None, nullable=False, onupdate=ColumnDefault(&lt;function ColumnDefault._maybe_wrap_callable.&lt;locals&gt;.&lt;lambda&gt;&gt;), default=ColumnDefault(&lt;function ColumnDefault._maybe_wrap_callable.&lt;locals&gt;.&lt;lambda&gt;&gt;))</em><a class="headerlink" href="#condor.models.base.AuditableMixing.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="condor.models.base.eid_gen">
+<code class="descclassname">condor.models.base.</code><code class="descname">eid_gen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/base.html#eid_gen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.base.eid_gen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates an unique eid based on a random string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a unique random string.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models.bibliography">
+<span id="condor-models-bibliography-module"></span><h2>condor.models.bibliography module<a class="headerlink" href="#module-condor.models.bibliography" title="Permalink to this headline">¶</a></h2>
+<p>Tools for handling a set of documents called bibliography.</p>
+<dl class="class">
+<dt id="condor.models.bibliography.Bibliography">
+<em class="property">class </em><code class="descclassname">condor.models.bibliography.</code><code class="descname">Bibliography</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/bibliography.html#Bibliography"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.bibliography.Bibliography" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Describes a group of documents.</p>
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.description">
+<code class="descname">description</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.documents">
+<code class="descname">documents</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.queries">
+<code class="descname">queries</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.queries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.bibliography.Bibliography.term_document_matrices">
+<code class="descname">term_document_matrices</code><a class="headerlink" href="#condor.models.bibliography.Bibliography.term_document_matrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.models.bibliography.Bibliography.words">
+<code class="descname">words</code><span class="sig-paren">(</span><em>fields</em>, <em>normalizer_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/bibliography.html#Bibliography.words"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.bibliography.Bibliography.words" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of normalized words from the given fields.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fields</strong> – list of fields to check</li>
+<li><strong>normalizer_class</strong> – normalizer to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of words</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models.document">
+<span id="condor-models-document-module"></span><h2>condor.models.document module<a class="headerlink" href="#module-condor.models.document" title="Permalink to this headline">¶</a></h2>
+<p>A tool for managing single documents within a bibliography.</p>
+<dl class="class">
+<dt id="condor.models.document.Document">
+<em class="property">class </em><code class="descclassname">condor.models.document.</code><code class="descname">Document</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Describes a single document.</p>
+<dl class="attribute">
+<dt id="condor.models.document.Document.bibliography">
+<code class="descname">bibliography</code><a class="headerlink" href="#condor.models.document.Document.bibliography" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.bibliography_eid">
+<code class="descname">bibliography_eid</code><a class="headerlink" href="#condor.models.document.Document.bibliography_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.document.Document.count">
+<em class="property">classmethod </em><code class="descname">count</code><span class="sig-paren">(</span><em>database</em>, <em>bibliography_eid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document.count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Different to the usual count, it counts the number of documents in a given bibliography.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.document.Document.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.description">
+<code class="descname">description</code><a class="headerlink" href="#condor.models.document.Document.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.document.Document.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.full_text">
+<code class="descname">full_text</code><a class="headerlink" href="#condor.models.document.Document.full_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve full text.
+:return: string with the full text</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.full_text_path">
+<code class="descname">full_text_path</code><a class="headerlink" href="#condor.models.document.Document.full_text_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.hash">
+<code class="descname">hash</code><a class="headerlink" href="#condor.models.document.Document.hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.keywords">
+<code class="descname">keywords</code><a class="headerlink" href="#condor.models.document.Document.keywords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.language">
+<code class="descname">language</code><a class="headerlink" href="#condor.models.document.Document.language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.document.Document.list">
+<em class="property">classmethod </em><code class="descname">list</code><span class="sig-paren">(</span><em>database</em>, <em>bibliography_eid</em>, <em>count=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document.list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document.list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Different to the usual list this one should just return records related to just
+one bibliography.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="condor.models.document.Document.load_full_text">
+<em class="property">static </em><code class="descname">load_full_text</code><span class="sig-paren">(</span><em>record</em>, <em>files</em>, <em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document.load_full_text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document.load_full_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="condor.models.document.Document.mappings_from_files">
+<em class="property">static </em><code class="descname">mappings_from_files</code><span class="sig-paren">(</span><em>file_names</em>, <em>record_type</em>, <em>full_text_path=None</em>, <em>force=False</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document.mappings_from_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document.mappings_from_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates document mappings out of files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_names</strong> – paths to the files</li>
+<li><strong>record_type</strong> – type of record to extract</li>
+<li><strong>kwargs</strong> – extra fields to include in the mappings</li>
+<li><strong>full_text_path</strong> – path to look for full text pdf files</li>
+<li><strong>force</strong> – force reading the full text from pdf files</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">an iterable over mappings</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.document.Document.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.models.document.Document.raw_data">
+<code class="descname">raw_data</code><span class="sig-paren">(</span><em>fields</em>, <em>normalizer_class</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/document.html#Document.raw_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.document.Document.raw_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the raw data from the given fields in this record.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>fields</strong> – fields of interest</li>
+<li><strong>normalizer_class</strong> – normalizer for the data</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of normalized data</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.document.Document.title">
+<code class="descname">title</code><a class="headerlink" href="#condor.models.document.Document.title" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models.query">
+<span id="condor-models-query-module"></span><h2>condor.models.query module<a class="headerlink" href="#module-condor.models.query" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.models.query.Query">
+<em class="property">class </em><code class="descclassname">condor.models.query.</code><code class="descname">Query</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/query.html#Query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.query.Query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<dl class="attribute">
+<dt id="condor.models.query.Query.bibliography">
+<code class="descname">bibliography</code><a class="headerlink" href="#condor.models.query.Query.bibliography" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.bibliography_eid">
+<code class="descname">bibliography_eid</code><a class="headerlink" href="#condor.models.query.Query.bibliography_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.contributor">
+<code class="descname">contributor</code><a class="headerlink" href="#condor.models.query.Query.contributor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.query.Query.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.query.Query.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.query.Query.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.query_string">
+<code class="descname">query_string</code><a class="headerlink" href="#condor.models.query.Query.query_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.results">
+<code class="descname">results</code><a class="headerlink" href="#condor.models.query.Query.results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.Query.topic">
+<code class="descname">topic</code><a class="headerlink" href="#condor.models.query.Query.topic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="condor.models.query.QueryResult">
+<em class="property">class </em><code class="descclassname">condor.models.query.</code><code class="descname">QueryResult</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/query.html#QueryResult"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.query.QueryResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.query.QueryResult.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.document">
+<code class="descname">document</code><a class="headerlink" href="#condor.models.query.QueryResult.document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.document_eid">
+<code class="descname">document_eid</code><a class="headerlink" href="#condor.models.query.QueryResult.document_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.query.QueryResult.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.query.QueryResult.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.query">
+<code class="descname">query</code><a class="headerlink" href="#condor.models.query.QueryResult.query" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.query.QueryResult.query_eid">
+<code class="descname">query_eid</code><a class="headerlink" href="#condor.models.query.QueryResult.query_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models.ranking_matrix">
+<span id="condor-models-ranking-matrix-module"></span><h2>condor.models.ranking_matrix module<a class="headerlink" href="#module-condor.models.ranking_matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="condor.models.ranking_matrix.RankingMatrix">
+<em class="property">class </em><code class="descclassname">condor.models.ranking_matrix.</code><code class="descname">RankingMatrix</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/ranking_matrix.html#RankingMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.build_options">
+<code class="descname">build_options</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.build_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.kind">
+<code class="descname">kind</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.kind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.ranking_matrix.RankingMatrix.lsa_from_term_document_matrix">
+<em class="property">classmethod </em><code class="descname">lsa_from_term_document_matrix</code><span class="sig-paren">(</span><em>term_document_matrix</em>, <em>covariance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/ranking_matrix.html#RankingMatrix.lsa_from_term_document_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.lsa_from_term_document_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds an lsa ranking matrix.</p>
+<p>This will ccut the matrix so taht it keeps the given covariance.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>term_document_matrix</strong> – term document matrix to use</li>
+<li><strong>covariance</strong> (<em>float</em>) – amount of covariance to keep.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">the ranking matrix</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.matrix">
+<code class="descname">matrix</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="condor.models.ranking_matrix.RankingMatrix.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>tokens</em>, <em>limit=None</em>, <em>cosine=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/ranking_matrix.html#RankingMatrix.query"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the most relevant documents in the index given this tokens.</p>
+<p>The tokens are normalized and language guessed internally! So no
+worries, just pass in the tokens as entered by the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>tokens</strong> – query string to search</li>
+<li><strong>limit</strong> – limit of documents to use</li>
+<li><strong>cosine</strong> – limit cosine to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">list of documents</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.ranking_matrix_path">
+<code class="descname">ranking_matrix_path</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.ranking_matrix_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.term_document_matrix">
+<code class="descname">term_document_matrix</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.term_document_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.ranking_matrix.RankingMatrix.term_document_matrix_eid">
+<code class="descname">term_document_matrix_eid</code><a class="headerlink" href="#condor.models.ranking_matrix.RankingMatrix.term_document_matrix_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models.term_document_matrix">
+<span id="condor-models-term-document-matrix-module"></span><h2>condor.models.term_document_matrix module<a class="headerlink" href="#module-condor.models.term_document_matrix" title="Permalink to this headline">¶</a></h2>
+<p>Just a normal text document matrix representation, the actual matrix is
+stored off site on a numpy file.</p>
+<dl class="class">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix">
+<em class="property">class </em><code class="descclassname">condor.models.term_document_matrix.</code><code class="descname">TermDocumentMatrix</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/term_document_matrix.html#TermDocumentMatrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#condor.models.base.AuditableMixing" title="condor.models.base.AuditableMixing"><code class="xref py py-class docutils literal"><span class="pre">condor.models.base.AuditableMixing</span></code></a>, <code class="xref py py-class docutils literal"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Represents a term document matrix.</p>
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.bibliography">
+<code class="descname">bibliography</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.bibliography" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.bibliography_eid">
+<code class="descname">bibliography_eid</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.bibliography_eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.bibliography_options">
+<code class="descname">bibliography_options</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.bibliography_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.created">
+<code class="descname">created</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.created" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.eid">
+<code class="descname">eid</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.eid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.from_bibliography_set">
+<em class="property">classmethod </em><code class="descname">from_bibliography_set</code><span class="sig-paren">(</span><em>bibliography</em>, <em>regularise=True</em>, <em>fields=None</em>, <em>normalizer_class=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/condor/models/term_document_matrix.html#TermDocumentMatrix.from_bibliography_set"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.from_bibliography_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a matrix from a document set.</p>
+<p>This has the side effect of creating the matrix a and terms files.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>bibliography</strong> – a document set</li>
+<li><strong>regularise</strong> – apply TF IDF regularization.</li>
+<li><strong>fields</strong> – fields of interest</li>
+<li><strong>normalizer_class</strong> – normalizer class to use</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a term document matrix.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.matrix">
+<code class="descname">matrix</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the matrix stored off site.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.matrix_path">
+<code class="descname">matrix_path</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.matrix_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.modified">
+<code class="descname">modified</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.modified" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.processing_options">
+<code class="descname">processing_options</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.processing_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.ranking_matrices">
+<code class="descname">ranking_matrices</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.ranking_matrices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.term_list_path">
+<code class="descname">term_list_path</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.term_list_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="condor.models.term_document_matrix.TermDocumentMatrix.words">
+<code class="descname">words</code><a class="headerlink" href="#condor.models.term_document_matrix.TermDocumentMatrix.words" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the words stored off site.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-condor.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-condor.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">condor.models package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-condor.models.base">condor.models.base module</a></li>
+<li><a class="reference internal" href="#module-condor.models.bibliography">condor.models.bibliography module</a></li>
+<li><a class="reference internal" href="#module-condor.models.document">condor.models.document module</a></li>
+<li><a class="reference internal" href="#module-condor.models.query">condor.models.query module</a></li>
+<li><a class="reference internal" href="#module-condor.models.ranking_matrix">condor.models.ranking_matrix module</a></li>
+<li><a class="reference internal" href="#module-condor.models.term_document_matrix">condor.models.term_document_matrix module</a></li>
+<li><a class="reference internal" href="#module-condor.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/condor.models.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/condor.models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

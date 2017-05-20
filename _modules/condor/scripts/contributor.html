@@ -1,0 +1,355 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.scripts.contributor &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.scripts.contributor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Functions to work with a contributed set of queries from the command line.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">tabulate</span>
+
+<span class="kn">from</span> <span class="nn">condor.dbutil</span> <span class="k">import</span> <span class="n">requires_db</span>
+<span class="kn">from</span> <span class="nn">condor.models.document</span> <span class="k">import</span> <span class="n">Document</span>
+<span class="kn">from</span> <span class="nn">condor.models.bibliography</span> <span class="k">import</span> <span class="n">Bibliography</span>
+<span class="kn">from</span> <span class="nn">condor.models.query</span> <span class="k">import</span> <span class="n">Query</span><span class="p">,</span> <span class="n">QueryResult</span>
+
+
+<span class="n">QueryProps</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s1">&#39;QueryProps&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;path&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;topic&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;contributor&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;query_string&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;extension&#39;</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="query_props"><a class="viewcode-back" href="../../../condor.scripts.html#condor.scripts.contributor.query_props">[docs]</a><span class="k">def</span> <span class="nf">query_props</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts a QueryProps object from a file name.</span>
+
+<span class="sd">    :param path: Path to a query file</span>
+<span class="sd">    :return: QueryProps of the file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        (?P&lt;topic&gt;[^-]+?)</span>
+<span class="s1">        (\s*-\s*)</span>
+<span class="s1">        (?P&lt;contributor&gt;[A-Z]+)</span>
+<span class="s1">        (\s*-\s*)?</span>
+<span class="s1">        (?P&lt;query_string&gt;[^-]+)?</span>
+<span class="s1">        (\.(?P&lt;extension&gt;[a-z]+))</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">,</span> <span class="n">basename</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot; does not follow the file name convention.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">QueryProps</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="prop_queries"><a class="viewcode-back" href="../../../condor.scripts.html#condor.scripts.contributor.prop_queries">[docs]</a><span class="k">def</span> <span class="nf">prop_queries</span><span class="p">(</span><span class="n">file_names</span><span class="p">,</span> <span class="n">warn</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">file_names</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">props</span> <span class="o">=</span> <span class="n">query_props</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;yellow&#39;</span> <span class="k">if</span> <span class="n">warn</span> <span class="k">else</span> <span class="s1">&#39;red&#39;</span>
+            <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span> <span class="n">fg</span><span class="o">=</span><span class="n">color</span><span class="p">))</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">warn</span><span class="p">:</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">continue</span>
+        <span class="k">yield</span> <span class="n">props</span></div>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">contributor</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Manages contributor queries.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+<span class="nd">@contributor</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;kind&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s1">&#39;xml&#39;</span><span class="p">,</span> <span class="s1">&#39;froac&#39;</span><span class="p">,</span> <span class="s1">&#39;bib&#39;</span><span class="p">,</span> <span class="s1">&#39;isi&#39;</span><span class="p">]))</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;files&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">lazy</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--description&#39;</span><span class="p">,</span> <span class="s1">&#39;-d&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Describe your document set&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--language&#39;</span><span class="p">,</span> <span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="s1">&#39;languages&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Filter specific languages.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--full-text-path&#39;</span><span class="p">,</span> <span class="s1">&#39;-f&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">exists</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Try to find full text pdf files in this path.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--no-cache&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Do not cache the files for full text.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--ignore&#39;</span><span class="p">,</span> <span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;ignored&#39;</span><span class="p">,</span> <span class="n">multiple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Ignore queries that contain these strings.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--warn&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Warn if file names do not follow the convention&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--verbose/--quiet&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Be more verbose&#39;</span><span class="p">)</span>
+<span class="nd">@requires_db</span>
+<span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">files</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">languages</span><span class="p">,</span>
+           <span class="n">full_text_path</span><span class="p">,</span> <span class="n">no_cache</span><span class="p">,</span> <span class="n">ignored</span><span class="p">,</span> <span class="n">warn</span><span class="p">,</span> <span class="n">verbose</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Loads a query set with the associated files.</span>
+
+<span class="sd">    It will create the document set, queries and query results that are</span>
+<span class="sd">    necessary for an automatic benchmark of a search engine.</span>
+
+<span class="sd">    The file names should have the following format: \n</span>
+
+<span class="sd">        topic - CONTRIBUTOR - query string.ext \n</span>
+<span class="sd">        topic - CONTRIBUTOR.ext \n</span>
+<span class="sd">        topic - CONTRIBUTOR - NP.ext \n</span>
+
+<span class="sd">    the files with the first format will be associated to queries and the ones</span>
+<span class="sd">    with the second and third formats will be used for not pertinent results, i.e.,</span>
+<span class="sd">    results that are not relevant to any of the contributor&#39;s queries, they will be</span>
+<span class="sd">    added to the document set just to add noise, the CONTRIBUTOR identifier</span>
+<span class="sd">    should be uppercase and do not have spaces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Parameters: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+            <span class="s1">&#39;kind </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kind</span><span class="p">),</span>
+            <span class="s1">&#39;files list of </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)),</span>
+            <span class="s1">&#39;description </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">description</span><span class="p">),</span>
+            <span class="s1">&#39;languages </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">languages</span><span class="p">),</span>
+            <span class="s1">&#39;verbose </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">verbose</span><span class="p">),</span>
+        <span class="p">]))</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;No files to work with...&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ignored</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ignored</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">term</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">ignored</span><span class="p">])</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Files: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_names</span><span class="p">)))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="s1">&#39;Ignoring queries containing: &#39;</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ignored</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">description</span> <span class="o">=</span> <span class="n">description</span> <span class="ow">or</span> <span class="p">(</span>
+        <span class="s1">&#39;Document set for contributors from </span><span class="si">{count}</span><span class="s1"> </span><span class="si">{kind}</span><span class="s1"> files&#39;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">),</span> <span class="n">kind</span><span class="o">=</span><span class="n">kind</span><span class="p">)</span>
+    <span class="n">bibliography</span> <span class="o">=</span> <span class="n">Bibliography</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="n">description</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bibliography</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">languages</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="s1">&#39;Filter the following languages only: &#39;</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">languages</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">bibliography</span><span class="o">.</span><span class="n">description</span> <span class="o">+=</span> <span class="s1">&#39; Filtered to </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">languages</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">mappings_to_store</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="n">mappings_for_results</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">props</span> <span class="ow">in</span> <span class="n">prop_queries</span><span class="p">(</span><span class="n">file_names</span><span class="p">,</span> <span class="n">warn</span><span class="p">):</span>
+        <span class="n">mappings</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">mappings_from_files</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">props</span><span class="o">.</span><span class="n">path</span><span class="p">],</span> <span class="n">kind</span><span class="p">,</span> <span class="n">full_text_path</span><span class="o">=</span><span class="n">full_text_path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">no_cache</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">languages</span><span class="p">:</span>
+            <span class="n">mappings</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">m</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">mappings</span>
+                <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="s1">&#39;english&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">languages</span>
+            <span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mappings</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">:</span>
+            <span class="n">mappings_to_store</span><span class="p">[</span><span class="n">mapping</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">mapping</span>
+        <span class="k">if</span> <span class="n">props</span><span class="o">.</span><span class="n">query_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">props</span><span class="o">.</span><span class="n">query_string</span> <span class="o">!=</span> <span class="s1">&#39;NP&#39;</span><span class="p">:</span>
+            <span class="n">mappings_for_results</span><span class="p">[</span><span class="n">props</span><span class="p">]</span> <span class="o">=</span> <span class="n">mappings</span>
+
+    <span class="c1"># Store the documents</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">bulk_insert_mappings</span><span class="p">(</span>
+        <span class="n">Document</span><span class="p">,</span>
+        <span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">mapping</span><span class="p">,</span> <span class="n">bibliography_eid</span><span class="o">=</span><span class="n">bibliography</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">mappings_to_store</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="n">bibliography_hash</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">document</span><span class="o">.</span><span class="n">hash</span><span class="p">:</span> <span class="n">document</span><span class="o">.</span><span class="n">eid</span>
+        <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">props</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">mappings_for_results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span>
+            <span class="n">contributor</span><span class="o">=</span><span class="n">props</span><span class="o">.</span><span class="n">contributor</span><span class="p">,</span>
+            <span class="n">topic</span><span class="o">=</span><span class="n">props</span><span class="o">.</span><span class="n">topic</span><span class="p">,</span>
+            <span class="n">query_string</span><span class="o">=</span><span class="n">props</span><span class="o">.</span><span class="n">query_string</span><span class="p">,</span>
+            <span class="n">bibliography_eid</span><span class="o">=</span><span class="n">bibliography</span><span class="o">.</span><span class="n">eid</span>
+        <span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">bulk_insert_mappings</span><span class="p">(</span><span class="n">QueryResult</span><span class="p">,</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s1">&#39;document_eid&#39;</span><span class="p">:</span> <span class="n">bibliography_hash</span><span class="p">[</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;hash&#39;</span><span class="p">]],</span>
+                <span class="s1">&#39;query_eid&#39;</span><span class="p">:</span> <span class="n">query</span><span class="o">.</span><span class="n">eid</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span>
+        <span class="p">])</span>
+
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;And we are done!&#39;</span><span class="p">,</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@contributor</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--count&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Number of bibsets.&#39;</span><span class="p">)</span>
+<span class="nd">@requires_db</span>
+<span class="k">def</span> <span class="nf">list_contributors</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">count</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    List all the document sets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bibliography_sets</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Bibliography</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Query</span><span class="p">,</span> <span class="n">Query</span><span class="o">.</span><span class="n">bibliography_eid</span> <span class="o">==</span> <span class="n">Bibliography</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Query</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="n">Bibliography</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">desc</span><span class="p">())</span> \
+        <span class="o">.</span><span class="n">distinct</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+        <span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">[</span>
+                    <span class="n">bibliography</span><span class="o">.</span><span class="n">eid</span><span class="p">[:</span><span class="mi">8</span><span class="p">],</span>
+                    <span class="n">bibliography</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+                    <span class="n">bibliography</span><span class="o">.</span><span class="n">modified</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b </span><span class="si">%d</span><span class="s1">, %Y, %I:%M%p&#39;</span><span class="p">),</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">bibliography</span><span class="o">.</span><span class="n">queries</span><span class="p">),</span>
+                    <span class="nb">len</span><span class="p">(</span><span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span><span class="p">),</span>
+                <span class="p">]</span>
+                <span class="k">for</span> <span class="n">bibliography</span> <span class="ow">in</span> <span class="n">bibliography_sets</span>
+            <span class="p">],</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">[</span>
+                <span class="s1">&#39;Identifier&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Description&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Updated at&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Queries count&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Documents count&#39;</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;rst&#39;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Bibliography</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">Query</span><span class="p">,</span> <span class="n">Query</span><span class="o">.</span><span class="n">bibliography_eid</span> <span class="o">==</span> <span class="n">Bibliography</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Query</span><span class="o">.</span><span class="n">eid</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">distinct</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="n">total</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;Showing all the contributor contributor document sets&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
+            <span class="s1">&#39;Sowing </span><span class="si">{count}</span><span class="s1"> out of </span><span class="si">{total}</span><span class="s1"> contributor document sets.&#39;</span>
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">total</span><span class="p">)</span>
+        <span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

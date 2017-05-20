@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.models.term_document_matrix &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.models.term_document_matrix</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Just a normal text document matrix representation, the actual matrix is</span>
+<span class="sd">stored off site on a numpy file.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="k">import</span> <span class="n">collections</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Unicode</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="k">import</span> <span class="n">relationship</span>
+
+<span class="kn">from</span> <span class="nn">condor.config</span> <span class="k">import</span> <span class="n">MATRIX_PATH</span><span class="p">,</span> <span class="n">TERM_LIST_PATH</span>
+<span class="kn">from</span> <span class="nn">condor.models.base</span> <span class="k">import</span> <span class="n">AuditableMixing</span><span class="p">,</span> <span class="n">DeclarativeBase</span>
+<span class="kn">from</span> <span class="nn">condor.normalize</span> <span class="k">import</span> <span class="n">CompleteNormalizer</span>
+
+
+<div class="viewcode-block" id="TermDocumentMatrix"><a class="viewcode-back" href="../../../condor.models.html#condor.models.term_document_matrix.TermDocumentMatrix">[docs]</a><span class="k">class</span> <span class="nc">TermDocumentMatrix</span><span class="p">(</span><span class="n">AuditableMixing</span><span class="p">,</span> <span class="n">DeclarativeBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a term document matrix.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;term_document_matrix&#39;</span>
+
+    <span class="n">bibliography_eid</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span>
+        <span class="n">Unicode</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span>
+        <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;bibliography.eid&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">bibliography_options</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">processing_options</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">term_list_path</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">matrix_path</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span> <span class="n">nullable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">bibliography</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s1">&#39;Bibliography&#39;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;term_document_matrices&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ranking_matrices</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span>
+        <span class="s1">&#39;RankingMatrix&#39;</span><span class="p">,</span>
+        <span class="n">back_populates</span><span class="o">=</span><span class="s1">&#39;term_document_matrix&#39;</span><span class="p">,</span>
+        <span class="n">cascade</span><span class="o">=</span><span class="s1">&#39;all, delete-orphan&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="TermDocumentMatrix.from_bibliography_set"><a class="viewcode-back" href="../../../condor.models.html#condor.models.term_document_matrix.TermDocumentMatrix.from_bibliography_set">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_bibliography_set</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">bibliography</span><span class="p">,</span> <span class="n">regularise</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">fields</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalizer_class</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Build a matrix from a document set.</span>
+
+<span class="sd">        This has the side effect of creating the matrix a and terms files.</span>
+
+<span class="sd">        :param bibliography: a document set</span>
+<span class="sd">        :param regularise: apply TF IDF regularization.</span>
+<span class="sd">        :param fields: fields of interest</span>
+<span class="sd">        :param normalizer_class: normalizer class to use</span>
+<span class="sd">        :return: a term document matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">fields</span> <span class="ow">or</span> <span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">,</span> <span class="s1">&#39;keywords&#39;</span><span class="p">]</span>
+        <span class="n">normalizer_class</span> <span class="o">=</span> <span class="n">normalizer_class</span> <span class="ow">or</span> <span class="n">CompleteNormalizer</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">bibliography</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span>
+                                       <span class="n">normalizer_class</span><span class="o">=</span><span class="n">CompleteNormalizer</span><span class="p">)</span>
+        <span class="n">frequency</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)),</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_matrix</span><span class="p">(</span><span class="n">words</span><span class="p">,</span>
+                                          <span class="n">bibliography</span><span class="p">,</span>
+                                          <span class="n">fields</span><span class="p">,</span>
+                                          <span class="n">normalizer_class</span><span class="p">):</span>
+            <span class="n">frequency</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq</span>
+
+        <span class="k">if</span> <span class="n">regularise</span><span class="p">:</span>
+            <span class="n">tf</span> <span class="o">=</span> <span class="p">(</span><span class="n">frequency</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">frequency</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">frequency</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">idf</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span><span class="p">)</span> <span class="o">/</span> <span class="n">df</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">frequency</span> <span class="o">=</span> <span class="n">tf</span> <span class="o">*</span> <span class="n">idf</span>
+
+        <span class="n">unique_hash</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}{}{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">),</span>
+                <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">fields</span><span class="p">),</span>
+                <span class="n">normalizer_class</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">,</span>
+                <span class="n">regularise</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">matrix_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">MATRIX_PATH</span><span class="p">,</span> <span class="n">unique_hash</span> <span class="o">+</span> <span class="s1">&#39;.npy&#39;</span><span class="p">)</span>
+        <span class="n">words_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">TERM_LIST_PATH</span><span class="p">,</span> <span class="n">unique_hash</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span><span class="p">)</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">matrix_filename</span><span class="p">,</span> <span class="n">frequency</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">words_filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">bibliography_options</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="n">processing_options</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">normalizer_class</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">),</span>
+            <span class="n">term_list_path</span><span class="o">=</span><span class="n">words_filename</span><span class="p">,</span>
+            <span class="n">matrix_path</span><span class="o">=</span><span class="n">matrix_filename</span><span class="p">,</span>
+            <span class="n">bibliography_eid</span><span class="o">=</span><span class="n">bibliography</span><span class="o">.</span><span class="n">eid</span>
+        <span class="p">)</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_matrix</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">bibliography</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">normalizer_class</span><span class="p">):</span>
+        <span class="n">word_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="p">:</span> <span class="n">pos</span> <span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">)}</span>
+        <span class="k">for</span> <span class="n">ind</span><span class="p">,</span> <span class="n">bib</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span><span class="p">):</span>
+            <span class="n">raw</span> <span class="o">=</span> <span class="n">bib</span><span class="o">.</span><span class="n">raw_data</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">normalizer_class</span><span class="p">)</span>
+            <span class="n">frequency</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">frequency</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">yield</span> <span class="n">ind</span><span class="p">,</span> <span class="n">word_dict</span><span class="p">[</span><span class="n">word</span><span class="p">],</span> <span class="n">freq</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">words</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the words stored off site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">term_list_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">term_file</span><span class="p">:</span>
+            <span class="n">terms</span> <span class="o">=</span> <span class="n">term_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">terms</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load the matrix stored off site.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix_path</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

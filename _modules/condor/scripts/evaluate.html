@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.scripts.evaluate &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.scripts.evaluate</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Scripts to evaluate rankins based on ground truth databases.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="kn">from</span> <span class="nn">condor.dbutil</span> <span class="k">import</span> <span class="n">requires_db</span><span class="p">,</span> <span class="n">find_one</span>
+<span class="kn">from</span> <span class="nn">condor.models.ranking_matrix</span> <span class="k">import</span> <span class="n">RankingMatrix</span>
+
+
+<span class="n">PerformanceResult</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span>
+    <span class="s1">&#39;PerformanceResult&#39;</span><span class="p">,</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;true_positives&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;true_negatives&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;false_positives&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;false_negatives&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;precision&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;recall&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;f1_score&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">argument</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--limit&#39;</span><span class="p">,</span> <span class="s1">&#39;-l&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;limit the number of results to use.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--cosine&#39;</span><span class="p">,</span> <span class="s1">&#39;-c&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;limit the query by cosine.&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--words&#39;</span><span class="p">,</span> <span class="s1">&#39;-w&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;limit the number of words in the query&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--output&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">click</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">),</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;export a detailed performance report&#39;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s1">&#39;--tabular&#39;</span><span class="p">,</span> <span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="n">is_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">help</span><span class="o">=</span><span class="s1">&#39;show tabular output&#39;</span><span class="p">)</span>
+<span class="nd">@requires_db</span>
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">tabular</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluates a target search engine, the search engine needs to be associated</span>
+<span class="sd">    to some queries in order to be evaluated, this command mainly returns</span>
+<span class="sd">    precision and recall values for the different queries and an average of</span>
+<span class="sd">    these values at the end.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ranking_matrix</span> <span class="o">=</span> <span class="n">find_one</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">RankingMatrix</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="n">bibliography</span> <span class="o">=</span> <span class="n">ranking_matrix</span><span class="o">.</span><span class="n">term_document_matrix</span><span class="o">.</span><span class="n">bibliography</span>
+    <span class="n">queries</span> <span class="o">=</span> <span class="n">bibliography</span><span class="o">.</span><span class="n">queries</span>
+    <span class="n">universe</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">eid</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">bibliography</span><span class="o">.</span><span class="n">documents</span><span class="p">)</span>
+
+    <span class="c1"># We&#39;ll perform all the queries and  do a mean of the f1 score</span>
+
+    <span class="n">performance_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">words</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">query_string</span><span class="o">.</span><span class="n">split</span><span class="p">())</span> <span class="o">!=</span> <span class="n">words</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">ranking_matrix</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">query_string</span><span class="o">.</span><span class="n">split</span><span class="p">(),</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">,</span> <span class="n">cosine</span><span class="o">=</span><span class="n">cosine</span><span class="p">)</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">eid</span> <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">results</span><span class="p">)</span>
+        <span class="n">truth</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">document</span><span class="o">.</span><span class="n">eid</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">query</span><span class="o">.</span><span class="n">results</span><span class="p">)</span>
+        <span class="n">false_negatives</span> <span class="o">=</span> <span class="n">truth</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
+        <span class="n">true_positives</span> <span class="o">=</span> <span class="n">truth</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">experiment</span><span class="p">)</span>
+        <span class="n">false_positives</span> <span class="o">=</span> <span class="n">experiment</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">truth</span><span class="p">)</span>
+        <span class="n">true_negatives</span> <span class="o">=</span> <span class="n">universe</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">truth</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">experiment</span><span class="p">))</span>
+
+        <span class="c1"># Validate precision</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">false_positives</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">precision</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">false_positives</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">precision</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Validate recall this might never happen</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">false_negatives</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">recall</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">/</span> \
+                <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">false_negatives</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">recall</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">precision</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">recall</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">f1_score</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">f1_score</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">performance_results</span><span class="p">[</span><span class="n">query</span><span class="o">.</span><span class="n">query_string</span><span class="p">]</span> <span class="o">=</span> <span class="n">PerformanceResult</span><span class="p">(</span>
+            <span class="n">false_negatives</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">false_negatives</span><span class="p">),</span>
+            <span class="n">true_positives</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">true_positives</span><span class="p">),</span>
+            <span class="n">false_positives</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">false_positives</span><span class="p">),</span>
+            <span class="n">true_negatives</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">true_negatives</span><span class="p">),</span>
+            <span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">,</span>
+            <span class="n">recall</span><span class="o">=</span><span class="n">recall</span><span class="p">,</span>
+            <span class="n">f1_score</span><span class="o">=</span><span class="n">f1_score</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">averages</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">metric</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span>
+            <span class="nb">getattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">performance_results</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">metric</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">])</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;precision&#39;</span><span class="p">,</span> <span class="s1">&#39;recall&#39;</span><span class="p">,</span> <span class="s1">&#39;f1_score&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span>
+            <span class="s1">&#39;parameters&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;target&#39;</span><span class="p">:</span> <span class="n">ranking_matrix</span><span class="o">.</span><span class="n">eid</span><span class="p">,</span>
+                <span class="s1">&#39;queries&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">performance_results</span><span class="p">),</span>
+                <span class="s1">&#39;cosine&#39;</span><span class="p">:</span> <span class="n">cosine</span><span class="p">,</span>
+                <span class="s1">&#39;limit&#39;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;averages&#39;</span><span class="p">:</span> <span class="n">averages</span><span class="p">,</span>
+            <span class="s1">&#39;results&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">q</span><span class="p">:</span> <span class="n">res</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">q</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">performance_results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+            <span class="p">},</span>
+        <span class="p">},</span> <span class="n">output</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tabular</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{param}</span><span class="s1"> </span><span class="si">{results}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">param</span><span class="o">=</span><span class="n">limit</span> <span class="ow">or</span> <span class="n">cosine</span> <span class="ow">or</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">results</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">averages</span><span class="o">.</span><span class="n">values</span><span class="p">()])</span>
+        <span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">averages</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

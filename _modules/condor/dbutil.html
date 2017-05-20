@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.dbutil &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.dbutil</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Utils to work with a mongo database, it contains a global connection to the</span>
+<span class="sd">database so that a new one is not created with every request which is a huge</span>
+<span class="sd">overhead. Furthermore it has a tool to use a pymongo collection as a context</span>
+<span class="sd">manager.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="k">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">scoped_session</span><span class="p">,</span>
+    <span class="n">sessionmaker</span><span class="p">,</span>
+    <span class="n">exc</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="k">import</span> <span class="n">OperationalError</span>
+
+<span class="kn">from</span> <span class="nn">condor.config</span> <span class="k">import</span> <span class="n">DEFAULT_DB_PATH</span>
+
+
+<div class="viewcode-block" id="engine"><a class="viewcode-back" href="../../condor.html#condor.dbutil.engine">[docs]</a><span class="k">def</span> <span class="nf">engine</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates an engine to handle our database.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Use a sqlite database by default.</span>
+    <span class="n">default_url</span> <span class="o">=</span> <span class="s1">&#39;sqlite:///&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DEFAULT_DB_PATH</span><span class="p">,</span> <span class="s1">&#39;condor.db&#39;</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CONDOR_DB_URL&#39;</span><span class="p">,</span> <span class="n">default_url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="session"><a class="viewcode-back" href="../../condor.html#condor.dbutil.session">[docs]</a><span class="k">def</span> <span class="nf">session</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a session maker instance attached to our default engine.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">scoped_session</span><span class="p">(</span><span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="requires_db"><a class="viewcode-back" href="../../condor.html#condor.dbutil.requires_db">[docs]</a><span class="k">def</span> <span class="nf">requires_db</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Injects a database session into a function as first argument.</span>
+
+<span class="sd">    Checks if the db is available and we can create a session otherwise errors</span>
+<span class="sd">    out, if the database is available, it tries to run the underlying function</span>
+<span class="sd">    and commit any changes to the database, if something fails, it rolls back</span>
+<span class="sd">    any uncommitted changes.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        for best results use `db.flush()` instead of `db.commit()` in functions</span>
+<span class="sd">        that require a database connection.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Check for the database</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">db</span> <span class="o">=</span> <span class="n">session</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Execute the function, commit and return</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">result</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Rollback the database if anything bad happens</span>
+                <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                    <span class="s1">&#39;Rolling back the database.&#39;</span><span class="p">,</span>
+                    <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span>
+                <span class="p">))</span>
+                <span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="n">e</span>
+        <span class="k">except</span> <span class="n">OperationalError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="n">click</span><span class="o">.</span><span class="n">style</span><span class="p">(</span>
+                <span class="s1">&#39;There was an error connecting to the database.&#39;</span><span class="p">,</span>
+                <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span>
+            <span class="p">))</span>
+            <span class="k">raise</span> <span class="n">e</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wrapper</span></div>
+
+
+<div class="viewcode-block" id="find_one"><a class="viewcode-back" href="../../condor.html#condor.dbutil.find_one">[docs]</a><span class="k">def</span> <span class="nf">find_one</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds exactly one of the given models in the db by eid.</span>
+
+<span class="sd">    It&#39;s useful when trying to delete or show an item, if we don&#39;t know such</span>
+<span class="sd">    item we might as well exit the program.</span>
+
+<span class="sd">    :param db: db connection instance</span>
+<span class="sd">    :param model: model to look for, should have an eid field</span>
+<span class="sd">    :param eid: part of the eid to look for</span>
+<span class="sd">    :return: the instance of the model found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">eid</span><span class="o">.</span><span class="n">like</span><span class="p">(</span><span class="n">eid</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">one</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">exc</span><span class="o">.</span><span class="n">NoResultFound</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s1">&#39;Could not find a result matching </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eid</span><span class="p">),</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">click</span><span class="o">.</span><span class="n">Abort</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">exc</span><span class="o">.</span><span class="n">MultipleResultsFound</span><span class="p">:</span>
+        <span class="n">click</span><span class="o">.</span><span class="n">secho</span><span class="p">(</span><span class="s1">&#39;Found many results matching </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eid</span><span class="p">),</span> <span class="n">fg</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">click</span><span class="o">.</span><span class="n">Abort</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="one_or_latest"><a class="viewcode-back" href="../../condor.html#condor.dbutil.one_or_latest">[docs]</a><span class="k">def</span> <span class="nf">one_or_latest</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eid</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Finds an instance of the given model if the eid is provided otherwise returns the</span>
+<span class="sd">    latest created in the database. If there&#39;s no instance in the database, returns</span>
+<span class="sd">    None.</span>
+
+<span class="sd">    :param db: db connection instance</span>
+<span class="sd">    :param model: model to look for, should have an eid field</span>
+<span class="sd">    :param eid: part of the eid to look for</span>
+<span class="sd">    :return: the instance of the model found</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">eid</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">desc</span><span class="p">()</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">find_one</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eid</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

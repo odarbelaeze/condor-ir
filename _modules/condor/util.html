@@ -1,0 +1,252 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>condor.util &#8212; condor-ir 1.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for condor.util</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Contains utility functions to work with tokens and decorators</span>
+<span class="sd">to work with XML, lists and generators.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
+
+<span class="kn">import</span> <span class="nn">PyPDF2</span>
+<span class="kn">from</span> <span class="nn">enchant</span> <span class="k">import</span> <span class="n">request_dict</span>
+
+<span class="kn">from</span> <span class="nn">condor.normalize</span> <span class="k">import</span> <span class="n">PunctuationRemover</span><span class="p">,</span> <span class="n">CompleteNormalizer</span>
+<span class="kn">from</span> <span class="nn">condor.normalize</span> <span class="k">import</span> <span class="n">SpaceTokenizer</span>
+
+
+<div class="viewcode-block" id="xml_to_text"><a class="viewcode-back" href="../../condor.html#condor.util.xml_to_text">[docs]</a><span class="k">def</span> <span class="nf">xml_to_text</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a function that would return an XML element into a function</span>
+<span class="sd">    that returns the text content of the XML element as a string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">firstChild</span><span class="o">.</span><span class="n">nodeValue</span>
+    <span class="k">return</span> <span class="n">inner</span></div>
+
+
+<div class="viewcode-block" id="gen_to_list"><a class="viewcode-back" href="../../condor.html#condor.util.gen_to_list">[docs]</a><span class="k">def</span> <span class="nf">gen_to_list</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a function that would return a generator into a function that</span>
+<span class="sd">    returns a list of the generated values, ergo, do not use this decorator</span>
+<span class="sd">    with infinite generators.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">inner</span></div>
+
+
+<div class="viewcode-block" id="isi_text_to_dic"><a class="viewcode-back" href="../../condor.html#condor.util.isi_text_to_dic">[docs]</a><span class="k">def</span> <span class="nf">isi_text_to_dic</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function takes in any ISI WOS plain text formatted string and turns it</span>
+<span class="sd">    into a dictionary where the keys are the two letter leading keys and the</span>
+<span class="sd">    values are a list of the strings under that key.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\n+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">line</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">curr</span><span class="o">.</span><span class="n">isspace</span><span class="p">():</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fields</span></div>
+
+
+<div class="viewcode-block" id="to_list"><a class="viewcode-back" href="../../condor.html#condor.util.to_list">[docs]</a><span class="k">def</span> <span class="nf">to_list</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Transforms a non iterable object into a singleton list, or an iterable</span>
+<span class="sd">    into a list.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">obj</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="LanguageGuesser"><a class="viewcode-back" href="../../condor.html#condor.util.LanguageGuesser">[docs]</a><span class="k">class</span> <span class="nc">LanguageGuesser</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Guesses the language of a record if the record field is not</span>
+<span class="sd">    defined</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">languages</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;en_US&#39;</span><span class="p">,</span> <span class="s1">&#39;english&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;en_GB&#39;</span><span class="p">,</span> <span class="s1">&#39;english&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;es_ES&#39;</span><span class="p">,</span> <span class="s1">&#39;spanish&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;es_CO&#39;</span><span class="p">,</span> <span class="s1">&#39;spanish&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;es_MX&#39;</span><span class="p">,</span> <span class="s1">&#39;spanish&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pt_BR&#39;</span><span class="p">,</span> <span class="s1">&#39;portuguese&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;pt_PT&#39;</span><span class="p">,</span> <span class="s1">&#39;portuguese&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;fr_FR&#39;</span><span class="p">,</span> <span class="s1">&#39;french&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;fr_BE&#39;</span><span class="p">,</span> <span class="s1">&#39;french&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;it_IT&#39;</span><span class="p">,</span> <span class="s1">&#39;italian&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;de_DE&#39;</span><span class="p">,</span> <span class="s1">&#39;german&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;de_CH&#39;</span><span class="p">,</span> <span class="s1">&#39;german&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;de_AT&#39;</span><span class="p">,</span> <span class="s1">&#39;german&#39;</span><span class="p">),</span>
+    <span class="p">])</span>
+
+    <span class="n">default_lang</span> <span class="o">=</span> <span class="s1">&#39;english&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">languages</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dictionaries</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">language</span> <span class="ow">in</span> <span class="n">languages</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">languages</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dictionaries</span><span class="p">[</span><span class="n">language</span><span class="p">]</span> <span class="o">=</span> <span class="n">request_dict</span><span class="p">(</span><span class="n">language</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">PunctuationRemover</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">SpaceTokenizer</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LanguageGuesser.counts"><a class="viewcode-back" href="../../condor.html#condor.util.LanguageGuesser.counts">[docs]</a>    <span class="k">def</span> <span class="nf">counts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">):</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">normalizer</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">lang</span><span class="p">,</span> <span class="n">dictionary</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dictionaries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">lang</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">dictionary</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">tk</span><span class="p">)</span> <span class="k">for</span> <span class="n">tk</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">counts</span></div>
+
+<div class="viewcode-block" id="LanguageGuesser.guess"><a class="viewcode-back" href="../../condor.html#condor.util.LanguageGuesser.guess">[docs]</a>    <span class="k">def</span> <span class="nf">guess</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sentence</span><span class="p">):</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">counts</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+        <span class="n">guessed_lang</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">max_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">lang</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">max_count</span><span class="p">:</span>
+                <span class="n">guessed_lang</span> <span class="o">=</span> <span class="n">lang</span>
+                <span class="n">max_count</span> <span class="o">=</span> <span class="n">count</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">languages</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">guessed_lang</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_lang</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="frequency"><a class="viewcode-back" href="../../condor.html#condor.util.frequency">[docs]</a><span class="k">def</span> <span class="nf">frequency</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tokens</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the frequency list of a list of tokens in a dense representation.</span>
+
+<span class="sd">    :param list words: list of the words to look for</span>
+<span class="sd">    :param list tokens: list of the tokens to count</span>
+
+<span class="sd">    .. note:: this function applies a complete normalizer to the given tokens and guesses the language.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># word_dict = {word: pos for pos, word in enumerate(words)}</span>
+    <span class="n">language</span> <span class="o">=</span> <span class="n">LanguageGuesser</span><span class="p">()</span><span class="o">.</span><span class="n">guess</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>
+    <span class="n">normalizer</span> <span class="o">=</span> <span class="n">CompleteNormalizer</span><span class="p">(</span><span class="n">language</span><span class="o">=</span><span class="n">language</span><span class="p">)</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span>
+        <span class="n">normalizer</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="full_text_from_pdf"><a class="viewcode-back" href="../../condor.html#condor.util.full_text_from_pdf">[docs]</a><span class="k">def</span> <span class="nf">full_text_from_pdf</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tries to extract text from pdfs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">pdf_reader</span> <span class="o">=</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">PdfFileReader</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">pdf_reader</span><span class="o">.</span><span class="n">pages</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">extractText</span><span class="p">())</span>
+                <span class="k">except</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">PyPdfError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="c1"># Some exceptions leak from PyPDF2</span>
+                    <span class="k">pass</span>
+        <span class="k">except</span> <span class="n">PyPDF2</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">PyPdfError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="c1"># Some exceptions leak from PyPDF2</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Oscar Arbeláez, German Osorio.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
