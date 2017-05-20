@@ -4,9 +4,11 @@ condor-ir
 
 .. image:: https://travis-ci.org/odarbelaeze/condor-ir.svg?branch=master
     :target: https://travis-ci.org/odarbelaeze/condor-ir
-    
+
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.495722.svg
    :target: https://doi.org/10.5281/zenodo.495722
+
+Access the docs here:  `home.condor-ir.co <http://home.condor-ir.co>`_
 
 
 Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
