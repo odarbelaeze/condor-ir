@@ -5,21 +5,20 @@ from setuptools import setup
 
 
 def get_install_requires():
-    if os.environ.get('READTHEDOCS', None) == 'True':
-        return [
-            'mock>=1.3.0',
-        ]
+    """
+    Yields a list of install requirements.
+    """
     return [
-        'SQLAlchemy==1.0.12',
-        'bibtexparser>=0.6.2',
-        'click>=6.2',
-        'marshmallow>=2.4.2',
-        'nltk>=3.1',
-        'numpy>=1.9.2',
-        'pyenchant>=1.6',
+        'SQLAlchemy==1.1.10',
+        'bibtexparser==0.6.2',
+        'click==6.7',
+        'nltk==3.2.3',
+        'numpy==1.12.1',
+        'pyenchant==1.6.8',
         'PyPDF2==1.26.0',
-        'tabulate>=0.7.5',
+        'tabulate==0.7.7',
         'tqdm==4.11.2',
+        'requests==2.14.2',
     ]
 
 VERSION = '1.1.0'
