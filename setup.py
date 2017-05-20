@@ -1,5 +1,3 @@
-import os
-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -21,7 +19,7 @@ def get_install_requires():
         'requests==2.14.2',
     ]
 
-VERSION = '1.1.0'
+VERSION = '1.1.1'
 
 setup(
     name='condor-ir',
