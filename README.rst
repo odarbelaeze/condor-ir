@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/odarbelaeze/condor-ir.png?label=ready&title=Ready 
+ :target: https://waffle.io/odarbelaeze/condor-ir?utm_source=badge
+ :alt: 'Stories in Ready'
 =========
 condor-ir
 =========
