@@ -118,6 +118,7 @@ class Document(AuditableMixing, DeclarativeBase):
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
+                record.pop('file', None)
                 if full_text_path:
                     record['full_text_path'] = Document.load_full_text(
                         record,
