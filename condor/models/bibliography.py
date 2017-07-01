@@ -11,6 +11,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import relationship
 
 from condor.models.base import AuditableMixing, DeclarativeBase
+from condor.models.document import Document
 
 
 class Bibliography(AuditableMixing, DeclarativeBase):
@@ -51,3 +52,39 @@ class Bibliography(AuditableMixing, DeclarativeBase):
             bib.raw_data(fields, normalizer_class)
             for bib in self.documents
         )))
+
+    @classmethod
+    def from_files(cls, kind, files,
+                   full_text=None, no_cache=False,
+                   description=None, languages=None,
+                   show_progress_bar=False):
+        """
+        Creates a bibliography and attached documents.
+
+        :param str kind: bib, froac, xml, or isi the kind of file to work with
+        :param list files: list of File objects to read from
+        :param str full_text: try to find the full text in this directory
+        :param bool no_cache: ignore cache when reading full text
+        :param str description: description of the bibliography
+        :param list languages: filter to documents of these languages only
+        """
+        count = len(files)
+        description = description or f'Document set from {count} {kind} files.'
+        bibliography = Bibliography(description=description)
+        mappings = Document.mappings_from_files(
+            kind,
+            files,
+            full_text_path=full_text,
+            force=no_cache,
+            show_progress_bar=show_progress_bar,
+        )
+        if languages:
+            languages_text = ', '.join(languages)
+            bibliography.description += f' Filtered to {languages_text}'
+            mappings = [
+                m
+                for m in mappings
+                if m.get('language', 'english').lower() in languages
+            ]
+        bibliography.documents = [Document(**mapping) for mapping in mappings]
+        return bibliography

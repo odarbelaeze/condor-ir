@@ -58,10 +58,13 @@ class RecordIterator(object):
 
     parser_class = RecordParser
 
-    def __init__(self, filename):
-        self.filename = filename
+    def __init__(self, _file):
+        self.file = _file
 
     def get_buffer(self):
+        """
+        Should get a buffer of strings to interpret to records.
+        """
         raise NotImplementedError('Use an specialized class')
 
     def __iter__(self):

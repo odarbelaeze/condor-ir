@@ -57,7 +57,6 @@ class BibtexRecordIterator(RecordIterator):
     parser_class = BibtexRecordParser
 
     def get_buffer(self):
-        with open(self.filename, 'r') as bibtex:
-            database = bibtexparser.load(bibtex)
-            for entry in database.entries:
-                yield entry
+        database = bibtexparser.load(self.file)
+        for entry in database.entries:
+            yield entry

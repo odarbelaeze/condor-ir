@@ -6,7 +6,7 @@ from .isi import IsiRecordParser, IsiRecordIterator
 def record_iterator_class(record_type):
     """
     Gets the record iterator for a given type
-    
+
     A way to abstract the construction of a record iterator class.
 
     :param record_type: the type of file as string

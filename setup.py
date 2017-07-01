@@ -1,5 +1,6 @@
 from setuptools import find_packages
 from setuptools import setup
+import condor
 
 
 def get_install_requires():
@@ -19,11 +20,9 @@ def get_install_requires():
         'requests==2.14.2',
     ]
 
-VERSION = '1.1.1'
-
 setup(
     name='condor-ir',
-    version=VERSION,
+    version=condor.__version__,
     author='Oscar D. Arbeláez-Echeverri <@odarbelaeze>, German A. Osorio-Zuluaga',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
@@ -45,7 +44,7 @@ setup(
     url='https://condor-ir.co',
     download_url=(
         'https://github.com/odarbelaeze/condor-ir/tarball/{}'
-        .format(VERSION)
+        .format(condor.__version__)
     ),
     keywords=['lsa', 'search', 'search engine', 'semantics', ],
     description='A latent semantic search engine implementation',
