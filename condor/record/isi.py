@@ -55,7 +55,7 @@ class IsiRecordIterator(RecordIterator):
         of the isi plain text files.
         '''
         buff = []
-        for line in open(self.filename):
+        for line in self.file:
             buff.append(line)
             if line[:2] == 'ER':
                 yield '\n'.join(buff)

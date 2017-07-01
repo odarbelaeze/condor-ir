@@ -191,34 +191,34 @@ def froac_stopwords(request):
 
 def test_parser_wrapper_yields_title(froac_parser, froac_text):
     data = froac_parser.parse(froac_text)
-    assert 'title' == data['title']
+    assert data['title'] == 'title'
 
 
 def test_parser_wraper_yields_description(froac_parser, froac_text):
     data = froac_parser.parse(froac_text)
-    assert 'description' == data['description']
+    assert data['description'] == 'description'
 
 
 def test_parser_yields_title_in_empty_reccord(froac_parser, froac_empty):
     data = froac_parser.parse(froac_empty)
-    assert '' == data['title']
+    assert data['title'] == ''
 
 
 def test_parser_yields_description_in_empty_reccord(froac_parser, froac_empty):
     data = froac_parser.parse(froac_empty)
-    assert '' == data['description']
+    assert data['description'] == ''
 
 
 def test_parser_yields_list_of_keywords(froac_parser, froac_text):
     data = froac_parser.parse(froac_text)
-    assert len(data['keywords'])
+    assert data['keywords']
     for key in ['keyword1', 'keyword2']:
         assert key in data['keywords']
 
 
 def test_parser_list_of_keywords_on_empty_record(froac_parser, froac_empty):
     data = froac_parser.parse(froac_empty)
-    assert not len(data['keywords'])
+    assert not data['keywords']
     assert [] == data['keywords']
 
 
@@ -236,7 +236,7 @@ def test_isi_parser_yields_title(isi_text):
 def test_isi_parser_yields_keywords(isi_text):
     parser = IsiRecordParser()
     data = parser.parse(isi_text)
-    assert 2 == len(data['keywords'])
+    assert len(data['keywords']) == 2
 
 
 def test_froac_record_iterator():
@@ -245,29 +245,29 @@ def test_froac_record_iterator():
     filename = os.path.abspath(filename)
     iterator = FroacRecordIterator(filename)
     assert iterator is not None
-    assert len(list(iterator))
+    assert list(iterator)
 
 
 def test_isi_record_iterator():
     filename = os.path.join('data', 'isi', 'isi.txt')
     filename = os.path.abspath(filename)
-    iterator = iter(IsiRecordIterator(filename))
+    iterator = iter(IsiRecordIterator(open(filename)))
     assert iterator is not None
-    assert len(list(iterator))
+    assert list(iterator)
 
 
 def test_isi_record_iterator_yields_keywords():
     filename = os.path.join('data', 'isi', 'isi.txt')
     filename = os.path.abspath(filename)
-    iterator = iter(IsiRecordIterator(filename))
+    iterator = iter(IsiRecordIterator(open(filename)))
     data = next(iterator)
-    assert 1 < len(data['keywords'])
+    assert len(data['keywords']) > 1
 
 
 def test_isi_record_iterator_yields_correct_elements():
     filename = os.path.join('data', 'isi', 'isi.txt')
     filename = os.path.abspath(filename)
-    iterator = iter(IsiRecordIterator(filename))
+    iterator = iter(IsiRecordIterator(open(filename)))
     record = next(iterator)
     assert 'Study of extrusion behaviour and porridge' in record['title']
 
@@ -293,25 +293,25 @@ def test_bibtex_parser_yields_keywords(raw_bibtex):
 def test_isi_parser_yields_language(isi_text):
     parser = IsiRecordParser()
     data = parser.parse(isi_text)
-    assert 'english' == data['language'].lower()
+    assert data['language'].lower() == 'english'
 
 
 def test_froac_parser_yields_language(froac_text):
     parser = FroacRecordParser()
     data = parser.parse(froac_text)
-    assert 'english' == data['language'].lower()
+    assert data['language'].lower() == 'english'
 
 
 def test_bibtex_parser_yields_language(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
-    assert 'spanish' == data['language'].lower()
+    assert data['language'].lower() == 'spanish'
 
 
 def test_bibtex_parser_removes_accents(raw_bibtex):
     parser = BibtexRecordParser()
     data = parser.parse(raw_bibtex)
-    assert 'érase una vez' == data['description'].lower()
+    assert data['description'].lower() == 'érase una vez'
 
 
 def test_record_class_yields_the_rirgt_record():

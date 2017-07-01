@@ -83,13 +83,13 @@ class Document(AuditableMixing, DeclarativeBase):
             return full_text_path
 
     @staticmethod
-    def mappings_from_files(file_names, record_type,
+    def mappings_from_files(record_type, files,
                             full_text_path=None, force=False,
-                            **kwargs):
+                            show_progress_bar=False, **kwargs):
         """
         Creates document mappings out of files.
 
-        :param file_names: paths to the files
+        :param files: files to read
         :param record_type: type of record to extract
         :param kwargs: extra fields to include in the mappings
         :param full_text_path: path to look for full text pdf files
@@ -97,24 +97,52 @@ class Document(AuditableMixing, DeclarativeBase):
         :return: an iterable over mappings
         """
         iterator_class = record_iterator_class(record_type)
-        records = dict()
         if full_text_path:
-            files = {
+            full_text_files = {
                 os.path.basename(path): path
                 for path in glob.glob(full_text_path + '**/*.pdf',
                                       recursive=True)
             }
-        for file in tqdm(file_names, desc='processing files', unit='file'):
-            progress_bar = tqdm(iterator_class(file), desc='processing records',
-                                unit='record', leave=False)
-            for record in progress_bar:
+        else:
+            full_text_files = None
+
+        if show_progress_bar:
+            return Document._mappings_with_progress_bar(
+                iterator_class, files,
+                full_text_files, full_text_path,
+                force, **kwargs)
+
+        records = dict()
+        for file in files:
+            for record in iterator_class(file):
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
                 if full_text_path:
                     record['full_text_path'] = Document.load_full_text(
                         record,
-                        files,
+                        full_text_files,
+                        force=force
+                    )
+        return [record for record in records.values()]
+
+    @staticmethod
+    def _mappings_with_progress_bar(iterator_class, files,
+                                    full_text_files, full_text_path,
+                                    force, **kwargs):
+        records = dict()
+        for file in tqdm(files, desc='processing files', unit='file'):
+            progress_bar = tqdm(iterator_class(file), desc='processing records',
+                                unit='record', leave=False)
+            for record in progress_bar:
+                record['keywords'] = '; '.join(record.get('keywords', ''))
+                record.update(kwargs)
+                records[record['hash']] = record
+                record.pop('file', None)
+                if full_text_path:
+                    record['full_text_path'] = Document.load_full_text(
+                        record,
+                        full_text_files,
                         force=force
                     )
         return [record for record in records.values()]

@@ -94,7 +94,8 @@ def delete(database, target):
 @bibliography.command()
 @click.argument('kind', type=click.Choice(['xml', 'froac', 'bib', 'isi']))
 @click.argument('files', nargs=-1, type=click.File(lazy=True))
-@click.option('--full-text-path', '-f', 'fulltext', type=click.Path(exists=True),
+@click.option('--full-text-path', '-f', 'full_text',
+              type=click.Path(exists=True),
               help='Try to find full text pdf files in this path.')
 @click.option('--no-cache', is_flag=True,
               help='Do not cache the files for full text.')
@@ -105,57 +106,30 @@ def delete(database, target):
 @click.option('--verbose/--quiet', default=False,
               help='Be more verbose')
 @requires_db
-def create(database, kind, files, fulltext, no_cache, description, languages, verbose):
+def create(database, **kwargs):
     """
     Populates the condor database with information from the given files
     kind parameter indicates what type of files you're working with.
     """
-
+    verbose = kwargs.pop('verbose', False)
     if verbose:
-        click.echo('I\'m looking for {} records in these files:\n{}'.format(
-            kind, '\n'.join(file.name for file in files)
-        ))
+        file_names = '\n'.join(
+            f.name for f in kwargs.get('files', [])
+            if hasattr(f, 'name')
+            )
+        kind = kwargs.get('kind')
+        click.echo(f'I\'m looking for {kind} records in these files:')
+        click.echo(f'{file_names}')
 
-    description = description or 'Document set from {count} {kind} files.'.format(
-        count=len(files),
-        kind=kind
-    )
-    bib = Bibliography(description=description)
-    database.add(bib)
+    kwargs['show_progress_bar'] = verbose
+    _bibliography = Bibliography.from_files(**kwargs)
+    database.add(_bibliography)
     database.flush()
 
-    click.echo('I\'m writing to {bib.eid}'.format(bib=bib)) 
-    mappings = Document.mappings_from_files(
-        list([file.name for file in files]),
-        kind,
-        full_text_path=fulltext,
-        force=no_cache,
-        bibliography_eid=bib.eid
-    )
-
-    if languages:
-        click.echo(
-            'Filter the following languages only: ' + ', '.join(languages)
-        )
-        bib.description += ' Filtered to {}.'.format(
-            ', '.join(languages)
-        )
-        mappings = [
-            m
-            for m in mappings
-            if m.get('language', 'english').lower() in languages
-        ]
-
-    database.bulk_insert_mappings(
-        Document,
-        mappings
-    )
-
-    database.flush()
-
+    click.echo(f'I\'m writing to {_bibliography.eid}')
     click.echo('And... I\'m done')
     click.echo('The database contains {} records'.format(
-        Document.count(database, bib.eid)
+        Document.count(database, _bibliography.eid)
     ))
 
 

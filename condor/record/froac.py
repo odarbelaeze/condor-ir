@@ -63,6 +63,6 @@ class FroacRecordIterator(RecordIterator):
     parser_class = FroacRecordParser
 
     def get_buffer(self):
-        dom = minidom.parse(self.filename)
+        dom = minidom.parse(self.file)
         for dom_element in dom.getElementsByTagName('record'):
             yield dom_element
