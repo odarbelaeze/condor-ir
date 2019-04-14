@@ -24,7 +24,7 @@ environment, we will assume that you are familiar with *virtualenvwrapper*
 .. code-block:: bash
 
   cd condor-ir
-  mkvirtualenv -a $PWD -p $(which python3) -r piprequirements.txt condorenv
+  mkvirtualenv -a $PWD -p $(which python3) -r requirements.txt condorenv
   pip install -e .  # This command will also install dependencies
 
 

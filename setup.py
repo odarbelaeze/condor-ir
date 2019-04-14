@@ -3,7 +3,7 @@ from setuptools import setup
 import condor
 
 
-def get_install_requires():
+def install_requires():
     """
     Yields a list of install requirements.
     """
@@ -26,7 +26,7 @@ setup(
     author='Oscar D. Arbeláez-Echeverri <@odarbelaeze>, German A. Osorio-Zuluaga',
     author_email='odarbelaeze@gmail.com',
     packages=find_packages(),
-    install_requires=get_install_requires(),
+    install_requires=install_requires(),
     tests_require=[
         'cov-core>=1.15.0',
         'coverage>=3.7.1',

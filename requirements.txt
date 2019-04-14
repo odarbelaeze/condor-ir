@@ -6,7 +6,6 @@ cov-core==1.15.0
 coverage==4.4.1
 docutils==0.13.1
 imagesize==0.7.1
-Jinja2==2.9.6
 MarkupSafe==1.0
 nltk==3.2.3
 numpy==1.12.1
