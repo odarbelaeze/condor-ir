@@ -17,7 +17,6 @@ def install_requires():
         'PyPDF2==1.26.0',
         'tabulate==0.7.7',
         'tqdm==4.11.2',
-        'requests==2.14.2',
     ]
 
 setup(

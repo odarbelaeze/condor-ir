@@ -16,7 +16,6 @@ PyPDF2==1.26.0
 pytest==3.0.7
 pytest-cov==2.5.1
 pytz==2017.2
-requests==2.14.2
 six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.6.1
