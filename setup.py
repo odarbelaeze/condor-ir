@@ -8,7 +8,7 @@ def install_requires():
     Yields a list of install requirements.
     """
     return [
-        'SQLAlchemy~=1.1.10',
+        'SQLAlchemy~=1.3',
         'bibtexparser~=0.6.2',
         'click~=6.7',
         'nltk~=3.4',
