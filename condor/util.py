@@ -86,9 +86,10 @@ class LanguageGuesser(object):
         raise NotImplementedError("Not required anymore")
 
     def guess(self, sentence):
-        code = langdetect.detect(sentence)
+        result = langdetect.detect_langs(sentence)[0]
+        code = result.lang if result.prob > 0.3 else 'en'
         language = langcodes.get(code)
-        return language.lang_name('en').lower()
+        return language.language_name('en').lower()
 
 
 def frequency(words, tokens):
