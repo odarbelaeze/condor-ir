@@ -80,7 +80,10 @@ class LanguageGuesser(object):
     default_lang = 'english'
 
     def __init__(self):
-        pass
+        langdetect.DetectorFactory.seed = 139
+        langdetect.DetectorFactory.langlist = [
+            'es', 'en', 'pt', 'fr', 'it', 'de'
+        ]
 
     def counts(self, sentence):
         raise NotImplementedError("Not required anymore")

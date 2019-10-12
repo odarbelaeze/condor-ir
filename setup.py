@@ -11,7 +11,7 @@ def install_requires():
         'SQLAlchemy~=1.1.10',
         'bibtexparser~=0.6.2',
         'click~=6.7',
-        'nltk~=3.2',
+        'nltk~=3.4',
         'numpy~=1.12',
         'langdetect',
         'langcodes',

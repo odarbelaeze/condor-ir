@@ -12,7 +12,7 @@ idna==2.8                 # via requests
 langcodes==1.4.1
 langdetect==1.0.7
 marisa-trie==0.7.5        # via langcodes
-nltk==3.2.3
+nltk==3.4.5
 numpy==1.12.1
 pypdf2==1.26.0
 requests==2.22.0
