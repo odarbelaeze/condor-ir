@@ -9,7 +9,8 @@ import re
 from collections import OrderedDict
 
 import PyPDF2
-from enchant import request_dict
+import langdetect
+import langcodes
 
 from condor.normalize import PunctuationRemover, CompleteNormalizer
 from condor.normalize import SpaceTokenizer
@@ -76,49 +77,18 @@ class LanguageGuesser(object):
     defined
     """
 
-    languages = OrderedDict([
-        ('en_US', 'english'),
-        ('en_GB', 'english'),
-        ('es_ES', 'spanish'),
-        ('es_CO', 'spanish'),
-        ('es_MX', 'spanish'),
-        ('pt_BR', 'portuguese'),
-        ('pt_PT', 'portuguese'),
-        ('fr_FR', 'french'),
-        ('fr_BE', 'french'),
-        ('it_IT', 'italian'),
-        ('de_DE', 'german'),
-        ('de_CH', 'german'),
-        ('de_AT', 'german'),
-    ])
-
     default_lang = 'english'
 
-    def __init__(self, languages=None):
-        self.dictionaries = OrderedDict()
-        for language in languages or self.languages:
-            self.dictionaries[language] = request_dict(language)
-        self.normalizer = PunctuationRemover()
-        self.tokenizer = SpaceTokenizer()
+    def __init__(self):
+        pass
 
     def counts(self, sentence):
-        counts = OrderedDict()
-        tokens = self.tokenizer.tokenize(
-            self.normalizer.apply_to(sentence)
-        )
-        for lang, dictionary in self.dictionaries.items():
-            counts[lang] = sum(dictionary.check(tk) for tk in tokens)
-        return counts
+        raise NotImplementedError("Not required anymore")
 
     def guess(self, sentence):
-        counts = self.counts(sentence)
-        guessed_lang = None
-        max_count = 0
-        for lang, count in counts.items():
-            if count > max_count:
-                guessed_lang = lang
-                max_count = count
-        return self.languages.get(guessed_lang, self.default_lang)
+        code = langdetect.detect(sentence)
+        language = langcodes.get(code)
+        return language.lang_name('en').lower()
 
 
 def frequency(words, tokens):

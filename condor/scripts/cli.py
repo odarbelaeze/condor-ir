@@ -1,5 +1,4 @@
 import click
-import enchant
 import sys
 
 
@@ -26,12 +25,6 @@ class CondorCommand(click.MultiCommand):
                 'evaluate': evaluate,
                 'utils': utils,
             }
-        except enchant.errors.DictNotFoundError:
-            click.echo(
-                click.style('There was an error retrieving dictionaries.',
-                            fg='red')
-            )
-            sys.exit(1)
 
     def list_commands(self, ctx):
         return list(self.commands.keys())

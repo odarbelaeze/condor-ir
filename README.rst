@@ -39,23 +39,6 @@ repository,
 the ``-U`` parameter will upgrade the package to the latest version, a very
 recommendable step for a unstable package.
 
-The language support requires the enchant engine as well as some dictionaries,
-for that you can install using your package manager or external tool:
-
-.. code-block:: bash
-
-  # Arch
-  sudo pacman -S enchant \
-                 aspell-es aspell-en aspell-fr \
-                 aspell-it aspell-pt aspell-de
-
-.. code-block:: bash
-
-  # Ubuntu
-  sudo apt-get install enchant \
-                       aspell-es aspell-en aspell-fr \
-                       aspell-it aspell-pt aspell-de
-
 Furthermore, we require a bit of the ``nltk`` data package for the stems and
 stop word removal to work.
 

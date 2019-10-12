@@ -9,10 +9,6 @@ cache:
   directories:
     - $HOME/.nltk_data
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install -y enchant aspell-es aspell-en aspell-it aspell-fr aspell-de aspell-pt
-
 install:
   - pip --quiet install .
   - condor utils preparedb -y

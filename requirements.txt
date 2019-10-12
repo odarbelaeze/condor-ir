@@ -10,7 +10,6 @@ MarkupSafe==1.0
 nltk==3.2.3
 numpy==1.12.1
 py==1.4.33
-pyenchant==1.6.8
 Pygments==2.2.0
 PyPDF2==1.26.0
 pytest==3.0.7
