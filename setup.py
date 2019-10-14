@@ -8,15 +8,16 @@ def install_requires():
     Yields a list of install requirements.
     """
     return [
-        'SQLAlchemy==1.1.10',
-        'bibtexparser==0.6.2',
-        'click==6.7',
-        'nltk==3.2.3',
-        'numpy==1.12.1',
-        'pyenchant==1.6.8',
-        'PyPDF2==1.26.0',
-        'tabulate==0.7.7',
-        'tqdm==4.11.2',
+        'SQLAlchemy~=1.3',
+        'bibtexparser~=0.6.2',
+        'click~=6.7',
+        'nltk~=3.4',
+        'numpy~=1.12',
+        'langdetect',
+        'langcodes',
+        'PyPDF2~=1.26',
+        'tabulate~=0.7',
+        'tqdm~=4.11.2',
         'requests>2,<3'
     ]
 

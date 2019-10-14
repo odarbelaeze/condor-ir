@@ -16,21 +16,6 @@ You can also install the **condor-ir** from PyPI using the pip tool
 
     $ pip install condor-ir
 
-Furhtermore, for language support you need to install some dictionaries and a
-spell checking engine:
-
-.. code-block:: bash
-
-  # Arch
-  sudo pacman -S enchant \
-                 aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
-
-.. code-block:: bash
-
-  # Ubuntu
-  sudo apt-get install enchant \
-                       aspell-es aspell-en aspell-fr aspell-it aspell-pt aspell-de
-
 Once you have the mongodb daemon running in your system you can start building
 your models using any of the three supported formats:
 

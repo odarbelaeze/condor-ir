@@ -81,3 +81,5 @@ term_lists/
 # Data files
 performance*.json
 data.*
+.pytest_cache/
+
