@@ -12,7 +12,7 @@ def install_requires():
         'bibtexparser~=0.6.2',
         'click~=6.7',
         'nltk~=3.4',
-        'numpy~=1.12',
+        'numpy~=1.17',
         'langdetect',
         'langcodes',
         'PyPDF2~=1.26',
