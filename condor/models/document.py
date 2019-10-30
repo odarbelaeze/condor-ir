@@ -124,6 +124,7 @@ class Document(AuditableMixing, DeclarativeBase):
                         full_text_files,
                         force=force
                     )
+                record.pop('file', None)
         return [record for record in records.values()]
 
     @staticmethod
@@ -138,13 +139,13 @@ class Document(AuditableMixing, DeclarativeBase):
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
-                record.pop('file', None)
                 if full_text_path:
                     record['full_text_path'] = Document.load_full_text(
                         record,
                         full_text_files,
                         force=force
                     )
+                record.pop('file', None)
         return [record for record in records.values()]
 
     @classmethod
