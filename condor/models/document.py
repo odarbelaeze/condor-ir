@@ -65,7 +65,7 @@ class Document(AuditableMixing, DeclarativeBase):
     @staticmethod
     def load_full_text(record, files, force=False):
         accent_remover = LatexAccentRemover()
-        filename = accent_remover.apply_to(record.get('file'))
+        filename = accent_remover.apply_to(record.get('file', ''))
         if not filename:
             return
         basename = os.path.basename(
@@ -118,13 +118,13 @@ class Document(AuditableMixing, DeclarativeBase):
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
-                record.pop('file', None)
                 if full_text_path:
                     record['full_text_path'] = Document.load_full_text(
                         record,
                         full_text_files,
                         force=force
                     )
+                record.pop('file', None)
         return [record for record in records.values()]
 
     @staticmethod
@@ -139,13 +139,13 @@ class Document(AuditableMixing, DeclarativeBase):
                 record['keywords'] = '; '.join(record.get('keywords', ''))
                 record.update(kwargs)
                 records[record['hash']] = record
-                record.pop('file', None)
                 if full_text_path:
                     record['full_text_path'] = Document.load_full_text(
                         record,
                         full_text_files,
                         force=force
                     )
+                record.pop('file', None)
         return [record for record in records.values()]
 
     @classmethod
