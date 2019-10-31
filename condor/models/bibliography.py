@@ -21,7 +21,7 @@ class Bibliography(AuditableMixing, DeclarativeBase):
 
     __tablename__ = 'bibliography'
 
-    description = Column(Unicode, nullable=False)
+    description = Column(Unicode(4096), nullable=False)
 
     documents = relationship(
         'Document',

@@ -8,10 +8,6 @@ condor-ir
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.495722.svg
    :target: https://doi.org/10.5281/zenodo.495722
 
-Access the docs here:  `home.condor-ir.co <http://home.condor-ir.co>`_
-
-
-Access to roadmap here: `roadmap <https://www.lucidchart.com/invitations/accept/61d72a6b-d843-42b5-b54a-22c7f85e84d3>`_.
 
 This is a program to work with examples of Latent Semantic Analysis search
 engines, a.k.a., `LSA <https://en.wikipedia.org/wiki/Latent_semantic_analysis>`_.
@@ -36,6 +32,13 @@ repository,
 the ``-U`` parameter will upgrade the package to the latest version, a very
 recommendable step for a unstable package.
 
+For specific databases support you can install their appropriate extra package:
+
+.. code-block:: bash
+
+  pip install -U condor-ir[mysql]
+  pip install -U condor-ir[postgres]
+
 Furthermore, we require a bit of the ``nltk`` data package for the stems and
 stop word removal to work.
 
@@ -50,6 +53,13 @@ for a new version of `condor-ir` you can run the database preparation script,
 
   condor utils preparedb
 
+If you need to specify a database other than the default you can do so through
+environment variables:
+
+.. code-block:: bash
+
+  export CONDOR_DB_URL="mysql://localhost/condor"
+  condor utils preparedb # will now work on mysql://localhost/condor 
 
 CLI Interface
 -------------

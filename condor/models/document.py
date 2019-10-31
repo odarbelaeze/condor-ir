@@ -21,24 +21,18 @@ class Document(AuditableMixing, DeclarativeBase):
     Describes a single document.
     """
 
-    __tablename__ = 'document'
+    __tablename__ = "document"
 
-    bibliography_eid = Column(
-        Unicode(40),
-        ForeignKey('bibliography.eid')
-    )
+    bibliography_eid = Column(Unicode(40), ForeignKey("bibliography.eid"))
 
     hash = Column(Unicode(40), nullable=False)
     title = Column(Unicode(512), nullable=False)
-    description = Column(Unicode, nullable=False)
-    keywords = Column(Unicode, nullable=False)
+    description = Column(Unicode(4096 * 16), nullable=False)
+    keywords = Column(Unicode(4096), nullable=False)
     language = Column(Unicode(16), nullable=False)
     full_text_path = Column(Unicode(512), nullable=True)
 
-    bibliography = relationship(
-        'Bibliography',
-        back_populates='documents',
-    )
+    bibliography = relationship("Bibliography", back_populates="documents",)
 
     def raw_data(self, fields, normalizer_class):
         """
@@ -49,7 +43,7 @@ class Document(AuditableMixing, DeclarativeBase):
         :return: list of normalized data
         """
         normalizer = normalizer_class(language=self.language)
-        data = ' '.join(getattr(self, field) for field in fields)
+        data = " ".join(getattr(self, field) for field in fields)
         return normalizer.apply_to(data).split()
 
     @property
@@ -59,33 +53,35 @@ class Document(AuditableMixing, DeclarativeBase):
         :return: string with the full text
         """
         if not self.full_text_path:
-            return ''
-        return ' '.join(open(self.full_text_path).read().split('\n'))
+            return ""
+        return " ".join(open(self.full_text_path).read().split("\n"))
 
     @staticmethod
     def load_full_text(record, files, force=False):
         accent_remover = LatexAccentRemover()
-        filename = accent_remover.apply_to(record.get('file', ''))
+        filename = accent_remover.apply_to(record.get("file", ""))
         if not filename:
             return
-        basename = os.path.basename(
-            ':'.join(filename.split(':')[:-1])
-        )
+        basename = os.path.basename(":".join(filename.split(":")[:-1]))
         full_text_path = os.path.join(
-            FULL_TEXT_PATH,
-            record.get('hash', 'lost') + '.txt'
+            FULL_TEXT_PATH, record.get("hash", "lost") + ".txt"
         )
         if not force and os.path.exists(full_text_path):
             return full_text_path
         if basename in files:
-            with open(full_text_path, 'w') as output:
+            with open(full_text_path, "w") as output:
                 output.write(full_text_from_pdf(files[basename]))
             return full_text_path
 
     @staticmethod
-    def mappings_from_files(record_type, files,
-                            full_text_path=None, force=False,
-                            show_progress_bar=False, **kwargs):
+    def mappings_from_files(
+        record_type,
+        files,
+        full_text_path=None,
+        force=False,
+        show_progress_bar=False,
+        **kwargs
+    ):
         """
         Creates document mappings out of files.
 
@@ -100,52 +96,50 @@ class Document(AuditableMixing, DeclarativeBase):
         if full_text_path:
             full_text_files = {
                 os.path.basename(path): path
-                for path in glob.glob(full_text_path + '**/*.pdf',
-                                      recursive=True)
+                for path in glob.glob(full_text_path + "**/*.pdf", recursive=True)
             }
         else:
             full_text_files = None
 
         if show_progress_bar:
             return Document._mappings_with_progress_bar(
-                iterator_class, files,
-                full_text_files, full_text_path,
-                force, **kwargs)
+                iterator_class, files, full_text_files, full_text_path, force, **kwargs
+            )
 
         records = dict()
         for file in files:
             for record in iterator_class(file):
-                record['keywords'] = '; '.join(record.get('keywords', ''))
+                record["keywords"] = "; ".join(record.get("keywords", ""))
                 record.update(kwargs)
-                records[record['hash']] = record
+                records[record["hash"]] = record
                 if full_text_path:
-                    record['full_text_path'] = Document.load_full_text(
-                        record,
-                        full_text_files,
-                        force=force
+                    record["full_text_path"] = Document.load_full_text(
+                        record, full_text_files, force=force
                     )
-                record.pop('file', None)
+                record.pop("file", None)
         return [record for record in records.values()]
 
     @staticmethod
-    def _mappings_with_progress_bar(iterator_class, files,
-                                    full_text_files, full_text_path,
-                                    force, **kwargs):
+    def _mappings_with_progress_bar(
+        iterator_class, files, full_text_files, full_text_path, force, **kwargs
+    ):
         records = dict()
-        for file in tqdm(files, desc='processing files', unit='file'):
-            progress_bar = tqdm(iterator_class(file), desc='processing records',
-                                unit='record', leave=False)
+        for file in tqdm(files, desc="processing files", unit="file"):
+            progress_bar = tqdm(
+                iterator_class(file),
+                desc="processing records",
+                unit="record",
+                leave=False,
+            )
             for record in progress_bar:
-                record['keywords'] = '; '.join(record.get('keywords', ''))
+                record["keywords"] = "; ".join(record.get("keywords", ""))
                 record.update(kwargs)
-                records[record['hash']] = record
+                records[record["hash"]] = record
                 if full_text_path:
-                    record['full_text_path'] = Document.load_full_text(
-                        record,
-                        full_text_files,
-                        force=force
+                    record["full_text_path"] = Document.load_full_text(
+                        record, full_text_files, force=force
                     )
-                record.pop('file', None)
+                record.pop("file", None)
         return [record for record in records.values()]
 
     @classmethod
