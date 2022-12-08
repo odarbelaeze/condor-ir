@@ -5,7 +5,7 @@
 #    pip-compile --output-file=requirements.txt setup.py
 #
 bibtexparser==0.6.2
-certifi==2019.9.11        # via requests
+certifi==2022.12.7        # via requests
 chardet==3.0.4            # via requests
 click==6.7
 idna==2.8                 # via requests
